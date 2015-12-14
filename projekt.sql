@@ -1,0 +1,51 @@
+CREATE TABLE Address (
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  Users_id INTEGER UNSIGNED NOT NULL,
+  street VARCHAR(50) NOT NULL,
+  number VARCHAR(10) NOT NULL,
+  zip-code VARCHAR(6) NOT NULL,
+  city VARCHAR(30) NOT NULL,
+  PRIMARY KEY(id),
+  INDEX Address_FKIndex1(Users_id)
+);
+
+CREATE TABLE Orders (
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  Users_id INTEGER UNSIGNED NOT NULL,
+  Address_id INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(id),
+  INDEX Orders_FKIndex1(Address_id),
+  INDEX Orders_FKIndex2(Users_id)
+);
+
+CREATE TABLE Products (
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(30) NOT NULL UNIQUE,
+  type_2 VARCHAR(30) NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE Products2Orders (
+  Products_id INTEGER UNSIGNED NOT NULL,
+  Orders_id INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(Products_id, Orders_id),
+  INDEX Products_has_Orders_FKIndex1(Products_id),
+  INDEX Products_has_Orders_FKIndex2(Orders_id)
+);
+
+CREATE TABLE Roles (
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(30)NOT NULL UNIQUE,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE Users (
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  Roles_id INTEGER UNSIGNED NOT NULL,
+  name VARCHAR(30) NOT NULL,
+  surname VARCHAR(30) NOT NULL,
+  PRIMARY KEY(id),
+  INDEX Users_FKIndex1(Roles_id)
+);
+
+

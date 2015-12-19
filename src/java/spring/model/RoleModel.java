@@ -21,11 +21,6 @@ public class RoleModel {
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private Integer id;
 	 
-	 @OneToMany(cascade=CascadeType.ALL)
-	    @JoinTable(name="USER_ROLES",
-	        joinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")},
-	        inverseJoinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")}
-	    )
 	 private String role;
 	 
 	 private Set<User> userRoles;

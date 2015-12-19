@@ -3,35 +3,30 @@ package java.spring.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name="USERS")
+@Entity 
+@NamedQueries({
+	@NamedQuery(name = "users.all", query = "Select u from Users u")
+})
 public class UserModel {
 
 	private int id;
     private String name;
     private String surname;
-    
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinTable(name="USER_ADDRESS",
-        joinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")},
-        inverseJoinColumns = {@JoinColumn(name="address_id", referencedColumnName="id")}
-    )
     private AddressModel address_id;
   
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinTable(name="USER_ROLES",
-        joinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")},
-        inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}
-    )
     private RoleModel role_id;
     
     @Id
@@ -42,14 +37,14 @@ public class UserModel {
 	public void setId(int id) {
 		this.id = id;
 	}
-	 @Column(name="NAME", unique = true, nullable = false)
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	 @Column(name="SURNAME", unique = true, nullable = false)
+	
 	public String getSurname() {
 		return surname;
 	}
@@ -62,6 +57,7 @@ public class UserModel {
 	public void setAddress_id(AddressModel address_id) {
 		this.address_id = address_id;
 	}
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public RoleModel getRole_id() {
 		return role_id;
 	}

@@ -1,51 +1,45 @@
-CREATE TABLE Address (
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  Users_id INTEGER UNSIGNED NOT NULL,
-  street VARCHAR(50) NOT NULL,
-  number VARCHAR(10) NOT NULL,
-  zip-code VARCHAR(6) NOT NULL,
-  city VARCHAR(30) NOT NULL,
-  PRIMARY KEY(id),
-  INDEX Address_FKIndex1(Users_id)
+create table Roles (
+id integer identity(1,1) primary key,
+name varchar(30) not null unique
 );
 
-CREATE TABLE Orders (
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  Users_id INTEGER UNSIGNED NOT NULL,
-  Address_id INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(id),
-  INDEX Orders_FKIndex1(Address_id),
-  INDEX Orders_FKIndex2(Users_id)
+create table Users (
+id integer identity(1,1) primary key,
+name varchar(30) not null,
+surname varchar(30) not null,
+roles_id integer not null references Roles(id)
 );
 
-CREATE TABLE Products (
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  name VARCHAR(30) NOT NULL UNIQUE,
-  type_2 VARCHAR(30) NULL,
-  PRIMARY KEY(id)
+create table Addresses (
+id integer identity(1,1) primary key,
+street varchar(50) not null,
+number varchar(10) not null,
+zip_code varchar(6) not null,
+city varchar(30) not null,
+users_id integer not null references Users(id)
 );
 
-CREATE TABLE Products2Orders (
-  Products_id INTEGER UNSIGNED NOT NULL,
-  Orders_id INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(Products_id, Orders_id),
-  INDEX Products_has_Orders_FKIndex1(Products_id),
-  INDEX Products_has_Orders_FKIndex2(Orders_id)
+create table Orders (
+id integer identity(1,1) primary key,
+users_id integer not null references Users(id),
+addresses_id integer not null references Addresses(id)
 );
 
-CREATE TABLE Roles (
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  name VARCHAR(30)NOT NULL UNIQUE,
-  PRIMARY KEY(id)
+create table Products (
+id integer identity(1,1) primary key,
+name varchar(30) not null unique,
+type varchar(30)
 );
 
-CREATE TABLE Users (
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  Roles_id INTEGER UNSIGNED NOT NULL,
-  name VARCHAR(30) NOT NULL,
-  surname VARCHAR(30) NOT NULL,
-  PRIMARY KEY(id),
-  INDEX Users_FKIndex1(Roles_id)
+create table Products2Orders (
+products_id integer not null references Products(id),
+orders_id integer not null references Orders(id),
+primary key(products_id, orders_id)
 );
 
-
+drop table Products2Orders;
+drop table Products;
+drop table Orders;
+drop table Addresses;
+drop table Users;
+drop table Roles;

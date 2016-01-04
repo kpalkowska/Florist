@@ -9,9 +9,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 @Entity 
+@Table(name = "Products2Orders")
 @NamedQueries({
 	@NamedQuery(name = "products2orders.all", query = "Select po from Products2Orders po")
 })
+@AssociationOverrides({
+	@AssociationOverride(name = "pk.Products", 
+		joinColumns = @JoinColumn(name = "product_id")),
+	@AssociationOverride(name = "pk.Orders", 
+		joinColumns = @JoinColumn(name = "order_id")) })
 public class Product2OrderModel {
 
 	private Integer id;

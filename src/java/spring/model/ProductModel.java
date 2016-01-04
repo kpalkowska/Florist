@@ -5,6 +5,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity 
+@Table(name = "Products")
 @NamedQueries({
 	@NamedQuery(name = "products.all", query = "Select p from Products p")
 })

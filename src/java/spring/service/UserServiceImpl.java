@@ -27,8 +27,6 @@ public class UserServiceImpl implements UserService {
 		this.sessionFactory = sessionFactory;
 	}
 
-
-
 	@Override
 	public void deleteUser(User user) {
 		sessionFactory.getCurrentSession().delete(user);	

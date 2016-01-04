@@ -8,7 +8,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-@Entity 
+@Entity
+@Table(name = "Orders")
 @NamedQueries({
 	@NamedQuery(name = "orders.all", query = "Select o from Orders o")
 })

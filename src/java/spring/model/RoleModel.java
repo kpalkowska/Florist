@@ -9,13 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hsqldb.rights.User;
 
 @Entity
-@Table(name="ROLES")
+@Table(name = "Roles")
+@NamedQueries({
+	@NamedQuery(name = "roles.all", query = "Select r from Roles r")
+})
 public class RoleModel {
 	 @Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
@@ -23,6 +28,7 @@ public class RoleModel {
 	 
 	 private String role;
 	 
+	 @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	 private Set<User> userRoles;
 
 	public Integer getId() {

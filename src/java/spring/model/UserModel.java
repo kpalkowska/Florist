@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 
 @Entity 
+@Table(name = "Users")
 @NamedQueries({
 	@NamedQuery(name = "users.all", query = "Select u from Users u")
 })
@@ -25,8 +26,11 @@ public class UserModel {
 	private int id;
     private String name;
     private String surname;
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private AddressModel address_id;
   
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private RoleModel role_id;
     
     @Id
@@ -57,7 +61,6 @@ public class UserModel {
 	public void setAddress_id(AddressModel address_id) {
 		this.address_id = address_id;
 	}
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public RoleModel getRole_id() {
 		return role_id;
 	}

@@ -9,6 +9,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity 
+@Table(name = "Addresses")
 @NamedQueries({
 	@NamedQuery(name = "addresses.all", query = "Select a from Addresses a")
 })

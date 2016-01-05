@@ -17,6 +17,7 @@ public class OrderModel {
 
 		private Integer id;
 		private UserModel user_id;
+		private int index;
 		private AddressModel address_id;
 
 		public Integer getId() {

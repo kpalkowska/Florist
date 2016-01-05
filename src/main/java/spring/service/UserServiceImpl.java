@@ -1,6 +1,6 @@
-package java.spring.service;
+package spring.service;
 
-import java.spring.dao.UserDAO;
+import spring.dao.UserDAO;
 import java.util.List;
 
 import org.hibernate.SessionFactory;

@@ -1,9 +1,12 @@
-package java.spring.service;
+package spring.service;
 
+import spring.dao.OrderDAO;
+
+import spring.model.OrderModel;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
-import org.hsqldb.rights.Order;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class OrderServiceImpl {
@@ -22,22 +25,21 @@ public class OrderServiceImpl {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
-	public void deleteOrder(Order order) {
+
+	public void deleteOrder(OrderModel order) {
 		sessionFactory.getCurrentSession().delete(order);	
 	}
 	
-	@Override
-	public List<Order> getAllOrders() {
+
+	public List<OrderModel> getAllOrders() {
 		return sessionFactory.getCurrentSession().getNamedQuery("orders.all").list();
 	}
-	@Override
-	public void updateOrder(Order order) {
+
+	public void updateOrder(OrderModel order) {
 		sessionFactory.getCurrentSession().merge(order);
 	}
-	
-	@Override
-	public void addOrder(Order order) {
+
+	public void addOrder(OrderModel order) {
 		sessionFactory.getCurrentSession().persist(order);
 	}
 

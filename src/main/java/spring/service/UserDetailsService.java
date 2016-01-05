@@ -1,4 +1,4 @@
-package java.spring.service;
+package spring.service;
 
 public class UserDetailsService {
 

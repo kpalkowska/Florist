@@ -1,9 +1,13 @@
-package java.spring.dao;
+package spring.dao;
 
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.spring.model.*;
+import spring.model.*;
 
 @Repository
 @Transactional
@@ -32,7 +36,7 @@ public class OrderDAOImpl implements OrderDAO {
 	        getSessionFactory().getCurrentSession().update(order);
 	    }
 
-	    public OrderModel getOrderByName(String name) {
+	    public OrderModel findOrderByName(String name) {
 	        List list = getSessionFactory().getCurrentSession().createQuery("from Orders where name=?").setParameter(0, name).list();
 	        return (OrderModel)list.get(0);
 	    }
@@ -41,5 +45,7 @@ public class OrderDAOImpl implements OrderDAO {
 	        List list = getSessionFactory().getCurrentSession().createQuery("from Orders").list();
 	        return list;
 	    }
+
+
 
 }

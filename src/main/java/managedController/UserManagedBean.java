@@ -1,4 +1,4 @@
-package java.managedController;
+package managedController;
 
 public class UserManagedBean {
 

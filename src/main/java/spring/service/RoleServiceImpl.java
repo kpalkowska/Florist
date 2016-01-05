@@ -1,6 +1,6 @@
-package java.spring.service;
+package spring.service;
 
-import java.spring.dao.RoleDAO;
+import spring.dao.RoleDAO;
 import java.util.List;
 
 import javax.management.relation.Role;
@@ -28,11 +28,6 @@ public class RoleServiceImpl implements RoleService {
    	public void setSessionFactory(SessionFactory sessionFactory) {
    		this.sessionFactory = sessionFactory;
    	}
-
-    public Role getRole(int id) {
-        return roleDAO.getRole(id);
-    }
-
     
     @Override
 	public void deleteRole(Role role) {
@@ -51,6 +46,12 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public void addRole(Role role) {
 		sessionFactory.getCurrentSession().persist(role);
+	}
+
+	@Override
+	public Role getRole(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

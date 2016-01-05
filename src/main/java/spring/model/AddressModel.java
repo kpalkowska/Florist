@@ -1,12 +1,9 @@
-package java.spring.model;
+package spring.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity 
 @Table(name = "Addresses")

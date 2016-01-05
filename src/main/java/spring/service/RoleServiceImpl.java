@@ -1,12 +1,11 @@
 package spring.service;
 
 import spring.dao.RoleDAO;
+import spring.model.RoleModel;
+
 import java.util.List;
 
-import javax.management.relation.Role;
-
 import org.hibernate.SessionFactory;
-import org.hsqldb.rights.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,26 +29,26 @@ public class RoleServiceImpl implements RoleService {
    	}
     
     @Override
-	public void deleteRole(Role role) {
+	public void deleteRole(RoleModel role) {
 		sessionFactory.getCurrentSession().delete(role);	
 	}
 	
 	@Override
-	public List<Role> getAllRoles() {
+	public List<RoleModel> getAllRoles() {
 		return sessionFactory.getCurrentSession().getNamedQuery("roles.all").list();
 	}
 	@Override
-	public void updateRole(Role role) {
+	public void updateRole(RoleModel role) {
 		sessionFactory.getCurrentSession().merge(role);
 	}
 	
 	@Override
-	public void addRole(Role role) {
+	public void addRole(RoleModel role) {
 		sessionFactory.getCurrentSession().persist(role);
 	}
 
 	@Override
-	public Role getRole(int id) {
+	public RoleModel getRole(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

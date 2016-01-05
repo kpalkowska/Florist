@@ -1,9 +1,11 @@
-package java.spring.service;
+package spring.service;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
-import org.hsqldb.rights.Address;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import spring.dao.AddressDAO;
+import spring.model.AddressModel;
 
 public class AddressServiceImpl implements AddressService  {
 	 @Autowired
@@ -22,23 +24,24 @@ public class AddressServiceImpl implements AddressService  {
 		
 		
 		@Override
-		public void addAddress(Address address) {
+		public void addAddress(AddressModel address) {
 			sessionFactory.getCurrentSession().persist(address);
 		}
 
 		@Override
-		public void deleteAddress(Address address) {
+		public void deleteAddress(AddressModel address) {
 			sessionFactory.getCurrentSession().delete(address);	
 		}
 		
 		@Override
-		public List<Address> getAllAddresses() {
+		public List<AddressModel> getAllAddresses() {
 			return sessionFactory.getCurrentSession().getNamedQuery("addresses.all").list();
 		}
+
 		@Override
-		public void updateAddress(Address address) {
-			sessionFactory.getCurrentSession().merge(address);
+		public void updateAddress(AddressModel address) {
+			// TODO Auto-generated method stub
+			
 		}
-		
-		
+				
 }

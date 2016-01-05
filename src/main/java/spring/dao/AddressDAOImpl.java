@@ -45,4 +45,10 @@ public class AddressDAOImpl implements AddressDAO {
 	        return list;
 	    }
 
+		@Override
+		public AddressModel findAddressByCity(String name) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 }

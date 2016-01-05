@@ -1,9 +1,9 @@
-package java.spring.dao;
+package spring.dao;
 
-import javax.management.relation.Role;
+import spring.model.RoleModel;
+import java.util.List;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class RoleDAOImpl implements RoleDAO {
    
-    @Autowired
+	@Autowired
     private SessionFactory sessionFactory;
-   
-    private Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -35,7 +35,7 @@ public class RoleDAOImpl implements RoleDAO {
         getSessionFactory().getCurrentSession().update(role);
     }
 
-    public User getRoleByName(String name) {
+    public RoleModel getRoleByName(String name) {
         List list = getSessionFactory().getCurrentSession().createQuery("from Roles where name=?").setParameter(0, name).list();
         return (RoleModel)list.get(0);
     }
@@ -44,8 +44,16 @@ public class RoleDAOImpl implements RoleDAO {
         List list = getSessionFactory().getCurrentSession().createQuery("from Roles").list();
         return list;
     }
-    public RoleModel getRole(int id) {
-        Role role = (RoleModel) getCurrentSession().load(RoleModel.class, id);
-        return role;
-    }
+
+	@Override
+	public RoleModel findRoleByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RoleModel getRole(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

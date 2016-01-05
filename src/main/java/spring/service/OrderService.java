@@ -1,11 +1,11 @@
-package java.spring.service;
-import java.util.List;
+package spring.service;
 
-import org.hsqldb.rights.Order;
+import java.util.List;
+import spring.model.OrderModel;
 
 public interface OrderService {
-	void addOrder(Order order);
-	List<Order> getAllOrders();
-	void deleteOrder(Order order);
-	void updateOrder(Order order);
+	void addOrder(OrderModel order);
+	List<OrderModel> getAllOrders();
+	void deleteOrder(OrderModel order);
+	void updateOrder(OrderModel order);
 }

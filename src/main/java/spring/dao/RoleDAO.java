@@ -1,7 +1,7 @@
-package java.spring.dao;
+package spring.dao;
 
 import javax.management.relation.Role;
-import java.spring.model.*;
+import spring.model.RoleModel;
 import java.util.List;
 
 public interface RoleDAO {
@@ -11,7 +11,7 @@ public interface RoleDAO {
 	List<RoleModel> getAllRoles();
 	void addRole(RoleModel role);
 	RoleModel findRoleByName(String name);
-	void deleteUser(RoleModel role);
-	void updateUser(RoleModel role);
+	void deleteRole(RoleModel role);
+	void updateRole(RoleModel role);
     
 }

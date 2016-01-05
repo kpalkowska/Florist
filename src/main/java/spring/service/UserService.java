@@ -1,14 +1,13 @@
-package java.spring.service;
+package spring.service;
 
 import java.util.List;
-
-import org.hsqldb.rights.User;
+import spring.model.UserModel;
 
 public interface UserService {
 	 
-	void addUser(User user);
-	List<User> getAllUsers();
-	void deleteUser(User user);
-	void updateUser(User user);
+	void addUser(UserModel user);
+	List<UserModel> getAllUsers();
+	void deleteUser(UserModel user);
+	void updateUser(UserModel user);
 
 }

@@ -8,7 +8,6 @@
 
 	<properties>
 		<!-- Persistence properites -->
-		<org.hibernate.version>5.0.5.Final</org.hibernate.version>
 	
 		<!-- Shared version number properties -->
 		<org.springframework.version>3.0.6.RELEASE</org.springframework.version>
@@ -36,27 +35,27 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>3.0.6.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>3.0.6.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>3.0.6.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>3.0.6.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>3.0.6.RELEASE</version>
 		</dependency>
 		
 		<!-- Spring Data Access -->
@@ -88,8 +87,11 @@
 			<version>${org.springframework.version}</version>
 			<scope>test</scope>
 		</dependency>
+	<!--  Spring security -->
 	
+		
 		<!-- It's a must -->
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

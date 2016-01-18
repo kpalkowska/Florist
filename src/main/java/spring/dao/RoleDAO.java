@@ -1,6 +1,5 @@
 package spring.dao;
 
-import javax.management.relation.Role;
 import spring.model.RoleModel;
 import java.util.List;
 

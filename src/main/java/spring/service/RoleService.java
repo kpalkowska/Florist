@@ -3,10 +3,6 @@ package spring.service;
 import spring.model.RoleModel;
 import java.util.List;
 
-import javax.management.relation.Role;
-
-
-
 public interface RoleService {
 	 
     public RoleModel getRole(int id);

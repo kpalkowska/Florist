@@ -13,8 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hsqldb.rights.User;
-
 @Entity
 @Table(name = "Roles")
 @NamedQueries({
@@ -28,7 +26,7 @@ public class RoleModel {
 	 private String role;
 	 
 	 @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	 private Set<User> userRoles;
+	 private Set<UserModel> userRoles;
 
 	public Integer getId() {
 		return id;
@@ -46,11 +44,11 @@ public class RoleModel {
 		this.role = role;
 	}
 
-	public Set<User> getUserRoles() {
+	public Set<UserModel> getUserRoles() {
 		return userRoles;
 	}
 
-	public void setUserRoles(Set<User> userRoles) {
+	public void setUserRoles(Set<UserModel> userRoles) {
 		this.userRoles = userRoles;
 	}
 	 

@@ -1,6 +1,9 @@
 package spring.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -11,11 +14,14 @@ import javax.persistence.Table;
 	@NamedQuery(name = "products.all", query = "Select p from Products p")
 })
 public class ProductModel {
-
+	
 	private Integer id;
 	private String name;
 	private String description;
 	private String price;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Integer getId() {
 		return id;
 	}

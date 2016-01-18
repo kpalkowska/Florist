@@ -13,7 +13,6 @@ import spring.model.*;
 @Transactional
 public class UserDAOImpl implements UserDAO {
 	  	
-		@Autowired
 	    private SessionFactory sessionFactory;
 
 	    public SessionFactory getSessionFactory() {

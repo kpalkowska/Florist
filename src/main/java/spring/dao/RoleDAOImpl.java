@@ -11,8 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class RoleDAOImpl implements RoleDAO {
-   
-	@Autowired
+
     private SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {

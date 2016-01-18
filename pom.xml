@@ -10,11 +10,17 @@
 		<!-- Persistence properites -->
 	
 		<!-- Shared version number properties -->
-		<org.springframework.version>3.0.6.RELEASE</org.springframework.version>
-		<org.hibernate.version>3.6.6.Final</org.hibernate.version>
+		<org.springframework.version>4.2.4.RELEASE</org.springframework.version>
+		<org.hibernate.version>5.0.7.Final</org.hibernate.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
+<repositories>
+	<repository>
+        <id>objectdb</id>
+        <name>ObjectDB Repository</name>
+        <url>http://m2.objectdb.com</url>
+	</repository>
+</repositories>
 
 <dependencies>
 	<!-- Hibernate -->
@@ -35,27 +41,27 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>3.0.6.RELEASE</version>
+			<version>${org.springframework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>3.0.6.RELEASE</version>
+			<version>${org.springframework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>3.0.6.RELEASE</version>
+			<version>${org.springframework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>3.0.6.RELEASE</version>
+			<version>${org.springframework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
-			<version>3.0.6.RELEASE</version>
+			<version>${org.springframework.version}</version>
 		</dependency>
 		
 		<!-- Spring Data Access -->
@@ -82,6 +88,22 @@
 		</dependency>
 			
 		<dependency>
+            <groupId>com.objectdb</groupId>
+            <artifactId>objectdb</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+       <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+			
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework.version}</version>
@@ -104,7 +126,11 @@
 			<version>1.2.16</version>
 		</dependency>
 
-		
+		<dependency>
+		    <groupId>c3p0</groupId>
+		    <artifactId>c3p0</artifactId>
+		    <version>0.9.1.2</version>
+		</dependency>	
 	
 	
 		<!-- Hibernate uses this logging Facade,

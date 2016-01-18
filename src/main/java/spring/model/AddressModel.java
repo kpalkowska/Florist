@@ -5,6 +5,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.springframework.transaction.annotation.Transactional;
+@Transactional
 @Entity 
 @Table(name = "Addresses")
 @NamedQueries({

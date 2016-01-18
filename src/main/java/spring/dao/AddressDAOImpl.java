@@ -12,7 +12,6 @@ import java.util.List;
 @Transactional
 public class AddressDAOImpl implements AddressDAO {
 	  	
-		@Autowired
 	    private SessionFactory sessionFactory;
 
 	    public SessionFactory getSessionFactory() {

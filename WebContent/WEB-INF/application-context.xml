@@ -15,7 +15,7 @@
     <context:annotation-config/>
     <context:spring-configured/>
 
-    <!-- Data Source Declaration -->
+    <!-- Data Source Declaration -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
     <bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="******" />
         <property name="jdbcUrl" value="******" />
@@ -26,6 +26,7 @@
         <property name="minPoolSize" value="1" />
     </bean>
 
+    
     <!-- Session Factory Declaration -->
     <bean id="SessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
            <property name="dataSource" ref="DataSource" />
@@ -46,8 +47,9 @@
     <!-- Enable the configuration of transactional behavior based on annotations -->
     <tx:annotation-driven transaction-manager="txManager"/>
 
-    <!-- Transaction Manager is defined -->
+    <!-- Transaction Manager is defined   -->
     <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="SessionFactory"/>
     </bean>
+  
 </beans>

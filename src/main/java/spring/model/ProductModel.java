@@ -20,6 +20,11 @@ public class ProductModel {
 	private String description;
 	private String price;
 	
+	public ProductModel(String Name, String Description, String Price) {
+		this.name = Name;
+		this.description = Description;
+		this.price = Price; 
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Integer getId() {

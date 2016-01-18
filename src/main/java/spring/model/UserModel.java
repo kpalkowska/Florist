@@ -25,12 +25,18 @@ public class UserModel {
     private String surname;
     
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private AddressModel address_id;
+    private long address_id;
   
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private RoleModel role_id;
+    private long role_id;
     
-    @Id
+    public UserModel(String Name, String Surname, long Address_id, long Role_id) {
+		this.name = Name;
+		this.surname = Surname;
+		this.address_id = Address_id;
+		this.role_id = Role_id;
+	}
+	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	public int getId() {
 		return id;
@@ -52,16 +58,16 @@ public class UserModel {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	public AddressModel getAddress_id() {
+	public long getAddress_id() {
 		return address_id;
 	}
-	public void setAddress_id(AddressModel address_id) {
+	public void setAddress_id(long address_id) {
 		this.address_id = address_id;
 	}
-	public RoleModel getRole_id() {
+	public long getRole_id() {
 		return role_id;
 	}
-	public void setRole_id(RoleModel role_id) {
+	public void setRole_id(long role_id) {
 		this.role_id = role_id;
 	}
 }

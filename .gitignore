@@ -62,7 +62,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 .classpath
-.classpath
+.project
 .settings
 target
 .classpath
+/bin/

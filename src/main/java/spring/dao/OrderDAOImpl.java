@@ -12,7 +12,8 @@ import spring.model.*;
 @Repository
 @Transactional
 public class OrderDAOImpl implements OrderDAO {
-	  
+	
+		@Autowired
 	    private SessionFactory sessionFactory;
 
 	    public SessionFactory getSessionFactory() {

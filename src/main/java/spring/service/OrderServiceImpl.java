@@ -11,9 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class OrderServiceImpl {
 
-    @Autowired
-    private OrderDAO orderDAO;
 
+    private OrderDAO orderDAO;
     @Autowired
 	private SessionFactory sessionFactory;
 

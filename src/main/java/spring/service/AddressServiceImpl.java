@@ -8,9 +8,8 @@ import spring.dao.AddressDAO;
 import spring.model.AddressModel;
 
 public class AddressServiceImpl implements AddressService  {
-	 @Autowired
+	
 	    private AddressDAO addressDAO;
-
 	    @Autowired
 		private SessionFactory sessionFactory;
 

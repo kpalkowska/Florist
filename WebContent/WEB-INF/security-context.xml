@@ -39,8 +39,4 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
 
-     <!-- Inject authentication Manager to our LoginBean -->
-    <beans:bean id="loginBean" name="loginBean" class="managedController.LoginBean" scope="prototype">
-        <beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
-    </beans:bean>
 </beans:beans>

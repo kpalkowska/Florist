@@ -12,7 +12,7 @@ import spring.model.*;
 @Repository
 @Transactional
 public class Product2OrderDAOImpl implements Product2OrderDAO {
-	  	
+		@Autowired
 	    private SessionFactory sessionFactory;
 
 	    public SessionFactory getSessionFactory() {

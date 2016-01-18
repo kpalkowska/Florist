@@ -15,7 +15,7 @@
     <context:annotation-config/>
     <context:spring-configured/>
 
-    <!-- Data Source Declaration -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+    <!-- Data Source Declaration                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     <bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="******" />
         <property name="jdbcUrl" value="******" />
@@ -24,8 +24,13 @@
         <property name="maxPoolSize" value="2" />
         <property name="maxStatements" value="0" />
         <property name="minPoolSize" value="1" />
-    </bean>
-
+    </bean>-->
+ 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="org.hsqldb.jdbcDriver"/>
+        <property name="jdbcUrl" value="jdbc:hsqldb:mem:camel"/>
+        <property name="user" value="sa"/>
+        <property name="password" value=""/>
+	</bean>
     
     <!-- Session Factory Declaration -->
     <bean id="SessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">

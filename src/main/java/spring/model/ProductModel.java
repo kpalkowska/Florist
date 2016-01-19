@@ -15,7 +15,10 @@ import javax.persistence.Table;
 })
 public class ProductModel {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String name;
 	private String description;
 	private String price;
@@ -25,8 +28,7 @@ public class ProductModel {
 		this.description = Description;
 		this.price = Price; 
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+
 	public Integer getId() {
 		return id;
 	}

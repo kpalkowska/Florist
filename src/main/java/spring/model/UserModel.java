@@ -23,17 +23,20 @@ import javax.persistence.Table;
 })
 public class UserModel {
 
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
     private String name;
     private String surname;
     
 //  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //  @JoinColumn
-    @Column(name = "address_id")
+    @Column(name = "address")
     private long address;
   
 //	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Column(name = "role_id")
+    @Column(name = "role")
     private long role;
     
     public UserModel(String Name, String Surname, long Address, long Role) {
@@ -42,8 +45,7 @@ public class UserModel {
 		this.address = Address;
 		this.role = Role;
 	}
-	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+
 	public int getId() {
 		return id;
 	}

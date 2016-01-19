@@ -1,16 +1,11 @@
 package spring.model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,15 +14,13 @@ import javax.persistence.Table;
 	@NamedQuery(name = "roles.all", query = "Select r from Roles r")
 })
 public class RoleModel {
-	 @Id
-	 @GeneratedValue(strategy=GenerationType.AUTO)
-	 private Integer id;
-	 
-	 private String role;
-	 
-	 @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	 private Set<UserModel> userRoles;
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	
+	private String role;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -42,15 +35,6 @@ public class RoleModel {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public Set<UserModel> getUserRoles() {
-		return userRoles;
-	}
-
-	public void setUserRoles(Set<UserModel> userRoles) {
-		this.userRoles = userRoles;
-	}
-	 
+	}	 
 	 
 }

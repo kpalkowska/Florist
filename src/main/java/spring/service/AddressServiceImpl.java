@@ -4,12 +4,10 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import spring.dao.AddressDAO;
 import spring.model.AddressModel;
 
 public class AddressServiceImpl implements AddressService  {
 	
-	    private AddressDAO addressDAO;
 	    @Autowired
 		private SessionFactory sessionFactory;
 
@@ -32,6 +30,7 @@ public class AddressServiceImpl implements AddressService  {
 			sessionFactory.getCurrentSession().delete(address);	
 		}
 		
+		@SuppressWarnings("unchecked")
 		@Override
 		public List<AddressModel> getAllAddresses() {
 			return sessionFactory.getCurrentSession().getNamedQuery("addresses.all").list();
@@ -39,8 +38,13 @@ public class AddressServiceImpl implements AddressService  {
 
 		@Override
 		public void updateAddress(AddressModel address) {
-			// TODO Auto-generated method stub
+			sessionFactory.getCurrentSession().merge(address);
 			
+		}
+
+		@Override
+		public AddressModel findAddressById(AddressModel address) {
+			return (AddressModel) sessionFactory.getCurrentSession().get(AddressModel.class, address.getId());
 		}
 				
 }

@@ -1,14 +1,12 @@
 package spring.model;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,12 +23,15 @@ public class OrderModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "user")
 	private UserModel user;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "Addresses", joinColumns = { @JoinColumn(name = "order") }, inverseJoinColumns = { @JoinColumn(name = "address") })
-	@Column(name = "address")
+	@JoinColumn(name = "address")
 	private AddressModel address;
+	
+	public OrderModel(){}
 
 	public Integer getId() {
 		return id;

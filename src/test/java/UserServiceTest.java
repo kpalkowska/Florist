@@ -1,30 +1,29 @@
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.SessionFactory;
-import org.hsqldb.Session;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import spring.model.AddressModel;
+import spring.model.RoleModel;
 import spring.model.UserModel;
+import spring.service.AddressService;
+import spring.service.RoleService;
 import spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/application-context.xml" })
-@TransactionConfiguration(transactionManager = "txManager", defaultRollback = false)
-@Transactional
+@Transactional("txManager")
 public class UserServiceTest{
 
 	@Autowired
 //	Manager manager;
 	UserService userService;
+	AddressService addressService;
+	RoleService roleService;
 
 	private final String NAME_1 = "Jan";
 	private final String SURNAME_1 = "Kowalski";
@@ -32,39 +31,50 @@ public class UserServiceTest{
 	private final String NAME_2 = "Tomasz";
 	private final String SURNAME_2 = "Kot";
 	
-	private final long ADDRESS_ID_1 = 1;
-	private final long ROLE_ID_1 = 1;
+	private final String zipKode = "82-300";
+	private final String city = "Elblag";
+	private final String street = "Kwiatowa";
+	private final String number = "7";
 	
-	private final long ADDRESS_ID_2 = 2;
-	private final long ROLE_ID_2 = 1;
+	private final String role_name = "Admin";
 	
-	boolean delete;
+	private final String zipKode2 = "83-500";
+	private final String city2 = "Costam";
+	private final String street2 = "Taka";
+	private final String number2 = "9";
 	
-	private SessionFactory sessionFactory;
-	private Session session = null;
-	
-	private List<Long>  addedUsers = new ArrayList<Long>();
-	private List<Long>  addedAddreses = new ArrayList<Long>();
-	private List<Long>  addedRoles = new ArrayList<Long>();
+	private final String role_name2 = "Nikt";
 	
 	@Test
 	public void addUserCheck() {
+		
+		AddressModel address = new AddressModel( zipKode, city, street, number);
+		address.setZipKode(zipKode);
+		address.setCity(city);
+		address.setStreet(street);
+		address.setNumber(number);
+
+		addressService.addAddress(address);
+		
+		RoleModel role = new RoleModel(role_name);
+		role.setRole(role_name);
+		
+		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel( NAME_1, SURNAME_1, ADDRESS_ID_1, ROLE_ID_1);
+		UserModel user = new UserModel( NAME_1, SURNAME_1, address, role);
 		user.setName(NAME_1);
 		user.setSurname(SURNAME_1);
-		user.setAddress(ADDRESS_ID_1);
-		user.setRole(ROLE_ID_1);
+		user.setAddress(address);
+		user.setRole(role);
 
-		long id = 1;
 		userService.addUser(user);
-		UserModel retrievedUser = userService.findUserById(id);
+		UserModel retrievedUser = userService.findUserById(user);
 		assertEquals(user.getId(), retrievedUser.getId());
 		assertEquals(NAME_1, retrievedUser.getName());
 		assertEquals(SURNAME_1, retrievedUser.getSurname());
-		assertEquals(ADDRESS_ID_1, retrievedUser.getAddress());
-		assertEquals(ROLE_ID_1, retrievedUser.getRole());
+		assertEquals(address, retrievedUser.getAddress());
+		assertEquals(role, retrievedUser.getRole());
 
 		assertEquals(n+1, userService.getAllUsers().size());
 	}
@@ -72,22 +82,33 @@ public class UserServiceTest{
 	@Test
 	public void deleteUserCheck(){
 	
+		AddressModel address = new AddressModel( zipKode, city, street, number);
+		address.setZipKode(zipKode);
+		address.setCity(city);
+		address.setStreet(street);
+		address.setNumber(number);
+
+		addressService.addAddress(address);
+		
+		RoleModel role = new RoleModel(role_name);
+		role.setRole(role_name);
+		
+		roleService.addRole(role);
+
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel( NAME_1, SURNAME_1, ADDRESS_ID_1, ROLE_ID_1);
+		UserModel user = new UserModel( NAME_1, SURNAME_1, address, role);
 		user.setName(NAME_1);
 		user.setSurname(SURNAME_1);
-		user.setAddress(ADDRESS_ID_1);
-		user.setRole(ROLE_ID_1);
+		user.setAddress(address);
+		user.setRole(role);
 
 		userService.addUser(user);
-		
-		int id =1;
-		UserModel retrievedUser = userService.findUserById(id);
+		UserModel retrievedUser = userService.findUserById(user);
 		assertEquals(user.getId(), retrievedUser.getId());
 		assertEquals(NAME_1, retrievedUser.getName());
 		assertEquals(SURNAME_1, retrievedUser.getSurname());
-		assertEquals(ADDRESS_ID_1, retrievedUser.getAddress());
-		assertEquals(ROLE_ID_1, retrievedUser.getRole());
+		assertEquals(address, retrievedUser.getAddress());
+		assertEquals(role, retrievedUser.getRole());
 
 		assertEquals(n+1, userService.getAllUsers().size());
 		
@@ -97,39 +118,62 @@ public class UserServiceTest{
 	
 	@Test 
 	public void updateClientCheck(){
+
+		AddressModel address = new AddressModel( zipKode, city, street, number);
+		address.setZipKode(zipKode);
+		address.setCity(city);
+		address.setStreet(street);
+		address.setNumber(number);
+
+		addressService.addAddress(address);
+		
+		RoleModel role = new RoleModel(role_name);
+		role.setRole(role_name);
+		
+		roleService.addRole(role);
+
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel( NAME_1, SURNAME_1, ADDRESS_ID_1, ROLE_ID_1);
+		UserModel user = new UserModel( NAME_1, SURNAME_1, address, role);
 		user.setName(NAME_1);
 		user.setSurname(SURNAME_1);
-		user.setAddress(ADDRESS_ID_1);
-		user.setRole(ROLE_ID_1);
+		user.setAddress(address);
+		user.setRole(role);
+		
+		AddressModel address2 = new AddressModel( zipKode2, city2, street2, number2);
+		address2.setZipKode(zipKode2);
+		address2.setCity(city2);
+		address2.setStreet(street2);
+		address2.setNumber(number2);
+
+		addressService.addAddress(address2);
+		
+		RoleModel role2 = new RoleModel(role_name2);
+		role2.setRole(role_name2);
+		
+		roleService.addRole(role2);
 
 		userService.addUser(user);
-		
-		long id = 1;
-		UserModel retrievedUser = userService.findUserById(id);
+		UserModel retrievedUser = userService.findUserById(user);
 		assertEquals(user.getId(), retrievedUser.getId());
 		assertEquals(NAME_1, retrievedUser.getName());
 		assertEquals(SURNAME_1, retrievedUser.getSurname());
-		assertEquals(ADDRESS_ID_1, retrievedUser.getAddress());
-		assertEquals(ROLE_ID_1, retrievedUser.getRole());
+		assertEquals(address, retrievedUser.getAddress());
+		assertEquals(role, retrievedUser.getRole());
 
 		assertEquals(n+1, userService.getAllUsers().size());
 		
 		retrievedUser.setName(NAME_2);
 		retrievedUser.setSurname(SURNAME_2);
-		retrievedUser.setAddress(ADDRESS_ID_2);
-		retrievedUser.setRole(ROLE_ID_2);
+		retrievedUser.setAddress(address2);
+		retrievedUser.setRole(role2);
 		userService.updateUser(retrievedUser);
 		
-		
-		long id2 =2;
-		UserModel retrievedUser2 = userService.findUserById(id2);
+		UserModel retrievedUser2 = userService.findUserById(user);
 		assertEquals(retrievedUser.getId(), retrievedUser2.getId());
 		assertEquals(NAME_2, retrievedUser.getName());
 		assertEquals(SURNAME_2, retrievedUser.getSurname());
-		assertEquals(ADDRESS_ID_2, retrievedUser.getAddress());
-		assertEquals(ROLE_ID_2, retrievedUser.getRole());
+		assertEquals(address2, retrievedUser.getAddress());
+		assertEquals(role2, retrievedUser.getRole());
 		
 	}
 	

@@ -21,6 +21,12 @@ public class RoleModel {
 	
 	private String role;
 	
+	public RoleModel(){}
+	
+	public RoleModel(String role) {
+		this.role = role;
+	}
+
 	public Integer getId() {
 		return id;
 	}

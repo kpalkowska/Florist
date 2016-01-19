@@ -1,17 +1,15 @@
 package spring.model;
 
-import javax.jdo.annotations.Join;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,22 +22,23 @@ import javax.persistence.Table;
 public class UserModel {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
     private String name;
     private String surname;
     
-//  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//  @JoinColumn
-    @Column(name = "address")
-    private long address;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "address")
+    private AddressModel address;
   
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Column(name = "role")
-    private long role;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "role")
+    private RoleModel role;
     
-    public UserModel(String Name, String Surname, long Address, long Role) {
+    public UserModel(){}
+    
+    public UserModel(String Name, String Surname, AddressModel Address, RoleModel Role) {
 		this.name = Name;
 		this.surname = Surname;
 		this.address = Address;
@@ -66,16 +65,16 @@ public class UserModel {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	public long getAddress() {
+	public AddressModel getAddress() {
 		return address;
 	}
-	public void setAddress(long address) {
+	public void setAddress(AddressModel address) {
 		this.address = address;
 	}
-	public long getRole() {
+	public RoleModel getRole() {
 		return role;
 	}
-	public void setRole(long role) {
+	public void setRole(RoleModel role) {
 		this.role = role;
 	}
 }

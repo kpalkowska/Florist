@@ -23,6 +23,8 @@ public class ProductModel {
 	private String description;
 	private String price;
 	
+	public ProductModel(){}
+	
 	public ProductModel(String Name, String Description, String Price) {
 		this.name = Name;
 		this.description = Description;

@@ -25,6 +25,15 @@ public class AddressModel {
 	private String street;
 	private String number;
 	
+	public AddressModel(){}
+	
+	public AddressModel(String ZipKode, String City, String Street, String Number){
+		this.zipKode = ZipKode;
+		this.city = City;
+		this.street = Street;
+		this.number = Number;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

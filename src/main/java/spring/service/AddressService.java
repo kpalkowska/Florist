@@ -9,4 +9,5 @@ public interface AddressService {
 	List<AddressModel> getAllAddresses();
 	void deleteAddress(AddressModel address);
 	void updateAddress(AddressModel address);
+	AddressModel findAddressById(AddressModel id);
 }

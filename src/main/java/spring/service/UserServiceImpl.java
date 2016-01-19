@@ -1,20 +1,14 @@
 package spring.service;
 
-import spring.dao.UserDAO;
 import spring.model.UserModel;
 
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-@Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
-    private UserDAO userDAO;
     @Autowired
 	private SessionFactory sessionFactory;
 
@@ -31,6 +25,7 @@ public class UserServiceImpl implements UserService {
 		sessionFactory.getCurrentSession().delete(user);	
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<UserModel> getAllUsers() {
 		return sessionFactory.getCurrentSession().getNamedQuery("users.all").list();
@@ -46,8 +41,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserModel findUserById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserModel findUserById(UserModel user) {
+		return (UserModel) sessionFactory.getCurrentSession().get(UserModel.class, user.getId());
 	}
 }

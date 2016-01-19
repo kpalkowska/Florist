@@ -1,7 +1,5 @@
 package spring.service;
 
-import spring.dao.OrderDAO;
-
 import spring.model.OrderModel;
 import java.util.List;
 
@@ -11,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class OrderServiceImpl {
 
-
-    private OrderDAO orderDAO;
     @Autowired
 	private SessionFactory sessionFactory;
 
@@ -30,6 +26,7 @@ public class OrderServiceImpl {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	public List<OrderModel> getAllOrders() {
 		return sessionFactory.getCurrentSession().getNamedQuery("orders.all").list();
 	}

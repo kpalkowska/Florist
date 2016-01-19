@@ -1,11 +1,14 @@
 package spring.model;
 
+import javax.jdo.annotations.Join;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,17 +27,20 @@ public class UserModel {
     private String name;
     private String surname;
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private long address_id;
+//  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//  @JoinColumn
+    @Column(name = "address_id")
+    private long address;
   
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private long role_id;
+//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Column(name = "role_id")
+    private long role;
     
-    public UserModel(String Name, String Surname, long Address_id, long Role_id) {
+    public UserModel(String Name, String Surname, long Address, long Role) {
 		this.name = Name;
 		this.surname = Surname;
-		this.address_id = Address_id;
-		this.role_id = Role_id;
+		this.address = Address;
+		this.role = Role;
 	}
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -58,16 +64,16 @@ public class UserModel {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	public long getAddress_id() {
-		return address_id;
+	public long getAddress() {
+		return address;
 	}
-	public void setAddress_id(long address_id) {
-		this.address_id = address_id;
+	public void setAddress(long address) {
+		this.address = address;
 	}
-	public long getRole_id() {
-		return role_id;
+	public long getRole() {
+		return role;
 	}
-	public void setRole_id(long role_id) {
-		this.role_id = role_id;
+	public void setRole(long role) {
+		this.role = role;
 	}
 }

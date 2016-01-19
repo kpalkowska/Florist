@@ -44,4 +44,10 @@ public class UserServiceImpl implements UserService {
 	public void addUser(UserModel user) {
 		sessionFactory.getCurrentSession().persist(user);
 	}
+
+	@Override
+	public UserModel findUserById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

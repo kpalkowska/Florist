@@ -12,7 +12,7 @@ public interface Manager {
 	List<UserModel> getAllUsers();
 	void deleteUser(UserModel user);
 	void updateUser(UserModel user);
-	UserModel findUserById(UserModel user);
+	UserModel findUser(UserModel user);
 	
 	void addRole(RoleModel role);
 	List<RoleModel> getAllRoles();

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Roles")
 @NamedQueries({
-	@NamedQuery(name = "roles.all", query = "Select r from Roles r")
+	@NamedQuery(name = "roles.all", query = "Select r from RoleModel r")
 })
 public class RoleModel {
 	

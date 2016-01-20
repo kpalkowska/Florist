@@ -3,6 +3,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,14 +16,17 @@ import spring.service.RoleService;
 import spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/application-context.xml" })
+@ContextConfiguration(locations = {"classpath:/application-context.xml" })
 @Transactional("txManager")
 public class UserServiceTest{
 
 	@Autowired
-//	Manager manager;
 	UserService userService;
+	
+	@Autowired
 	AddressService addressService;
+	
+	@Autowired
 	RoleService roleService;
 
 	private final String NAME_1 = "Jan";
@@ -45,10 +49,11 @@ public class UserServiceTest{
 	
 	private final String role_name2 = "Nikt";
 	
+	@Rollback(false)
 	@Test
 	public void addUserCheck() {
 		
-		AddressModel address = new AddressModel( zipKode, city, street, number);
+		AddressModel address = new AddressModel();
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -62,7 +67,7 @@ public class UserServiceTest{
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel( NAME_1, SURNAME_1, address, role);
+		UserModel user = new UserModel();
 		user.setName(NAME_1);
 		user.setSurname(SURNAME_1);
 		user.setAddress(address);
@@ -79,10 +84,11 @@ public class UserServiceTest{
 		assertEquals(n+1, userService.getAllUsers().size());
 	}
 	
+	@Rollback(false)
 	@Test
 	public void deleteUserCheck(){
 	
-		AddressModel address = new AddressModel( zipKode, city, street, number);
+		AddressModel address = new AddressModel();
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -96,7 +102,7 @@ public class UserServiceTest{
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel( NAME_1, SURNAME_1, address, role);
+		UserModel user = new UserModel();
 		user.setName(NAME_1);
 		user.setSurname(SURNAME_1);
 		user.setAddress(address);
@@ -116,10 +122,11 @@ public class UserServiceTest{
 		assertEquals(n, userService.getAllUsers().size());
 	}
 	
+	@Rollback(false)
 	@Test 
 	public void updateClientCheck(){
 
-		AddressModel address = new AddressModel( zipKode, city, street, number);
+		AddressModel address = new AddressModel();
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -133,13 +140,13 @@ public class UserServiceTest{
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel( NAME_1, SURNAME_1, address, role);
+		UserModel user = new UserModel();
 		user.setName(NAME_1);
 		user.setSurname(SURNAME_1);
 		user.setAddress(address);
 		user.setRole(role);
 		
-		AddressModel address2 = new AddressModel( zipKode2, city2, street2, number2);
+		AddressModel address2 = new AddressModel();
 		address2.setZipKode(zipKode2);
 		address2.setCity(city2);
 		address2.setStreet(street2);

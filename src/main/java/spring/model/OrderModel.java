@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Orders")
 @NamedQueries({
-	@NamedQuery(name = "orders.all", query = "Select o from Orders o")
+	@NamedQuery(name = "orders.all", query = "Select o from OrderModel o")
 })
 public class OrderModel {
 
@@ -24,7 +24,7 @@ public class OrderModel {
 	private Integer id;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "user")
+	@JoinColumn(name = "users")
 	private UserModel user;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

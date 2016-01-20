@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity 
 @Table(name = "Users")
 @NamedQueries({
-	@NamedQuery(name = "users.all", query = "Select u from Users u")
+	@NamedQuery(name = "users.all", query = "Select u from UserModel u")
 })
 public class UserModel {
 

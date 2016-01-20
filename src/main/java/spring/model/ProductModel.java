@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity 
 @Table(name = "Products")
 @NamedQueries({
-	@NamedQuery(name = "products.all", query = "Select p from Products p")
+	@NamedQuery(name = "products.all", query = "Select p from ProductModel p")
 })
 public class ProductModel {
 	

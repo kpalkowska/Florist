@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity 
 @Table(name = "Products2Orders")
 @NamedQueries({
-	@NamedQuery(name = "products2orders.all", query = "Select po from Products2Orders po")
+	@NamedQuery(name = "products2orders.all", query = "Select po from Product2OrderModel po")
 })
 public class Product2OrderModel {
 	
@@ -28,8 +28,8 @@ public class Product2OrderModel {
 	private ProductModel product;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "order")
-	private OrderModel order;
+	@JoinColumn(name = "orders")
+	private OrderModel orders;
 	
 	public Product2OrderModel(){}
 
@@ -46,10 +46,10 @@ public class Product2OrderModel {
 		this.product = product;
 	}
 	public OrderModel getOrder() {
-		return order;
+		return orders;
 	}
 	public void setOrder_id(OrderModel order) {
-		this.order = order;
+		this.orders = order;
 	}
 
 	

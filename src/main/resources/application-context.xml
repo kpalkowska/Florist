@@ -26,18 +26,13 @@
     
     <!-- Session Factory Declaration -->
     <bean id="SessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-           <property name="dataSource" ref="DataSource" />
-           <property name="packagesToScan">
-            <list>
-                <value>spring.model</value>
-                <value>spring.service</value>
-            </list>
-        </property>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-            </props>
+    	<property name="dataSource" ref="DataSource" />
+        <property name="packagesToScan" value="spring.model" />
+       	<property name="hibernateProperties">
+	        <props>
+	        	<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+	            <prop key="hibernate.show_sql">true</prop>
+	        </props>
         </property>
     </bean>
 

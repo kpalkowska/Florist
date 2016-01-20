@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "Addresses")
 @NamedQueries({
-	@NamedQuery(name = "addresses.all", query = "Select a from Addresses a")
+	@NamedQuery(name = "addresses.all", query = "Select a from AddressModel a")
 })
 public class AddressModel {
 	

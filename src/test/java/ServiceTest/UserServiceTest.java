@@ -125,7 +125,7 @@ public class UserServiceTest{
 	
 	@Rollback(false)
 	@Test 
-	public void updateClientCheck(){
+	public void updateUserCheck(){
 
 		AddressModel address = new AddressModel();
 		address.setZipKode(zipKode);

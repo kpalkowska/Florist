@@ -39,8 +39,8 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	@Transactional
-	public ProductModel findProductById(ProductModel id) {
-		return (ProductModel) sessionFactory.getCurrentSession().get(ProductModel.class, id.getId());
+	public ProductModel findProduct(ProductModel product) {
+		return (ProductModel) sessionFactory.getCurrentSession().get(ProductModel.class, product.getId());
 		
 	}
 

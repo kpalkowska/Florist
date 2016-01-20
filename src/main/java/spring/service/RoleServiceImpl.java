@@ -1,14 +1,14 @@
 package spring.service;
 
-import spring.model.RoleModel;
-
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
+import spring.model.RoleModel;
+
+@Component
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
@@ -43,8 +43,10 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public RoleModel getRole(RoleModel role) {
+	public RoleModel findRole(RoleModel role) {
 		return (RoleModel) sessionFactory.getCurrentSession().get(RoleModel.class, role.getId());
 	}
+
+
 
 }

@@ -5,10 +5,9 @@ import java.util.List;
 
 public interface RoleService {
 	 
-    public RoleModel getRole(RoleModel role);
     void addRole(RoleModel role);
 	List<RoleModel> getAllRoles();
 	void deleteRole(RoleModel role);
 	void updateRole(RoleModel role);
-
+	RoleModel findRole(RoleModel role);
 }

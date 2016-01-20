@@ -41,7 +41,7 @@ public class ProductServiceTest{
 
 		productService.addProduct(product);
 
-		ProductModel retrievedProduct = productService.findProductById(product);
+		ProductModel retrievedProduct = productService.findProduct(product);
 		assertEquals(product.getId(), retrievedProduct.getId());
 		assertEquals(NAME_1, retrievedProduct.getName());
 		assertEquals(DESCRIPTION_1, retrievedProduct.getDescription());
@@ -62,7 +62,7 @@ public class ProductServiceTest{
 
 		productService.addProduct(product);
 	
-		ProductModel retrievedProduct = productService.findProductById(product);
+		ProductModel retrievedProduct = productService.findProduct(product);
 		assertEquals(product.getId(), retrievedProduct.getId());
 		assertEquals(NAME_1, retrievedProduct.getName());
 		assertEquals(DESCRIPTION_1, retrievedProduct.getDescription());
@@ -85,7 +85,7 @@ public class ProductServiceTest{
 
 		productService.addProduct(product);
 	
-		ProductModel retrievedProduct = productService.findProductById(product);
+		ProductModel retrievedProduct = productService.findProduct(product);
 		assertEquals(product.getId(), retrievedProduct.getId());
 		assertEquals(NAME_1, retrievedProduct.getName());
 		assertEquals(DESCRIPTION_1, retrievedProduct.getDescription());
@@ -100,7 +100,7 @@ public class ProductServiceTest{
 
 		productService.updateProduct(retrievedProduct);
 	
-		ProductModel retrievedProduct2 = productService.findProductById(product);
+		ProductModel retrievedProduct2 = productService.findProduct(product);
 		assertEquals(product.getId(), retrievedProduct.getId());
 		assertEquals(NAME_2, retrievedProduct.getName());
 		assertEquals(DESCRIPTION_2, retrievedProduct.getDescription());

@@ -43,7 +43,7 @@ public class AddressServiceTest {
 
 		addressService.addAddress(address);
 		
-		AddressModel retrievedAddress = addressService.findAddressById(address);
+		AddressModel retrievedAddress = addressService.findAddress(address);
 		assertEquals(address.getId(), retrievedAddress.getId());
 		assertEquals(zipKode, retrievedAddress.getZipKode());
 		assertEquals(city, retrievedAddress.getCity());
@@ -66,7 +66,7 @@ public class AddressServiceTest {
 
 		addressService.addAddress(address);
 		
-		AddressModel retrievedAddress = addressService.findAddressById(address);
+		AddressModel retrievedAddress = addressService.findAddress(address);
 		assertEquals(address.getId(), retrievedAddress.getId());
 		assertEquals(zipKode, retrievedAddress.getZipKode());
 		assertEquals(city, retrievedAddress.getCity());
@@ -92,7 +92,7 @@ public class AddressServiceTest {
 
 		addressService.addAddress(address);
 		
-		AddressModel retrievedAddress = addressService.findAddressById(address);
+		AddressModel retrievedAddress = addressService.findAddress(address);
 		assertEquals(address.getId(), retrievedAddress.getId());
 		assertEquals(zipKode, retrievedAddress.getZipKode());
 		assertEquals(city, retrievedAddress.getCity());
@@ -107,7 +107,7 @@ public class AddressServiceTest {
 		retrievedAddress.setNumber(number2);
 		addressService.updateAddress(retrievedAddress);
 		
-		AddressModel retrievedAddress2 = addressService.findAddressById(address);
+		AddressModel retrievedAddress2 = addressService.findAddress(address);
 		assertEquals(retrievedAddress.getId(), retrievedAddress2.getId());
 		assertEquals(zipKode2, retrievedAddress2.getZipKode());
 		assertEquals(city2, retrievedAddress2.getCity());

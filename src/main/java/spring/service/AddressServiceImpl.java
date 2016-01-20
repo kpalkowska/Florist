@@ -51,7 +51,7 @@ public class AddressServiceImpl implements AddressService  {
 
 		@Override
 		@Transactional
-		public AddressModel findAddressById(AddressModel address) {
+		public AddressModel findAddress(AddressModel address) {
 			return (AddressModel) sessionFactory.getCurrentSession().get(AddressModel.class, address.getId());
 		}
 				

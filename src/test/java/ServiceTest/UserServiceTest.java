@@ -75,7 +75,7 @@ public class UserServiceTest{
 		user.setRole(role);
 
 		userService.addUser(user);
-		UserModel retrievedUser = userService.findUserById(user);
+		UserModel retrievedUser = userService.findUser(user);
 		assertEquals(user.getId(), retrievedUser.getId());
 		assertEquals(NAME_1, retrievedUser.getName());
 		assertEquals(SURNAME_1, retrievedUser.getSurname());
@@ -110,7 +110,7 @@ public class UserServiceTest{
 		user.setRole(role);
 
 		userService.addUser(user);
-		UserModel retrievedUser = userService.findUserById(user);
+		UserModel retrievedUser = userService.findUser(user);
 		assertEquals(user.getId(), retrievedUser.getId());
 		assertEquals(NAME_1, retrievedUser.getName());
 		assertEquals(SURNAME_1, retrievedUser.getSurname());
@@ -161,7 +161,7 @@ public class UserServiceTest{
 		roleService.addRole(role2);
 
 		userService.addUser(user);
-		UserModel retrievedUser = userService.findUserById(user);
+		UserModel retrievedUser = userService.findUser(user);
 		assertEquals(user.getId(), retrievedUser.getId());
 		assertEquals(NAME_1, retrievedUser.getName());
 		assertEquals(SURNAME_1, retrievedUser.getSurname());
@@ -176,7 +176,7 @@ public class UserServiceTest{
 		retrievedUser.setRole(role2);
 		userService.updateUser(retrievedUser);
 		
-		UserModel retrievedUser2 = userService.findUserById(user);
+		UserModel retrievedUser2 = userService.findUser(user);
 		assertEquals(retrievedUser.getId(), retrievedUser2.getId());
 		assertEquals(NAME_2, retrievedUser.getName());
 		assertEquals(SURNAME_2, retrievedUser.getSurname());

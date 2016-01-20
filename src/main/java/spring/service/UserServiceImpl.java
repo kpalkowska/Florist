@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public UserModel findUserById(UserModel user) {
+	public UserModel findUser(UserModel user) {
 		return (UserModel) sessionFactory.getCurrentSession().get(UserModel.class, user.getId());
 	}
 }

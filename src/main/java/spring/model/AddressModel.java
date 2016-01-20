@@ -12,7 +12,8 @@ import javax.persistence.Id;
 @Entity
 @Table(name = "Addresses")
 @NamedQueries({
-	@NamedQuery(name = "addresses.all", query = "Select a from AddressModel a")
+	@NamedQuery(name = "addresses.all", query = "Select a from AddressModel a"),
+	@NamedQuery(name = "addresses.byCity", query = "Select a from AddressModel a where a.city = :city")
 })
 public class AddressModel {
 	

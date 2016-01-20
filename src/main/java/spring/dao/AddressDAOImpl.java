@@ -12,8 +12,6 @@ import java.util.List;
 @Transactional
 public class AddressDAOImpl implements AddressDAO {
 	  	
-		
-	
 		@Autowired
 	    private SessionFactory sessionFactory;
 
@@ -49,8 +47,7 @@ public class AddressDAOImpl implements AddressDAO {
 
 		@Override
 		public AddressModel findAddressByCity(String name) {
-			// TODO Auto-generated method stub
-			return null;
+			return (AddressModel) sessionFactory.getCurrentSession().getNamedQuery("addresses.byCity").setString("city",name).list();
 		}
 
 }

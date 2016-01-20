@@ -23,17 +23,17 @@ public class ProductServiceImpl implements ProductService{
         this.sessionFactory = sessionFactory;
     }
     
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public List<ProductModel> getAllProducts() {
-		 List list = getSessionFactory().getCurrentSession().createQuery("from ProductModel").list();
-	        return list;
+		 return getSessionFactory().getCurrentSession().getNamedQuery("products.all").list();
 	}
 
 	@Override
 	@Transactional
 	public void addProduct(ProductModel product) {
-		 getSessionFactory().getCurrentSession().save(product);
+		 getSessionFactory().getCurrentSession().persist(product);
 		
 	}
 
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	@Transactional
 	public void updateProduct(ProductModel product) {
-		 getSessionFactory().getCurrentSession().update(product);
+		 getSessionFactory().getCurrentSession().merge(product);
 	}
 
 }

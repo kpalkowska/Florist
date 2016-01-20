@@ -178,10 +178,10 @@ public class UserServiceTest{
 		
 		UserModel retrievedUser2 = userService.findUser(user);
 		assertEquals(retrievedUser.getId(), retrievedUser2.getId());
-		assertEquals(NAME_2, retrievedUser.getName());
-		assertEquals(SURNAME_2, retrievedUser.getSurname());
-		assertEquals(address2, retrievedUser.getAddress());
-		assertEquals(role2, retrievedUser.getRole());
+		assertEquals(NAME_2, retrievedUser2.getName());
+		assertEquals(SURNAME_2, retrievedUser2.getSurname());
+		assertEquals(address2, retrievedUser2.getAddress());
+		assertEquals(role2, retrievedUser2.getRole());
 		
 	}
 	

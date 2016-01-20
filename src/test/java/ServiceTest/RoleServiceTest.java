@@ -84,8 +84,8 @@ public class RoleServiceTest {
 		roleService.updateRole(retrievedRole);
 	
 		RoleModel retrievedRole2 = roleService.findRole(role);
-		assertEquals(role.getId(), retrievedRole.getId());
-		assertEquals(ROLE_2, retrievedRole.getRole());
+		assertEquals(role.getId(), retrievedRole2.getId());
+		assertEquals(ROLE_2, retrievedRole2.getRole());
 		
 	}
 	

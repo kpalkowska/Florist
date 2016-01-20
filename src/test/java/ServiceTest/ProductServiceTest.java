@@ -34,7 +34,7 @@ public class ProductServiceTest{
 	public void addProductCheck() {
 
 		int n = productService.getAllProducts().size();
-		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
+		ProductModel product = new ProductModel();
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);
@@ -55,7 +55,7 @@ public class ProductServiceTest{
 	public void deleteProductCheck(){
 	
 		int n = productService.getAllProducts().size();
-		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
+		ProductModel product = new ProductModel();
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);
@@ -78,7 +78,7 @@ public class ProductServiceTest{
 	@Test 
 	public void updateProductCheck(){
 		int n = productService.getAllProducts().size();
-		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
+		ProductModel product = new ProductModel();
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);
@@ -101,10 +101,10 @@ public class ProductServiceTest{
 		productService.updateProduct(retrievedProduct);
 	
 		ProductModel retrievedProduct2 = productService.findProduct(product);
-		assertEquals(product.getId(), retrievedProduct.getId());
-		assertEquals(NAME_2, retrievedProduct.getName());
-		assertEquals(DESCRIPTION_2, retrievedProduct.getDescription());
-		assertEquals(PRICE_2, retrievedProduct.getPrice());
+		assertEquals(retrievedProduct.getId(), retrievedProduct2.getId());
+		assertEquals(NAME_2, retrievedProduct2.getName());
+		assertEquals(DESCRIPTION_2, retrievedProduct2.getDescription());
+		assertEquals(PRICE_2, retrievedProduct2.getPrice());
 		
 	}
 	

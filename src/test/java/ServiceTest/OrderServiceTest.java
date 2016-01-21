@@ -12,9 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import spring.model.AddressModel;
 import spring.model.OrderModel;
+import spring.model.RoleModel;
 import spring.model.UserModel;
 import spring.service.AddressService;
 import spring.service.OrderService;
+import spring.service.RoleService;
 import spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,6 +29,9 @@ public class OrderServiceTest {
 	
 	@Autowired
 	AddressService addressService;
+	
+	@Autowired
+	RoleService roleService;
 	
 	@Autowired
 	UserService userService;
@@ -50,11 +55,14 @@ public class OrderServiceTest {
 	private final String street2 = "Taka";
 	private final String number2 = "9";
 	
+	private final String role1 = "admin";
+	private final String role2 = "pracownik";
+	
 	@Rollback(false)
 	@Test
 	public void addOrderCheck(){
 		
-		AddressModel address = new AddressModel();
+		AddressModel address = new AddressModel(zipKode, city, street, number);
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -62,23 +70,28 @@ public class OrderServiceTest {
 
 		addressService.addAddress(address);
 		
-		UserModel user = new UserModel();
+		RoleModel role = new RoleModel(role1);
+		role.setRole(role1);
+		
+		roleService.addRole(role);
+		
+		UserModel user = new UserModel(name, surname, address, role);
 		user.setName(name);
 		user.setSurname(surname);
+		user.setAddress(address);
+		user.setRole(role);
 		
 		userService.addUser(user);
 		
 		int n = orderService.getAllOrders().size();
-		OrderModel order = new OrderModel();
+		OrderModel order = new OrderModel(date, user);
 		order.setDate(date);
 		order.setUser(user);
-		order.setAddress(address);
 		
 		orderService.addOrder(order);
 		OrderModel retrievedOrder = orderService.findOrder(order);
 		assertEquals(order.getId(), retrievedOrder.getId());
 		assertEquals(date, retrievedOrder.getDate());
-		assertEquals(address, retrievedOrder.getAddress());
 		assertEquals(user, retrievedOrder.getUser());
 
 		assertEquals(n+1, orderService.getAllOrders().size());
@@ -88,7 +101,7 @@ public class OrderServiceTest {
 	@Test
 	public void deleteOrderCheck(){
 		
-		AddressModel address = new AddressModel();
+		AddressModel address = new AddressModel(zipKode, city, street, number);
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -96,23 +109,28 @@ public class OrderServiceTest {
 
 		addressService.addAddress(address);
 		
-		UserModel user = new UserModel();
+		RoleModel role = new RoleModel(role1);
+		role.setRole(role1);
+		
+		roleService.addRole(role);
+		
+		UserModel user = new UserModel(name, surname, address, role);
 		user.setName(name);
 		user.setSurname(surname);
+		user.setAddress(address);
+		user.setRole(role);
 		
 		userService.addUser(user);
 		
 		int n = orderService.getAllOrders().size();
-		OrderModel order = new OrderModel();
+		OrderModel order = new OrderModel(date, user);
 		order.setDate(date);
 		order.setUser(user);
-		order.setAddress(address);
 		
 		orderService.addOrder(order);
 		OrderModel retrievedOrder = orderService.findOrder(order);
 		assertEquals(order.getId(), retrievedOrder.getId());
 		assertEquals(date, retrievedOrder.getDate());
-		assertEquals(address, retrievedOrder.getAddress());
 		assertEquals(user, retrievedOrder.getUser());
 
 		assertEquals(n+1, orderService.getAllOrders().size());
@@ -125,7 +143,7 @@ public class OrderServiceTest {
 	@Test
 	public void updateOrderCheck(){
 		
-		AddressModel address = new AddressModel();
+		AddressModel address = new AddressModel(zipKode, city, street, number);
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -133,14 +151,21 @@ public class OrderServiceTest {
 
 		addressService.addAddress(address);
 		
-		UserModel user = new UserModel();
+		RoleModel role = new RoleModel(role1);
+		role.setRole(role1);
+		
+		roleService.addRole(role);
+		
+		UserModel user = new UserModel(name, surname, address, role);
 		user.setName(name);
 		user.setSurname(surname);
+		user.setAddress(address);
+		user.setRole(role);
 		
 		userService.addUser(user);
 		
 		int n = orderService.getAllOrders().size();
-		OrderModel order = new OrderModel();
+		OrderModel order = new OrderModel(date, user, address);
 		order.setDate(date);
 		order.setUser(user);
 		order.setAddress(address);
@@ -154,7 +179,7 @@ public class OrderServiceTest {
 
 		assertEquals(n+1, orderService.getAllOrders().size());
 		
-		AddressModel address2 = new AddressModel();
+		AddressModel address2 = new AddressModel(zipKode, city, street, number);
 		address2.setZipKode(zipKode2);
 		address2.setCity(city2);
 		address2.setStreet(street2);
@@ -162,9 +187,16 @@ public class OrderServiceTest {
 
 		addressService.addAddress(address2);
 		
-		UserModel user2 = new UserModel();
-		user2.setName(name2);
-		user2.setSurname(surname2);
+		RoleModel role3 = new RoleModel(role2);
+		role3.setRole(role2);
+		
+		roleService.addRole(role);
+		
+		UserModel user2 = new UserModel(name2, surname2, address2, role3);
+		user2.setName(name);
+		user2.setSurname(surname);
+		user2.setAddress(address);
+		user2.setRole(role3);
 		
 		userService.addUser(user2);
 		

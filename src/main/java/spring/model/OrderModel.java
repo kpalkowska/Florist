@@ -27,7 +27,7 @@ public class OrderModel {
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "users")
-	private UserModel user;
+	private UserModel users;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "address")
@@ -35,6 +35,17 @@ public class OrderModel {
 	
 	public OrderModel(){}
 
+	public OrderModel(String date, UserModel user, AddressModel address) {
+		this.date = date;
+		this.users = user;
+		this.address = address;
+	}
+
+	public OrderModel(String date, UserModel user) {
+		this.date = date;
+		this.users = user;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -51,10 +62,10 @@ public class OrderModel {
 	}
 	
 	public UserModel getUser() {
-		return user;
+		return users;
 	}
 	public void setUser(UserModel user) {
-		this.user = user;
+		this.users = user;
 	}
 	public AddressModel getAddress() {
 		return address;

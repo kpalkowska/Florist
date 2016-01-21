@@ -33,6 +33,11 @@ public class Product2OrderModel {
 	
 	public Product2OrderModel(){}
 
+	public Product2OrderModel(OrderModel order, ProductModel product) {
+		this.orders = order;
+		this.product = product;
+	}
+
 	public Integer getId() {
 		return id;
 	}

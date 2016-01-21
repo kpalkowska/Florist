@@ -34,7 +34,7 @@ public class ProductServiceTest{
 	public void addProductCheck() {
 
 		int n = productService.getAllProducts().size();
-		ProductModel product = new ProductModel();
+		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);
@@ -55,7 +55,7 @@ public class ProductServiceTest{
 	public void deleteProductCheck(){
 	
 		int n = productService.getAllProducts().size();
-		ProductModel product = new ProductModel();
+		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);
@@ -78,7 +78,7 @@ public class ProductServiceTest{
 	@Test 
 	public void updateProductCheck(){
 		int n = productService.getAllProducts().size();
-		ProductModel product = new ProductModel();
+		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);

@@ -42,13 +42,13 @@ public class Product2OrderModel {
 	public ProductModel getProduct() {
 		return product;
 	}
-	public void setProduct_id(ProductModel product) {
+	public void setProduct(ProductModel product) {
 		this.product = product;
 	}
 	public OrderModel getOrder() {
 		return orders;
 	}
-	public void setOrder_id(OrderModel order) {
+	public void setOrder(OrderModel order) {
 		this.orders = order;
 	}
 

@@ -23,6 +23,8 @@ public class OrderModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	private String date;
+	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "users")
 	private UserModel user;
@@ -39,16 +41,25 @@ public class OrderModel {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	public UserModel getUser() {
 		return user;
 	}
-	public void setUser_id(UserModel user) {
+	public void setUser(UserModel user) {
 		this.user = user;
 	}
 	public AddressModel getAddress() {
 		return address;
 	}
-	public void setAddress_id(AddressModel address) {
+	public void setAddress(AddressModel address) {
 		this.address = address;
 	}
 		

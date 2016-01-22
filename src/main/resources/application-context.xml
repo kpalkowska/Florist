@@ -15,7 +15,7 @@
     <context:annotation-config/>
     <context:spring-configured/>
 	
-	<context:property-placeholder location="jdbc.properties" />
+	<context:property-placeholder location="classpath:/jdbc.properties" />
 	
  	<bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />

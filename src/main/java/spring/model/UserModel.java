@@ -14,8 +14,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity 
 @Table(name = "Users")
 @NamedQueries({
@@ -27,22 +32,16 @@ public class UserModel {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-    private String name;
-    private String surname;
+    private @NonNull String name;
+    private @NonNull String surname;
     
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "address")
-    private AddressModel address;
+    private @NonNull AddressModel address;
   
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "role")
-    private RoleModel role;
-    
-    public UserModel(String Name, String Surname, AddressModel Address, RoleModel Role) {
-		this.name = Name;
-		this.surname = Surname;
-		this.address = Address;
-		this.role = Role;
-	}
+    private @NonNull RoleModel role;
+
 
 }

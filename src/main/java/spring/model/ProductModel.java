@@ -9,8 +9,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity 
 @Table(name = "Products")
 @NamedQueries({
@@ -22,14 +27,8 @@ public class ProductModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	private String name;
-	private String description;
-	private String price;
-
-	public ProductModel(String Name, String Description, String Price) {
-		this.name = Name;
-		this.description = Description;
-		this.price = Price; 
-	}
+	private @NonNull String name;
+	private @NonNull String description;
+	private @NonNull String price;
 	
 }

@@ -13,8 +13,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity 
 @Table(name = "Products2Orders")
 @NamedQueries({
@@ -27,16 +32,11 @@ public class Product2OrderModel {
 	private Integer id;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "product")
-	private ProductModel product;
+	@JoinColumn(name = "orders")
+	private @NonNull OrderModel orders;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "orders")
-	private OrderModel orders;
-
-	public Product2OrderModel(OrderModel order, ProductModel product) {
-		this.orders = order;
-		this.product = product;
-	}
+	@JoinColumn(name = "product")
+	private @NonNull ProductModel product;
 
 }

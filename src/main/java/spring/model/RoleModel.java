@@ -9,8 +9,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Roles")
 @NamedQueries({
@@ -22,10 +27,6 @@ public class RoleModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String role;
+	private @NonNull String role;
 	
-	public RoleModel(String role) {
-		this.role = role;
-	} 
-	 
 }

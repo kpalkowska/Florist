@@ -13,8 +13,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Orders")
 @NamedQueries({
@@ -26,21 +31,15 @@ public class OrderModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String date;
+	private @NonNull String date;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "users")
-	private UserModel users;
+	private @NonNull UserModel users;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "address")
-	private AddressModel address;
-
-	public OrderModel(String date, UserModel user, AddressModel address) {
-		this.date = date;
-		this.users = user;
-		this.address = address;
-	}
+	private @NonNull AddressModel address;
 
 	public OrderModel(String date, UserModel user) {
 		this.date = date;

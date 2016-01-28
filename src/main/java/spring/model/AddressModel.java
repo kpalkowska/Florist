@@ -8,11 +8,16 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Id;
 
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "Addresses")
 @NamedQueries({
@@ -25,16 +30,9 @@ public class AddressModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String zipKode;
-	private String city;
-	private String street;
-	private String number;
-	
-	public AddressModel(String zipKode, String city, String street, String number){
-		this.zipKode = zipKode;
-		this.city = city;
-		this.street = street;
-		this.number = number;
-	}
+	private @NonNull String zipKode;
+	private @NonNull String city;
+	private @NonNull String street;
+	private @NonNull String number;
 	
 }

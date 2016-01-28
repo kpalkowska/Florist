@@ -8,6 +8,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity 
 @Table(name = "Products")
 @NamedQueries({
@@ -22,39 +25,11 @@ public class ProductModel {
 	private String name;
 	private String description;
 	private String price;
-	
-	public ProductModel(){}
-	
+
 	public ProductModel(String Name, String Description, String Price) {
 		this.name = Name;
 		this.description = Description;
 		this.price = Price; 
 	}
-
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
-	}
-	
 	
 }

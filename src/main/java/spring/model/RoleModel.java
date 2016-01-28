@@ -8,6 +8,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "Roles")
 @NamedQueries({
@@ -21,26 +24,8 @@ public class RoleModel {
 	
 	private String role;
 	
-	public RoleModel(){}
-	
 	public RoleModel(String role) {
 		this.role = role;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}	 
+	} 
 	 
 }

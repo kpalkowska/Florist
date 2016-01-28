@@ -112,21 +112,21 @@ public class Product2OrderServiceTest {
 		
 		OrderModel order = new OrderModel(date, user, address);
 		order.setDate(date);
-		order.setUser(user);
+		order.setUsers(user);
 		order.setAddress(address);
 		
 		orderService.addOrder(order);
 		
 		Product2OrderModel po = new Product2OrderModel(order, product);
 		
-		po.setOrder(order);
+		po.setOrders(order);
 		po.setProduct(product);
 		
 		poService.addProduct2Order(po);
 		
 		Product2OrderModel retrievedPO = poService.findProduct2Order(po);
 		assertEquals(po.getId(), retrievedPO.getId());
-		assertEquals(order, retrievedPO.getOrder());
+		assertEquals(order, retrievedPO.getOrders());
 		assertEquals(product, retrievedPO.getProduct());
 		
 		assertEquals(n+1, poService.getAllProducts2Orders().size());
@@ -177,21 +177,21 @@ public class Product2OrderServiceTest {
 		
 		OrderModel order = new OrderModel(date, user, address2);
 		order.setDate(date);
-		order.setUser(user);
+		order.setUsers(user);
 		order.setAddress(address2);
 		
 		orderService.addOrder(order);
 		
 		Product2OrderModel po = new Product2OrderModel(order, product);
 		
-		po.setOrder(order);
+		po.setOrders(order);
 		po.setProduct(product);
 		
 		poService.addProduct2Order(po);
 		
 		Product2OrderModel retrievedPO = poService.findProduct2Order(po);
 		assertEquals(po.getId(), retrievedPO.getId());
-		assertEquals(order, retrievedPO.getOrder());
+		assertEquals(order, retrievedPO.getOrders());
 		assertEquals(product, retrievedPO.getProduct());
 		
 		assertEquals(n+1, poService.getAllProducts2Orders().size());
@@ -237,21 +237,21 @@ public class Product2OrderServiceTest {
 		
 		OrderModel order = new OrderModel(date, user, address);
 		order.setDate(date);
-		order.setUser(user);
+		order.setUsers(user);
 		order.setAddress(address);
 		
 		orderService.addOrder(order);
 		
 		Product2OrderModel po = new Product2OrderModel(order, product);
 		
-		po.setOrder(order);
+		po.setOrders(order);
 		po.setProduct(product);
 		
 		poService.addProduct2Order(po);
 		
 		Product2OrderModel retrievedPO = poService.findProduct2Order(po);
 		assertEquals(po.getId(), retrievedPO.getId());
-		assertEquals(order, retrievedPO.getOrder());
+		assertEquals(order, retrievedPO.getOrders());
 		assertEquals(product, retrievedPO.getProduct());
 		
 		assertEquals(n+1, poService.getAllProducts2Orders().size());
@@ -286,19 +286,19 @@ public class Product2OrderServiceTest {
 		
 		OrderModel order2 = new OrderModel(date2, user2, address2);
 		order2.setDate(date2);
-		order2.setUser(user2);
+		order2.setUsers(user2);
 		order2.setAddress(address2);
 		
 		orderService.addOrder(order2);
 		
-		retrievedPO.setOrder(order2);
+		retrievedPO.setOrders(order2);
 		retrievedPO.setProduct(product2);
 		
 		poService.updateProduct2Order(po);
 		
 		Product2OrderModel retrievedPO2 = poService.findProduct2Order(po);
 		assertEquals(retrievedPO.getId(), retrievedPO2.getId());
-		assertEquals(order2, retrievedPO2.getOrder());
+		assertEquals(order2, retrievedPO2.getOrders());
 		assertEquals(product2, retrievedPO2.getProduct());
 	}
 }

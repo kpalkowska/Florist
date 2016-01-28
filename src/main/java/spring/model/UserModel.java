@@ -13,7 +13,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
 
+@Data
 @Entity 
 @Table(name = "Users")
 @NamedQueries({
@@ -36,8 +38,6 @@ public class UserModel {
     @JoinColumn(name = "role")
     private RoleModel role;
     
-    public UserModel(){}
-    
     public UserModel(String Name, String Surname, AddressModel Address, RoleModel Role) {
 		this.name = Name;
 		this.surname = Surname;
@@ -45,36 +45,4 @@ public class UserModel {
 		this.role = Role;
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getSurname() {
-		return surname;
-	}
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	public AddressModel getAddress() {
-		return address;
-	}
-	public void setAddress(AddressModel address) {
-		this.address = address;
-	}
-	public RoleModel getRole() {
-		return role;
-	}
-	public void setRole(RoleModel role) {
-		this.role = role;
-	}
 }

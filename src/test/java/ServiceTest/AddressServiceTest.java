@@ -35,7 +35,7 @@ public class AddressServiceTest {
 	public void addAddresCheck() {
 
 		int n = addressService.getAllAddresses().size();
-		AddressModel address = new AddressModel();
+		AddressModel address = new AddressModel(zipKode, city, street, number);
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -58,7 +58,7 @@ public class AddressServiceTest {
 	public void deleteAddressCheck(){
 	
 		int n = addressService.getAllAddresses().size();
-		AddressModel address = new AddressModel();
+		AddressModel address = new AddressModel(zipKode, city, street, number);
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -84,7 +84,7 @@ public class AddressServiceTest {
 	public void updateAddressCheck(){
 		
 		int n = addressService.getAllAddresses().size();
-		AddressModel address = new AddressModel();
+		AddressModel address = new AddressModel(zipKode, city, street, number);
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);

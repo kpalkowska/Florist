@@ -12,6 +12,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity 
 @Table(name = "Products2Orders")
 @NamedQueries({
@@ -30,32 +33,10 @@ public class Product2OrderModel {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "orders")
 	private OrderModel orders;
-	
-	public Product2OrderModel(){}
 
 	public Product2OrderModel(OrderModel order, ProductModel product) {
 		this.orders = order;
 		this.product = product;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public ProductModel getProduct() {
-		return product;
-	}
-	public void setProduct(ProductModel product) {
-		this.product = product;
-	}
-	public OrderModel getOrder() {
-		return orders;
-	}
-	public void setOrder(OrderModel order) {
-		this.orders = order;
-	}
-
-	
 }

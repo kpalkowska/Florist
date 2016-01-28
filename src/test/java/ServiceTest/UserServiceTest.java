@@ -54,7 +54,7 @@ public class UserServiceTest{
 	@Test
 	public void addUserCheck() {
 		
-		AddressModel address = new AddressModel();
+		AddressModel address = new AddressModel(zipKode, city, street, number);
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -68,7 +68,7 @@ public class UserServiceTest{
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel();
+		UserModel user = new UserModel(NAME_1, SURNAME_1, address, role);
 		user.setName(NAME_1);
 		user.setSurname(SURNAME_1);
 		user.setAddress(address);
@@ -89,7 +89,7 @@ public class UserServiceTest{
 	@Test
 	public void deleteUserCheck(){
 	
-		AddressModel address = new AddressModel();
+		AddressModel address = new AddressModel(zipKode, city, street, number);
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -103,7 +103,7 @@ public class UserServiceTest{
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel();
+		UserModel user = new UserModel(NAME_1, SURNAME_1, address, role);
 		user.setName(NAME_1);
 		user.setSurname(SURNAME_1);
 		user.setAddress(address);
@@ -127,7 +127,7 @@ public class UserServiceTest{
 	@Test 
 	public void updateUserCheck(){
 
-		AddressModel address = new AddressModel();
+		AddressModel address = new AddressModel(zipKode, city, street, number);
 		address.setZipKode(zipKode);
 		address.setCity(city);
 		address.setStreet(street);
@@ -141,13 +141,13 @@ public class UserServiceTest{
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel();
+		UserModel user = new UserModel(NAME_1, SURNAME_1, address, role);
 		user.setName(NAME_1);
 		user.setSurname(SURNAME_1);
 		user.setAddress(address);
 		user.setRole(role);
 		
-		AddressModel address2 = new AddressModel();
+		AddressModel address2 = new AddressModel(zipKode2, city2, street2, number2);
 		address2.setZipKode(zipKode2);
 		address2.setCity(city2);
 		address2.setStreet(street2);

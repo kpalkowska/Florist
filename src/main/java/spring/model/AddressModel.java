@@ -6,9 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import lombok.Data;
+
 import javax.persistence.Id;
 
 
+@Data
 @Entity
 @Table(name = "Addresses")
 @NamedQueries({
@@ -26,46 +30,11 @@ public class AddressModel {
 	private String street;
 	private String number;
 	
-	public AddressModel(){}
-	
-	public AddressModel(String ZipKode, String City, String Street, String Number){
-		this.zipKode = ZipKode;
-		this.city = City;
-		this.street = Street;
-		this.number = Number;
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getZipKode() {
-		return zipKode;
-	}
-	public void setZipKode(String zipKode) {
+	public AddressModel(String zipKode, String city, String street, String number){
 		this.zipKode = zipKode;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
 		this.city = city;
-	}
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
 		this.street = street;
-	}
-	public String getNumber() {
-		return number;
-	}
-	public void setNumber(String number) {
 		this.number = number;
 	}
-	
-	
 	
 }

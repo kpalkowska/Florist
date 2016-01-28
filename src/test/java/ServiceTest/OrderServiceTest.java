@@ -86,13 +86,13 @@ public class OrderServiceTest {
 		int n = orderService.getAllOrders().size();
 		OrderModel order = new OrderModel(date, user);
 		order.setDate(date);
-		order.setUser(user);
+		order.setUsers(user);
 		
 		orderService.addOrder(order);
 		OrderModel retrievedOrder = orderService.findOrder(order);
 		assertEquals(order.getId(), retrievedOrder.getId());
 		assertEquals(date, retrievedOrder.getDate());
-		assertEquals(user, retrievedOrder.getUser());
+		assertEquals(user, retrievedOrder.getUsers());
 
 		assertEquals(n+1, orderService.getAllOrders().size());
 	}
@@ -125,13 +125,13 @@ public class OrderServiceTest {
 		int n = orderService.getAllOrders().size();
 		OrderModel order = new OrderModel(date, user);
 		order.setDate(date);
-		order.setUser(user);
+		order.setUsers(user);
 		
 		orderService.addOrder(order);
 		OrderModel retrievedOrder = orderService.findOrder(order);
 		assertEquals(order.getId(), retrievedOrder.getId());
 		assertEquals(date, retrievedOrder.getDate());
-		assertEquals(user, retrievedOrder.getUser());
+		assertEquals(user, retrievedOrder.getUsers());
 
 		assertEquals(n+1, orderService.getAllOrders().size());
 		
@@ -167,7 +167,7 @@ public class OrderServiceTest {
 		int n = orderService.getAllOrders().size();
 		OrderModel order = new OrderModel(date, user, address);
 		order.setDate(date);
-		order.setUser(user);
+		order.setUsers(user);
 		order.setAddress(address);
 		
 		orderService.addOrder(order);
@@ -175,7 +175,7 @@ public class OrderServiceTest {
 		assertEquals(order.getId(), retrievedOrder.getId());
 		assertEquals(date, retrievedOrder.getDate());
 		assertEquals(address, retrievedOrder.getAddress());
-		assertEquals(user, retrievedOrder.getUser());
+		assertEquals(user, retrievedOrder.getUsers());
 
 		assertEquals(n+1, orderService.getAllOrders().size());
 		
@@ -201,7 +201,7 @@ public class OrderServiceTest {
 		userService.addUser(user2);
 		
 		retrievedOrder.setDate(date2);
-		retrievedOrder.setUser(user2);
+		retrievedOrder.setUsers(user2);
 		retrievedOrder.setAddress(address2);
 		orderService.updateOrder(retrievedOrder);
 		
@@ -209,7 +209,7 @@ public class OrderServiceTest {
 		assertEquals(retrievedOrder.getId(), retrievedOrder2.getId());
 		assertEquals(date2, retrievedOrder2.getDate());
 		assertEquals(address2, retrievedOrder2.getAddress());
-		assertEquals(user2, retrievedOrder2.getUser());
+		assertEquals(user2, retrievedOrder2.getUsers());
 
 	}
 

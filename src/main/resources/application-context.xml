@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-  
-    <!-- Package needed to be scanned for annotation -->
-    <context:component-scan base-package="spring"/>
 
-    <!-- Use annotation for configuration-->
-    <context:annotation-config/>
-    <context:spring-configured/>
-	
-	<context:property-placeholder location="classpath:/jdbc.properties" />
-	
- 	<bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<!-- Package needed to be scanned for annotation -->
+	<context:component-scan base-package="spring" />
+
+	<!-- Use annotation for configuration -->
+	<context:annotation-config />
+	<context:spring-configured />
+
+	<context:property-placeholder location="classpath:/persons/aneta.properties" />
+
+	<bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-    
-    <!-- Session Factory Declaration -->
-    <bean id="SessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-    	<property name="dataSource" ref="DataSource" />
-        <property name="packagesToScan" value="spring.model" />
-       	<property name="hibernateProperties">
-	        <props>
-	        	<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
-	            <prop key="hibernate.show_sql">true</prop>
-	        </props>
-        </property>
-    </bean>
 
-    <!-- Enable the configuration of transactional behavior based on annotations -->
-    <tx:annotation-driven transaction-manager="txManager"/>
+	<!-- Session Factory Declaration -->
+	<bean id="SessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="DataSource" />
+		<property name="packagesToScan" value="spring.model" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
 
-    <!-- Transaction Manager is defined   -->
-    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="SessionFactory"/>
-    </bean>
-    
-    <bean id="persistenceExceptionTranslationPostProcessor"
-        class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-  
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- Transaction Manager is defined -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
 </beans>

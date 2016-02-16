@@ -18,8 +18,9 @@
 
 	<context-param>
     	<param-name>contextConfigLocation</param-name>
-    	<param-value>classpath:/spring-security.xml, 
-    				 classpath:/application-context.xml</param-value>
+    	<param-value>classpath:security-context.xml
+    				 classpath:application-context.xml
+    	</param-value>
 	</context-param>
 	
 	<listener>
@@ -46,18 +47,8 @@
         <param-value>Development</param-value>
     </context-param>
   
-    <!-- Declare Spring configuration file location -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-           classpath:/application-context.xml
-        </param-value>
-    </context-param>
 
     <!-- Spring -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
     <listener>
         <listener-class>
             org.springframework.web.context.request.RequestContextListener

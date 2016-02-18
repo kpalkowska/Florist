@@ -12,6 +12,7 @@ public interface UserDAO {
 	UserModel findUserByName(String name);
 	void deleteUser(UserModel user);
 	void updateUser(UserModel user);
+	boolean exists(String name);
 }
 
 

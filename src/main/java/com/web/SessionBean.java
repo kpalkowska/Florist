@@ -5,8 +5,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,7 +28,6 @@ public @Data class SessionBean implements Serializable {
 	private static final long serialVersionUID = 1549481937223946546L;
 
 	private String name;
-	
 	private String time;
 
 	private List<UserModel> users = new ArrayList<>();
@@ -40,28 +41,37 @@ public @Data class SessionBean implements Serializable {
 	@Autowired
 	private LogService logService;
 
-	
-	
 	public String getTime() {
 		return time;
 	}
-
-
 
 	public void setTime(String time) {
 		this.time = time;
 	}
 
-
-
-	public String doAction() {
-		logService.logInfo("doAction :: starting...");
-		
+	public String showUsers() {
+		logService.logInfo("Start showing users");
 		setTime(timeService.getCurrentDateString());
-		userService.addUser(this.name);
-		users = userService.getAllUsers();
-		logService.logInfo("doAction :: complete");
+		setUsers(userService.getAllUsers());
+		logService.logInfo("Showing users complete");
 		
-		return "/views/response?faces-redirect=true";
+		return "/views/user/response?faces-redirect=true";
+	}
+
+	public String createUser() {
+		logService.logInfo("Start creating user");
+		setTime(timeService.getCurrentDateString());
+		boolean success = userService.createUser(name);
+		logService.logInfo("Creating user complete");
+		
+		if (success) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Success", new StringBuilder("User ").append(name).append(" created!").toString()));
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+					new StringBuilder("Unable to create user ").append(name).toString()));
+		}
+		
+		return null;
 	}
 }

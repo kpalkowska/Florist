@@ -11,4 +11,5 @@ public interface UserService {
 	void deleteUser(UserModel user);
 	void updateUser(UserModel user);
 	UserModel findUser(UserModel user);
+	boolean createUser(String name);
 }

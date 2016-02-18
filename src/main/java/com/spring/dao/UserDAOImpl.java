@@ -2,8 +2,14 @@ package com.spring.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateCallback;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,45 +17,50 @@ import com.spring.model.*;
 
 @Repository
 @Transactional
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
 		
 		@Autowired
-	    private SessionFactory sessionFactory;
-
-	    public SessionFactory getSessionFactory() {
-	        return sessionFactory;
-	    }
-
-	    public void setSessionFactory(SessionFactory sessionFactory) {
-	        this.sessionFactory = sessionFactory;
-	    }
+		public UserDAOImpl(SessionFactory sessionFactory) {
+			super.setSessionFactory(sessionFactory);
+		}
 
 	    public void addUser(UserModel user) {
-	        getSessionFactory().getCurrentSession().save(user);
+	        getHibernateTemplate().save(user);
 	    }
 
 	    public void deleteUser(UserModel user) {
-	        getSessionFactory().getCurrentSession().delete(user);
+	    	getHibernateTemplate().delete(user);
 	    }
 
 	    public void updateUser(UserModel user) {
-	        getSessionFactory().getCurrentSession().update(user);
+	    	getHibernateTemplate().update(user);
 	    }
 
-	    public UserModel getUserByName(String name) {
-	        List list = getSessionFactory().getCurrentSession().createQuery("from Users where name=?").setParameter(0, name).list();
-	        return (UserModel)list.get(0);
-	    }
-
-	    public List<UserModel> getAllUsers() {
-	        List list = getSessionFactory().getCurrentSession().createQuery("from Users").list();
-	        return list;
-	    }
-
-		@Override
-		public UserModel findUserByName(String name) {
-			// TODO Auto-generated method stub
-			return null;
+		public List<UserModel> getAllUsers() {
+			return getHibernateTemplate().loadAll(UserModel.class);
 		}
 
+		@Override
+		public boolean exists(String name) {
+			final String SQL = "select count(*) from UserModel user where user.name = :name";
+			return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
+				@Override
+				public Boolean doInHibernate(Session session) throws HibernateException {
+					Long count = (Long) session.createQuery(SQL).setParameter("name", name).uniqueResult();
+					return count > 0;
+				}
+			});
+		}
+		
+		@Override
+		public UserModel findUserByName(String username) {
+			return getHibernateTemplate().execute(new HibernateCallback<UserModel>() {
+					@Override
+					public UserModel doInHibernate(Session session) throws HibernateException {
+						Criteria criteria = session.createCriteria(UserModel.class);
+		                criteria.add(Restrictions.eq("name", username));
+						return (UserModel) criteria.uniqueResult();
+					}
+			});
+		}
 }

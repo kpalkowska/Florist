@@ -16,4 +16,10 @@ class LogServiceImpl implements LogService {
 		}
 	}
 
+	@Override
+	public void logError(String msg, Throwable t) {
+		if (LOG.isErrorEnabled()) {
+			LOG.error(msg);
+		}
+	}
 }

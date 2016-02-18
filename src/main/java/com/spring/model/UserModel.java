@@ -45,5 +45,12 @@ public class UserModel {
     @JoinColumn(name = "role")
     private @NonNull RoleModel role;
 
+	public UserModel(String username) {
+		this.login = username;
+	}
 
+	public UserModel(String name, String password) {
+		this.name = name;
+		this.password = password;
+	}
 }

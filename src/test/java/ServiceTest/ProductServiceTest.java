@@ -10,8 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import spring.model.ProductModel;
-import spring.service.ProductService;
+import com.spring.model.ProductModel;
+import com.spring.service.ProductService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/application-context.xml" })

@@ -10,18 +10,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import spring.model.AddressModel;
-import spring.model.OrderModel;
-import spring.model.Product2OrderModel;
-import spring.model.ProductModel;
-import spring.model.RoleModel;
-import spring.model.UserModel;
-import spring.service.AddressService;
-import spring.service.OrderService;
-import spring.service.Product2OrderService;
-import spring.service.ProductService;
-import spring.service.RoleService;
-import spring.service.UserService;
+import com.spring.model.AddressModel;
+import com.spring.model.OrderModel;
+import com.spring.model.Product2OrderModel;
+import com.spring.model.ProductModel;
+import com.spring.model.RoleModel;
+import com.spring.model.UserModel;
+import com.spring.service.AddressService;
+import com.spring.service.OrderService;
+import com.spring.service.Product2OrderService;
+import com.spring.service.ProductService;
+import com.spring.service.RoleService;
+import com.spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/application-context.xml" })
@@ -59,9 +59,13 @@ public class Product2OrderServiceTest {
 	
 	private final String name = "Jan";
 	private final String surname = "Kowalski";
+	private final String login = "abc@abc.pl";
+	private final String password = "123";
 
 	private final String name2 = "Tomasz";
 	private final String surname2 = "Kot";
+	private final String login2 = "xyz@abc.pl";
+	private final String password2 = "abcde";
 	
 	private final String zipKode = "82-300";
 	private final String city = "Elblag";
@@ -102,9 +106,11 @@ public class Product2OrderServiceTest {
 		
 		roleService.addRole(role);
 		
-		UserModel user = new UserModel(name, surname, address, role);
+		UserModel user = new UserModel(name, surname, login, password, address, role);
 		user.setName(name);
 		user.setSurname(surname);
+		user.setLogin(login);
+		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
 		
@@ -167,9 +173,11 @@ public class Product2OrderServiceTest {
 		
 		roleService.addRole(role);
 		
-		UserModel user = new UserModel(name, surname, address, role);
+		UserModel user = new UserModel(name, surname, login, password, address, role);
 		user.setName(name);
 		user.setSurname(surname);
+		user.setLogin(login);
+		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
 		
@@ -227,9 +235,11 @@ public class Product2OrderServiceTest {
 		
 		roleService.addRole(role);
 		
-		UserModel user = new UserModel(name, surname, address, role);
+		UserModel user = new UserModel(name, surname, login, password, address, role);
 		user.setName(name);
 		user.setSurname(surname);
+		user.setLogin(login);
+		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
 		
@@ -276,9 +286,11 @@ public class Product2OrderServiceTest {
 		
 		roleService.addRole(role3);
 		
-		UserModel user2 = new UserModel(name2, surname2, address2, role3);
+		UserModel user2 = new UserModel(name2, surname2, login2, password2,address2, role3);
 		user2.setName(name2);
 		user2.setSurname(surname2);
+		user2.setLogin(login2);
+		user2.setPassword(password2);
 		user2.setAddress(address2);
 		user2.setRole(role3);
 		

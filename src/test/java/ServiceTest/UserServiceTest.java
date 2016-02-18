@@ -9,12 +9,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import spring.model.AddressModel;
-import spring.model.RoleModel;
-import spring.model.UserModel;
-import spring.service.AddressService;
-import spring.service.RoleService;
-import spring.service.UserService;
+import com.spring.model.AddressModel;
+import com.spring.model.RoleModel;
+import com.spring.model.UserModel;
+import com.spring.service.AddressService;
+import com.spring.service.RoleService;
+import com.spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/application-context.xml" })
@@ -30,11 +30,15 @@ public class UserServiceTest{
 	@Autowired
 	RoleService roleService;
 
-	private final String NAME_1 = "Jan";
-	private final String SURNAME_1 = "Kowalski";
+	private final String name = "Jan";
+	private final String surname = "Kowalski";
+	private final String login = "abc@abc.pl";
+	private final String password = "123";
 
-	private final String NAME_2 = "Tomasz";
-	private final String SURNAME_2 = "Kot";
+	private final String name2 = "Tomasz";
+	private final String surname2 = "Kot";
+	private final String login2 = "xyz@abc.pl";
+	private final String password2 = "abcde";
 	
 	private final String zipKode = "82-300";
 	private final String city = "Elblag";
@@ -68,17 +72,20 @@ public class UserServiceTest{
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel(NAME_1, SURNAME_1, address, role);
-		user.setName(NAME_1);
-		user.setSurname(SURNAME_1);
+		
+		UserModel user = new UserModel(name, surname, login, password, address, role);
+		user.setName(name);
+		user.setSurname(surname);
+		user.setLogin(login);
+		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
 
 		userService.addUser(user);
 		UserModel retrievedUser = userService.findUser(user);
 		assertEquals(user.getId(), retrievedUser.getId());
-		assertEquals(NAME_1, retrievedUser.getName());
-		assertEquals(SURNAME_1, retrievedUser.getSurname());
+		assertEquals(name, retrievedUser.getName());
+		assertEquals(surname, retrievedUser.getSurname());
 		assertEquals(address, retrievedUser.getAddress());
 		assertEquals(role, retrievedUser.getRole());
 
@@ -103,17 +110,20 @@ public class UserServiceTest{
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel(NAME_1, SURNAME_1, address, role);
-		user.setName(NAME_1);
-		user.setSurname(SURNAME_1);
+
+		UserModel user = new UserModel(name, surname, login, password, address, role);
+		user.setName(name);
+		user.setSurname(surname);
+		user.setLogin(login);
+		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
 
 		userService.addUser(user);
 		UserModel retrievedUser = userService.findUser(user);
 		assertEquals(user.getId(), retrievedUser.getId());
-		assertEquals(NAME_1, retrievedUser.getName());
-		assertEquals(SURNAME_1, retrievedUser.getSurname());
+		assertEquals(name, retrievedUser.getName());
+		assertEquals(surname, retrievedUser.getSurname());
 		assertEquals(address, retrievedUser.getAddress());
 		assertEquals(role, retrievedUser.getRole());
 
@@ -141,9 +151,12 @@ public class UserServiceTest{
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		UserModel user = new UserModel(NAME_1, SURNAME_1, address, role);
-		user.setName(NAME_1);
-		user.setSurname(SURNAME_1);
+
+		UserModel user = new UserModel(name, surname, login, password, address, role);
+		user.setName(name);
+		user.setSurname(surname);
+		user.setLogin(login);
+		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
 		
@@ -163,23 +176,23 @@ public class UserServiceTest{
 		userService.addUser(user);
 		UserModel retrievedUser = userService.findUser(user);
 		assertEquals(user.getId(), retrievedUser.getId());
-		assertEquals(NAME_1, retrievedUser.getName());
-		assertEquals(SURNAME_1, retrievedUser.getSurname());
+		assertEquals(name, retrievedUser.getName());
+		assertEquals(surname, retrievedUser.getSurname());
 		assertEquals(address, retrievedUser.getAddress());
 		assertEquals(role, retrievedUser.getRole());
 
 		assertEquals(n+1, userService.getAllUsers().size());
 		
-		retrievedUser.setName(NAME_2);
-		retrievedUser.setSurname(SURNAME_2);
+		retrievedUser.setName(name2);
+		retrievedUser.setSurname(surname2);
 		retrievedUser.setAddress(address2);
 		retrievedUser.setRole(role2);
 		userService.updateUser(retrievedUser);
 		
 		UserModel retrievedUser2 = userService.findUser(user);
 		assertEquals(retrievedUser.getId(), retrievedUser2.getId());
-		assertEquals(NAME_2, retrievedUser2.getName());
-		assertEquals(SURNAME_2, retrievedUser2.getSurname());
+		assertEquals(name2, retrievedUser2.getName());
+		assertEquals(surname2, retrievedUser2.getSurname());
 		assertEquals(address2, retrievedUser2.getAddress());
 		assertEquals(role2, retrievedUser2.getRole());
 		

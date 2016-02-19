@@ -43,7 +43,7 @@
     <!-- Welcome page -->
     
     <welcome-file-list>
-        <welcome-file>faces/pages/unsecure/login.xhtml</welcome-file>
+        <welcome-file>/pages/unsecure/index.xhtml</welcome-file>
     </welcome-file-list>
 
     <!-- JSF -->

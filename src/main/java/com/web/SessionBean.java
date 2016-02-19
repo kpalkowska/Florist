@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.spring.model.UserModel;
-import com.spring.service.LogService;
 import com.spring.service.TimeService;
 import com.spring.service.UserService;
 
@@ -29,7 +28,6 @@ public @Data class SessionBean implements Serializable {
 
 	private String name;
 	private String time;
-
 	private List<UserModel> users = new ArrayList<>();
 	
 	@Autowired
@@ -38,31 +36,16 @@ public @Data class SessionBean implements Serializable {
 	@Autowired
 	private TimeService timeService;
 	
-	@Autowired
-	private LogService logService;
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-
 	public String showUsers() {
-		logService.logInfo("Start showing users");
 		setTime(timeService.getCurrentDateString());
-		setUsers(userService.getAllUsers());
-		logService.logInfo("Showing users complete");
+		setUsers(userService.getUsers());
 		
-		return "/views/user/response?faces-redirect=true";
+		return "/pages/secure/list?faces-redirect=true";
 	}
 
 	public String createUser() {
-		logService.logInfo("Start creating user");
 		setTime(timeService.getCurrentDateString());
 		boolean success = userService.createUser(name);
-		logService.logInfo("Creating user complete");
 		
 		if (success) {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -74,4 +57,5 @@ public @Data class SessionBean implements Serializable {
 		
 		return null;
 	}
+
 }

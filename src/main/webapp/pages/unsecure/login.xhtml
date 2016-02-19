@@ -1,34 +1,62 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-</h:head>
-<h:body>
-    <div align="right" style="">
-        <h:form  id="loginFormId" prependId="false">
-                <div id="loginFieldsPnlId">
-                    <div id="loginFieldUsrContId">
-                        <h:outputText id="outTxtUserNameId" value="Username: " name="outTxtUserNameNm"></h:outputText>
-                        <h:inputText id="userName" required="true" value="#{loginMgmtBean.userName}" requiredMessage="Please enter username"></h:inputText>
-                        <h:outputLabel id="outLblUserNameId" for="userName" name="outLblUserNameNm"></h:outputLabel>
-                    </div>
-                    <div id="loginFieldPassContId">
-                        <h:outputText id="outTxtPasswordId" value="Password: " name="outTxtPasswordNm"></h:outputText>
-                        <h:inputSecret id="password"  required="true" value="#{loginMgmtBean.password}" requiredMessage="Please enter password" name="inTxtPasswordNm"></h:inputSecret>
-                        <h:outputLabel id="outLblPasswordId" for="password" name="outLblPasswordNm"></h:outputLabel>
-                    </div>
-                </div>
-                <div id="loginBtnPanelId">
-                    <h:commandButton id="btnLoginId" value="Login" action="#{loginMgmtBean.login}" styleClass="loginPanelBtn"></h:commandButton>
-                    <h:commandButton id="btnCancelId" value="Cancel" action="#{loginMgmtBean.cancel}" styleClass="loginPanelBtn" immediate="true" update="loginFormId"></h:commandButton>
-                </div>
-        </h:form>
-    </div>
-    <div>
-        <h:messages></h:messages>
-    </div>
-</h:body>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Welcome</title>
+		<style>
+		#action-box {
+			width: 300px;
+			padding: 20px;
+			margin: 100px auto;
+			background: #fff;
+			-webkit-border-radius: 2px;
+			-moz-border-radius: 2px;
+			border: 1px solid #000;
+		}
+		#menu {
+			width:100%;overflow: auto;padding: 10px 0px;
+		} 
+		#menu #left-menu {
+			float: left; width: 50%; text-align: left;
+		} 
+		#menu #right-menu {
+			float: right; width: 50%; text-align: right;
+		} 
+		.menu-item {
+			padding-left: 1em;
+		}
+		</style>
+	</h:head>
+	<h:body>
+		<div id="menu">
+			<div id="right-menu">
+			</div>
+		</div>
+		<div id="action-box">
+			<h:form>
+				<h:panelGrid id="panel" columns="2" border="0" cellpadding="5"
+					cellspacing="1">
+					<f:facet name="header">
+						<h:outputText value="Log-in user" />
+					</f:facet>
+					
+                    <h:outputText id="outTxtUserNameId" value="Username: " name="outTxtUserNameNm" />
+                    <h:inputText id="username" required="true" value="#{loginBean.username}" requiredMessage="Please enter username" />
+	                <h:outputText id="outTxtPasswordId" value="Password: " name="outTxtPasswordNm" />
+	                <h:inputSecret id="password"  required="true" value="#{loginBean.password}" requiredMessage="Please enter password" name="inTxtPasswordNm" />
+					
+					<f:facet name="footer">
+						<h:panelGroup style="display:block; text-align:right">
+	                    <h:commandButton id="btnLoginId" value="Login" action="#{loginBean.login()}" styleClass="loginPanelBtn" />
+							<h:messages showDetail="true" />
+						</h:panelGroup>
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</h:body>
 </html>

@@ -12,4 +12,5 @@ public interface UserService {
 	void updateUser(UserModel user);
 	UserModel findUser(UserModel user);
 	boolean createUser(String name);
+	List<UserModel> getUsers();
 }

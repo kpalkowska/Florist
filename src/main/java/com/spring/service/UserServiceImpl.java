@@ -20,6 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.spring.dao.UserDAO;
+import com.spring.model.AddressModel;
+import com.spring.model.RoleModel;
 import com.spring.model.UserModel;
 import com.spring.security.AppUser;
 
@@ -31,6 +33,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	
 	@Value(value="${user.default.password}")
 	private String defaultPassword;
+	
+	//@Value(value="${user.default.role}")
+	//private String roleName;
+	
+	//private RoleModel defaultRole = new RoleModel(roleName);
 	
 	@Autowired
 	private PasswordEncoder encoder;
@@ -80,7 +87,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public boolean createUser(String userName) {
+	public boolean createUser(String userName, String surname, String login, String defaultPassword, AddressModel address, RoleModel role) {
 		if (StringUtils.isEmpty(userName)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
 			LOG.info(new StringBuilder("User ").append(userName).append(" already exists").toString());
@@ -88,7 +95,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User already exists"));
 			LOG.info(new StringBuilder("User ").append(userName).append(" already exists").toString());
 		} else {
-			UserModel user = new UserModel(userName, encoder.encode(defaultPassword));
+			UserModel user = new UserModel(userName, surname, login, encoder.encode(defaultPassword), address, role);
 			userDAO.addUser(user);
 			return true;
 		}

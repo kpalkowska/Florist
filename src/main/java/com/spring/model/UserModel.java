@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.spring.model.AddressModel;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -52,5 +54,13 @@ public class UserModel {
 	public UserModel(String name, String password) {
 		this.name = name;
 		this.password = password;
+	}
+	
+	public UserModel(String name, String surname, String login, String password, AddressModel address){
+		this.name=name;
+		this.surname=surname;
+		this.login=login;
+		this.password=password;
+		this.address=address;
 	}
 }

@@ -13,6 +13,8 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.spring.model.AddressModel;
+import com.spring.model.RoleModel;
 import com.spring.model.UserModel;
 import com.spring.service.TimeService;
 import com.spring.service.UserService;
@@ -27,6 +29,11 @@ public @Data class SessionBean implements Serializable {
 	private static final long serialVersionUID = 1549481937223946546L;
 
 	private String name;
+	private String surname;
+	private String login;
+	private String password;
+	private AddressModel address;
+	private RoleModel role;
 	private String time;
 	private List<UserModel> users = new ArrayList<>();
 	
@@ -45,7 +52,7 @@ public @Data class SessionBean implements Serializable {
 
 	public String createUser() {
 		setTime(timeService.getCurrentDateString());
-		boolean success = userService.createUser(name);
+		boolean success = userService.createUser(name, surname, login, password, address, role);
 		
 		if (success) {
 			FacesContext.getCurrentInstance().addMessage(null,

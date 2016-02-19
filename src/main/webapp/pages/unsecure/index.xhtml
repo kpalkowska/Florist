@@ -56,6 +56,22 @@
 					<h:inputText id="name" value="#{sessionBean.name}">
 						<f:validateRequired for="name" />
 					</h:inputText>
+					<h:outputLabel value="Enter surname:" for="surname" />
+					<h:inputText id="surname" value="#{sessionBean.surname}">
+						<f:validateRequired for="surname" />
+					</h:inputText>
+					<h:outputLabel value="Enter login:" for="login" />
+					<h:inputText id="login" value="#{sessionBean.login}">
+						<f:validateRequired for="login" />
+					</h:inputText>
+					<h:outputLabel value="Enter address:" for="address" />
+					<h:inputText id="address" value="#{sessionBean.address}">
+						<f:validateRequired for="address" />
+					</h:inputText>
+					<h:outputLabel value="Enter role:" for="role" />
+					<h:inputText id="role" value="#{sessionBean.role}">
+						<f:validateRequired for="role" />
+					</h:inputText>
 					
 					<f:facet name="footer">
 						<h:panelGroup style="display:block; text-align:right">

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.spring.model.AddressModel;
 import com.spring.model.RoleModel;
 import com.spring.model.UserModel;
+import com.spring.service.LogService;
 import com.spring.service.TimeService;
 import com.spring.service.UserService;
 
@@ -47,20 +48,27 @@ public @Data class SessionBean implements Serializable {
 	@Autowired
 	private TimeService timeService;
 	
+	@Autowired
+	private LogService logService;
+	
 	public String showUsers() {
+		logService.logInfo("showUsers :: starting...");
 		setTime(timeService.getCurrentDateString());
 		setUsers(userService.getUsers());
+		logService.logInfo("showUsers :: complete");
 		
 		return "/pages/secure/list?faces-redirect=true";
 	}
 
 	public String createUser() {
+		logService.logInfo("createUser :: starting...");
 		setTime(timeService.getCurrentDateString());
 		address = new AddressModel(zipKode, city, street, number);
 		role = new RoleModel(roleName);
 		boolean successUser = userService.createUser(name, surname, login, address, role);
 		boolean successAddress = userService.createAddress(zipKode, city, street, number);
 		boolean successRole = userService.createRole(roleName);
+		logService.logInfo("createUser :: complete");
 		
 		if (successAddress && successUser && successRole) {
 			FacesContext.getCurrentInstance().addMessage(null,

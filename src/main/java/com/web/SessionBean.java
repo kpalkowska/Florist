@@ -70,12 +70,7 @@ public @Data class SessionBean implements Serializable {
 		address = new AddressModel(zipKode, city, street, number);
 		role = new RoleModel(roleName);
 		boolean successUser = userService.createUser(name, surname, login, address, role);
-<<<<<<< HEAD
-=======
-		boolean successAddress = userService.createAddress(zipKode, city, street, number);
-		boolean successRole = userService.createRole(roleName);
 		logService.logInfo("createUser :: complete");
->>>>>>> origin/master
 		
 		if (successUser) {
 			FacesContext.getCurrentInstance().addMessage(null,

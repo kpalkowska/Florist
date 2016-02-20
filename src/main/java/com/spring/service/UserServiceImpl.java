@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid address"));
 			LOG.info(new StringBuilder("Address ").append(" cannot be empty").toString());
 		} else if (addressDAO.exists(zipKode, city, street, number)) {
-			return true;
+			return false;
 		} else {
 			AddressModel address = new AddressModel(zipKode, city, street, number);
 			addressDAO.addAddress(address);
@@ -126,9 +126,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		if (StringUtils.isEmpty(name)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid role"));
 			LOG.info(new StringBuilder("Role ").append(" cannot be empty").toString());
-		} else if (roleDAO.exists(name)) {
-			return true;
-		} else {
+		} else if (!roleDAO.exists(name)) {
 			RoleModel role = new RoleModel(name);
 			roleDAO.addRole(role);
 			return true;

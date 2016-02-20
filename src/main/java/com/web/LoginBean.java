@@ -24,7 +24,7 @@ public @Data class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 1549481937223946546L;
 
-	private String login;
+	private String username;
 	private String password;
 
 	@Autowired
@@ -33,7 +33,7 @@ public @Data class LoginBean implements Serializable {
 	public String login() {
 		try {
 			Authentication request = authenticationManager
-					.authenticate(new UsernamePasswordAuthenticationToken(this.login, this.password));
+					.authenticate(new UsernamePasswordAuthenticationToken(this.username, this.password));
 			SecurityContextHolder.getContext().setAuthentication(request);
 			this.password = null;
 

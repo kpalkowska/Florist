@@ -10,6 +10,6 @@ public interface RoleDAO {
 	void addRole(RoleModel role);
 	void deleteRole(RoleModel role);
 	void updateRole(RoleModel role);
-	public boolean exists(String name);
-    
+	boolean exists(String name);
+
 }

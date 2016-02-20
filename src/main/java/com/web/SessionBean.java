@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.spring.dao.AddressDAO;
 import com.spring.model.AddressModel;
 import com.spring.model.RoleModel;
 import com.spring.model.UserModel;
@@ -42,6 +43,9 @@ public @Data class SessionBean implements Serializable {
 	private List<UserModel> users = new ArrayList<>();
 	
 	@Autowired
+	private AddressDAO addressDAO;
+	
+	@Autowired
 	private UserService userService;
 	
 	@Autowired
@@ -59,15 +63,13 @@ public @Data class SessionBean implements Serializable {
 		address = new AddressModel(zipKode, city, street, number);
 		role = new RoleModel(roleName);
 		boolean successUser = userService.createUser(name, surname, login, address, role);
-		boolean successAddress = userService.createAddress(zipKode, city, street, number);
-		boolean successRole = userService.createRole(roleName);
 		
-		if (successAddress && successUser && successRole) {
+		if (successUser) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Success", new StringBuilder("User ").append(name).append(" created!").toString()));
+					new FacesMessage("Success", new StringBuilder("User ").append(login).append(" created!").toString()));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-					new StringBuilder("Unable to create user ").append(name).toString()));
+					new StringBuilder("Unable to create user ").append(login).toString()));
 		}
 		
 		return null;

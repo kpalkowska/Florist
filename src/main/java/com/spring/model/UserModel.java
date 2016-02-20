@@ -1,6 +1,7 @@
 package com.spring.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.Table;
 
 import com.spring.model.AddressModel;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -42,7 +44,8 @@ public class UserModel {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "address")
     private @NonNull AddressModel address;
-  
+    
+    
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "role")
     private @NonNull RoleModel role;
@@ -51,16 +54,4 @@ public class UserModel {
 		this.login = username;
 	}
 
-	public UserModel(String name, String password) {
-		this.name = name;
-		this.password = password;
-	}
-	
-	public UserModel(String name, String surname, String login, String password, AddressModel address){
-		this.name=name;
-		this.surname=surname;
-		this.login=login;
-		this.password=password;
-		this.address=address;
-	}
 }

@@ -64,13 +64,26 @@
 					<h:inputText id="login" value="#{sessionBean.login}">
 						<f:validateRequired for="login" />
 					</h:inputText>
-					<h:outputLabel value="Enter address:" for="address" />
-					<h:inputText id="address" value="#{sessionBean.address}">
-						<f:validateRequired for="address" />
+					<h:outputLabel value="Address:"></h:outputLabel>
+					<h:outputLabel value="Enter zipkode:" for="zipKode" />
+					<h:inputText id="zipKode" value="#{sessionBean.zipKode}">
+						<f:validateRequired for="zipKode" />
 					</h:inputText>
-					<h:outputLabel value="Enter role:" for="role" />
-					<h:inputText id="role" value="#{sessionBean.role}">
-						<f:validateRequired for="role" />
+					<h:outputLabel value="Enter city:" for="city" />
+					<h:inputText id="city" value="#{sessionBean.city}">
+						<f:validateRequired for="city" />
+					</h:inputText>
+					<h:outputLabel value="Enter street:" for="street" />
+					<h:inputText id="street" value="#{sessionBean.street}">
+						<f:validateRequired for="street" />
+					</h:inputText>
+					<h:outputLabel value="Enter number:" for="number" />
+					<h:inputText id="number" value="#{sessionBean.number}">
+						<f:validateRequired for="number" />
+					</h:inputText>
+					<h:outputLabel value="Enter role:" for="roleName" />
+					<h:inputText id="roleName" value="#{sessionBean.roleName}">
+						<f:validateRequired for="roleName" />
 					</h:inputText>
 					
 					<f:facet name="footer">

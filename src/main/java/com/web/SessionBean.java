@@ -31,7 +31,11 @@ public @Data class SessionBean implements Serializable {
 	private String name;
 	private String surname;
 	private String login;
-	private String password;
+	private String zipKode;
+	private String city;
+	private String street;
+	private String number;
+	private String roleName;
 	private AddressModel address;
 	private RoleModel role;
 	private String time;
@@ -52,9 +56,13 @@ public @Data class SessionBean implements Serializable {
 
 	public String createUser() {
 		setTime(timeService.getCurrentDateString());
-		boolean success = userService.createUser(name, surname, login, password, address, role);
+		address = new AddressModel(zipKode, city, street, number);
+		role = new RoleModel(roleName);
+		boolean successUser = userService.createUser(name, surname, login, address, role);
+		boolean successAddress = userService.createAddress(zipKode, city, street, number);
+		boolean successRole = userService.createRole(roleName);
 		
-		if (success) {
+		if (successAddress && successUser && successRole) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("User ").append(name).append(" created!").toString()));
 		} else {

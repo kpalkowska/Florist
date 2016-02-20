@@ -1,7 +1,11 @@
 package com.spring.dao;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateCallback;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,44 +15,43 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class AddressDAOImpl implements AddressDAO {
+public class AddressDAOImpl extends HibernateDaoSupport implements AddressDAO {
 	  	
 		@Autowired
-	    private SessionFactory sessionFactory;
-
-	    public SessionFactory getSessionFactory() {
-	        return sessionFactory;
-	    }
-
-	    public void setSessionFactory(SessionFactory sessionFactory) {
-	        this.sessionFactory = sessionFactory;
-	    }
+		public AddressDAOImpl(SessionFactory sessionFactory) {
+			super.setSessionFactory(sessionFactory);
+		}
 
 	    public void addAddress(AddressModel address) {
-	        getSessionFactory().getCurrentSession().save(address);
+	    	getHibernateTemplate().save(address);
 	    }
 
 	    public void deleteAddress(AddressModel address) {
-	        getSessionFactory().getCurrentSession().delete(address);
+	    	getHibernateTemplate().delete(address);
 	    }
 
 	    public void updateAddress(AddressModel address) {
-	        getSessionFactory().getCurrentSession().update(address);
-	    }
-
-	    public AddressModel getAddressByCity(String name) {
-	        List list = getSessionFactory().getCurrentSession().createQuery("from Addresses where city=?").setParameter(0, name).list();
-	        return (AddressModel)list.get(0);
-	    }
-
-	    public List<AddressModel> getAllAddresses() {
-	        List list = getSessionFactory().getCurrentSession().createQuery("from Addresses").list();
-	        return list;
+	    	getHibernateTemplate().update(address);
 	    }
 
 		@Override
-		public AddressModel findAddressByCity(String name) {
-			return (AddressModel) sessionFactory.getCurrentSession().getNamedQuery("addresses.byCity").setString("city",name).list();
+		public boolean exists(String zipKode, String city, String street, String number) {
+			final String SQL = "select count(*) from AddressModel address where address.zipKode = :zipKode and address.city = :city and address.street = :street and address.number = :number";
+			return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
+				@Override
+				public Boolean doInHibernate(Session session) throws HibernateException {
+					Long count = (Long) session.createQuery(SQL).setParameter("zipKode", zipKode)
+							.setParameter("city", city)
+							.setParameter("street", street)
+							.setParameter("number", number)
+							.uniqueResult();
+					return count > 0;
+				}
+			});
 		}
 
+		@Override
+		public List<AddressModel> getAllAddresses() {
+			return getHibernateTemplate().loadAll(AddressModel.class);
+		}
 }

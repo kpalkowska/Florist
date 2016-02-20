@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import com.spring.dao.AddressDAO;
+import com.spring.dao.RoleDAO;
 import com.spring.dao.UserDAO;
 import com.spring.model.AddressModel;
 import com.spring.model.RoleModel;
@@ -34,16 +36,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	@Value(value="${user.default.password}")
 	private String defaultPassword;
 	
-	//@Value(value="${user.default.role}")
-	//private String roleName;
-	
-	//private RoleModel defaultRole = new RoleModel(roleName);
-	
 	@Autowired
-	private PasswordEncoder encoder;
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private AddressDAO addressDAO;
+	
+	@Autowired
+	private RoleDAO roleDAO;
 
     @Autowired
 	private SessionFactory sessionFactory;
@@ -87,16 +90,47 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public boolean createUser(String userName, String surname, String login, String defaultPassword, AddressModel address, RoleModel role) {
-		if (StringUtils.isEmpty(userName)) {
+	public boolean createUser(String userName, String surname, String login, AddressModel address, RoleModel role) {
+		if (StringUtils.isEmpty(surname) || StringUtils.isEmpty(userName) || StringUtils.isEmpty(login) || StringUtils.isEmpty(address) || StringUtils.isEmpty(role)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
-			LOG.info(new StringBuilder("User ").append(userName).append(" already exists").toString());
-		} else if (userDAO.exists(userName)) {
+		} else if (userDAO.exists(login)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User already exists"));
 			LOG.info(new StringBuilder("User ").append(userName).append(" already exists").toString());
 		} else {
-			UserModel user = new UserModel(userName, surname, login, encoder.encode(defaultPassword), address, role);
+			UserModel user = new UserModel(userName, surname, login, passwordEncoder.encode(defaultPassword), address, role);
 			userDAO.addUser(user);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public boolean createAddress(String zipKode, String city, String street, String number) {
+		if (StringUtils.isEmpty(zipKode) || StringUtils.isEmpty(street) || StringUtils.isEmpty(city) || StringUtils.isEmpty(number)) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid address"));
+			LOG.info(new StringBuilder("Address ").append(" cannot be empty").toString());
+		} else if (addressDAO.exists(zipKode, city, street, number)) {
+			return true;
+		} else {
+			AddressModel address = new AddressModel(zipKode, city, street, number);
+			addressDAO.addAddress(address);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public boolean createRole(String name) {
+		if (StringUtils.isEmpty(name)) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid role"));
+			LOG.info(new StringBuilder("Role ").append(" cannot be empty").toString());
+		} else if (roleDAO.exists(name)) {
+			return true;
+		} else {
+			RoleModel role = new RoleModel(name);
+			roleDAO.addRole(role);
 			return true;
 		}
 		

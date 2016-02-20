@@ -8,7 +8,7 @@ public interface AddressDAO {
 
 	List<AddressModel> getAllAddresses();
 	void addAddress(AddressModel address);
-	AddressModel findAddressByCity(String name);
 	void deleteAddress(AddressModel address);
 	void updateAddress(AddressModel address);
+	boolean exists(String zipKode, String city, String street, String number);
 }

@@ -2,8 +2,12 @@ package com.spring.dao;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateCallback;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,49 +15,38 @@ import com.spring.model.RoleModel;
 
 @Repository
 @Transactional
-public class RoleDAOImpl implements RoleDAO {
+public class RoleDAOImpl extends HibernateDaoSupport implements RoleDAO {
+
 	@Autowired
-    private SessionFactory sessionFactory;
-
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	public RoleDAOImpl(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
 
     public void addRole(RoleModel role) {
-        getSessionFactory().getCurrentSession().save(role);
+    	getHibernateTemplate().save(role);
     }
 
     public void deleteRole(RoleModel role) {
-        getSessionFactory().getCurrentSession().delete(role);
+    	getHibernateTemplate().delete(role);
     }
 
     public void updateRole(RoleModel role) {
-        getSessionFactory().getCurrentSession().update(role);
+    	getHibernateTemplate().update(role);
     }
 
-    public RoleModel getRoleByName(String name) {
-        List list = getSessionFactory().getCurrentSession().createQuery("from Roles where name=?").setParameter(0, name).list();
-        return (RoleModel)list.get(0);
-    }
-
-    public List<RoleModel> getAllRoles() {
-        List list = getSessionFactory().getCurrentSession().createQuery("from Roles").list();
-        return list;
-    }
-
-	@Override
-	public RoleModel findRoleByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RoleModel> getAllRoles() {
+		return getHibernateTemplate().loadAll(RoleModel.class);
 	}
 
 	@Override
-	public RoleModel getRole(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean exists(String role) {
+		final String SQL = "select count(*) from RoleModel r where r.role = :role";
+		return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
+			@Override
+			public Boolean doInHibernate(Session session) throws HibernateException {
+				Long count = (Long) session.createQuery(SQL).setParameter("role", role).uniqueResult();
+				return count > 0;
+			}
+		});
 	}
 }

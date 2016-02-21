@@ -16,7 +16,7 @@
 			username-parameter="login"
 			password-parameter="password" 
 			login-processing-url="/login"
-			default-target-url="/pages/unsecure/index.xhtml"
+			default-target-url="/pages/secure/hello.xhtml"
 			login-page="/pages/unsecure/login.xhtml"
 			authentication-failure-url="/pages/unsecure/error.xhtml" />
 			
@@ -24,7 +24,7 @@
 		<security:logout
 			invalidate-session="true"
 			logout-url="/logout"
-			logout-success-url="/pages/unsecure/hello.xhtml"
+			logout-success-url="/pages/secure/hello.xhtml"
 			delete-cookies="JSESSIONID" />
 
 		<security:intercept-url pattern="/pages/**" access="permitAll" />

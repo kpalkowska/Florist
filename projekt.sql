@@ -16,7 +16,7 @@ id integer identity(1,1) primary key,
 name varchar(30) not null,
 surname varchar(30) not null,
 login varchar(30) not null,
-password varchar(30) not null,
+password varchar(100) not null,
 role integer not null foreign key references Roles(id),
 address integer not null foreign key references Addresses(id)
 );

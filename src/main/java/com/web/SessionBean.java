@@ -33,6 +33,7 @@ public @Data class SessionBean implements Serializable {
 	private String name;
 	private String surname;
 	private String login;
+	private String password;
 	private String zipKode;
 	private String city;
 	private String street;
@@ -69,7 +70,7 @@ public @Data class SessionBean implements Serializable {
 		setTime(timeService.getCurrentDateString());
 		address = new AddressModel(zipKode, city, street, number);
 		role = new RoleModel(roleName);
-		boolean successUser = userService.createUser(name, surname, login, address, role);
+		boolean successUser = userService.createUser(name, surname, login, password, address, role);
 		logService.logInfo("createUser :: complete");
 		
 		if (successUser) {

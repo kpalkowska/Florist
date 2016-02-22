@@ -64,6 +64,10 @@
 					<h:inputText id="login" value="#{sessionBean.login}">
 						<f:validateRequired for="login" />
 					</h:inputText>
+					<h:outputLabel value="Enter password:" for="password" />
+					<h:inputSecret id="password" value="#{sessionBean.password}">
+						<f:validateRequired for="password" />
+					</h:inputSecret>
 					<h:outputLabel value="Address:"></h:outputLabel>
 					<br/>
 					<h:outputLabel value="Enter zip code:" for="zipKode" />

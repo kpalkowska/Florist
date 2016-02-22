@@ -13,7 +13,7 @@ public interface UserService {
 	void deleteUser(UserModel user);
 	void updateUser(UserModel user);
 	UserModel findUser(UserModel user);
-	boolean createUser(String name, String surname, String login, AddressModel address, RoleModel role);
+	boolean createUser(String name, String surname, String login, String password, AddressModel address, RoleModel role);
 	List<UserModel> getUsers();
 	boolean createAddress(String zipKode, String city, String street, String number);
 	boolean createRole(String name);

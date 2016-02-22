@@ -6,11 +6,15 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.spring.dao.RoleDAO;
 import com.spring.model.RoleModel;
 
 @Component
 public class RoleServiceImpl implements RoleService {
 
+	@Autowired
+	private RoleDAO roleDAO;
+	
     @Autowired
    	private SessionFactory sessionFactory;
 
@@ -30,7 +34,8 @@ public class RoleServiceImpl implements RoleService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RoleModel> getAllRoles() {
-		return sessionFactory.getCurrentSession().getNamedQuery("roles.all").list();
+		//return sessionFactory.getCurrentSession().getNamedQuery("roles.all").list();
+		return roleDAO.getAllRoles();
 	}
 	@Override
 	public void updateRole(RoleModel role) {

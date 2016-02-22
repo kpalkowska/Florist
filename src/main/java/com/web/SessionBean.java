@@ -18,6 +18,7 @@ import com.spring.model.AddressModel;
 import com.spring.model.RoleModel;
 import com.spring.model.UserModel;
 import com.spring.service.LogService;
+import com.spring.service.RoleService;
 import com.spring.service.TimeService;
 import com.spring.service.UserService;
 
@@ -43,12 +44,16 @@ public @Data class SessionBean implements Serializable {
 	private RoleModel role;
 	private String time;
 	private List<UserModel> users = new ArrayList<>();
+	private List<RoleModel> roles = new ArrayList<>();
 	
 	@Autowired
 	private AddressDAO addressDAO;
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	@Autowired
 	private TimeService timeService;
@@ -82,6 +87,15 @@ public @Data class SessionBean implements Serializable {
 		}
 		
 		return null;
+	}
+	
+	public String showRoles(){
+		logService.logInfo("showRoels :: starting...");
+		setTime(timeService.getCurrentDateString());
+		setRoles(roleService.getAllRoles());
+		logService.logInfo("showRoles :: complete");
+		
+		return "/pages/secure/list?faces-redirect=true";
 	}
 
 }

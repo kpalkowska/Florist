@@ -33,10 +33,10 @@
 		}
 		</style>
 	</h:head>
-	<h:body style="background: url(/images/kwiatki.jpg)">
+	<h:body>
 		<div id="menu">
-			<div id="central-menu">
-				<h:outputText value="Create New User" />
+			<div id="left-menu">
+				<h:outputText value="Index" />
 			</div>
 			<div id="right-menu">
 				<h:form>
@@ -93,7 +93,7 @@
 					     <f:validateRequired for="roleName" />
 						 <f:selectItem itemValue="Admin" itemLabel="Admin" />
   						 <f:selectItem itemValue="User" itemLabel="User" />	
-  						 <f:selectItem itemValue="Other" itemLabel="Other" />
+  						 <f:selectItem itemValue="Other" itemLabel="Other" />	   
 					</h:selectOneMenu>
 					
 					<f:facet name="footer">

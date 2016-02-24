@@ -11,4 +11,5 @@ public interface RoleService {
 	void deleteRole(RoleModel role);
 	void updateRole(RoleModel role);
 	RoleModel findRole(RoleModel role);
+	RoleModel exists(String name);
 }

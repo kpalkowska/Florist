@@ -29,7 +29,7 @@ public class ProductServiceTest{
 	private final String DESCRIPTION_2 = "nowszy";
 	private final String PRICE_2 = "20,56";
 		
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void addProductCheck() {
 
@@ -50,7 +50,7 @@ public class ProductServiceTest{
 		assertEquals(n+1, productService.getAllProducts().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void deleteProductCheck(){
 	
@@ -74,7 +74,7 @@ public class ProductServiceTest{
 		assertEquals(n, productService.getAllProducts().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test 
 	public void updateProductCheck(){
 		int n = productService.getAllProducts().size();

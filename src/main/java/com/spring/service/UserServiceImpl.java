@@ -10,7 +10,6 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,9 +31,6 @@ import com.spring.security.AppUser;
 public class UserServiceImpl implements UserService, UserDetailsService {
 	
 	public static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
-	
-	@Value(value="${user.default.password}")
-	private String defaultPassword;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -91,7 +87,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public boolean createUser(String userName, String surname, String login, String password, AddressModel address, RoleModel role) {
-		if (StringUtils.isEmpty(surname) || StringUtils.isEmpty(userName) || StringUtils.isEmpty(login) || StringUtils.isEmpty(address) || StringUtils.isEmpty(role)) {
+		if (StringUtils.isEmpty(surname) || StringUtils.isEmpty(userName) || StringUtils.isEmpty(login) || StringUtils.isEmpty(password) || StringUtils.isEmpty(address) || StringUtils.isEmpty(role)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
 		} else if (userDAO.exists(login)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User already exists"));

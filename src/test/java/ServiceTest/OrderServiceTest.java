@@ -62,7 +62,7 @@ public class OrderServiceTest {
 	private final String role1 = "admin";
 	private final String role2 = "pracownik";
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void addOrderCheck(){
 		
@@ -103,7 +103,7 @@ public class OrderServiceTest {
 		assertEquals(n+1, orderService.getAllOrders().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void deleteOrderCheck(){
 		
@@ -147,7 +147,7 @@ public class OrderServiceTest {
 		assertEquals(n, orderService.getAllOrders().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void updateOrderCheck(){
 		

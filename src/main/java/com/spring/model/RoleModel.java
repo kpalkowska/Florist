@@ -19,7 +19,8 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "Roles")
 @NamedQueries({
-	@NamedQuery(name = "roles.all", query = "Select r from RoleModel r")
+	@NamedQuery(name = "roles.all", query = "Select r from RoleModel r"),
+	@NamedQuery(name = "role.exists", query = "Select r from RoleModel r where r.role = :role")
 })
 public class RoleModel {
 	

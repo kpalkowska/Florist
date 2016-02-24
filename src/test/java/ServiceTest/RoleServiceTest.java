@@ -25,7 +25,7 @@ public class RoleServiceTest {
 	private final String ROLE_1 = "admin";
 	private final String ROLE_2 = "pracownik";
 		
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void addProductCheck() {
 
@@ -42,7 +42,7 @@ public class RoleServiceTest {
 		assertEquals(n+1, roleService.getAllRoles().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void deleteProductCheck(){
 	
@@ -62,7 +62,7 @@ public class RoleServiceTest {
 		assertEquals(n, roleService.getAllRoles().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test 
 	public void updateProductCheck(){
 		int n = roleService.getAllRoles().size();

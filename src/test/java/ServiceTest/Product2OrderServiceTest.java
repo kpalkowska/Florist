@@ -80,7 +80,7 @@ public class Product2OrderServiceTest {
 	private final String role1 = "admin";
 	private final String role2 = "pracownik";
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void addProduct2OrderCheck(){
 		
@@ -139,7 +139,7 @@ public class Product2OrderServiceTest {
 		
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void deleteProduct2OrderCheck(){
 		
@@ -209,7 +209,7 @@ public class Product2OrderServiceTest {
 		
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void updateProduct2OrderCheck(){
 		

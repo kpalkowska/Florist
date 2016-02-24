@@ -54,5 +54,17 @@ public class AddressServiceImpl implements AddressService  {
 		public AddressModel findAddress(AddressModel address) {
 			return (AddressModel) sessionFactory.getCurrentSession().get(AddressModel.class, address.getId());
 		}
+		
+		@Override
+		@Transactional
+		public AddressModel exists(String zipKode, String city, String street, String number){
+			return (AddressModel) sessionFactory.getCurrentSession().getNamedQuery("address.exists")
+					.setString("zipKode", zipKode)
+					.setString("city", city)
+					.setString("street", street)
+					.setString("number", number)
+					.uniqueResult();
+							
+		}
 				
 }

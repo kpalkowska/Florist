@@ -30,7 +30,7 @@ public class AddressServiceTest {
 	private final String street2 = "Taka";
 	private final String number2 = "9";
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void addAddresCheck() {
 
@@ -53,7 +53,7 @@ public class AddressServiceTest {
 		assertEquals(n+1, addressService.getAllAddresses().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void deleteAddressCheck(){
 	
@@ -79,7 +79,7 @@ public class AddressServiceTest {
 		assertEquals(n, addressService.getAllAddresses().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test 
 	public void updateAddressCheck(){
 		

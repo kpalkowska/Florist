@@ -10,7 +10,11 @@
 	<import resource="application-context.xml"/>
 	
 	<!-- Authentication configuration -->
-	<security:http authentication-manager-ref="authenticationManager" auto-config="true" use-expressions="true">
+	<security:http
+		authentication-manager-ref="authenticationManager"
+		auto-config="true"
+		use-expressions="true">
+		
 		<!-- Log-in logic -->
 		<security:form-login 
 			username-parameter="login"

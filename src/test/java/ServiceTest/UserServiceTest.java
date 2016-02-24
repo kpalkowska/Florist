@@ -54,7 +54,7 @@ public class UserServiceTest{
 	
 	private final String role_name2 = "Nikt";
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void addUserCheck() {
 		
@@ -92,7 +92,7 @@ public class UserServiceTest{
 		assertEquals(n+1, userService.getAllUsers().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void deleteUserCheck(){
 	
@@ -133,7 +133,7 @@ public class UserServiceTest{
 		assertEquals(n, userService.getAllUsers().size());
 	}
 	
-	@Rollback(false)
+	@Rollback(true)
 	@Test 
 	public void updateUserCheck(){
 

@@ -24,7 +24,7 @@ import com.spring.service.RoleService;
 import com.spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/application-context.xml" })
+@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:security-context.xml"})
 @Transactional("txManager")
 public class Product2OrderServiceTest {
 	
@@ -77,8 +77,8 @@ public class Product2OrderServiceTest {
 	private final String street2 = "Taka";
 	private final String number2 = "9";
 	
-	private final String role1 = "admin";
-	private final String role2 = "pracownik";
+	private final String role1 = "Rola1";
+	private final String role2 = "Rola2";
 	
 	@Rollback(true)
 	@Test
@@ -281,8 +281,8 @@ public class Product2OrderServiceTest {
 		
 		addressService.addAddress(address2);
 		
-		RoleModel role3 = new RoleModel(role1);
-		role.setRole(role1);
+		RoleModel role3 = new RoleModel(role2);
+		role.setRole(role2);
 		
 		roleService.addRole(role3);
 		

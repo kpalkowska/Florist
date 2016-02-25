@@ -15,15 +15,15 @@ import com.spring.model.RoleModel;
 import com.spring.service.RoleService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/application-context.xml" })
+@ContextConfiguration(locations = {"classpath:application-context.xml", "classpath:security-context.xml"})
 @Transactional("txManager")
 public class RoleServiceTest {
 	
 	@Autowired
 	RoleService roleService;
 
-	private final String ROLE_1 = "admin";
-	private final String ROLE_2 = "pracownik";
+	private final String ROLE_1 = "Rola8";
+	private final String ROLE_2 = "Rola9";
 		
 	@Rollback(true)
 	@Test

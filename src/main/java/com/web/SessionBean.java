@@ -34,7 +34,7 @@ public @Data class SessionBean implements Serializable {
 	private String surname;
 	private String login;
 	private String password;
-	private String zipKode;
+	private String zipCode;
 	private String city;
 	private String street;
 	private String number;
@@ -66,11 +66,11 @@ public @Data class SessionBean implements Serializable {
 
 	public String createUser() {
 		logService.logInfo("createUser :: starting...");
-		AddressModel a = addressService.exists(zipKode, city, street, number);
+		AddressModel a = addressService.exists(zipCode, city, street, number);
 		RoleModel r = roleService.exists(roleName);
 		
 		if(a == null){
-			address = new AddressModel(zipKode, city, street, number);
+			address = new AddressModel(zipCode, city, street, number);
 		}
 		else
 			address = a;

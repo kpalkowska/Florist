@@ -57,9 +57,9 @@ public class AddressServiceImpl implements AddressService  {
 		
 		@Override
 		@Transactional
-		public AddressModel exists(String zipKode, String city, String street, String number){
+		public AddressModel exists(String zipCode, String city, String street, String number){
 			return (AddressModel) sessionFactory.getCurrentSession().getNamedQuery("address.exists")
-					.setString("zipKode", zipKode)
+					.setString("zipCode", zipCode)
 					.setString("city", city)
 					.setString("street", street)
 					.setString("number", number)

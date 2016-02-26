@@ -8,7 +8,14 @@
 <f:view>
     <h:form>
         <h:outputText value="SIEMANKO!"></h:outputText>
+        <br/>
+        <h:outputText value="Jesteś zalogowany jako: #{sessionBean.login}"></h:outputText>
     </h:form>
+    <div id="right-menu">
+				<h:form>
+					<p:commandLink value="Logout" action="#{loginBean.getCurrentUser()}" />
+				</h:form>
+	</div>
 </f:view>
 </body>
 </html>

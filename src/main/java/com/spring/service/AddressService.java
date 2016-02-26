@@ -9,5 +9,5 @@ public interface AddressService {
 	void deleteAddress(AddressModel address);
 	void updateAddress(AddressModel address);
 	AddressModel findAddress(AddressModel id);
-	AddressModel exists(String zipKode, String city, String street, String number);
+	AddressModel exists(String zipCode, String city, String street, String number);
 }

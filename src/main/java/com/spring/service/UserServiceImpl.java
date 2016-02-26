@@ -102,14 +102,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 	
 	@Override
-	public boolean createAddress(String zipKode, String city, String street, String number) {
-		if (StringUtils.isEmpty(zipKode) || StringUtils.isEmpty(street) || StringUtils.isEmpty(city) || StringUtils.isEmpty(number)) {
+	public boolean createAddress(String zipCode, String city, String street, String number) {
+		if (StringUtils.isEmpty(zipCode) || StringUtils.isEmpty(street) || StringUtils.isEmpty(city) || StringUtils.isEmpty(number)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid address"));
 			LOG.info(new StringBuilder("Address ").append(" cannot be empty").toString());
-		} else if (addressDAO.exists(zipKode, city, street, number)) {
+		} else if (addressDAO.exists(zipCode, city, street, number)) {
 			return false;
 		} else {
-			AddressModel address = new AddressModel(zipKode, city, street, number);
+			AddressModel address = new AddressModel(zipCode, city, street, number);
 			addressDAO.addAddress(address);
 			return true;
 		}

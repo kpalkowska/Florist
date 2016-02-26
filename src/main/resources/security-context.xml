@@ -38,7 +38,7 @@
 		<security:csrf disabled="true"/>
 	</security:http>
 
-	<!-- How to authenticate -->
+<!-- How to authenticate -->
 	<security:authentication-manager id="authenticationManager" erase-credentials="true">
 		<security:authentication-provider ref="daoAuthenticationProvider" />
 	</security:authentication-manager>	

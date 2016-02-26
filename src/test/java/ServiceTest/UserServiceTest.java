@@ -40,14 +40,14 @@ public class UserServiceTest{
 	private final String login2 = "xyz@abc.pl";
 	private final String password2 = "abcde";
 	
-	private final String zipKode = "82-300";
+	private final String zipCode = "82-300";
 	private final String city = "Elblag";
 	private final String street = "Kwiatowa";
 	private final String number = "7";
 	
 	private final String role_name = "Rola5";
 	
-	private final String zipKode2 = "83-500";
+	private final String zipCode2 = "83-500";
 	private final String city2 = "Costam";
 	private final String street2 = "Taka";
 	private final String number2 = "9";
@@ -58,8 +58,8 @@ public class UserServiceTest{
 	@Test
 	public void addUserCheck() {
 		
-		AddressModel address = new AddressModel(zipKode, city, street, number);
-		address.setZipKode(zipKode);
+		AddressModel address = new AddressModel(zipCode, city, street, number);
+		address.setZipCode(zipCode);
 		address.setCity(city);
 		address.setStreet(street);
 		address.setNumber(number);
@@ -96,8 +96,8 @@ public class UserServiceTest{
 	@Test
 	public void deleteUserCheck(){
 	
-		AddressModel address = new AddressModel(zipKode, city, street, number);
-		address.setZipKode(zipKode);
+		AddressModel address = new AddressModel(zipCode, city, street, number);
+		address.setZipCode(zipCode);
 		address.setCity(city);
 		address.setStreet(street);
 		address.setNumber(number);
@@ -137,8 +137,8 @@ public class UserServiceTest{
 	@Test 
 	public void updateUserCheck(){
 
-		AddressModel address = new AddressModel(zipKode, city, street, number);
-		address.setZipKode(zipKode);
+		AddressModel address = new AddressModel(zipCode, city, street, number);
+		address.setZipCode(zipCode);
 		address.setCity(city);
 		address.setStreet(street);
 		address.setNumber(number);
@@ -160,8 +160,8 @@ public class UserServiceTest{
 		user.setAddress(address);
 		user.setRole(role);
 		
-		AddressModel address2 = new AddressModel(zipKode2, city2, street2, number2);
-		address2.setZipKode(zipKode2);
+		AddressModel address2 = new AddressModel(zipCode2, city2, street2, number2);
+		address2.setZipCode(zipCode2);
 		address2.setCity(city2);
 		address2.setStreet(street2);
 		address2.setNumber(number2);

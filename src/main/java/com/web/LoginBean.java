@@ -5,17 +5,16 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.ContextConfiguration;
 
 import lombok.Data;
 
@@ -41,9 +40,11 @@ public @Data class LoginBean implements Serializable {
 
 			return "/pages/secure/hello?faces-redirect=true";
 		} catch (AuthenticationException e) {
+		
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unable to authenticate"));
-			return null;
+			
 		}
+		return null;
 	}
 
 	public String logout() {
@@ -52,4 +53,9 @@ public @Data class LoginBean implements Serializable {
 		return "/pages/unsecure/login?faces-redirect=true";
 	}
 
+	public String getCurrentUser() {
+		FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+		return null;
+	}
+	
 }

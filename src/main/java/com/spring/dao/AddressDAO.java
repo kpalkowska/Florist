@@ -10,5 +10,5 @@ public interface AddressDAO {
 	void addAddress(AddressModel address);
 	void deleteAddress(AddressModel address);
 	void updateAddress(AddressModel address);
-	boolean exists(String zipKode, String city, String street, String number);
+	boolean exists(String zipCode, String city, String street, String number);
 }

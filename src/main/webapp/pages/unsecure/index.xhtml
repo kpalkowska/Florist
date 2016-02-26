@@ -35,15 +35,16 @@
 	</h:head>
 	<h:body>
 		<div id="menu">
-			<div id="left-menu">
-				<h:outputText value="Create new user" />
-			</div>
+			<h:form>
+				<p:commandButton value="Show products" action="#{sessionBean.showProducts()}" />
+			</h:form>
 			<div id="right-menu">
 				<h:form>
-					<p:commandLink value="Logout" action="#{loginBean.logout()}" />
+					<p:commandButton value="Logout" action="#{loginBean.logout()}" />
 				</h:form>
+				<br/>
 				<h:form>
-					<p:commandLink value="Login" action="#{loginBean.login()}" />
+					<p:commandButton value="Login" action="#{loginBean.login()}" />
 				</h:form>
 			</div>
 		</div>

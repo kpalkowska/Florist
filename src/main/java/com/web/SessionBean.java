@@ -14,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.spring.model.AddressModel;
+import com.spring.model.ProductModel;
 import com.spring.model.RoleModel;
 import com.spring.model.UserModel;
 import com.spring.service.AddressService;
 import com.spring.service.LogService;
+import com.spring.service.ProductService;
 import com.spring.service.RoleService;
 import com.spring.service.UserService;
 
@@ -43,6 +45,7 @@ public @Data class SessionBean implements Serializable {
 	private RoleModel role;
 	private String time;
 	private List<UserModel> users = new ArrayList<>();
+	private List<ProductModel> products = new ArrayList<>();
 	
 	@Autowired
 	private AddressService addressService;
@@ -54,11 +57,22 @@ public @Data class SessionBean implements Serializable {
 	private UserService userService;
 	
 	@Autowired
+	private ProductService productService;
+	
+	@Autowired
 	private LogService logService;
+	
+	public String showProducts(){
+		logService.logInfo("showProducts :: starting...");
+		setProducts(productService.getAllProducts());
+		logService.logInfo("showProducts :: complete");
+		
+		return "/pages/secure/products?faces-redirect=true";
+	}
 	
 	public String showUsers() {
 		logService.logInfo("showUsers :: starting...");
-		setUsers(userService.getUsers());
+		setUsers(userService.getAllUsers());
 		logService.logInfo("showUsers :: complete");
 		
 		return "/pages/secure/list?faces-redirect=true";

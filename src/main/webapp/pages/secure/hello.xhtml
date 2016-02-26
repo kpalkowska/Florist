@@ -9,11 +9,11 @@
     <h:form>
         <h:outputText value="SIEMANKO!"></h:outputText>
         <br/>
-        <h:outputText value="Jesteś zalogowany jako: #{sessionBean.login}"></h:outputText>
+        <h:outputText value="Jesteś zalogowany jako: #{loginBean.username}"></h:outputText>
     </h:form>
     <div id="right-menu">
 				<h:form>
-					<p:commandLink value="Logout" action="#{loginBean.getCurrentUser()}" />
+					<p:commandButton value="Logout" action="#{loginBean.logout()}" />
 				</h:form>
 	</div>
 </f:view>

@@ -34,20 +34,18 @@
 		</style>
 	</h:head>
 	<h:body>
-		<div id="menu">
-			<h:form>
-				<p:commandButton value="Show products" action="#{sessionBean.showProducts()}" />
-			</h:form>
-			<div id="right-menu">
-				<h:form>
-					<p:commandButton value="Logout" action="#{loginBean.logout()}" />
-				</h:form>
-				<br/>
-				<h:form>
-					<p:commandButton value="Login" action="#{loginBean.login()}" />
-				</h:form>
-			</div>
-		</div>
+	<h:form>  
+	    <p:growl id="messages"/>
+		<p:menubar>
+			<p:submenu label="Show">
+	        	<p:menuitem value="Show products" action="#{sessionBean.showProducts()}" />
+	        	<p:menuitem value="Show users" action="#{sessionBean.showUsers()}" />
+	        </p:submenu>
+			<f:facet name="options">
+	            <p:commandButton value="Login" action="#{loginBean.login()}" />
+	            <p:commandButton value="Logout" action="#{loginBean.logout()}" icon="ui-icon-extlink" />
+	        </f:facet>
+	    </p:menubar>
 		<div id="action-box">
 			<h:form>
 				<h:panelGrid id="panel" columns="2" border="0" cellpadding="5"
@@ -110,5 +108,6 @@
 				</h:panelGrid>
 			</h:form>
 		</div>	
+		</h:form>
 	</h:body>
 </html>

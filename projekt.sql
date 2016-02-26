@@ -1,6 +1,6 @@
 create table Roles (
 id integer identity(1,1) primary key,
-role varchar(30) not null
+role varchar(30) not null unique
 );
 
 create table Addresses (
@@ -50,9 +50,9 @@ drop table Addresses;
 drop table Roles;
 
 
-INSERT INTO Roles VALUES('admin');
-INSERT INTO Roles VALUES('user');
-INSERT INTO Roles VALUES('other');
+INSERT INTO Roles VALUES('Admin');
+INSERT INTO Roles VALUES('User');
+INSERT INTO Roles VALUES('Other');
 
 INSERT INTO Addresses VALUES('Grunwaldzka', 15, '80-300', 'Gdańsk');
 INSERT INTO Addresses VALUES('podwale Grodzkie', 100, '80-200', 'Gdańsk');

@@ -30,5 +30,5 @@ public class ProductModel {
 	private @NonNull String name;
 	private @NonNull String description;
 	private @NonNull String price;
-	
+	private String foto;
 }

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Create New User</title>
+		<style>
+		#action-box {
+			width: 300px;
+			padding: 20px;
+			margin: 100px auto;
+			background: #fff;
+			-webkit-border-radius: 2px;
+			-moz-border-radius: 2px;
+			border: 1px solid #000;
+		}
+		#menu {
+			width:100%;overflow: auto;padding: 10px 0px;
+		} 
+		#menu #left-menu {
+			float: left; width: 50%; text-align: left;
+		} 
+		#menu #right-menu {
+			float: right; width: 50%; text-align: right;
+		} 
+		.menu-item {
+			padding-left: 1em;
+		}
+		</style>
+	</h:head>
+	<h:body>
+	<h:form>  
+     
+    <p:growl id="messages"/>
+		<p:menubar>
+			<f:facet name="options">
+	            <p:commandButton value="Login" action="#{loginBean.login()}" />
+	        </f:facet>
+	    </p:menubar>
+     
+    <p:growl id="growl" sticky="true" showDetail="true"/>
+ 
+    <p:wizard flowListener="#{sessionBean.onFlowProcess}">
+        <p:tab id="personal" title="Personal">
+            <p:panel header="Personal Details">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Name: *" />
+                    <p:inputText value="#{sessionBean.name}" required="true" label="Name"/>
+ 
+                    <h:outputText value="Surname: *" />
+                    <p:inputText value="#{sessionBean.surname}" required="true" label="Surname"/>
+ 
+                    <h:outputText value="Login: *" />
+                    <p:inputText value="#{sessionBean.login}" required="true" label="Login"/>
+ 
+ 					<h:outputText value="Password: *" />
+                    <h:inputSecret value="#{sessionBean.password}" required="true" label="Password"/>
+					
+                    <h:outputText value="Skip to last: " />
+                    <h:selectBooleanCheckbox value="#{sessionBean.skip}" />
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="address" title="Address">
+            <p:panel header="Address Details">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Zip Code: " />
+                    <p:inputText value="#{sessionBean.zipCode}" />
+ 
+                    <h:outputText value="City: " />
+                    <p:inputText value="#{sessionBean.city}" />
+ 
+                    <h:outputText value="Street: " />
+                    <p:inputText value="#{sessionBean.street}" />
+                    
+                    <h:outputText value="Number: " />
+                    <p:inputText value="#{sessionBean.number}" />
+ 
+                    <h:outputText value="Skip to last: " />
+                    <h:selectBooleanCheckbox value="#{sessionBean.skip}" />
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+        
+         <p:tab id="role" title="Role">
+            <p:panel header="Role ">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Role: " />
+ 						<h:selectOneMenu id="roleName" value="#{sessionBean.roleName}">
+					     <f:validateRequired for="roleName" />
+						 <f:selectItem itemValue="Admin" itemLabel="Admin" />
+  						 <f:selectItem itemValue="User" itemLabel="User" />	
+  						 <f:selectItem itemValue="Other" itemLabel="Other" />	   
+						</h:selectOneMenu>
+                    <h:outputText value="Skip to last: " />
+                    <h:selectBooleanCheckbox value="#{sessionBean.skip}" />
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+ 
+        <p:tab id="confirm" title="Confirmation">
+            <p:panel header="Confirmation">
+                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Name: " />
+                        <h:outputText value="#{sessionBean.name}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Surname: " />
+                        <h:outputText value="#{sessionBean.surname}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Login: " />
+                        <h:outputText value="#{sessionBean.login}" styleClass="outputLabel"/>
+                    </h:panelGrid>
+ 
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Street: " />
+                        <h:outputText value="#{sessionBean.street}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Number: " />
+                        <h:outputText value="#{sessionBean.number}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Zip Code: " />
+                        <h:outputText value="#{sessionBean.zipCode}" styleClass="outputLabel"/>
+                        
+                        <h:outputText value="City: " />
+                        <h:outputText value="#{sessionBean.city}" styleClass="outputLabel"/>
+                    </h:panelGrid>
+ 
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Role: " />
+                        <h:outputText value="#{sessionBean.roleName}" styleClass="outputLabel"/>
+ 
+                        <h:outputText />
+                        <h:outputText />
+                    </h:panelGrid>
+                </h:panelGrid>
+ 
+                <p:commandButton value="Submit" actionListener="#{sessionBean.createUser}" update="growl" process="@this"/>
+          		<br/>
+          		
+          		<p:commandButton value= "Login" action = "/pages/unsecure/login.xhtml" update="growl" process="@this"/>
+            </p:panel>
+        </p:tab>
+    </p:wizard>
+    
+</h:form>
+
+	</h:body>
+</html>

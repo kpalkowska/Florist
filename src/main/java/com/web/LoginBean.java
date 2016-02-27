@@ -41,8 +41,8 @@ public @Data class LoginBean implements Serializable {
 			return "/pages/secure/hello?faces-redirect=true";
 		} catch (AuthenticationException e) {
 		
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unable to authenticate"));
-			
+			//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unable to authenticate"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Unable to authenticate"));
 		}
 		return null;
 	}

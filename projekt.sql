@@ -33,7 +33,8 @@ create table Products (
 id integer identity(1,1) primary key,
 name varchar(30) not null,
 description varchar(30),
-price varchar(30) not null
+price varchar(30) not null,
+foto image
 );
 
 create table Products2Orders (
@@ -67,9 +68,9 @@ INSERT INTO Orders VALUES('20-02-2016', 1, 1);
 INSERT INTO Orders VALUES('20-02-2016', 2, 1);
 INSERT INTO Orders VALUES('20-02-2016', 3, 3);
 
-INSERT INTO Products VALUES('róża', 'czerwony', '2.99');
-INSERT INTO Products VALUES('tulipan', 'żółty', '1.99');
-INSERT INTO Products VALUES('margaretka', 'pomarańczowy', '3');
+INSERT INTO Products VALUES('róża', 'czerwony', '2.99', null);
+INSERT INTO Products VALUES('tulipan', 'żółty', '1.99', null);
+INSERT INTO Products VALUES('margaretka', 'pomarańczowy', '3', null);
 
 INSERT INTO Products2Orders VALUES(1,2);
 INSERT INTO Products2Orders VALUES(1,2);

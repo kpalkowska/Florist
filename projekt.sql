@@ -34,7 +34,7 @@ id integer identity(1,1) primary key,
 name varchar(30) not null,
 description varchar(30),
 price varchar(30) not null,
-foto image
+foto varbinary(max)
 );
 
 create table Products2Orders (

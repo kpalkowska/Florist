@@ -1,9 +1,11 @@
 package com.spring.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,5 +32,8 @@ public class ProductModel {
 	private @NonNull String name;
 	private @NonNull String description;
 	private @NonNull String price;
-	private String foto;
+	
+	@Lob
+	@Column(name="foto", columnDefinition="mediumblob")
+	private byte[] foto;
 }

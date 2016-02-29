@@ -1,5 +1,9 @@
 package ServiceTest;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.io.File;
+import java.io.FileInputStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,16 +32,29 @@ public class ProductServiceTest{
 	private final String NAME_2 = "nowszy";
 	private final String DESCRIPTION_2 = "nowszy";
 	private final String PRICE_2 = "20,56";
+	
 		
-	@Rollback(true)
+	@Rollback(false)
 	@Test
 	public void addProductCheck() {
+		
+		File file = new File("/pages/images/product/images.jpg");
+		byte[] bFile = new byte[(int) file.length()];
+		
+		try{
+			FileInputStream fileInputStream = new FileInputStream(file);
+			fileInputStream.read(bFile);
+			fileInputStream.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 
 		int n = productService.getAllProducts().size();
 		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);
+		product.setFoto(bFile);
 
 		productService.addProduct(product);
 
@@ -46,6 +63,8 @@ public class ProductServiceTest{
 		assertEquals(NAME_1, retrievedProduct.getName());
 		assertEquals(DESCRIPTION_1, retrievedProduct.getDescription());
 		assertEquals(PRICE_1, retrievedProduct.getPrice());
+		assertNotNull(bFile);
+		assertEquals(bFile, retrievedProduct.getFoto());
 		
 		assertEquals(n+1, productService.getAllProducts().size());
 	}

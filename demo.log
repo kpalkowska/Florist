@@ -17121,3 +17121,261 @@ Caused by: java.io.FileNotFoundException: class path resource [application-conte
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     226190 nanoseconds spent executing 2 partial-flushes (flushing a total of 3 entities and 3 collections)
 }
+2016-02-29 18:20:14,814 INFO  [Version]  - HHH000412: Hibernate Core {5.0.7.Final}
+2016-02-29 18:20:14,830 INFO  [Environment]  - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.generate_statistics=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.show_sql=true, hibernate.bytecode.use_reflection_optimizer=false, hibernate.hbm2ddl.auto=update, hibernate.format_sql=true}
+2016-02-29 18:20:14,831 INFO  [Environment]  - HHH000021: Bytecode provider name : javassist
+2016-02-29 18:20:14,937 INFO  [Version]  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-02-29 18:20:15,908 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
+2016-02-29 18:20:17,807 INFO  [SchemaUpdate]  - HHH000228: Running hbm2ddl schema update
+2016-02-29 18:20:18,324 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory
+2016-02-29 18:20:21,496 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    57216639 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    708369 nanoseconds spent preparing 5 JDBC statements;
+    33083742 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    55869274 nanoseconds spent executing 3 partial-flushes (flushing a total of 2 entities and 2 collections)
+}
+2016-02-29 18:20:21,565 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    37453645 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    508560 nanoseconds spent preparing 3 JDBC statements;
+    5999637 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    202251 nanoseconds spent executing 2 partial-flushes (flushing a total of 1 entities and 1 collections)
+}
+2016-02-29 18:20:21,646 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    36906491 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    288233 nanoseconds spent preparing 3 JDBC statements;
+    6752463 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    237426 nanoseconds spent executing 1 flushes (flushing a total of 1 entities and 0 collections);
+    251104 nanoseconds spent executing 2 partial-flushes (flushing a total of 1 entities and 1 collections)
+}
+2016-02-29 18:22:55,978 INFO  [Version]  - HHH000412: Hibernate Core {5.0.7.Final}
+2016-02-29 18:22:55,986 INFO  [Environment]  - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.generate_statistics=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.show_sql=true, hibernate.bytecode.use_reflection_optimizer=false, hibernate.hbm2ddl.auto=update, hibernate.format_sql=true}
+2016-02-29 18:22:55,987 INFO  [Environment]  - HHH000021: Bytecode provider name : javassist
+2016-02-29 18:22:56,101 INFO  [Version]  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-02-29 18:22:56,829 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
+2016-02-29 18:22:58,807 INFO  [SchemaUpdate]  - HHH000228: Running hbm2ddl schema update
+2016-02-29 18:22:59,210 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory
+2016-02-29 18:23:01,853 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    31321127 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    575000 nanoseconds spent preparing 3 JDBC statements;
+    6363104 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    5076805 nanoseconds spent executing 2 partial-flushes (flushing a total of 2 entities and 2 collections)
+}
+2016-02-29 18:23:01,948 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    30833574 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    500255 nanoseconds spent preparing 5 JDBC statements;
+    11430139 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    23680028 nanoseconds spent executing 3 partial-flushes (flushing a total of 4 entities and 4 collections)
+}
+2016-02-29 18:23:02,031 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    26776821 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    269181 nanoseconds spent preparing 3 JDBC statements;
+    8162360 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    312171 nanoseconds spent executing 1 flushes (flushing a total of 2 entities and 0 collections);
+    638508 nanoseconds spent executing 2 partial-flushes (flushing a total of 2 entities and 2 collections)
+}
+2016-02-29 18:28:39,614 INFO  [Version]  - HHH000412: Hibernate Core {5.0.7.Final}
+2016-02-29 18:28:39,622 INFO  [Environment]  - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.generate_statistics=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.show_sql=true, hibernate.bytecode.use_reflection_optimizer=false, hibernate.hbm2ddl.auto=update, hibernate.format_sql=true}
+2016-02-29 18:28:39,623 INFO  [Environment]  - HHH000021: Bytecode provider name : javassist
+2016-02-29 18:28:39,771 INFO  [Version]  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-02-29 18:28:40,714 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
+2016-02-29 18:28:42,399 INFO  [SchemaUpdate]  - HHH000228: Running hbm2ddl schema update
+2016-02-29 18:28:42,790 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory
+2016-02-29 18:28:45,706 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    32613778 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    509537 nanoseconds spent preparing 3 JDBC statements;
+    6941523 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    1973173 nanoseconds spent executing 1 flushes (flushing a total of 3 entities and 0 collections);
+    7999680 nanoseconds spent executing 2 partial-flushes (flushing a total of 3 entities and 3 collections)
+}
+2016-02-29 18:28:45,781 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    29534084 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    235959 nanoseconds spent preparing 3 JDBC statements;
+    6514060 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    470943 nanoseconds spent executing 2 partial-flushes (flushing a total of 4 entities and 4 collections)
+}
+2016-02-29 18:28:45,879 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    26861825 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    426488 nanoseconds spent preparing 5 JDBC statements;
+    9611827 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    30981110 nanoseconds spent executing 3 partial-flushes (flushing a total of 8 entities and 8 collections)
+}
+2016-02-29 18:31:00,369 INFO  [Version]  - HHH000412: Hibernate Core {5.0.7.Final}
+2016-02-29 18:31:00,379 INFO  [Environment]  - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.generate_statistics=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.show_sql=true, hibernate.bytecode.use_reflection_optimizer=false, hibernate.hbm2ddl.auto=update, hibernate.format_sql=true}
+2016-02-29 18:31:00,380 INFO  [Environment]  - HHH000021: Bytecode provider name : javassist
+2016-02-29 18:31:00,507 INFO  [Version]  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-02-29 18:31:01,317 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
+2016-02-29 18:31:03,306 INFO  [SchemaUpdate]  - HHH000228: Running hbm2ddl schema update
+2016-02-29 18:31:03,707 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory
+2016-02-29 18:31:06,654 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    33772570 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    897429 nanoseconds spent preparing 5 JDBC statements;
+    9938657 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    30461801 nanoseconds spent executing 3 partial-flushes (flushing a total of 8 entities and 8 collections)
+}
+2016-02-29 18:31:06,718 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    29899993 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    220815 nanoseconds spent preparing 3 JDBC statements;
+    5003525 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    614572 nanoseconds spent executing 2 partial-flushes (flushing a total of 4 entities and 4 collections)
+}
+2016-02-29 18:31:06,787 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    31577605 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    229609 nanoseconds spent preparing 3 JDBC statements;
+    5662552 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    421602 nanoseconds spent executing 1 flushes (flushing a total of 4 entities and 0 collections);
+    533474 nanoseconds spent executing 2 partial-flushes (flushing a total of 4 entities and 4 collections)
+}
+2016-02-29 19:32:53,772 INFO  [Version]  - HHH000412: Hibernate Core {5.0.7.Final}
+2016-02-29 19:32:53,780 INFO  [Environment]  - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.generate_statistics=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.show_sql=true, hibernate.bytecode.use_reflection_optimizer=false, hibernate.hbm2ddl.auto=update, hibernate.format_sql=true}
+2016-02-29 19:32:53,781 INFO  [Environment]  - HHH000021: Bytecode provider name : javassist
+2016-02-29 19:32:53,917 INFO  [Version]  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-02-29 19:32:54,730 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
+2016-02-29 19:32:56,244 INFO  [SchemaUpdate]  - HHH000228: Running hbm2ddl schema update
+2016-02-29 19:32:56,751 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory
+2016-02-29 19:32:59,834 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    29740244 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    843691 nanoseconds spent preparing 3 JDBC statements;
+    8019708 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    8315270 nanoseconds spent executing 2 partial-flushes (flushing a total of 5 entities and 5 collections)
+}
+2016-02-29 19:32:59,943 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    38577264 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    451402 nanoseconds spent preparing 5 JDBC statements;
+    9117435 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    27963949 nanoseconds spent executing 3 partial-flushes (flushing a total of 10 entities and 10 collections)
+}
+2016-02-29 19:33:00,015 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    30354815 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    389358 nanoseconds spent preparing 3 JDBC statements;
+    7006985 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    537872 nanoseconds spent executing 1 flushes (flushing a total of 5 entities and 0 collections);
+    480714 nanoseconds spent executing 2 partial-flushes (flushing a total of 5 entities and 5 collections)
+}
+2016-02-29 19:34:38,008 INFO  [Version]  - HHH000412: Hibernate Core {5.0.7.Final}
+2016-02-29 19:34:38,017 INFO  [Environment]  - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.generate_statistics=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.show_sql=true, hibernate.bytecode.use_reflection_optimizer=false, hibernate.hbm2ddl.auto=update, hibernate.format_sql=true}
+2016-02-29 19:34:38,019 INFO  [Environment]  - HHH000021: Bytecode provider name : javassist
+2016-02-29 19:34:38,183 INFO  [Version]  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-02-29 19:34:38,928 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
+2016-02-29 19:34:40,531 INFO  [SchemaUpdate]  - HHH000228: Running hbm2ddl schema update
+2016-02-29 19:34:40,980 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory
+2016-02-29 19:34:43,540 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    30969874 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    567184 nanoseconds spent preparing 3 JDBC statements;
+    6980118 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    10901060 nanoseconds spent executing 2 partial-flushes (flushing a total of 6 entities and 6 collections)
+}
+2016-02-29 19:34:43,645 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    39836694 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    415740 nanoseconds spent preparing 5 JDBC statements;
+    9108642 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    24380581 nanoseconds spent executing 3 partial-flushes (flushing a total of 12 entities and 12 collections)
+}
+2016-02-29 19:34:43,735 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    49976135 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    240846 nanoseconds spent preparing 3 JDBC statements;
+    5740229 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    775786 nanoseconds spent executing 1 flushes (flushing a total of 6 entities and 0 collections);
+    1092842 nanoseconds spent executing 2 partial-flushes (flushing a total of 6 entities and 6 collections)
+}

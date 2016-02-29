@@ -13,6 +13,7 @@ import com.spring.model.*;
 @Transactional
 public class ProductDAOImpl implements ProductDAO {
 		
+		
 		@Autowired
 	    private SessionFactory sessionFactory;
 

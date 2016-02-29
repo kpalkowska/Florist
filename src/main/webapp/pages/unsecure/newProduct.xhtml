@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Create New Product</title>
+		<style>
+		#action-box {
+			width: 300px;
+			padding: 20px;
+			margin: 100px auto;
+			background: #fff;
+			-webkit-border-radius: 2px;
+			-moz-border-radius: 2px;
+			border: 1px solid #000;
+		}
+		#menu {
+			width:100%;overflow: auto;padding: 10px 0px;
+		} 
+		#menu #left-menu {
+			float: left; width: 50%; text-align: left;
+		} 
+		#menu #right-menu {
+			float: right; width: 50%; text-align: right;
+		} 
+		.menu-item {
+			padding-left: 1em;
+		}
+		</style>
+	</h:head>
+	<h:body>
+	<h:form>  
+     
+    <p:growl id="messages"/>
+		<p:menubar>
+			<f:facet name="options">
+	            <p:commandButton value="Login" action="#{loginBean.login()}" />
+	        </f:facet>
+	    </p:menubar>
+     
+    <p:growl id="growl" sticky="true" showDetail="true"/>
+ 
+    <p:wizard flowListener="#{sessionBean.onFlowProcess}">
+        <p:tab id="product" title="Product">
+            <p:panel header="Product details">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Name: *" />
+                    <p:inputText value="#{sessionBean.name}" required="true" label="Name"/>
+ 
+                    <h:outputText value="Description: *" />
+                    <p:inputText value="#{sessionBean.description}" required="true" label="Description"/>
+ 
+                    <h:outputText value="Price: *" />
+                    <p:inputText value="#{sessionBean.price}" required="true" label="Price"/>
+ 
+ 					<h:outputText value="Foto: *" />		
+						<h:form>
+						    <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false"
+						           update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+						    <p:growl id="messages" showDetail="true" />
+						</h:form>
+					
+					
+                    <h:outputText value="Skip to last: " />
+                    <h:selectBooleanCheckbox value="#{sessionBean.skip}" />
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="confirm" title="Confirmation">
+            <p:panel header="Confirmation">
+                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Name: " />
+                        <h:outputText value="#{sessionBean.name}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Description: " />
+                        <h:outputText value="#{sessionBean.description}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Price: " />
+                        <h:outputText value="#{sessionBean.price}" styleClass="outputLabel"/>
+                   	 </h:panelGrid>
+ 
+                      <h:outputText value="Foto: " />
+                        
+		                    <p:graphicImage value="#{sessionBean.foto}"/>
+		               
+ 					</h:panelGrid>
+                    
+                <p:commandButton value="Submit" actionListener="#{sessionBean.createProduct}" update="growl" process="@this"/>
+          		<br/>
+          		
+          		<p:commandButton value= "Login" action = "/pages/unsecure/login.xhtml" update="growl" process="@this"/>
+            </p:panel>
+        </p:tab>
+    </p:wizard>
+    
+</h:form>
+
+	</h:body>
+</html>

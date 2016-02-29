@@ -11,4 +11,5 @@ public interface ProductService {
 	ProductModel findProduct(ProductModel product);
 	void deleteProduct(ProductModel product);
 	void updateProduct(ProductModel product);
+	boolean createProduct(String name, String description, String price, byte[] foto);
 }

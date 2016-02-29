@@ -42,6 +42,9 @@ public @Data class SessionBean implements Serializable {
 	private String street;
 	private String number;
 	private String roleName;
+	private String description;
+	private String price;
+	private byte[] foto;
 	private AddressModel address;
 	private RoleModel role;
 	private String time;
@@ -122,5 +125,19 @@ public @Data class SessionBean implements Serializable {
         }
     }
 	
-	
+	public String createProduct(){
+		logService.logInfo("createProduct :: starting...");
+		boolean successProduct = productService.createProduct(name, description, price, foto);
+		
+		if (successProduct) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Success", new StringBuilder("Product ").append(name).append(" created!").toString()));
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+		}
+		
+		logService.logInfo("createProduct :: complete");
+		
+		return null;
+	}
 }

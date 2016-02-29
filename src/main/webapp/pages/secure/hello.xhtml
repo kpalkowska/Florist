@@ -50,7 +50,9 @@
 		            </p:column>
 		            
 		             <p:column headerText="Image">
-		                <h:outputText value="#{product.foto}" />
+		           		  <f:facet name="header">
+		                    <p:graphicImage value="#{product.foto}"/>
+		               	 </f:facet>
 		            </p:column>
 		        </p:dataTable>
 		    </p:fieldset>
@@ -76,7 +78,9 @@
 		                </p:column>
 		 
 		 				 <p:column headerText="Image">
-		                	  <h:outputText value="#{product.foto}" />
+		 				 		<f:facet name="header">
+		                   			 <p:graphicImage value="#{product.foto}"/>
+		                		</f:facet>
 		          	    </p:column>
 		                <p:column style="width:32px">
 		                    <p:commandButton update=":productForm:display" oncomplete="PF('productDialog').show()" icon="ui-icon-search">
@@ -97,7 +101,7 @@
 		        <p:outputPanel id="display">
 		            <h:panelGrid columns="2" cellpadding="4" rendered="#{not empty dndProductsView.selectedProduct}">
 		                <f:facet name="header">
-		                    <p:graphicImage value="/pages/images/product/images.jpg"/>
+		                    <p:graphicImage value="#{product.foto}"/>
 		                </f:facet>
 		 
 		                <h:outputText value="Id:" />

@@ -36,4 +36,16 @@ public class ProductModel {
 	@Lob
 	@Column(name="foto", columnDefinition="mediumblob")
 	private byte[] foto;
+
+	public ProductModel(String name, String description, String price, byte[] foto){
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.foto = foto;
+	}
+
 }
+
+
+
+

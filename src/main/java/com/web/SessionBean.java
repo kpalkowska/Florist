@@ -1,6 +1,7 @@
 package com.web;
 
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
+import org.primefaces.model.DefaultStreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -140,4 +143,17 @@ public @Data class SessionBean implements Serializable {
 		
 		return null;
 	}
+	
+    public void handleFileUpload(FileUploadEvent event) {
+    	if(event != null){
+    		
+    		byte[] content = event.getFile().getContents();
+			foto = content;	
+		    FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+		    FacesContext.getCurrentInstance().addMessage(null, message);
+       
+    	}
+    	else 
+    		logService.logInfo("foto :: baaad....");
+    }
 }

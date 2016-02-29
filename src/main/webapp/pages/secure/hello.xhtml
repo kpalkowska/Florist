@@ -49,11 +49,6 @@
 		                <h:outputText value="#{product.price}" />
 		            </p:column>
 		            
-		             <p:column headerText="Image">
-		           		  <f:facet name="header">
-		                    <p:graphicImage value="#{product.foto}"/>
-		               	 </f:facet>
-		            </p:column>
 		        </p:dataTable>
 		    </p:fieldset>
 		 
@@ -76,12 +71,7 @@
 		                <p:column headerText="Price">
 		                    <h:outputText value="#{product.price}" />
 		                </p:column>
-		 
-		 				 <p:column headerText="Image">
-		 				 		<f:facet name="header">
-		                   			 <p:graphicImage value="#{product.foto}"/>
-		                		</f:facet>
-		          	    </p:column>
+		                
 		                <p:column style="width:32px">
 		                    <p:commandButton update=":productForm:display" oncomplete="PF('productDialog').show()" icon="ui-icon-search">
 		                        <f:setPropertyActionListener value="#{product}" target="#{dndProductsView.selectedProduct}" />

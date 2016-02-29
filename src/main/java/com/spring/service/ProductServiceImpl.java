@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.awt.Image;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -78,5 +79,6 @@ public class ProductServiceImpl implements ProductService{
 		
 		return false;
 	}
+
 }
 

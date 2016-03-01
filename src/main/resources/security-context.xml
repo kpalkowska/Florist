@@ -31,7 +31,8 @@
 			logout-success-url="/pages/secure/hello.xhtml"
 			delete-cookies="JSESSIONID" />
 
-		<security:intercept-url pattern="/pages/**" access="permitAll" />
+		<security:intercept-url pattern="/pages/unsecure/**" access="permitAll" />
+		<security:intercept-url pattern="/pages/secure/**" access="hasRole('USER')" />
 		
 		<security:access-denied-handler error-page="/pages/unsecure/error.xhtml"/>
 		

@@ -44,9 +44,13 @@ public @Data class SessionBean implements Serializable {
 	private String city;
 	private String street;
 	private String number;
+	
 	private String roleName;
+	
 	private String description;
 	private String price;
+	private String type;
+	private String color;
 	private byte[] foto;
 	private AddressModel address;
 	private RoleModel role;
@@ -130,7 +134,7 @@ public @Data class SessionBean implements Serializable {
 	
 	public String createProduct(){
 		logService.logInfo("createProduct :: starting...");
-		boolean successProduct = productService.createProduct(name, description, price, foto);
+		boolean successProduct = productService.createProduct(name, description, price, type, color, foto);
 		
 		if (successProduct) {
 			FacesContext.getCurrentInstance().addMessage(null,

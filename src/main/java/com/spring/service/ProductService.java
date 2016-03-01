@@ -12,5 +12,9 @@ public interface ProductService {
 	ProductModel findProduct(ProductModel product);
 	void deleteProduct(ProductModel product);
 	void updateProduct(ProductModel product);
-	boolean createProduct(String name, String description, String price, byte[] foto);
+	boolean createProduct(String name, String description, String price, String type, String color, byte[] foto);
+	
+	List<ProductModel> findProductByName(String name);
+	List<ProductModel> findProductByType(String type);
+	List<ProductModel> findProductByColor(String color);
 }

@@ -9,9 +9,13 @@ public interface ProductDAO {
 	
 	List<ProductModel> getAllProducts();
 	void addProduct(ProductModel product);
-	ProductModel findProductByName(String name);
 	void deleteProduct(ProductModel product);
 	void updateProduct(ProductModel product);
+	
+	List<ProductModel> findProductByName(String name);
+	ProductModel findProductByType(String type);
+	ProductModel findProductByColor(String color);
+		
 }
 
 

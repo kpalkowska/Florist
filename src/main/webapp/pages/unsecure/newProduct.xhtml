@@ -31,6 +31,12 @@
  
                     <h:outputText value="Price: *" />
                     <p:inputText value="#{sessionBean.price}" required="true" label="Price"/>
+                    
+                    <h:outputText value="Type: *" />
+                    <p:inputText value="#{sessionBean.type}" required="true" label="Type"/>
+                    
+                    <h:outputText value="Color: *" />
+                    <p:inputText value="#{sessionBean.color}" required="true" label="Color"/>
  
  					<h:outputText value="Foto: *" />		
 						<h:form>
@@ -58,6 +64,12 @@
  
                         <h:outputText value="Price: " />
                         <h:outputText value="#{sessionBean.price}" styleClass="outputLabel"/>
+                        
+                        <h:outputText value="Type: " />
+                  		<p:inputText value="#{sessionBean.type}" required="true" label="Type"/>
+                    
+                  		<h:outputText value="Color: " />
+                    	<p:inputText value="#{sessionBean.color}" required="true" label="Color"/>
                    	 </h:panelGrid>
  
                       <h:outputText value="Foto: " />

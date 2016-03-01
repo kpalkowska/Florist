@@ -32,8 +32,10 @@ address integer foreign key references Addresses(id)
 create table Products (
 id integer identity(1,1) primary key,
 name varchar(30) not null,
-description varchar(30),
+description varchar(max),
 price varchar(30) not null,
+type varchar(30) not null,
+color varchar(30) not null,
 foto image
 );
 

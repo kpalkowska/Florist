@@ -25,13 +25,18 @@ public class ProductServiceTest{
 	@Autowired
 	ProductService productService;
 
-	private final String NAME_1 = "nowy";
-	private final String DESCRIPTION_1 = "nowy";
+	private final String NAME_1 = "coś tam";
+	private final String DESCRIPTION_1 = "pojedynczy";
 	private final String PRICE_1 = "13,56";
-
-	private final String NAME_2 = "nowszy";
-	private final String DESCRIPTION_2 = "nowszy";
+	private final String TYPE_1 = "róża";
+	private final String COLOR_1 = "czerwony";
+	
+	
+	private final String NAME_2 = "coś tam2";
+	private final String DESCRIPTION_2 = "bukiet";
 	private final String PRICE_2 = "20,56";
+	private final String TYPE_2 = "tulipan";
+	private final String COLOR_2 = "żółty";
 	
 		
 	@Rollback(false)
@@ -50,10 +55,12 @@ public class ProductServiceTest{
 		}
 
 		int n = productService.getAllProducts().size();
-		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
+		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1, TYPE_1, COLOR_1);
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);
+		product.setType(TYPE_1);
+		product.setColor(COLOR_1);
 		product.setFoto(bFile);
 
 		productService.addProduct(product);
@@ -63,6 +70,8 @@ public class ProductServiceTest{
 		assertEquals(NAME_1, retrievedProduct.getName());
 		assertEquals(DESCRIPTION_1, retrievedProduct.getDescription());
 		assertEquals(PRICE_1, retrievedProduct.getPrice());
+		assertEquals(TYPE_1, retrievedProduct.getType());
+		assertEquals(COLOR_1, retrievedProduct.getColor());
 		assertNotNull(bFile);
 		assertEquals(bFile, retrievedProduct.getFoto());
 		
@@ -74,11 +83,12 @@ public class ProductServiceTest{
 	public void deleteProductCheck(){
 	
 		int n = productService.getAllProducts().size();
-		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
+		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1, TYPE_1, COLOR_1);
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);
-
+		product.setType(TYPE_1);
+		product.setColor(COLOR_1);
 		productService.addProduct(product);
 	
 		ProductModel retrievedProduct = productService.findProduct(product);
@@ -86,6 +96,8 @@ public class ProductServiceTest{
 		assertEquals(NAME_1, retrievedProduct.getName());
 		assertEquals(DESCRIPTION_1, retrievedProduct.getDescription());
 		assertEquals(PRICE_1, retrievedProduct.getPrice());
+		assertEquals(TYPE_1, retrievedProduct.getType());
+		assertEquals(COLOR_1, retrievedProduct.getColor());
 		
 		assertEquals(n+1, productService.getAllProducts().size());
 		
@@ -97,10 +109,12 @@ public class ProductServiceTest{
 	@Test 
 	public void updateProductCheck(){
 		int n = productService.getAllProducts().size();
-		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1);
+		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1, TYPE_1, COLOR_1);
 		product.setName(NAME_1);
 		product.setDescription(DESCRIPTION_1);
 		product.setPrice(PRICE_1);
+		product.setType(TYPE_1);
+		product.setColor(COLOR_1);
 
 		productService.addProduct(product);
 	
@@ -109,6 +123,8 @@ public class ProductServiceTest{
 		assertEquals(NAME_1, retrievedProduct.getName());
 		assertEquals(DESCRIPTION_1, retrievedProduct.getDescription());
 		assertEquals(PRICE_1, retrievedProduct.getPrice());
+		assertEquals(TYPE_1, retrievedProduct.getType());
+		assertEquals(COLOR_1, retrievedProduct.getColor());
 		
 		assertEquals(n+1, productService.getAllProducts().size());
 		
@@ -116,7 +132,9 @@ public class ProductServiceTest{
 		retrievedProduct.setName(NAME_2);
 		retrievedProduct.setDescription(DESCRIPTION_2);
 		retrievedProduct.setPrice(PRICE_2);
-
+		retrievedProduct.setType(TYPE_2);
+		retrievedProduct.setColor(COLOR_2);
+			
 		productService.updateProduct(retrievedProduct);
 	
 		ProductModel retrievedProduct2 = productService.findProduct(product);
@@ -124,6 +142,8 @@ public class ProductServiceTest{
 		assertEquals(NAME_2, retrievedProduct2.getName());
 		assertEquals(DESCRIPTION_2, retrievedProduct2.getDescription());
 		assertEquals(PRICE_2, retrievedProduct2.getPrice());
+		assertEquals(TYPE_2, retrievedProduct2.getType());
+		assertEquals(COLOR_2, retrievedProduct2.getColor());
 		
 	}
 	

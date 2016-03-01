@@ -11,7 +11,7 @@ import com.spring.model.ProductModel;
 import com.spring.service.LogService;
 
 @ManagedBean
-public class FileUploadView {
+public class FileUploadBean {
  
 	@Autowired
 	private LogService logService;

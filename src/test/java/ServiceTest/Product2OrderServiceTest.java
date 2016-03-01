@@ -46,13 +46,18 @@ public class Product2OrderServiceTest {
 	@Autowired
 	AddressService addressService;
 	
-	private final String name1 = "nowy";
-	private final String description1 = "nowy";
-	private final String price1 = "13,56";
-
-	private final String name0 = "nowszy";
-	private final String description = "nowszy";
-	private final String price = "20,56";
+	private final String NAME_1 = "coś tam";
+	private final String DESCRIPTION_1 = "pojedynczy";
+	private final String PRICE_1 = "13,56";
+	private final String TYPE_1 = "róża";
+	private final String COLOR_1 = "czerwony";
+	
+	
+	private final String NAME_2 = "coś tam2";
+	private final String DESCRIPTION_2 = "bukiet";
+	private final String PRICE_2 = "20,56";
+	private final String TYPE_2 = "tulipan";
+	private final String COLOR_2 = "żółty";
 	
 	private final String date = "03-06-2016";
 	private final String date2 = "15-12-2016";
@@ -85,11 +90,13 @@ public class Product2OrderServiceTest {
 	public void addProduct2OrderCheck(){
 		
 		int n = poService.getAllProducts2Orders().size();
-		
-		ProductModel product = new ProductModel(name1, description1, price1);
-		product.setName(name1);
-		product.setDescription(description1);
-		product.setPrice(price1);
+	
+		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1, TYPE_1, COLOR_1);
+		product.setName(NAME_1);
+		product.setDescription(DESCRIPTION_1);
+		product.setPrice(PRICE_1);
+		product.setType(TYPE_1);
+		product.setColor(COLOR_1);
 
 		productService.addProduct(product);
 
@@ -145,10 +152,12 @@ public class Product2OrderServiceTest {
 		
 		int n = poService.getAllProducts2Orders().size();
 		
-		ProductModel product = new ProductModel(name1, description1, price1);
-		product.setName(name1);
-		product.setDescription(description1);
-		product.setPrice(price1);
+		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1, TYPE_1, COLOR_1);
+		product.setName(NAME_1);
+		product.setDescription(DESCRIPTION_1);
+		product.setPrice(PRICE_1);
+		product.setType(TYPE_1);
+		product.setColor(COLOR_1);
 
 		productService.addProduct(product);
 
@@ -215,10 +224,13 @@ public class Product2OrderServiceTest {
 		
 		int n = poService.getAllProducts2Orders().size();
 		
-		ProductModel product = new ProductModel(name1, description1, price1);
-		product.setName(name1);
-		product.setDescription(description1);
-		product.setPrice(price1);
+		
+		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1, TYPE_1, COLOR_1);
+		product.setName(NAME_1);
+		product.setDescription(DESCRIPTION_1);
+		product.setPrice(PRICE_1);
+		product.setType(TYPE_1);
+		product.setColor(COLOR_1);
 
 		productService.addProduct(product);
 
@@ -266,10 +278,13 @@ public class Product2OrderServiceTest {
 		
 		assertEquals(n+1, poService.getAllProducts2Orders().size());
 		
-		ProductModel product2 = new ProductModel(name0, description, price);
-		product2.setName(name0);
-		product2.setDescription(description);
-		product2.setPrice(price);
+		
+		ProductModel product2 = new ProductModel(NAME_2, DESCRIPTION_2, PRICE_2, TYPE_2, COLOR_2);
+		product2.setName(NAME_2);
+		product2.setDescription(DESCRIPTION_2);
+		product2.setPrice(PRICE_2);
+		product2.setType(TYPE_2);
+		product2.setColor(COLOR_2);
 
 		productService.addProduct(product2);
 

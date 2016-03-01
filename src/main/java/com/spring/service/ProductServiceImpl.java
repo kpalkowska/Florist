@@ -1,6 +1,5 @@
 package com.spring.service;
 
-import java.awt.Image;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -51,7 +50,7 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	@Transactional
 	public ProductModel findProduct(ProductModel product) {
-		return (ProductModel) sessionFactory.getCurrentSession().get(ProductModel.class, product.getId());
+		return sessionFactory.getCurrentSession().get(ProductModel.class, product.getId());
 		
 	}
 
@@ -68,11 +67,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public boolean createProduct(String name, String description, String price, byte[] foto) {
-		if (StringUtils.isEmpty(name) || StringUtils.isEmpty(description) || StringUtils.isEmpty(price)) {
+	public boolean createProduct(String name, String description, String price, String type, String color, byte[] foto) {
+		if (StringUtils.isEmpty(name) || StringUtils.isEmpty(description) || StringUtils.isEmpty(price) || StringUtils.isEmpty(type)|| StringUtils.isEmpty(color)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
 		}  else {
-			ProductModel product = new ProductModel(name, description, price, foto);
+			ProductModel product = new ProductModel(name, description, price, type, color, foto);
 			productDAO.addProduct(product);
 			return true;
 		}
@@ -80,5 +79,23 @@ public class ProductServiceImpl implements ProductService{
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProductModel> findProductByName(String name) {
+				return sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProductModel> findProductByType(String type) {
+		return sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProductModel> findProductByColor(String color) {
+		return sessionFactory.getCurrentSession().getNamedQuery("products.getByColor").setString("color", color).list();
+
+	}	
 }
 

@@ -20,7 +20,7 @@ import lombok.Data;
 
 @ManagedBean(name = "dndProductsView")
 @ViewScoped
-public @Data class ProductView implements Serializable {
+public @Data class ProductBean implements Serializable {
 
 	private static final long serialVersionUID = 6022001178289508303L;
 	

@@ -21,7 +21,11 @@ import lombok.RequiredArgsConstructor;
 @Entity 
 @Table(name = "Products")
 @NamedQueries({
-	@NamedQuery(name = "products.all", query = "Select p from ProductModel p")
+	@NamedQuery(name = "products.all", query = "Select p from ProductModel p"),
+	@NamedQuery(name = "products.getByType", query = "Select p from ProductModel p where p.type = :type" ),
+	@NamedQuery(name = "products.getByColor", query = "Select p from ProductModel p where p.color = :color"),
+	@NamedQuery(name = "products.getByName", query = "Select product from ProductModel product where product.name = :name"),
+	@NamedQuery(name = "products.sortByPrice", query ="Select p from ProductModel p where p.price = :price")   //coś tam jeszcze dopisac xD
 })
 public class ProductModel {
 	
@@ -32,15 +36,19 @@ public class ProductModel {
 	private @NonNull String name;
 	private @NonNull String description;
 	private @NonNull String price;
+	private @NonNull String type;
+	private @NonNull String color;
 	
 	@Lob
 	@Column(name="foto", columnDefinition="mediumblob")
 	private byte[] foto;
 
-	public ProductModel(String name, String description, String price, byte[] foto){
+	public ProductModel(String name, String description, String price, String type, String color, byte[] foto){
 		this.name = name;
 		this.description = description;
 		this.price = price;
+		this.type = type;
+		this.color = color;
 		this.foto = foto;
 	}
 

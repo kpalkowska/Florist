@@ -49,6 +49,12 @@
 		                <h:outputText value="#{product.price}" />
 		            </p:column>
 		            
+		            <p:column headerText="Image">
+		                <p:graphicImage value="#{product.foto}" width="50"  id="grpImage" height="80">
+		                	<f:param name="productId" value="#{product.id}" />
+       					</p:graphicImage>		
+		            </p:column>
+		            
 		        </p:dataTable>
 		    </p:fieldset>
 		 
@@ -70,6 +76,12 @@
 		 
 		                <p:column headerText="Price">
 		                    <h:outputText value="#{product.price}" />
+		                </p:column>
+		                
+		                <p:column headerText="Image">
+		                  <p:graphicImage value="#{product.foto}" width="50"  id="grpImage" height="80">
+		                	<f:param name="productId" value="#{product.id}" />
+       					  </p:graphicImage>	
 		                </p:column>
 		                
 		                <p:column style="width:32px">

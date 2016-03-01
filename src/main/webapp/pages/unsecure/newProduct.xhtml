@@ -7,42 +7,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<title>Create New Product</title>
-		<style>
-		#action-box {
-			width: 300px;
-			padding: 20px;
-			margin: 100px auto;
-			background: #fff;
-			-webkit-border-radius: 2px;
-			-moz-border-radius: 2px;
-			border: 1px solid #000;
-		}
-		#menu {
-			width:100%;overflow: auto;padding: 10px 0px;
-		} 
-		#menu #left-menu {
-			float: left; width: 50%; text-align: left;
-		} 
-		#menu #right-menu {
-			float: right; width: 50%; text-align: right;
-		} 
-		.menu-item {
-			padding-left: 1em;
-		}
-		</style>
-	</h:head>
+	<h:head><title>Create New Product</title></h:head>
 	<h:body>
+	
 	<h:form>  
-     
-    <p:growl id="messages"/>
-		<p:menubar>
-			<f:facet name="options">
-	            <p:commandButton value="Login" action="#{loginBean.login()}" />
-	        </f:facet>
-	    </p:menubar>
-     
+		<ui:include src="/pages/unsecure/menu.xhtml" />
+		<br/><br/>
+	</h:form>
+	
+	<h:form>   
     <p:growl id="growl" sticky="true" showDetail="true"/>
  
     <p:wizard flowListener="#{sessionBean.onFlowProcess}">

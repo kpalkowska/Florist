@@ -7,8 +7,9 @@
 
 	<h:head>
 		<title>Welcome</title>
+		
 		<style>
-		#action-box {
+			#action-box {
 			width: 300px;
 			padding: 20px;
 			margin: 100px auto;
@@ -16,26 +17,14 @@
 			-webkit-border-radius: 2px;
 			-moz-border-radius: 2px;
 			border: 1px solid #000;
-		}
-		#menu {
-			width:100%;overflow: auto;padding: 10px 0px;
-		} 
-		#menu #left-menu {
-			float: left; width: 50%; text-align: left;
-		} 
-		#menu #right-menu {
-			float: right; width: 50%; text-align: right;
-		} 
-		.menu-item {
-			padding-left: 1em;
-		}
+			}
 		</style>
 	</h:head>
 	<h:body>
-		<div id="menu">
-			<div id="right-menu">
-			</div>
-		</div>
+	<h:form>  
+		<ui:include src="/pages/unsecure/menu.xhtml" />
+		<br/><br/>
+	</h:form>
 		<div id="action-box">
 			<h:form>
 				<h:panelGrid id="panel" columns="2" border="0" cellpadding="5"

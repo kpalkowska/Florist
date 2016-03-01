@@ -1,66 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<h:head>
-		<title>Products</title>
-		<style>
-		#action-box {
-			width: 300px;
-			padding: 20px;
-			margin: 100px auto;
-			background: #fff;
-			-webkit-border-radius: 2px;
-			-moz-border-radius: 2px;
-			border: 1px solid #000;
-		}
-		#menu {
-			width:100%; overflow: auto; padding: 10px 0px;
-		} 
-		#menu #left-menu {
-			float: left; width: 50%; text-align: left;
-		} 
-		#menu #right-menu {
-			float: right; width: 50%; text-align: right;
-		} 
-		.menu-item {
-			padding-left: 1em;
-		}
-		</style>
-	</h:head>
-	<h:body bgcolor="white" >
-		<div id="menu">
-			<div id="right-menu">
-			    <p:link outcome="/pages/unsecure/index.xhtml" value="Go back"/>
-			    <br/>
-				<h:commandButton value="Logout" action="#{loginBean.logout()}"/>
-			</div>
-		</div>
-		<p:carousel numVisible="1" effect="easeInStrong" headerText="Existing products" style="margin-bottom:0">
-	        <p:tab>
-	            <p:dataTable var="product" value="#{sessionBean.products}">
-	            	<p:column headerText="Id">
-	            		<h:outputText value="#{product.id}" />
-	            	</p:column>
-	            	<p:column headerText="Name">
-	            		<h:outputText value="#{product.name}" />
-	            	</p:column>
-	            	<p:column headerText="Description">
-	            		<h:outputText value="#{product.description}" />
-	            	</p:column>
-	            	<p:column headerText="Price">
-	            		<h:outputText value="#{product.price}" />
-	            	</p:column>
-	            	<p:column headerText="Image">
-	            		<h:outputText value="#{product.foto}" />
-	            	</p:column>
-	            </p:dataTable>
-	        </p:tab>
-	    </p:carousel>
-	</h:body>
+ <script type="text/javascript">
+    function handleDrop(event, ui) {
+        var droppedProduct = ui.draggable;
+ 
+        droppedProduct.fadeOut('fast');
+    }
+</script>
+
+<h:head><title>Welcome</title></h:head>
+<body>
+<f:view>
+	<h:form>  
+
+		<ui:include src="/pages/unsecure/menu.xhtml" />
+		<br/>
+		<br/>
+	</h:form>
+		<h:form id="productForm">
+		    <p:fieldset id="availableProductsField" legend="Available Products">
+		        <p:dataTable id="availableProducts" var="product" value="#{dndProductsView.products}">
+		            <p:column style="width:20px">
+		                <h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+		                <p:draggable for="dragIcon" revert="true" helper="clone"/>
+		            </p:column>
+		 
+		            <p:column headerText="Id">
+		                <h:outputText value="#{product.id}" />
+		            </p:column>
+		 
+		            <p:column headerText="Name">
+		                <h:outputText value="#{product.name}" />
+		            </p:column>
+		 
+		            <p:column headerText="Description">
+		                <h:outputText value="#{product.description}" />
+		            </p:column>
+		 
+		            <p:column headerText="Price">
+		                <h:outputText value="#{product.price}" />
+		            </p:column>
+		            
+		            <p:column headerText="Image">
+		                <p:graphicImage value="#{product.foto}" width="50"  id="grpImage" height="80">
+		                	<f:param name="productId" value="#{product.id}" />
+       					</p:graphicImage>		
+		            </p:column>
+		            
+		        </p:dataTable>
+		    </p:fieldset>
+		 
+		    <p:fieldset id="selectedProducts" legend="Selected Products" style="margin-top:20px">
+		        <p:outputPanel id="dropArea">
+		            <h:outputText value="!!!Drop here!!!" rendered="#{empty dndProductsView.droppedProducts}" style="font-size:24px;" />
+		            <p:dataTable id="selectedProductsTable" var="product" value="#{dndProductsView.droppedProducts}" rendered="#{not empty dndProductsView.droppedProducts}">
+		                <p:column headerText="Id">
+		                    <h:outputText value="#{product.id}" />
+		                </p:column>
+		 
+		                <p:column headerText="Name">
+		                    <h:outputText value="#{product.name}" />
+		                </p:column>
+		 
+		                <p:column headerText="Description">
+		                    <h:outputText value="#{product.description}" />
+		                </p:column>
+		 
+		                <p:column headerText="Price">
+		                    <h:outputText value="#{product.price}" />
+		                </p:column>
+		                
+		                <p:column headerText="Image">
+		                  <p:graphicImage value="#{product.foto}" width="50"  id="grpImage" height="80">
+		                	<f:param name="productId" value="#{product.id}" />
+       					  </p:graphicImage>	
+		                </p:column>
+		                
+		                <p:column style="width:32px">
+		                    <p:commandButton update=":productForm:display" oncomplete="PF('productDialog').show()" icon="ui-icon-search">
+		                        <f:setPropertyActionListener value="#{product}" target="#{dndProductsView.selectedProduct}" />
+		                    </p:commandButton>
+		                </p:column>
+		            </p:dataTable>
+		        </p:outputPanel>
+		    </p:fieldset>
+		 
+		    <p:droppable for="selectedProducts" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableProducts" onDrop="handleDrop">
+		        <p:ajax listener="#{dndProductsView.onProductDrop}" update="dropArea availableProducts" />
+		    </p:droppable>
+		 
+		    <p:dialog header="Product Detail" widgetVar="productDialog" resizable="false" draggable="false"
+		                showEffect="fade" hideEffect="fade" modal="true">
+		 
+		        <p:outputPanel id="display">
+		            <h:panelGrid columns="2" cellpadding="4" rendered="#{not empty dndProductsView.selectedProduct}">
+		                <f:facet name="header">
+		                    <p:graphicImage value="#{product.foto}"/>
+		                </f:facet>
+		 
+		                <h:outputText value="Id:" />
+		                <h:outputText value="#{dndProductsView.selectedProduct.id}" style="font-weight:bold"/>
+		 
+		                <h:outputText value="Name:" />
+		                <h:outputText value="#{dndProductsView.selectedProduct.name}" style="font-weight:bold"/>
+		 
+		                <h:outputText value="Description:" />
+		                <h:outputText value="#{dndProductsView.selectedProduct.description}" style="font-weight:bold"/>
+		 
+		                <h:outputText value="Price:" />
+		                <h:outputText value="#{dndProductsView.selectedProduct.price}" style="font-weight:bold"/>
+		            </h:panelGrid>
+		        </p:outputPanel>
+		    </p:dialog>
+		</h:form>
+
+</f:view>
+</body>
 </html>

@@ -96,6 +96,11 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductModel> findProductByColor(String color) {
 		return sessionFactory.getCurrentSession().getNamedQuery("products.getByColor").setString("color", color).list();
 
+	}
+
+	@Override
+	public ProductModel findProductById(long productId) {
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", productId).uniqueResult();
 	}	
 }
 

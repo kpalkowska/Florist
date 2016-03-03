@@ -8,9 +8,10 @@
 	    <h:form>	
 			<p:growl id="messages"/>
 			<p:menubar>
-				<p:menuitem value="Jesteś zalogowany jako: #{loginBean.username}"></p:menuitem>
+				<p:menuitem value="Logged in as: #{facesContext.externalContext.request.remoteUser}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"></p:menuitem>
 				<f:facet name="options">
-			        <p:commandButton value="Logout" action="#{loginBean.logout()}" icon="ui-icon-extlink" />
+				<h:outputLink value="pages/unsecure/login.xhtml" rendered="#{empty facesContext.externalContext.request.remoteUser}">Login</h:outputLink>
+    			<h:commandButton value="Logout" action="#{loginBean.logout()}" icon="ui-icon-extlink" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
 			    </f:facet>
 			</p:menubar>
 		</h:form>

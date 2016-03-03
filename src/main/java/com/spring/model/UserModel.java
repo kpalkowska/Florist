@@ -34,7 +34,7 @@ public class UserModel {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
     private @NonNull String name;
     private @NonNull String surname;

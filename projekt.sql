@@ -70,9 +70,9 @@ INSERT INTO Orders VALUES('20-02-2016', 1, 1);
 INSERT INTO Orders VALUES('20-02-2016', 2, 1);
 INSERT INTO Orders VALUES('20-02-2016', 3, 3);
 
-INSERT INTO Products VALUES('róża', 'czerwony', '2.99', null);
-INSERT INTO Products VALUES('tulipan', 'żółty', '1.99', null);
-INSERT INTO Products VALUES('margaretka', 'pomarańczowy', '3', null);
+INSERT INTO Products VALUES('rose', 'small', '2.99', 'rose', 'red', null);
+INSERT INTO Products VALUES('violet', 'small', '1.99', 'violet', 'purple', null);
+INSERT INTO Products VALUES('violet', 'small', '3', 'violet', 'purple', null);
 
 INSERT INTO Products2Orders VALUES(1,2);
 INSERT INTO Products2Orders VALUES(1,2);

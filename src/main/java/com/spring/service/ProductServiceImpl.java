@@ -81,24 +81,28 @@ public class ProductServiceImpl implements ProductService{
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<ProductModel> findProductByName(String name) {
 				return sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<ProductModel> findProductByType(String type) {
 		return sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<ProductModel> findProductByColor(String color) {
 		return sessionFactory.getCurrentSession().getNamedQuery("products.getByColor").setString("color", color).list();
 
 	}
 
 	@Override
+	@Transactional
 	public ProductModel findProductById(long productId) {
 		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", productId).uniqueResult();
 	}	

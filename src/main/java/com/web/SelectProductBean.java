@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,7 +40,7 @@ public @Data class SelectProductBean implements Serializable {
 	private LogService logService;
 	
 	private List<ProductModel> products = new ArrayList<>();
-		
+	
 	public String showProductsByName(){
 		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.findProductByName(name));
@@ -60,14 +63,24 @@ public @Data class SelectProductBean implements Serializable {
 	
 	}
 	
-	public String showProductsByType(){
+	public String showProductsByTypeR(){
+		setType("rose");
 		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.findProductByType(type));
 		logService.logInfo("showProducts :: complete");
 
-		
 		//poprawic widok
-		return "/pages/secure/products?faces-redirect=true"; 
+		return "/pages/unsecure/productCases?faces-redirect=true"; 
+	}
+	
+	public String showProductsByTypeV(){
+		setType("violet");
+		logService.logInfo("showProducts :: starting...");
+		setProducts(productService.findProductByType(type));
+		logService.logInfo("showProducts :: complete");
+
+		//poprawic widok
+		return "/pages/unsecure/productCases?faces-redirect=true"; 
 	}
 
 }

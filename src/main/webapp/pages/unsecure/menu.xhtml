@@ -4,17 +4,21 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     
-    <ui:composition>
-	    <h:form>	
-			<p:growl id="messages"/>
-			<p:menubar>
-				<p:menuitem value="Logged in as: #{facesContext.externalContext.request.remoteUser}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"></p:menuitem>
-				<f:facet name="options">
+   <ui:composition> 	
+			<p:toolbar id="tb">
+				<f:facet name="left">
+				<p:menuButton value="Types">
+		        	<p:menuitem value="Roses" action="#{selectProductBean.showProductsByTypeR()}" />
+		        	<p:menuitem value="Violets" action="#{selectProductBean.showProductsByTypeV()}" />
+		        </p:menuButton>
+		        </f:facet>
+				
+				<f:facet name="right">
+				<p:button value="Logged in as: #{facesContext.externalContext.request.remoteUser}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
 				<h:outputLink value="pages/unsecure/login.xhtml" rendered="#{empty facesContext.externalContext.request.remoteUser}">Login</h:outputLink>
-    			<h:commandButton value="Logout" action="#{loginBean.logout()}" icon="ui-icon-extlink" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
+    			<p:commandButton value="Logout" action="#{loginBean.logout()}" icon="ui-icon-extlink" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
 			    </f:facet>
-			</p:menubar>
-		</h:form>
-	
+			</p:toolbar>
+			<p:sticky target="tb" />
 	</ui:composition>
 </html>

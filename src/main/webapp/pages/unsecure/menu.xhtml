@@ -8,8 +8,8 @@
 			<p:toolbar id="tb">
 				<f:facet name="left">
 				<p:menuButton value="Types">
-		        	<p:menuitem value="Roses" action="#{selectProductBean.showProductsByTypeR()}" />
-		        	<p:menuitem value="Violets" action="#{selectProductBean.showProductsByTypeV()}" />
+		        	<p:menuitem value="Roses" action='#{selectProductBean.showProductsByType("rose")}' />
+		        	<p:menuitem value="Violets" action='#{selectProductBean.showProductsByType("violet")}' />
 		        </p:menuButton>
 		        </f:facet>
 				

@@ -41,46 +41,37 @@ public @Data class SelectProductBean implements Serializable {
 	
 	private List<ProductModel> products = new ArrayList<>();
 	
-	public String showProductsByName(){
+	public String showProductsByName(String name){
+		this.name = name;
 		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.findProductByName(name));
 		logService.logInfo("showProducts :: complete");
 
 		
 		//poprawic widok
-		return "/pages/secure/products?faces-redirect=true"; 
+		return "/pages/secure/productCases?faces-redirect=true"; 
 	
 	}
 	
-	public String showProductsByColor(){
+	public String showProductsByColor(String color){
+		this.color = color;
 		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.findProductByColor(color));
 		logService.logInfo("showProducts :: complete");
 
 		
 		//poprawic widok
-		return "/pages/secure/products?faces-redirect=true"; 
+		return "/pages/secure/productCases?faces-redirect=true"; 
 	
 	}
 	
-	public String showProductsByTypeR(){
-		setType("rose");
+	public String showProductsByType(String type){
+		this.type = type;
 		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.findProductByType(type));
 		logService.logInfo("showProducts :: complete");
 
-		//poprawic widok
-		return "/pages/unsecure/productCases?faces-redirect=true"; 
-	}
-	
-	public String showProductsByTypeV(){
-		setType("violet");
-		logService.logInfo("showProducts :: starting...");
-		setProducts(productService.findProductByType(type));
-		logService.logInfo("showProducts :: complete");
-
-		//poprawic widok
-		return "/pages/unsecure/productCases?faces-redirect=true"; 
+		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
 
 }

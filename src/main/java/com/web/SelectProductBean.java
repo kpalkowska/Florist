@@ -73,5 +73,13 @@ public @Data class SelectProductBean implements Serializable {
 
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
+	
+	public String showAll(){
+		logService.logInfo("showProducts :: starting...");
+		setProducts(productService.getAllProducts());
+		logService.logInfo("showProducts :: complete");
+
+		return "/pages/secure/productCases?faces-redirect=true"; 
+	}
 
 }

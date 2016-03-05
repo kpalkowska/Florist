@@ -5,11 +5,13 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     
    <ui:composition> 	
+   		<h:form>
 			<p:toolbar id="tb">
 				<f:facet name="left">
 				<p:menuButton value="Types">
-		        	<p:menuitem value="Roses" action='#{selectProductBean.showProductsByType("rose")}' />
-		        	<p:menuitem value="Violets" action='#{selectProductBean.showProductsByType("violet")}' />
+		        	<p:menuitem value="Roses" action='#{selectProductBean.showProductsByName("rose")}' />
+		        	<p:menuitem value="Tulips" action='#{selectProductBean.showProductsByName("tulip")}' />
+		        	<p:menuitem value="All" action='#{selectProductBean.showAll()}' />
 		        </p:menuButton>
 		        </f:facet>
 				
@@ -20,5 +22,6 @@
 			    </f:facet>
 			</p:toolbar>
 			<p:sticky target="tb" />
+		</h:form>
 	</ui:composition>
 </html>

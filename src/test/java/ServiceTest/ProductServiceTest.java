@@ -39,7 +39,7 @@ public class ProductServiceTest{
 	private final String COLOR_2 = "żółty";
 	
 		
-	@Rollback(false)
+	@Rollback(true)
 	@Test
 	public void addProductCheck() {
 		

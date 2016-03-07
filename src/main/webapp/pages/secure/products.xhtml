@@ -14,13 +14,10 @@
 
 <h:head><title>Welcome</title></h:head>
 <body>
-<f:view>
-	<h:form>  
-
+	<f:view> 
 		<ui:include src="/pages/unsecure/menu.xhtml" />
 		<br/>
 		<br/>
-	</h:form>
 		<h:form id="productForm">
 		    <p:fieldset id="availableProductsField" legend="Available Products">
 		        <p:dataTable id="availableProducts" var="product" value="#{dndProductsView.products}">

@@ -6,22 +6,29 @@
     
    <ui:composition> 	
    		<h:form>
-			<p:toolbar id="tb">
-				<f:facet name="left">
-				<p:menuButton value="Types">
+				<p:menubar>
+				<p:submenu label="Types">
 		        	<p:menuitem value="Roses" action='#{selectProductBean.showProductsByName("rose")}' />
 		        	<p:menuitem value="Tulips" action='#{selectProductBean.showProductsByName("tulip")}' />
-		        	<p:menuitem value="All" action='#{selectProductBean.showAll()}' />
-		        </p:menuButton>
-		        </f:facet>
+		        	<p:menuitem value="All" action="#{selectProductBean.showAll()}" />
+		        </p:submenu>
+		        <p:submenu label="Colors">
+		        	<p:menuitem value="Pink" action='#{selectProductBean.showProductsByColor("pink")}' />
+		        	<p:menuitem value="Red" action='#{selectProductBean.showProductsByColor("red")}' />
+		        	<p:menuitem value="Multicolour" action='#{selectProductBean.showProductsByColor("multicolour")}' />
+		        </p:submenu>
+		        <p:submenu label="Forms">
+		        	<p:menuitem value="Single" action='#{selectProductBean.showProductsByType("single")}' />
+		        	<p:menuitem value="Potted" action='#{selectProductBean.showProductsByType("potted")}' />
+		        	<p:menuitem value="Bouquets" action='#{selectProductBean.showProductsByType("bouquet")}' />
+		        </p:submenu>
 				
-				<f:facet name="right">
+				<f:facet name="options">
 				<p:button value="Logged in as: #{facesContext.externalContext.request.remoteUser}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
 				<h:outputLink value="pages/unsecure/login.xhtml" rendered="#{empty facesContext.externalContext.request.remoteUser}">Login</h:outputLink>
     			<p:commandButton value="Logout" action="#{loginBean.logout()}" icon="ui-icon-extlink" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
 			    </f:facet>
-			</p:toolbar>
-			<p:sticky target="tb" />
+			</p:menubar>
 		</h:form>
 	</ui:composition>
 </html>

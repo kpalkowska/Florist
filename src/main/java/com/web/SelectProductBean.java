@@ -47,8 +47,6 @@ public @Data class SelectProductBean implements Serializable {
 		setProducts(productService.findProductByName(name));
 		logService.logInfo("showProducts :: complete");
 
-		
-		//poprawic widok
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	
 	}

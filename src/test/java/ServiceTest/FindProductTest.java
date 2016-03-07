@@ -22,21 +22,23 @@ public class FindProductTest {
 	inserty do pustej bazy
 	
 	
-	INSERT INTO Products VALUES('róża', 'czerwnoy 5 cm', '2.99', 'bukiet', 'żółty', null);
-	INSERT INTO Products VALUES('tulipan', 'żółty', '1.99', 'jeden', 'czerwony', null);
-	INSERT INTO Products VALUES('margaretka', 'pomarańczowy', '3', 'wiązanka', 'niebieski', null);
-	INSERT INTO Products VALUES('róża', 'czerwony', '2.99', 'bukiet', 'żółty', null);
-	INSERT INTO Products VALUES('tulipan', 'żółty', '1.99', 'jeden', 'czerwony', null);
-	INSERT INTO Products VALUES('margaretka', 'pomarańczowy', '3', 'wiązanka', 'niebieski', null);
-	INSERT INTO Products VALUES('róża', 'czerwony', '2.99', 'bukiet', 'żółty', null);
-	INSERT INTO Products VALUES('tulipan', 'żółty', '1.99', 'jeden', 'czerwony', null);
-	INSERT INTO Products VALUES('margaretka', 'pomarańczowy', '3', 'bukiet', 'niebieski', null);
+	INSERT INTO Products VALUES('rose', '30 roses with bow', '200', 'bouquet', 'red', null);
+	INSERT INTO Products VALUES('rose', '6 roses with bow', '2.99', 'bouquet', 'pink', null);
+	INSERT INTO Products(name, price, type, color, foto) VALUES('rose', '5', 'single', 'red', null);
+	INSERT INTO Products VALUES('tulip', '12 tulips with ribbon and pearls', '50', 'bouquet', 'red', null);
+	INSERT INTO Products(name, price, type, color, foto) VALUES('tulip', '6', 'single', 'pink', null);
+	INSERT INTO Products(name, price, type, color, foto) VALUES('tulip', '6', 'single', 'white', null);
+	INSERT INTO Products(name, price, type, color, foto) VALUES('tulip', '6', 'single', 'red', null);
+	INSERT INTO Products VALUES('violet', 'violet composition', '120', 'potted', 'multicolour', null);
+	INSERT INTO Products VALUES('hyacinth', 'hyacith composition', '107', 'potted', 'multicolour', null);
+	INSERT INTO Products VALUES('orchid', 'orchid in a pot', '139', 'potted', 'white', null);
+
 		 
 	
-	 prawdzenie ilosci: 
-	 select count(*) from Products where name = 'róża'
-	 select count(*) from Products where color = 'czerwony'
-	 select count(*) from products where type='bukiet'
+	sprawdzenie ilosci: 
+	 select count(*) from Products where name = 'rose'
+	 select count(*) from Products where color = 'red'
+	 select count(*) from products where type='bouquet'
 	 
 	 * */
 
@@ -49,7 +51,7 @@ public class FindProductTest {
 	
 	@Test
 	public void findByNameCheck() {
-		String name = "róża";
+		String name = "rose";
 		int n = productService.findProductByName(name).size();
 		
 		assertEquals(3, n);
@@ -57,17 +59,17 @@ public class FindProductTest {
 	
 	@Test
 	public void findByColorCheck(){
-		String color = "czerwony";
+		String color = "red";
 		int n = productService.findProductByColor(color).size();
 		
-		assertEquals(3, n);
+		assertEquals(4, n);
 	}
 
 	@Test
 	public void findByTypeCheck(){
-		String type = "bukiet";
+		String type = "bouquet";
 		int n = productService.findProductByType(type).size();
 		
-		assertEquals(4, n);
+		assertEquals(3, n);
 	}
 }

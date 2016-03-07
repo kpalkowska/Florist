@@ -70,9 +70,17 @@ INSERT INTO Orders VALUES('20-02-2016', 1, 1);
 INSERT INTO Orders VALUES('20-02-2016', 2, 1);
 INSERT INTO Orders VALUES('20-02-2016', 3, 3);
 
-INSERT INTO Products VALUES('róża', 'czerwony', '2.99', null);
-INSERT INTO Products VALUES('tulipan', 'żółty', '1.99', null);
-INSERT INTO Products VALUES('margaretka', 'pomarańczowy', '3', null);
+INSERT INTO Products VALUES('rose', '30 roses with bow', '200', 'bouquet', 'red', null);
+INSERT INTO Products VALUES('rose', '6 roses with bow', '2.99', 'bouquet', 'pink', null);
+INSERT INTO Products(name, price, type, color, foto) VALUES('rose', '5', 'single', 'red', null);
+INSERT INTO Products VALUES('tulip', '12 tulips with ribbon and pearls', '50', 'bouquet', 'red', null);
+INSERT INTO Products(name, price, type, color, foto) VALUES('tulip', '6', 'single', 'pink', null);
+INSERT INTO Products(name, price, type, color, foto) VALUES('tulip', '6', 'single', 'white', null);
+INSERT INTO Products(name, price, type, color, foto) VALUES('tulip', '6', 'single', 'red', null);
+INSERT INTO Products VALUES('violet', 'violet composition', '120', 'potted', 'multicolour', null);
+INSERT INTO Products VALUES('hyacinth', 'hyacith composition', '107', 'potted', 'multicolour', null);
+INSERT INTO Products VALUES('orchid', 'orchid in a pot', '139', 'potted', 'white', null);
+
 
 INSERT INTO Products2Orders VALUES(1,2);
 INSERT INTO Products2Orders VALUES(1,2);

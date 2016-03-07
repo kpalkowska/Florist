@@ -54,8 +54,8 @@ public @Data class LoginBean implements Serializable {
 	}
 
 	public String getCurrentUser() {
-		FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-		return null;
+		String currentUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+		return currentUser;
 	}
 	
 }

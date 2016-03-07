@@ -11,12 +11,10 @@
 		<title>Users</title>
 	</h:head>
 	<h:body>
-		<h:form>  
 			<ui:include src="/pages/unsecure/menu.xhtml" />
 			<p:link outcome="/pages/unsecure/newUser.xhtml" value="Go back"/>
 			<br/>
 			<br/>
-		</h:form>
 		<p:carousel numVisible="1" effect="easeInStrong" headerText="Existing users" style="margin-bottom:0">
 	        <p:tab>
 	            <p:dataTable var="user" value="#{sessionBean.users}">

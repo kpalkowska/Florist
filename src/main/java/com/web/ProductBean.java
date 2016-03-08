@@ -56,11 +56,7 @@ public @Data class ProductBean implements Serializable {
         products.remove(product);
        
     }
-    
-//    public byte[] getImage(Long productId) {
-//        return service.findProductById(productId).getFoto();
-//    }
-//    
+      
     public StreamedContent getImage() throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
 

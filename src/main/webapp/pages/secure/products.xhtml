@@ -53,8 +53,8 @@
 		 
 		    <p:fieldset id="selectedProducts" legend="Selected Products" style="margin-top:20px">
 		        <p:outputPanel id="dropArea">
-		            <h:outputText value="!!!Drop here!!!" rendered="#{empty productBean.droppedProducts}" style="font-size:24px;" />
-		            <p:dataTable id="selectedProductsTable" var="product" value="#{productBean.droppedProducts}" rendered="#{not empty dndProductsView.droppedProducts}">
+		            <h:outputText value="Drop here your products" rendered="#{empty productBean.droppedProducts}" style="font-size:24px;" />
+		            <p:dataTable id="selectedProductsTable" var="product" value="#{productBean.droppedProducts}" rendered="#{not empty productBean.droppedProducts}">
 		                <p:column headerText="Id">
 		                    <h:outputText value="#{product.id}" />
 		                </p:column>

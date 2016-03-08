@@ -24,7 +24,7 @@ import com.spring.service.ProductService;
 
 import lombok.Data;
 
-@ManagedBean(name = "dndProductsView")
+@ManagedBean(name = "productBean")
 @ViewScoped
 public @Data class ProductBean implements Serializable {
 

@@ -20,7 +20,7 @@
 		<br/>
 		<h:form id="productForm">
 		    <p:fieldset id="availableProductsField" legend="Available Products">
-		        <p:dataTable id="availableProducts" var="product" value="#{dndProductsView.products}">
+		        <p:dataTable id="availableProducts" var="product" value="#{productBean.products}">
 		            <p:column style="width:20px">
 		                <h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
 		                <p:draggable for="dragIcon" revert="true" helper="clone"/>
@@ -43,7 +43,7 @@
 		            </p:column>
 		            
 		            <p:column headerText="Image">
-			            <p:graphicImage value="#{dndProductView.image}" width="50"  id="grpImage" height="80">
+			            <p:graphicImage value="#{productBean.image}" width="50"  id="grpImage" height="80">
 				            <f:param name="studentId" value="#{product.id}" />
 				        </p:graphicImage>
 		            </p:column>
@@ -53,8 +53,8 @@
 		 
 		    <p:fieldset id="selectedProducts" legend="Selected Products" style="margin-top:20px">
 		        <p:outputPanel id="dropArea">
-		            <h:outputText value="!!!Drop here!!!" rendered="#{empty dndProductsView.droppedProducts}" style="font-size:24px;" />
-		            <p:dataTable id="selectedProductsTable" var="product" value="#{dndProductsView.droppedProducts}" rendered="#{not empty dndProductsView.droppedProducts}">
+		            <h:outputText value="!!!Drop here!!!" rendered="#{empty productBean.droppedProducts}" style="font-size:24px;" />
+		            <p:dataTable id="selectedProductsTable" var="product" value="#{productBean.droppedProducts}" rendered="#{not empty dndProductsView.droppedProducts}">
 		                <p:column headerText="Id">
 		                    <h:outputText value="#{product.id}" />
 		                </p:column>
@@ -72,14 +72,14 @@
 		                </p:column>
 		                
 		                <p:column headerText="Image">
-		                 <p:graphicImage value="#{dndProductView.image}" width="50"  id="grpImage" height="80">
+		                 <p:graphicImage value="#{productBean.image}" width="50"  id="grpImage" height="80">
 				            <f:param name="studentId" value="#{product.id}" />
 				         </p:graphicImage>	
 		                </p:column>
 		                
 		                <p:column style="width:32px">
 		                    <p:commandButton update=":productForm:display" oncomplete="PF('productDialog').show()" icon="ui-icon-search">
-		                        <f:setPropertyActionListener value="#{product}" target="#{dndProductsView.selectedProduct}" />
+		                        <f:setPropertyActionListener value="#{product}" target="#{productBean.selectedProduct}" />
 		                    </p:commandButton>
 		                </p:column>
 		            </p:dataTable>
@@ -87,29 +87,29 @@
 		    </p:fieldset>
 		 
 		    <p:droppable for="selectedProducts" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableProducts" onDrop="handleDrop">
-		        <p:ajax listener="#{dndProductsView.onProductDrop}" update="dropArea availableProducts" />
+		        <p:ajax listener="#{productBean.onProductDrop}" update="dropArea availableProducts" />
 		    </p:droppable>
 		 
 		    <p:dialog header="Product Detail" widgetVar="productDialog" resizable="false" draggable="false"
 		                showEffect="fade" hideEffect="fade" modal="true">
 		 
 		        <p:outputPanel id="display">
-		            <h:panelGrid columns="2" cellpadding="4" rendered="#{not empty dndProductsView.selectedProduct}">
+		            <h:panelGrid columns="2" cellpadding="4" rendered="#{not empty productBean.selectedProduct}">
 		                <f:facet name="header">
 		                    <p:graphicImage value="#{product.foto}"/>
 		                </f:facet>
 		 
 		                <h:outputText value="Id:" />
-		                <h:outputText value="#{dndProductsView.selectedProduct.id}" style="font-weight:bold"/>
+		                <h:outputText value="#{productBean.selectedProduct.id}" style="font-weight:bold"/>
 		 
 		                <h:outputText value="Name:" />
-		                <h:outputText value="#{dndProductsView.selectedProduct.name}" style="font-weight:bold"/>
+		                <h:outputText value="#{productBean.selectedProduct.name}" style="font-weight:bold"/>
 		 
 		                <h:outputText value="Description:" />
-		                <h:outputText value="#{dndProductsView.selectedProduct.description}" style="font-weight:bold"/>
+		                <h:outputText value="#{productBean.selectedProduct.description}" style="font-weight:bold"/>
 		 
 		                <h:outputText value="Price:" />
-		                <h:outputText value="#{dndProductsView.selectedProduct.price}" style="font-weight:bold"/>
+		                <h:outputText value="#{productBean.selectedProduct.price}" style="font-weight:bold"/>
 		            </h:panelGrid>
 		        </p:outputPanel>
 		    </p:dialog>

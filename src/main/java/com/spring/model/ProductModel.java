@@ -26,7 +26,8 @@ import lombok.RequiredArgsConstructor;
 	@NamedQuery(name = "products.getByColor", query = "Select p from ProductModel p where p.color = :color"),
 	@NamedQuery(name = "products.getByName", query = "Select product from ProductModel product where product.name = :name"),
 	@NamedQuery(name = "products.sortByPrice", query ="Select p from ProductModel p where p.price = :price"),   //coś tam jeszcze dopisac xD
-	@NamedQuery(name = "products.byId", query = "Select p from ProductModel p where p.id = :id")
+	@NamedQuery(name = "products.byId", query = "Select p from ProductModel p where p.id = :id"),
+	@NamedQuery(name = "foto.byProductId", query = "Select p.foto from ProductModel p where p.id = :id")
 })
 public class ProductModel {
 	

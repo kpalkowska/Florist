@@ -1,6 +1,5 @@
 package com.web;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,13 +8,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 
 import org.primefaces.event.DragDropEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.spring.model.ProductModel;
@@ -25,7 +22,7 @@ import com.spring.service.ProductService;
 import lombok.Data;
 
 @ManagedBean(name = "productBean")
-@ViewScoped
+@SessionScoped
 public @Data class ProductBean implements Serializable {
 
 	private static final long serialVersionUID = 6022001178289508303L;
@@ -57,18 +54,17 @@ public @Data class ProductBean implements Serializable {
        
     }
       
-    public StreamedContent getImage() throws IOException {
+    public String getFoto() throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
 
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-            // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.
-            return new DefaultStreamedContent();
+            return "";
         }
         else {
-            // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
-            String productId = context.getExternalContext().getRequestParameterMap().get("id");
-            ProductModel product = service.findProductById(Long.valueOf(productId));
-            return new DefaultStreamedContent(new ByteArrayInputStream(product.getFoto()));
+            String productId = context.getExternalContext().getRequestParameterMap().get("productId");
+            String foto = service.getImageByProductId(Long.valueOf(productId));
+            logService.logInfo(foto);
+            return foto;
         }
     }
     

@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.awt.Image;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -7,6 +8,7 @@ import javax.faces.context.FacesContext;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,6 +107,15 @@ public class ProductServiceImpl implements ProductService{
 	@Transactional
 	public ProductModel findProductById(long productId) {
 		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", productId).uniqueResult();
+	}
+
+	@Override
+	@Transactional
+	public String getImageByProductId(long productId) {
+		String p = (String) sessionFactory.getCurrentSession().getNamedQuery("foto.byProductId").setLong("id", productId).uniqueResult();
+		 byte[] b= p.getBytes();
+		byte[] b2=Base64.encode(b);
+		return new String(b2);
 	}	
 }
 

@@ -2,10 +2,14 @@ package com.web;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -15,8 +19,14 @@ import javax.faces.event.PhaseId;
 import org.primefaces.event.DragDropEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.spring.model.AddressModel;
+import com.spring.model.OrderModel;
+import com.spring.model.Product2OrderModel;
 import com.spring.model.ProductModel;
+import com.spring.model.UserModel;
 import com.spring.service.LogService;
+import com.spring.service.OrderService;
+import com.spring.service.Product2OrderService;
 import com.spring.service.ProductService;
 
 import lombok.Data;
@@ -32,11 +42,24 @@ public @Data class ProductBean implements Serializable {
 	
 	@ManagedProperty("#{productService}")
     private ProductService service;
+	
+	@ManagedProperty("#{orderService}")
+    private OrderService orderService;
+	
+	@ManagedProperty("#{product2orderService}")
+    private Product2OrderService p2oService;
  
     private List<ProductModel> products;
-     
     private List<ProductModel> droppedProducts;
-     
+    private List<OrderModel> orders;
+    
+    private String dateString;
+    private UserModel user;
+    private AddressModel address;
+    
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	Date date = new Date();
+    
     private ProductModel selectedProduct;
      
     @PostConstruct
@@ -53,6 +76,34 @@ public @Data class ProductBean implements Serializable {
         products.remove(product);
        
     }
+    
+    public String submitOrder(){
+    	return "/pages/unsecure/newOrder?faces-redirect=true";
+    }
+    
+	public String createOrder(){
+		logService.logInfo("createOrder :: starting...");
+		
+		dateString = dateFormat.format(date).toString();
+		
+		boolean successOrder = orderService.createOrder(dateString, user, address);
+		int n = orders.size()-1;
+		
+		for(int i=0; i < droppedProducts.size(); i++)
+			p2oService.createProduct2Order(droppedProducts.get(i), orders.get(n));
+		
+		if (successOrder) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Success", new StringBuilder("Order ").append("submited!").toString()));
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+		}
+		
+		logService.logInfo("createOrder :: complete");
+		
+		return "/pages/secure/products?faces-redirect=true";
+		
+	}
       
     public String getFoto() throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();

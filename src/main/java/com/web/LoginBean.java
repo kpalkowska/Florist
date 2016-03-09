@@ -53,9 +53,5 @@ public @Data class LoginBean implements Serializable {
 		return "/pages/unsecure/login?faces-redirect=true";
 	}
 
-	public String getCurrentUser() {
-		String currentUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-		return currentUser;
-	}
 	
 }

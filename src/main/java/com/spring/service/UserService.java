@@ -17,4 +17,5 @@ public interface UserService {
 	List<UserModel> getUsers();
 	boolean createAddress(String zipCode, String city, String street, String number);
 	boolean createRole(String name);
+	UserModel findUserByLogin(String login);
 }

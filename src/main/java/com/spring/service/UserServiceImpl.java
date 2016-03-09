@@ -145,4 +145,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			throw new UsernameNotFoundException("Unable to load user");
 		}
 	}
+
+	@Override
+	@Transactional
+	public UserModel findUserByLogin(String login) {
+		return (UserModel) sessionFactory.getCurrentSession().getNamedQuery("user.byLogin").setString("login", login).uniqueResult(); 
+	}
 }

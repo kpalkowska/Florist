@@ -18,6 +18,10 @@
 		<ui:include src="/pages/unsecure/menu.xhtml" />
 		<br/>
 		<br/>
+		<p:commandButton value="Submit your order" action="#{productBean.submitOrder()}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
+		<br/>
+		<br/>
+		
 		<h:form id="productForm">
 		    <p:fieldset id="availableProductsField" legend="Available Products">
 		        <p:dataTable id="availableProducts" var="product" value="#{productBean.products}" rows="10"

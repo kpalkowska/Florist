@@ -44,7 +44,7 @@
 		            
 		            <p:column headerText="Image">
 			            <p:graphicImage value="#{productBean.image}" width="50"  id="grpImage" height="80">
-				            <f:param name="studentId" value="#{product.id}" />
+				            <f:param name="productId" value="#{product.id}" />
 				        </p:graphicImage>
 		            </p:column>
 		            
@@ -73,7 +73,7 @@
 		                
 		                <p:column headerText="Image">
 		                 <p:graphicImage value="#{productBean.image}" width="50"  id="grpImage" height="80">
-				            <f:param name="studentId" value="#{product.id}" />
+				            <f:param name="productId" value="#{product.id}" />
 				         </p:graphicImage>	
 		                </p:column>
 		                
@@ -84,19 +84,20 @@
 		                </p:column>
 		            </p:dataTable>
 		        </p:outputPanel>
-		    </p:fieldset>
+		    
 		 
 		    <p:droppable for="selectedProducts" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableProducts" onDrop="handleDrop">
 		        <p:ajax listener="#{productBean.onProductDrop}" update="dropArea availableProducts" />
 		    </p:droppable>
-		 
+		 </p:fieldset>
 		    <p:dialog header="Product Detail" widgetVar="productDialog" resizable="false" draggable="false"
 		                showEffect="fade" hideEffect="fade" modal="true">
 		 
+		 	
 		        <p:outputPanel id="display">
 		            <h:panelGrid columns="2" cellpadding="4" rendered="#{not empty productBean.selectedProduct}">
 		                <f:facet name="header">
-		                    <p:graphicImage value="#{product.foto}"/>
+		                    <p:graphicImage value="#{productBean.selectedProduct.foto}"/>
 		                </f:facet>
 		 
 		                <h:outputText value="Id:" />

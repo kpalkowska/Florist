@@ -4,11 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,7 +45,6 @@ public @Data class SelectProductBean implements Serializable {
 		logService.logInfo("showProducts :: complete");
 
 		return "/pages/secure/productCases?faces-redirect=true"; 
-	
 	}
 	
 	public String showProductsByColor(String color){
@@ -57,10 +53,7 @@ public @Data class SelectProductBean implements Serializable {
 		setProducts(productService.findProductByColor(color));
 		logService.logInfo("showProducts :: complete");
 
-		
-		//poprawic widok
 		return "/pages/secure/productCases?faces-redirect=true"; 
-	
 	}
 	
 	public String showProductsByType(String type){
@@ -79,5 +72,4 @@ public @Data class SelectProductBean implements Serializable {
 
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
-
 }

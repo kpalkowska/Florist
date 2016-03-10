@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Submit Your Order
+		</title>
+	</h:head>
+	<h:body>
+		<ui:include src="/pages/unsecure/menu.xhtml" />
+		<br/><br/>
+	
+	<h:form>
+    <p:growl id="growl" sticky="true" showDetail="true"/>
+ 
+    <p:wizard flowListener="#{sessionBean.onFlowProcess}">        
+        <p:tab id="confirm" title="Confirmation">
+            <p:panel header="Confirmation">
+                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                    <h:panelGrid columns="2" columnClasses="label, value">
+						<p:dataTable id="selectedProductsTable" var="product" value="#{productBean.droppedProducts}" rendered="#{not empty productBean.droppedProducts}">
+		                <p:column headerText="Id">
+		                    <h:outputText value="#{product.id}" />
+		                </p:column>
+		 
+		                <p:column headerText="Name">
+		                    <h:outputText value="#{product.name}" />
+		                </p:column>
+		 
+		                <p:column headerText="Description">
+		                    <h:outputText value="#{product.description}" />
+		                </p:column>
+		 
+		                <p:column headerText="Price">
+		                    <h:outputText value="#{product.price}" />
+		                </p:column>
+		            </p:dataTable>
+                </h:panelGrid>
+            </h:panelGrid>
+ 			
+ 			<p:commandButton value="Submit" action="#{productBean.createOrder}" update="messages" process="@this">
+		        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert"/>
+		    </p:commandButton>
+		 
+		    <p:confirmDialog global="true">
+		        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+		        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+		    </p:confirmDialog>
+            <p:growl id="messages" />
+            </p:panel>
+        </p:tab>
+    </p:wizard>
+    <p:commandButton value= "Go back" action = "/pages/secure/products.xhtml" process="@this"/>
+</h:form>
+</h:body>
+</html>

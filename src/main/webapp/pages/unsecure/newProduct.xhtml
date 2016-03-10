@@ -42,7 +42,6 @@
 						    <p:growl id="messages" showDetail="true" />
 						</h:form>
 					
-					
                     <h:outputText value="Skip to last: " />
                     <h:selectBooleanCheckbox value="#{sessionBean.skip}" />
                 </h:panelGrid>
@@ -63,10 +62,10 @@
                         <h:outputText value="#{sessionBean.price}" styleClass="outputLabel"/>
                         
                         <h:outputText value="Type: " />
-                  		<p:inputText value="#{sessionBean.type}" required="true" label="Type"/>
+                  		<p:inputText value="#{sessionBean.type}" styleClass="outputLabel"/>
                     
                   		<h:outputText value="Color: " />
-                    	<p:inputText value="#{sessionBean.color}" required="true" label="Color"/>
+                    	<p:inputText value="#{sessionBean.color}" styleClass="outputLabel"/>
                    	 </h:panelGrid>
  
                       <h:outputText value="Foto: " />
@@ -82,8 +81,6 @@
             </p:panel>
         </p:tab>
     </p:wizard>
-    
 </h:form>
-
 	</h:body>
 </html>

@@ -16,7 +16,7 @@ id integer identity(1,1) primary key,
 name varchar(30) not null,
 surname varchar(30) not null,
 login varchar(30) not null,
-password varchar(100) not null,
+password varchar(max) not null,
 role integer not null foreign key references Roles(id),
 address integer not null foreign key references Addresses(id)
 );
@@ -24,7 +24,7 @@ address integer not null foreign key references Addresses(id)
 
 create table Orders (
 id integer identity(1,1) primary key,
-date varchar(10) not null,
+date varchar(100) not null,
 users integer not null foreign key references Users(id),
 address integer foreign key references Addresses(id)
 );
@@ -66,9 +66,9 @@ INSERT INTO Users VALUES('Jan', 'Kowalski', 'janek', '123', 1, 1);
 INSERT INTO Users VALUES('Adam', 'Nowak', 'adamo', '123', 2, 2);
 INSERT INTO Users VALUES('Krzysztof', 'Kowalski', 'krzys', '123', 3, 1);
 
-INSERT INTO Orders VALUES('20-02-2016', 1, 1);
-INSERT INTO Orders VALUES('20-02-2016', 2, 1);
-INSERT INTO Orders VALUES('20-02-2016', 3, 3);
+INSERT INTO Orders VALUES('2016/02/20 16:35:20', 1, 1);
+INSERT INTO Orders VALUES('2016/01/18 13:03:53', 2, 1);
+INSERT INTO Orders VALUES('2016/02/12 19:45:00', 3, 3);
 
 INSERT INTO Products VALUES('rose', '30 roses with bow', '200', 'bouquet', 'red', null);
 INSERT INTO Products VALUES('rose', '6 roses with bow', '2.99', 'bouquet', 'pink', null);

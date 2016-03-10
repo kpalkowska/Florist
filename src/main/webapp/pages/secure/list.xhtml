@@ -13,8 +13,7 @@
 	<h:body>
 			<ui:include src="/pages/unsecure/menu.xhtml" />
 			<p:link outcome="/pages/unsecure/newUser.xhtml" value="Go back"/>
-			<br/>
-			<br/>
+			<br/> <br/>
 		<p:carousel numVisible="1" effect="easeInStrong" headerText="Existing users" style="margin-bottom:0">
 	        <p:tab>
 	            <p:dataTable var="user" value="#{sessionBean.users}">

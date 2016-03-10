@@ -16,7 +16,9 @@
 		<br/>
 		<p:carousel numVisible="1" effect="easeInStrong" headerText="Available products" style="margin-bottom:0">
 	        <p:tab>
-	            <p:dataTable var="product" value="#{selectProductBean.products}">
+	            <p:dataTable var="product" value="#{selectProductBean.products}" rows="10"
+                         paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
 	            	<p:column headerText="Id">
 	            		<h:outputText value="#{product.id}" />
 	            	</p:column>

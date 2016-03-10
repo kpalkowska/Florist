@@ -19,4 +19,6 @@ public interface ProductService {
 	List<ProductModel> findProductByName(String name);
 	List<ProductModel> findProductByType(String type);
 	List<ProductModel> findProductByColor(String color);
+	ProductModel findProdyctByTypeRose();
+	ProductModel findProducyByTypeTulips();
 }

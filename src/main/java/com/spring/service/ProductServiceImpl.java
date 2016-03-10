@@ -113,6 +113,21 @@ public class ProductServiceImpl implements ProductService{
 		byte[] b= p.getBytes();
 		byte[] b2=Base64.encode(b);
 		return new String(b2);
+	}
+
+	@Override
+	@Transactional
+	public ProductModel findProdyctByTypeRose() {
+		String type = "Rose"; 
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list().get(1);
+	}
+
+	@Override
+	@Transactional
+	public ProductModel findProducyByTypeTulips() {
+		String type = "Tulip";
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list().get(1);
+	
 	}	
 }
 

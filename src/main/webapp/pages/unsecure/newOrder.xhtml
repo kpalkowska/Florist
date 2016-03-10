@@ -45,7 +45,7 @@
             </h:panelGrid>
  
  			
- 			<p:commandButton value="Submit" actionListener="#{productBean.createOrder}" update="messages" process="@this">
+ 			<p:commandButton value="Submit" action="#{productBean.createOrder}" update="messages" process="@this">
 		        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert"/>
 		    </p:commandButton>
 		 

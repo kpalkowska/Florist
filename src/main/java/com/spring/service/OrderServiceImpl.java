@@ -78,5 +78,17 @@ public class OrderServiceImpl implements OrderService{
 		
 		return false;
 	}
+	
+	@Override
+	@Transactional
+	public OrderModel exists(String date, UserModel user, AddressModel address){
+		return (OrderModel) sessionFactory.getCurrentSession().getNamedQuery("order.exists")
+				.setString("date", date)
+				.setParameter("users", user)
+				.setParameter("address", address)
+				.uniqueResult();
+						
+	}
+		
 
 }

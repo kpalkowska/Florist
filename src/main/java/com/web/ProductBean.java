@@ -5,8 +5,10 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -18,21 +20,26 @@ import javax.faces.event.PhaseId;
 
 import org.primefaces.event.DragDropEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import com.spring.model.AddressModel;
 import com.spring.model.OrderModel;
 import com.spring.model.Product2OrderModel;
 import com.spring.model.ProductModel;
 import com.spring.model.UserModel;
+import com.spring.security.AppUser;
 import com.spring.service.LogService;
 import com.spring.service.OrderService;
 import com.spring.service.Product2OrderService;
 import com.spring.service.ProductService;
+import com.spring.service.UserService;
 
 import lombok.Data;
 
-@ManagedBean(name = "productBean")
+@ManagedBean(name = "productBean", eager = true)
 @SessionScoped
+@Component
 public @Data class ProductBean implements Serializable {
 
 	private static final long serialVersionUID = 6022001178289508303L;
@@ -40,27 +47,34 @@ public @Data class ProductBean implements Serializable {
 	@Autowired
 	private LogService logService;
 	
-	@ManagedProperty("#{productService}")
+	@Autowired
     private ProductService service;
 	
-	@ManagedProperty("#{orderService}")
+	@Autowired
     private OrderService orderService;
 	
-	@ManagedProperty("#{product2orderService}")
+	@Autowired
     private Product2OrderService p2oService;
+	
+	@Autowired
+    private UserService userService;
+	
+    private ProductModel selectedProduct;
  
     private List<ProductModel> products;
     private List<ProductModel> droppedProducts;
     private List<OrderModel> orders;
+
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    Date today = Calendar.getInstance().getTime();
+    String dateString = dateFormat.format(today);
+
+	
+	private AppUser appUser;
+    private String login;
     
-    private String dateString;
     private UserModel user;
     private AddressModel address;
-    
-    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	Date date = new Date();
-    
-    private ProductModel selectedProduct;
      
     @PostConstruct
     public void init() {
@@ -84,13 +98,19 @@ public @Data class ProductBean implements Serializable {
 	public String createOrder(){
 		logService.logInfo("createOrder :: starting...");
 		
-		dateString = dateFormat.format(date).toString();
+		appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
+		user = userService.findUserByLogin(login);
+		address = user.getAddress();
+        orders = orderService.getAllOrders();
 		
 		boolean successOrder = orderService.createOrder(dateString, user, address);
-		int n = orders.size()-1;
+		OrderModel order = orderService.exists(dateString, user, address);
+		
+		logService.logInfo("createProduct2Order :: starting...");
 		
 		for(int i=0; i < droppedProducts.size(); i++)
-			p2oService.createProduct2Order(droppedProducts.get(i), orders.get(n));
+			p2oService.createProduct2Order(droppedProducts.get(i), order);
 		
 		if (successOrder) {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -99,7 +119,7 @@ public @Data class ProductBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 		}
 		
-		logService.logInfo("createOrder :: complete");
+		logService.logInfo("createProduct2Order :: complete");
 		
 		return "/pages/secure/products?faces-redirect=true";
 		

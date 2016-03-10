@@ -14,4 +14,5 @@ public interface OrderService {
 	void updateOrder(OrderModel order);
 	OrderModel findOrder(OrderModel order);
 	boolean createOrder(String date, UserModel user, AddressModel address);
+	OrderModel exists(String date, UserModel user, AddressModel address);
 }

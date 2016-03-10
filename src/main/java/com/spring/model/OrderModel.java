@@ -23,7 +23,8 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "Orders")
 @NamedQueries({
-	@NamedQuery(name = "orders.all", query = "Select o from OrderModel o")
+	@NamedQuery(name = "orders.all", query = "Select o from OrderModel o"),
+	@NamedQuery(name = "order.exists", query = "Select o from OrderModel o where o.date = :date and o.users = :users and o.address = :address")
 })
 public class OrderModel {
 

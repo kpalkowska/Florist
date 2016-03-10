@@ -6,22 +6,17 @@
 
  <script type="text/javascript">
     function handleDrop(event, ui) {
-        var droppedProduct = ui.draggable;
- 
+        var droppedProduct = ui.draggable; 
         droppedProduct.fadeOut('fast');
     }
 </script>
-
 <h:head><title>Welcome</title></h:head>
 <body>
 	<f:view> 
 		<ui:include src="/pages/unsecure/menu.xhtml" />
-		<br/>
-		<br/>
+		<br/><br/>
 		<p:commandButton value="Submit your order" action="#{productBean.submitOrder()}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
-		<br/>
-		<br/>
-		
+		<br/><br/>
 		<h:form id="productForm">
 		    <p:fieldset id="availableProductsField" legend="Available Products">
 		        <p:dataTable id="availableProducts" var="product" value="#{productBean.products}" rows="10"
@@ -31,32 +26,25 @@
 		                <h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
 		                <p:draggable for="dragIcon" revert="true" helper="clone"/>
 		            </p:column>
-		 
-		            <p:column headerText="Id">
+		 			<p:column headerText="Id">
 		                <h:outputText value="#{product.id}" />
 		            </p:column>
-		 
 		            <p:column headerText="Name">
 		                <h:outputText value="#{product.name}" />
 		            </p:column>
-		 
 		            <p:column headerText="Description">
 		                <h:outputText value="#{product.description}" />
 		            </p:column>
-		 
 		            <p:column headerText="Price">
 		                <h:outputText value="#{product.price}" />
 		            </p:column>
-		            
 		            <p:column headerText="Image">
 			            <p:graphicImage value="#{productBean.foto}" width="50"  id="grpImage" height="80">
 				            <f:param name="productId" value="#{product.id}" />
 				        </p:graphicImage>
 		            </p:column>
-		            
 		        </p:dataTable>
 		    </p:fieldset>
-		 
 		    <p:fieldset id="selectedProducts" legend="Selected Products" style="margin-top:20px">
 		        <p:outputPanel id="dropArea">
 		            <h:outputText value="Drop here your products" rendered="#{empty productBean.droppedProducts}" style="font-size:24px;" />
@@ -64,25 +52,20 @@
 		                <p:column headerText="Id">
 		                    <h:outputText value="#{product.id}" />
 		                </p:column>
-		 
 		                <p:column headerText="Name">
 		                    <h:outputText value="#{product.name}" />
 		                </p:column>
-		 
 		                <p:column headerText="Description">
 		                    <h:outputText value="#{product.description}" />
 		                </p:column>
-		 
 		                <p:column headerText="Price">
 		                    <h:outputText value="#{product.price}" />
 		                </p:column>
-		                
 		                <p:column headerText="Image">
 		                 <p:graphicImage value="#{productBean.foto}" width="50"  id="grpImage" height="80">
 				            <f:param name="productId" value="#{product.id}" />
 				         </p:graphicImage>	
 		                </p:column>
-		                
 		                <p:column style="width:32px">
 		                    <p:commandButton update=":productForm:display" oncomplete="PF('productDialog').show()" icon="ui-icon-search">
 		                        <f:setPropertyActionListener value="#{product}" target="#{productBean.selectedProduct}" />
@@ -90,25 +73,20 @@
 		                </p:column>
 		            </p:dataTable>
 		        </p:outputPanel>
-		    
-		 
 		    <p:droppable for="selectedProducts" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableProducts" onDrop="handleDrop">
 		        <p:ajax listener="#{productBean.onProductDrop}" update="dropArea availableProducts" />
 		    </p:droppable>
 		 </p:fieldset>
 		    <p:dialog header="Product Detail" widgetVar="productDialog" resizable="false" draggable="false"
 		                showEffect="fade" hideEffect="fade" modal="true">
-		 
-		 	
 		        <p:outputPanel id="display">
 		            <h:panelGrid columns="2" cellpadding="4" rendered="#{not empty productBean.selectedProduct}">
 		                <f:facet name="header">
 		                    <p:graphicImage value="#{productBean.selectedProduct.foto}"/>
 		                </f:facet>
-		 
 		                <h:outputText value="Id:" />
 		                <h:outputText value="#{productBean.selectedProduct.id}" style="font-weight:bold"/>
-		 
+
 		                <h:outputText value="Name:" />
 		                <h:outputText value="#{productBean.selectedProduct.name}" style="font-weight:bold"/>
 		 

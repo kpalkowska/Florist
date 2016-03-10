@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 import com.spring.dao.OrderDAO;
 import com.spring.model.AddressModel;
 import com.spring.model.OrderModel;
-import com.spring.model.ProductModel;
 import com.spring.model.UserModel;
 
 @Component
@@ -40,7 +39,6 @@ public class OrderServiceImpl implements OrderService{
 		sessionFactory.getCurrentSession().delete(order);	
 	}
 	
-
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
@@ -75,7 +73,6 @@ public class OrderServiceImpl implements OrderService{
 			orderDAO.addOrder(order);
 			return true;
 		}
-		
 		return false;
 	}
 	
@@ -86,9 +83,6 @@ public class OrderServiceImpl implements OrderService{
 				.setString("date", date)
 				.setParameter("users", user)
 				.setParameter("address", address)
-				.uniqueResult();
-						
+				.uniqueResult();					
 	}
-		
-
 }

@@ -13,7 +13,6 @@ import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
@@ -25,7 +24,6 @@ import org.springframework.stereotype.Component;
 
 import com.spring.model.AddressModel;
 import com.spring.model.OrderModel;
-import com.spring.model.Product2OrderModel;
 import com.spring.model.ProductModel;
 import com.spring.model.UserModel;
 import com.spring.security.AppUser;
@@ -83,12 +81,10 @@ public @Data class ProductBean implements Serializable {
     }
      
     public void onProductDrop(DragDropEvent ddEvent) {
-        
     	ProductModel product = ((ProductModel) ddEvent.getData());
   
         droppedProducts.add(product);
         products.remove(product);
-       
     }
     
     public String submitOrder(){
@@ -118,11 +114,9 @@ public @Data class ProductBean implements Serializable {
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 		}
-		
 		logService.logInfo("createProduct2Order :: complete");
 		
 		return "/pages/secure/products?faces-redirect=true";
-		
 	}
       
     public String getFoto() throws IOException {
@@ -138,7 +132,4 @@ public @Data class ProductBean implements Serializable {
             return foto;
         }
     }
-    
-    
-    
 }

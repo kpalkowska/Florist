@@ -18,8 +18,7 @@
 	<h:form>
     <p:growl id="growl" sticky="true" showDetail="true"/>
  
-    <p:wizard flowListener="#{sessionBean.onFlowProcess}">
-        
+    <p:wizard flowListener="#{sessionBean.onFlowProcess}">        
         <p:tab id="confirm" title="Confirmation">
             <p:panel header="Confirmation">
                 <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
@@ -43,7 +42,6 @@
 		            </p:dataTable>
                 </h:panelGrid>
             </h:panelGrid>
- 
  			
  			<p:commandButton value="Submit" action="#{productBean.createOrder}" update="messages" process="@this">
 		        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert"/>
@@ -59,6 +57,5 @@
     </p:wizard>
     <p:commandButton value= "Go back" action = "/pages/secure/products.xhtml" process="@this"/>
 </h:form>
-
-	</h:body>
+</h:body>
 </html>

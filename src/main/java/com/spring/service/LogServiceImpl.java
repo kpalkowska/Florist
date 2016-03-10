@@ -2,7 +2,6 @@ package com.spring.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +15,4 @@ private static Logger LOG = LoggerFactory.getLogger(LogServiceImpl.class);
 			LOG.info(msg);
 		}
 	}
-	
 }
-

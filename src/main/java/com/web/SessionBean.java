@@ -1,7 +1,5 @@
 package com.web;
 
-
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,6 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
-import org.primefaces.model.DefaultStreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -57,6 +54,7 @@ public @Data class SessionBean implements Serializable {
 	private String time;
 	private List<UserModel> users = new ArrayList<>();
 	private List<ProductModel> products = new ArrayList<>();
+	private boolean skip;
 	
 	@Autowired
 	private AddressService addressService;
@@ -118,18 +116,14 @@ public @Data class SessionBean implements Serializable {
 		
 		return null;
 	}
-
-	
-	private boolean skip;
     
     public String onFlowProcess(FlowEvent event) {
         if(skip) {
-            skip = false;   //reset in case user goes back
+            skip = false;   
             return "confirm";
         }
-        else {
+        else
             return event.getNewStep();
-        }
     }
 	
 	public String createProduct(){
@@ -139,12 +133,10 @@ public @Data class SessionBean implements Serializable {
 		if (successProduct) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("Product ").append(name).append(" created!").toString()));
-		} else {
+		} else
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
-		}
 		
 		logService.logInfo("createProduct :: complete");
-		
 		return null;
 	}
 	
@@ -155,9 +147,8 @@ public @Data class SessionBean implements Serializable {
 			foto = content;	
 		    FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 		    FacesContext.getCurrentInstance().addMessage(null, message);
-       
     	}
-    	else 
+    	else
     		logService.logInfo("foto :: baaad....");
     }
 }

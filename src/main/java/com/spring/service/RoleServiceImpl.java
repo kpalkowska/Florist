@@ -34,6 +34,7 @@ public class RoleServiceImpl implements RoleService {
 	public List<RoleModel> getAllRoles() {
 		return sessionFactory.getCurrentSession().getNamedQuery("roles.all").list();
 	}
+
 	@Override
 	@Transactional
 	public void updateRole(RoleModel role) {
@@ -57,5 +58,4 @@ public class RoleServiceImpl implements RoleService {
 	public RoleModel exists(String role) {
 		return (RoleModel) sessionFactory.getCurrentSession().getNamedQuery("role.exists").setString("role", role).uniqueResult();
 	}
-
 }

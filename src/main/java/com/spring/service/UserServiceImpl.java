@@ -97,7 +97,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			userDAO.addUser(user);
 			return true;
 		}
-		
 		return false;
 	}
 	
@@ -113,7 +112,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			addressDAO.addAddress(address);
 			return true;
 		}
-		
 		return false;
 	}
 	
@@ -127,7 +125,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			roleDAO.addRole(role);
 			return true;
 		}
-		
 		return false;
 	}
 

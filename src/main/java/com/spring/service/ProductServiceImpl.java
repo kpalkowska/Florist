@@ -1,6 +1,5 @@
 package com.spring.service;
 
-import java.awt.Image;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -76,8 +75,7 @@ public class ProductServiceImpl implements ProductService{
 			ProductModel product = new ProductModel(name, description, price, type, color, foto);
 			productDAO.addProduct(product);
 			return true;
-		}
-		
+		}		
 		return false;
 	}
 
@@ -100,7 +98,6 @@ public class ProductServiceImpl implements ProductService{
 	@Transactional
 	public List<ProductModel> findProductByColor(String color) {
 		return sessionFactory.getCurrentSession().getNamedQuery("products.getByColor").setString("color", color).list();
-
 	}
 
 	@Override
@@ -113,7 +110,7 @@ public class ProductServiceImpl implements ProductService{
 	@Transactional
 	public String getImageByProductId(long productId) {
 		String p = (String) sessionFactory.getCurrentSession().getNamedQuery("foto.byProductId").setLong("id", productId).uniqueResult();
-		 byte[] b= p.getBytes();
+		byte[] b= p.getBytes();
 		byte[] b2=Base64.encode(b);
 		return new String(b2);
 	}	

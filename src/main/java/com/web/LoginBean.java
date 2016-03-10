@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,18 +39,13 @@ public @Data class LoginBean implements Serializable {
 
 			return "/pages/secure/products?faces-redirect=true";
 		} catch (AuthenticationException e) {
-		
-			//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unable to authenticate"));
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Unable to authenticate"));
 		}
 		return null;
 	}
 
 	public String logout() {
-		
 		SecurityContextHolder.clearContext();
 		return "/pages/unsecure/login?faces-redirect=true";
 	}
-
-	
 }

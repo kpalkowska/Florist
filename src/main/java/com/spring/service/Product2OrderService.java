@@ -14,5 +14,4 @@ public interface Product2OrderService {
 	void deleteProduct2Order(Product2OrderModel product2order);
 	void updateProduct2Order(Product2OrderModel product2order);
 	boolean createProduct2Order(ProductModel productModel, OrderModel orderModel);
-
 }

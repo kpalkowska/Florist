@@ -22,7 +22,6 @@ public class AddressServiceImpl implements AddressService  {
 			this.sessionFactory = sessionFactory;
 		}
 		
-		
 		@Override
 		@Transactional
 		public void addAddress(AddressModel address) {
@@ -45,8 +44,7 @@ public class AddressServiceImpl implements AddressService  {
 		@Override
 		@Transactional
 		public void updateAddress(AddressModel address) {
-			sessionFactory.getCurrentSession().merge(address);
-			
+			sessionFactory.getCurrentSession().merge(address);	
 		}
 
 		@Override
@@ -64,7 +62,5 @@ public class AddressServiceImpl implements AddressService  {
 					.setString("street", street)
 					.setString("number", number)
 					.uniqueResult();
-							
 		}
-				
 }

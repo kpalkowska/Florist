@@ -54,7 +54,21 @@ td {
 	 font-weight: bold;
 	 
 }
-
+.ui-panel{
+	margin-right: 400px;
+	margin-left: 10px;
+      
+}
+.ui-wizard-step-titles{
+	margin-left: 10px;
+	
+}
+.ui-button{
+	margin-right: 400px;
+	height: 40px;
+	width: 90px;
+	
+}
 
 	 
 }

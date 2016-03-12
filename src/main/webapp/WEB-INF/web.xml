@@ -50,7 +50,7 @@
     <!-- Welcome page -->
     
     <welcome-file-list>
-        <welcome-file>/pages/unsecure/newUser.xhtml</welcome-file>
+        <welcome-file>/pages/unsecure/home.xhtml</welcome-file>
     </welcome-file-list>
 
     <!-- JSF -->

@@ -2,7 +2,7 @@
 
 body
 {
-background:linear-gradient(white,#F1EDF0); 
+ background-image: url("background.jpg");
 font-family:Arial, Helvetica, sans-serif;
 padding:0;
 font-size:14px;
@@ -52,8 +52,9 @@ td {
 	 height:30px;
 	 color:#4f4f4f;
 	 font-weight: bold;
-	
+	 
 }
+
 
 	 
 }

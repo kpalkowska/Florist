@@ -33,4 +33,28 @@ public @Data class GraphicImageBean {
 	        return new DefaultStreamedContent(new ByteArrayInputStream(foto));
 	    }
 	}
+	
+	public StreamedContent getOneOfRoses() {
+	    FacesContext context = FacesContext.getCurrentInstance();
+
+	    if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+	        return new DefaultStreamedContent();
+	    }
+	    else {
+	        byte[] foto = productBean.getService().findProductByTypeRose().getFoto();
+	        return new DefaultStreamedContent(new ByteArrayInputStream(foto));
+	    }
+	}
+	
+	public StreamedContent getOneOfTulips() {
+	    FacesContext context = FacesContext.getCurrentInstance();
+
+	    if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+	        return new DefaultStreamedContent();
+	    }
+	    else {
+	        byte[] foto = productBean.getService().findProductByTypeTulips().getFoto();
+	        return new DefaultStreamedContent(new ByteArrayInputStream(foto));
+	    }
+	}
 }

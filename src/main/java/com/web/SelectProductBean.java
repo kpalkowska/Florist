@@ -75,14 +75,14 @@ public @Data class SelectProductBean implements Serializable {
 	
 	public String showTulips(){
 	
-		productService.findProducyByTypeTulips();
+		productService.findProductByTypeTulips();
 		
 		//widok
 		return null;
 	}
 	
 	public String showRose(){
-		productService.findProdyctByTypeRose();
+		productService.findProductByTypeRose();
 		
 		//widok
 		return null;

@@ -20,19 +20,24 @@
     <p:wizard flowListener="#{sessionBean.onFlowProcess}">
         <p:tab id="personal" title="Personal">
             <p:panel header="Personal Details">
-                <p:messages />
-                <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Name: *" />
-                    <p:inputText value="#{sessionBean.name}" required="true" label="Name"/>
- 
+               
+                <h:panelGrid columns="3" columnClasses="label, value">
+                
+					<h:outputText value="Name: *" />
+                    <h:inputText id="name" value="#{sessionBean.name}" required="true" label="Name"/>
+					<p:message id="message" for="name" />
+      			    
                     <h:outputText value="Surname: *" />
-                    <p:inputText value="#{sessionBean.surname}" required="true" label="Surname"/>
+                    <h:inputText id="surname" value="#{sessionBean.surname}" required="true" label="Surname"/>
+                    <p:message id="message2" for="surname" />
  
                     <h:outputText value="Login: *" />
-                    <p:inputText value="#{sessionBean.login}" required="true" label="Login"/>
+                    <h:inputText id="login" value="#{sessionBean.login}" required="true" label="Login"/>
+                    <p:message id="message3" for="login" />
  
  					<h:outputText value="Password: *" />
-                    <h:inputSecret value="#{sessionBean.password}" required="true" label="Password"/>
+                    <h:inputSecret id="password" value="#{sessionBean.password}" required="true" label="Password"/>
+                    <p:message id="message4" for="password" />
 					
                     <h:outputText value="Skip to last: " />
                     <h:selectBooleanCheckbox value="#{sessionBean.skip}" />
@@ -42,10 +47,10 @@
  
         <p:tab id="address" title="Address">
             <p:panel header="Address Details">
-                <p:messages />
+                
                 <h:panelGrid columns="2" columnClasses="label, value">
                     <h:outputText value="Zip Code: " />
-                    <p:inputText value="#{sessionBean.zipCode}" />
+                    <h:inputText value="#{sessionBean.zipCode}" />
  
                     <h:outputText value="City: " />
                     <p:inputText value="#{sessionBean.city}" />
@@ -64,7 +69,7 @@
         
          <p:tab id="role" title="Role">
             <p:panel header="Role ">
-                <p:messages />
+                
                 <h:panelGrid columns="2" columnClasses="label, value">
                     <h:outputText value="Role: " />
  						<h:selectOneMenu id="roleName" value="#{sessionBean.roleName}">

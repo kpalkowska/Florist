@@ -118,15 +118,15 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	@Transactional
 	public ProductModel findProdyctByTypeRose() {
-		String type = "Rose"; 
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list().get(1);
+		String name = "Rose"; 
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list().get(1);
 	}
 
 	@Override
 	@Transactional
 	public ProductModel findProducyByTypeTulips() {
-		String type = "Tulip";
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list().get(1);
+		String name = "Tulip";
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list().get(1);
 	
 	}	
 }

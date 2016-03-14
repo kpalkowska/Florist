@@ -72,4 +72,19 @@ public @Data class SelectProductBean implements Serializable {
 
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
+	
+	public String showTulips(){
+	
+		productService.findProducyByTypeTulips();
+		
+		//widok
+		return null;
+	}
+	
+	public String showRose(){
+		productService.findProdyctByTypeRose();
+		
+		//widok
+		return null;
+	}
 }

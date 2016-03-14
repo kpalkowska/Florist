@@ -6,27 +6,16 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<h:head>
+		<link type="text/css" rel="stylesheet" href="style.css" />
 		<title>Welcome</title>
 		
-		<style>
-			#action-box {
-			width: 300px;
-			padding: 20px;
-			margin: 100px auto;
-			background: #fff;
-			-webkit-border-radius: 2px;
-			-moz-border-radius: 2px;
-			border: 1px solid #000;
-			}
-		</style>
 	</h:head>
 	<h:body> 
 		<ui:include src="/pages/unsecure/menu.xhtml" />
 		<br/><br/>
 		<div id="action-box">
 			<h:form>
-				<h:panelGrid id="panel" columns="2" border="0" cellpadding="5"
-					cellspacing="1">
+				<h:panelGrid id="panel" columns="2">
 					<f:facet name="header">
 						<h:outputText value="Log-in user" />
 					</f:facet>

@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+
+body
+{
+ background-image: url("background.jpg");
+font-family:Arial, Helvetica, sans-serif;
+padding:0;
+font-size:14px;
+margin-top: 0%;
+margin-bottom: 50%;
+margin-right: auto;
+margin-left: auto;
+}
+
+.ui-menu, .ui-menu .ui-menu-child {
+    background: #f3f3f3 linear-gradient(#efefef,#dadada);
+}
+
+.ui-menubar {
+    width: 99%;
+    position:fixed;
+    padding: 0.4em;
+}
+.ui-corner-all {
+    border-radius: 6px;
+}
+
+.ui-helper-reset {
+    line-height: 1.8;
+    
+}
+
+#action-box {
+    background: #e6e6e6 none repeat scroll 0 0;
+    border: 1px solid #a8a8a8;
+    color: #4f4f4f;
+    margin: 150px auto;
+    padding: 30px;
+    width: 280px;
+    border-radius: 3px;
+  }
+table { 
+    border-spacing: 4px;
+    border-collapse: separate;
+}
+td { 
+    padding: 5px;
+}
+
+.loginPanelBtn{
+	 width:60px;
+	 height:30px;
+	 color:#4f4f4f;
+	 font-weight: bold;
+	 
+}
+.ui-panel{
+	margin-right: 400px;
+	margin-left: 10px;
+      
+}
+.ui-wizard-step-titles{
+	margin-left: 10px;
+	
+}
+.ui-button{
+	margin-right: 400px;
+	height: 40px;
+	width: 90px;
+	
+}
+
+	 
+}
+
+
+
+
+
+
+
+

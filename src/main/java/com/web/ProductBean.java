@@ -113,6 +113,8 @@ public @Data class ProductBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 		}
 		logService.logInfo("createProduct2Order :: complete");
+		setProducts(service.getAllProducts());
+		droppedProducts.clear();
 		
 		return "/pages/secure/products?faces-redirect=true";
 	}

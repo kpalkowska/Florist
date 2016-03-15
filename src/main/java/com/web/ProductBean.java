@@ -1,6 +1,5 @@
 package com.web;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -15,7 +14,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseId;
 
 import org.primefaces.event.DragDropEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,21 +113,9 @@ public @Data class ProductBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 		}
 		logService.logInfo("createProduct2Order :: complete");
+		setProducts(service.getAllProducts());
+		droppedProducts.clear();
 		
 		return "/pages/secure/products?faces-redirect=true";
 	}
-      
-    public String getFoto() throws IOException {
-        FacesContext context = FacesContext.getCurrentInstance();
-
-        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-            return "";
-        }
-        else {
-            String productId = context.getExternalContext().getRequestParameterMap().get("productId");
-            String foto = service.getImageByProductId(Long.valueOf(productId));
-            logService.logInfo(foto);
-            return foto;
-        }
-    }
 }

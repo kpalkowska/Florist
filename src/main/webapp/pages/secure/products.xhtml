@@ -10,7 +10,9 @@
         droppedProduct.fadeOut('fast');
     }
 </script>
-<h:head><title>Welcome</title></h:head>
+<h:head>
+<link type="text/css" rel="stylesheet" href="style.css" />
+<title>Welcome</title></h:head>
 <body>
 	<f:view> 
 		<ui:include src="/pages/unsecure/menu.xhtml" />
@@ -39,7 +41,7 @@
 		                <h:outputText value="#{product.price}" />
 		            </p:column>
 		            <p:column headerText="Image">
-			            <p:graphicImage value="#{productBean.foto}" width="50"  id="grpImage" height="80">
+			            <p:graphicImage value="#{graphicImageBean.streamedImageById}">
 				            <f:param name="productId" value="#{product.id}" />
 				        </p:graphicImage>
 		            </p:column>
@@ -62,7 +64,7 @@
 		                    <h:outputText value="#{product.price}" />
 		                </p:column>
 		                <p:column headerText="Image">
-		                 <p:graphicImage value="#{productBean.foto}" width="50"  id="grpImage" height="80">
+		                 <p:graphicImage value="#{graphicImageBean.streamedImageById}">
 				            <f:param name="productId" value="#{product.id}" />
 				         </p:graphicImage>	
 		                </p:column>

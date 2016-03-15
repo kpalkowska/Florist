@@ -14,9 +14,10 @@ public interface ProductService {
 	boolean createProduct(String name, String description, String price, String type, String color, byte[] foto);
 	
 	ProductModel findProductById(long productId);
-	String getImageByProductId(long productId);
 	
 	List<ProductModel> findProductByName(String name);
 	List<ProductModel> findProductByType(String type);
 	List<ProductModel> findProductByColor(String color);
+	ProductModel findProductByTypeRose();
+	ProductModel findProductByTypeTulips();
 }

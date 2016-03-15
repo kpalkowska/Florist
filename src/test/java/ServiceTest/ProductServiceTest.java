@@ -18,7 +18,7 @@ import com.spring.model.ProductModel;
 import com.spring.service.ProductService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/spring-test/application-context-test.xml"})
+@ContextConfiguration(locations = {"classpath:/application-context-test.xml"})
 @Transactional("txManager")
 public class ProductServiceTest{
 

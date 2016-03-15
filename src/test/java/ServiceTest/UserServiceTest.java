@@ -17,7 +17,7 @@ import com.spring.service.RoleService;
 import com.spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/spring-test/application-context-test.xml"})
+@ContextConfiguration(locations = {"classpath:/application-context-test.xml"})
 @Transactional("txManager")
 public class UserServiceTest{
 
@@ -37,8 +37,6 @@ public class UserServiceTest{
 
 	private final String name2 = "Tomasz";
 	private final String surname2 = "Kot";
-	private final String login2 = "xyz@abc.pl";
-	private final String password2 = "abcde";
 	
 	private final String zipCode = "82-300";
 	private final String city = "Elblag";

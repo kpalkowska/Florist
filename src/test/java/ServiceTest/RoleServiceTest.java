@@ -10,15 +10,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spring.model.ProductModel;
 import com.spring.model.RoleModel;
 import com.spring.service.RoleService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/spring-test/application-context-test.xml"})
+@ContextConfiguration(locations = {"classpath:/application-context-test.xml"})
 @Transactional("txManager")
 public class RoleServiceTest {
 	
+	@Autowired
 	RoleService roleService;
 
 	private final String ROLE_1 = "Rola8";

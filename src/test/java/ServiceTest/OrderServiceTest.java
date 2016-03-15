@@ -20,7 +20,7 @@ import com.spring.service.RoleService;
 import com.spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/spring-test/application-context-test.xml"})
+@ContextConfiguration(locations = {"classpath:/application-context-test.xml"})
 @Transactional("txManager")
 public class OrderServiceTest {
 	

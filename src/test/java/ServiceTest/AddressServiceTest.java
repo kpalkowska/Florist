@@ -13,7 +13,7 @@ import com.spring.model.AddressModel;
 import com.spring.service.AddressService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/spring-test/application-context-test.xml"})
+@ContextConfiguration(locations = {"classpath:/application-context-test.xml"})
 @Transactional("txManager")
 public class AddressServiceTest {
 	

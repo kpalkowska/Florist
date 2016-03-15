@@ -19196,3 +19196,545 @@ Caused by: java.io.FileNotFoundException: class path resource [application-conte
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     769434 nanoseconds spent executing 2 partial-flushes (flushing a total of 4 entities and 4 collections)
 }
+2016-03-15 11:39:39,714 INFO  [Version]  - HHH000412: Hibernate Core {5.0.7.Final}
+2016-03-15 11:39:39,771 INFO  [Environment]  - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.generate_statistics=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.show_sql=true, hibernate.bytecode.use_reflection_optimizer=false, hibernate.hbm2ddl.auto=update, hibernate.format_sql=true}
+2016-03-15 11:39:39,773 INFO  [Environment]  - HHH000021: Bytecode provider name : javassist
+2016-03-15 11:39:39,994 INFO  [Version]  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-03-15 11:39:41,538 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
+2016-03-15 11:39:42,976 INFO  [SchemaUpdate]  - HHH000228: Running hbm2ddl schema update
+2016-03-15 11:39:43,788 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory
+2016-03-15 11:39:45,300 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    38761496 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    305820 nanoseconds spent preparing 1 JDBC statements;
+    14264610 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    12652946 nanoseconds spent executing 1 flushes (flushing a total of 12 entities and 0 collections);
+    107476 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2016-03-15 11:39:46,922 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    158462770 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    1454846 nanoseconds spent preparing 8 JDBC statements;
+    50368498 nanoseconds spent executing 8 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    10345128 nanoseconds spent executing 2 partial-flushes (flushing a total of 27 entities and 27 collections)
+}
+2016-03-15 11:39:47,293 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    52560047 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    2190083 nanoseconds spent preparing 17 JDBC statements;
+    117727611 nanoseconds spent executing 17 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    152619941 nanoseconds spent executing 3 partial-flushes (flushing a total of 56 entities and 56 collections)
+}
+2016-03-15 11:39:47,544 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    59542130 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    1115806 nanoseconds spent preparing 13 JDBC statements;
+    50051443 nanoseconds spent executing 13 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    3072370 nanoseconds spent executing 2 partial-flushes (flushing a total of 27 entities and 27 collections)
+}
+2016-03-15 11:39:47,706 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    45428964 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    270158 nanoseconds spent preparing 3 JDBC statements;
+    30213673 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    2555993 nanoseconds spent executing 2 partial-flushes (flushing a total of 5 entities and 5 collections)
+}
+2016-03-15 11:39:47,857 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    82546555 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    408411 nanoseconds spent preparing 5 JDBC statements;
+    22823669 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    6845782 nanoseconds spent executing 3 partial-flushes (flushing a total of 10 entities and 10 collections)
+}
+2016-03-15 11:39:47,986 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    69554567 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    223746 nanoseconds spent preparing 3 JDBC statements;
+    24049882 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    374214 nanoseconds spent executing 2 partial-flushes (flushing a total of 5 entities and 5 collections)
+}
+2016-03-15 11:39:48,160 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    40447416 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    741103 nanoseconds spent preparing 9 JDBC statements;
+    48795918 nanoseconds spent executing 9 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1398663 nanoseconds spent executing 2 partial-flushes (flushing a total of 13 entities and 13 collections)
+}
+2016-03-15 11:39:48,291 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    60091238 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    458243 nanoseconds spent preparing 6 JDBC statements;
+    29128159 nanoseconds spent executing 6 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1228656 nanoseconds spent executing 2 partial-flushes (flushing a total of 13 entities and 13 collections)
+}
+2016-03-15 11:39:48,506 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    64066413 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    1188107 nanoseconds spent preparing 11 JDBC statements;
+    69042587 nanoseconds spent executing 11 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    42779174 nanoseconds spent executing 3 partial-flushes (flushing a total of 23 entities and 23 collections)
+}
+2016-03-15 11:39:48,732 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    62520702 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    113827 nanoseconds spent preparing 1 JDBC statements;
+    9945509 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    21006 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2016-03-15 11:39:48,896 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    83451802 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    88424 nanoseconds spent preparing 1 JDBC statements;
+    10159974 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    17587 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2016-03-15 11:39:49,044 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    53559093 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    116270 nanoseconds spent preparing 1 JDBC statements;
+    15941736 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    18564 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2016-03-15 11:39:49,277 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    49789589 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    885708 nanoseconds spent preparing 7 JDBC statements;
+    45561844 nanoseconds spent executing 7 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1455822 nanoseconds spent executing 2 partial-flushes (flushing a total of 11 entities and 11 collections)
+}
+2016-03-15 11:39:49,488 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    74893232 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    822199 nanoseconds spent preparing 9 JDBC statements;
+    65623360 nanoseconds spent executing 9 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    25657635 nanoseconds spent executing 3 partial-flushes (flushing a total of 16 entities and 16 collections)
+}
+2016-03-15 11:39:49,633 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    42333633 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    419160 nanoseconds spent preparing 5 JDBC statements;
+    21555443 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    916484 nanoseconds spent executing 2 partial-flushes (flushing a total of 9 entities and 9 collections)
+}
+2016-03-15 11:39:49,833 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    36983245 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    298492 nanoseconds spent preparing 3 JDBC statements;
+    22212027 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1378634 nanoseconds spent executing 2 partial-flushes (flushing a total of 13 entities and 13 collections)
+}
+2016-03-15 11:39:50,154 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    120114571 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    607244 nanoseconds spent preparing 5 JDBC statements;
+    33247450 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    9717365 nanoseconds spent executing 3 partial-flushes (flushing a total of 26 entities and 26 collections)
+}
+2016-03-15 11:39:50,359 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    42610630 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    412809 nanoseconds spent preparing 3 JDBC statements;
+    51192651 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1699598 nanoseconds spent executing 2 partial-flushes (flushing a total of 13 entities and 13 collections)
+}
+2016-03-15 11:39:50,492 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    45400629 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    248663 nanoseconds spent preparing 3 JDBC statements;
+    11387652 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    464104 nanoseconds spent executing 2 partial-flushes (flushing a total of 4 entities and 4 collections)
+}
+2016-03-15 11:39:50,612 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    54526873 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    485601 nanoseconds spent preparing 5 JDBC statements;
+    19886134 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    10807277 nanoseconds spent executing 3 partial-flushes (flushing a total of 8 entities and 8 collections)
+}
+2016-03-15 11:39:50,705 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    51220985 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    334643 nanoseconds spent preparing 3 JDBC statements;
+    9833636 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    391801 nanoseconds spent executing 2 partial-flushes (flushing a total of 4 entities and 4 collections)
+}
+2016-03-15 11:45:00,337 INFO  [Version]  - HHH000412: Hibernate Core {5.0.7.Final}
+2016-03-15 11:45:00,347 INFO  [Environment]  - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.generate_statistics=true, hibernate.dialect=org.hibernate.dialect.SQLServerDialect, hibernate.show_sql=true, hibernate.bytecode.use_reflection_optimizer=false, hibernate.hbm2ddl.auto=update, hibernate.format_sql=true}
+2016-03-15 11:45:00,348 INFO  [Environment]  - HHH000021: Bytecode provider name : javassist
+2016-03-15 11:45:00,483 INFO  [Version]  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-03-15 11:45:01,724 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
+2016-03-15 11:45:03,550 INFO  [SchemaUpdate]  - HHH000228: Running hbm2ddl schema update
+2016-03-15 11:45:04,486 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory
+2016-03-15 11:45:06,223 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    53608923 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    332689 nanoseconds spent preparing 1 JDBC statements;
+    17148407 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    14882602 nanoseconds spent executing 1 flushes (flushing a total of 12 entities and 0 collections);
+    109919 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2016-03-15 11:45:07,922 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    43544213 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    5833055 nanoseconds spent preparing 13 JDBC statements;
+    50116906 nanoseconds spent executing 13 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    10220553 nanoseconds spent executing 2 partial-flushes (flushing a total of 27 entities and 27 collections)
+}
+2016-03-15 11:45:08,200 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    52066631 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    1890615 nanoseconds spent preparing 17 JDBC statements;
+    85163126 nanoseconds spent executing 17 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    74599136 nanoseconds spent executing 3 partial-flushes (flushing a total of 56 entities and 56 collections)
+}
+2016-03-15 11:45:08,348 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    44725480 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    702018 nanoseconds spent preparing 8 JDBC statements;
+    28480366 nanoseconds spent executing 8 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    3972732 nanoseconds spent executing 2 partial-flushes (flushing a total of 27 entities and 27 collections)
+}
+2016-03-15 11:45:08,505 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    43489497 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    427954 nanoseconds spent preparing 5 JDBC statements;
+    17442501 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    8294765 nanoseconds spent executing 3 partial-flushes (flushing a total of 10 entities and 10 collections)
+}
+2016-03-15 11:45:08,597 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    43763563 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    244266 nanoseconds spent preparing 3 JDBC statements;
+    10745234 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    594054 nanoseconds spent executing 2 partial-flushes (flushing a total of 5 entities and 5 collections)
+}
+2016-03-15 11:45:08,681 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    42964815 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    255502 nanoseconds spent preparing 3 JDBC statements;
+    10602095 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    500744 nanoseconds spent executing 2 partial-flushes (flushing a total of 5 entities and 5 collections)
+}
+2016-03-15 11:45:08,898 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    36621731 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    799237 nanoseconds spent preparing 9 JDBC statements;
+    75623096 nanoseconds spent executing 9 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1604825 nanoseconds spent executing 2 partial-flushes (flushing a total of 13 entities and 13 collections)
+}
+2016-03-15 11:45:09,051 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    42927687 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    1014191 nanoseconds spent preparing 11 JDBC statements;
+    38460560 nanoseconds spent executing 11 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    27228262 nanoseconds spent executing 3 partial-flushes (flushing a total of 23 entities and 23 collections)
+}
+2016-03-15 11:45:09,193 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    78349098 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    474850 nanoseconds spent preparing 6 JDBC statements;
+    19974069 nanoseconds spent executing 6 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1433349 nanoseconds spent executing 2 partial-flushes (flushing a total of 13 entities and 13 collections)
+}
+2016-03-15 11:45:09,370 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    40191914 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    82073 nanoseconds spent preparing 1 JDBC statements;
+    25573609 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    13679 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2016-03-15 11:45:10,234 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    61747357 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    106011 nanoseconds spent preparing 1 JDBC statements;
+    62174822 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    16122 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2016-03-15 11:45:10,433 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    59099521 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    100149 nanoseconds spent preparing 1 JDBC statements;
+    8996783 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    16121 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2016-03-15 11:45:10,681 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    51251763 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    816824 nanoseconds spent preparing 7 JDBC statements;
+    38830867 nanoseconds spent executing 7 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1796816 nanoseconds spent executing 2 partial-flushes (flushing a total of 11 entities and 11 collections)
+}
+2016-03-15 11:45:10,849 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    58451240 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    968268 nanoseconds spent preparing 9 JDBC statements;
+    33902082 nanoseconds spent executing 9 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    22566213 nanoseconds spent executing 3 partial-flushes (flushing a total of 16 entities and 16 collections)
+}
+2016-03-15 11:45:10,993 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    49128608 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    612616 nanoseconds spent preparing 5 JDBC statements;
+    34846410 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    3917040 nanoseconds spent executing 2 partial-flushes (flushing a total of 9 entities and 9 collections)
+}
+2016-03-15 11:45:11,399 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    47965905 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    600892 nanoseconds spent preparing 5 JDBC statements;
+    78175671 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    42831935 nanoseconds spent executing 3 partial-flushes (flushing a total of 26 entities and 26 collections)
+}
+2016-03-15 11:45:11,598 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    41496291 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    389359 nanoseconds spent preparing 3 JDBC statements;
+    21212006 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1804633 nanoseconds spent executing 2 partial-flushes (flushing a total of 13 entities and 13 collections)
+}
+2016-03-15 11:45:11,853 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    49480350 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    358094 nanoseconds spent preparing 3 JDBC statements;
+    22055699 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    1947773 nanoseconds spent executing 2 partial-flushes (flushing a total of 13 entities and 13 collections)
+}
+2016-03-15 11:45:12,079 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    65321937 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    499278 nanoseconds spent preparing 5 JDBC statements;
+    22683461 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    7667001 nanoseconds spent executing 3 partial-flushes (flushing a total of 8 entities and 8 collections)
+}
+2016-03-15 11:45:12,329 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    50743691 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    238403 nanoseconds spent preparing 3 JDBC statements;
+    67945836 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    450425 nanoseconds spent executing 2 partial-flushes (flushing a total of 4 entities and 4 collections)
+}
+2016-03-15 11:45:12,419 INFO  [StatisticalLoggingSessionEventListener]  - Session Metrics {
+    47643963 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    448471 nanoseconds spent preparing 3 JDBC statements;
+    10978751 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    393756 nanoseconds spent executing 2 partial-flushes (flushing a total of 4 entities and 4 collections)
+}

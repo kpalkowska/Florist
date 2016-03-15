@@ -25,7 +25,6 @@ import com.spring.model.OrderModel;
 import com.spring.model.ProductModel;
 import com.spring.model.UserModel;
 import com.spring.security.AppUser;
-import com.spring.service.LogService;
 import com.spring.service.OrderService;
 import com.spring.service.Product2OrderService;
 import com.spring.service.ProductService;
@@ -39,9 +38,6 @@ import lombok.Data;
 public @Data class ProductBean implements Serializable {
 
 	private static final long serialVersionUID = 6022001178289508303L;
-	
-	@Autowired
-	private LogService logService;
 	
 	@Autowired
     private ProductService service;
@@ -90,8 +86,6 @@ public @Data class ProductBean implements Serializable {
     }
     
 	public String createOrder(){
-		logService.logInfo("createOrder :: starting...");
-		
 		appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
 		user = userService.findUserByLogin(login);
@@ -100,8 +94,6 @@ public @Data class ProductBean implements Serializable {
 		
 		boolean successOrder = orderService.createOrder(dateString, user, address);
 		OrderModel order = orderService.exists(dateString, user, address);
-		
-		logService.logInfo("createProduct2Order :: starting...");
 		
 		for(int i=0; i < droppedProducts.size(); i++)
 			p2oService.createProduct2Order(droppedProducts.get(i), order);
@@ -112,7 +104,7 @@ public @Data class ProductBean implements Serializable {
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 		}
-		logService.logInfo("createProduct2Order :: complete");
+
 		setProducts(service.getAllProducts());
 		droppedProducts.clear();
 		

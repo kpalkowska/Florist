@@ -28,6 +28,7 @@ import com.spring.security.AppUser;
 
 @Component
 @Service(value="userService")
+@Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 	
 	public static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -56,31 +57,26 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	@Transactional
 	public void deleteUser(UserModel user) {
 		sessionFactory.getCurrentSession().delete(user);	
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<UserModel> getAllUsers() {
 		return sessionFactory.getCurrentSession().getNamedQuery("users.all").list();
 	}
 	@Override
-	@Transactional
 	public void updateUser(UserModel user) {
 		sessionFactory.getCurrentSession().merge(user);
 	}
 	
 	@Override
-	@Transactional
 	public void addUser(UserModel user) {
 		sessionFactory.getCurrentSession().persist(user);
 	}
 
 	@Override
-	@Transactional
 	public UserModel findUser(UserModel user) {
 		return (UserModel) sessionFactory.getCurrentSession().get(UserModel.class, user.getId());
 	}
@@ -144,7 +140,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	@Transactional
 	public UserModel findUserByLogin(String login) {
 		return (UserModel) sessionFactory.getCurrentSession().getNamedQuery("user.byLogin").setString("login", login).uniqueResult(); 
 	}

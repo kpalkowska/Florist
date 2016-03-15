@@ -8,5 +8,8 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
-	<import resource="classpath:/spring/application-context.xml, classpath:/spring/security-context.xml"/>
+	<import resource="application-context.xml" />
+	<import resource="security-context.xml"/>
+
+
 </beans>

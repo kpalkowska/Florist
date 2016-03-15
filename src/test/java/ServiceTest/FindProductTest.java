@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.service.ProductService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/spring/application-context.xml", "classpath:/spring/security-context.xml"})
+@ContextConfiguration(locations = {"classpath:/spring-test/application-context-test.xml"})
 @Transactional("txManager")
 public class FindProductTest {
 

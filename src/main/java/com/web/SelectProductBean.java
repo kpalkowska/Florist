@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,8 @@ import lombok.Data;
 public @Data class SelectProductBean implements Serializable {
 
 	private static final long serialVersionUID = 1549481937223946546L;
+	
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
 	
 	private String name;
 	private String description;
@@ -38,6 +41,7 @@ public @Data class SelectProductBean implements Serializable {
 		this.name = name;
 		setProducts(productService.findProductByName(name));
 
+		LOGGER.info("Display products by name");
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
 	
@@ -45,6 +49,7 @@ public @Data class SelectProductBean implements Serializable {
 		this.color = color;
 		setProducts(productService.findProductByColor(color));
 
+		LOGGER.info("Display producys by color");
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
 	
@@ -52,12 +57,14 @@ public @Data class SelectProductBean implements Serializable {
 		this.type = type;
 		setProducts(productService.findProductByType(type));
 
+		LOGGER.info("Display products by type");
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
 	
 	public String showAll(){
 		setProducts(productService.getAllProducts());
 
+		LOGGER.info("Display all products");
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
 }

@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
 import org.primefaces.event.DragDropEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,6 +39,8 @@ import lombok.Data;
 public @Data class ProductBean implements Serializable {
 
 	private static final long serialVersionUID = 6022001178289508303L;
+	
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
 	
 	@Autowired
     private ProductService service;
@@ -82,6 +85,7 @@ public @Data class ProductBean implements Serializable {
     }
     
     public String submitOrder(){
+    	LOGGER.info("Submit order");
     	return "/pages/unsecure/newOrder?faces-redirect=true";
     }
     
@@ -108,6 +112,7 @@ public @Data class ProductBean implements Serializable {
 		setProducts(service.getAllProducts());
 		droppedProducts.clear();
 		
+		LOGGER.info("Create Order");
 		return "/pages/secure/products?faces-redirect=true";
 	}
 }

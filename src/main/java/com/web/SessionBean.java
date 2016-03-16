@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public @Data class SessionBean implements Serializable {
 
 	private static final long serialVersionUID = 1549481937223946546L;
 
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+	
 	private String name;
 	private String surname;
 	private String login;
@@ -70,12 +73,14 @@ public @Data class SessionBean implements Serializable {
 	public String showProducts(){
 		setProducts(productService.getAllProducts());
 		
+		LOGGER.info("Display all products");
 		return "/pages/secure/products?faces-redirect=true";
 	}
 	
 	public String showUsers() {
 		setUsers(userService.getAllUsers());
 		
+        LOGGER.info("Display all users");
 		return "/pages/secure/list?faces-redirect=true";
 	}
 
@@ -104,6 +109,7 @@ public @Data class SessionBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 		}
 		
+		LOGGER.info("Create new user correct");
 		return null;
 	}
     
@@ -122,10 +128,11 @@ public @Data class SessionBean implements Serializable {
 		if (successProduct) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("Product ").append(name).append(" created!").toString()));
+		LOGGER.info("Create new product correct");
 		} else
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
-		
-		return null;
+			LOGGER.error("Error creating product :(");
+			return null;
 	}
 	
     public void handleFileUpload(FileUploadEvent event) {
@@ -135,6 +142,7 @@ public @Data class SessionBean implements Serializable {
 			foto = content;	
 		    FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 		    FacesContext.getCurrentInstance().addMessage(null, message);
+		    LOGGER.info("ADD PHOTO!");
     	}
     }
 }

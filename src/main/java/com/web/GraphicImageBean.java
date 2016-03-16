@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 
+import org.apache.log4j.Logger;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -20,6 +21,8 @@ public @Data class GraphicImageBean {
 	@ManagedProperty("#{productBean}")
 	ProductBean productBean;
     
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+	
 	public StreamedContent getStreamedImageById() {
 	    FacesContext context = FacesContext.getCurrentInstance();
 

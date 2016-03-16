@@ -1,6 +1,7 @@
 package com.web;
 
 import java.io.Serializable;
+import org.apache.log4j.Logger;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -27,6 +28,8 @@ public @Data class LoginBean implements Serializable {
 	private String username;
 	private String password;
 
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+	
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -37,15 +40,18 @@ public @Data class LoginBean implements Serializable {
 			SecurityContextHolder.getContext().setAuthentication(request);
 			this.password = null;
 
+			LOGGER.info("Correct login");
 			return "/pages/secure/products?faces-redirect=true";
 		} catch (AuthenticationException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Unable to authenticate"));
+			LOGGER.error("Bad login");
 		}
 		return null;
 	}
 
 	public String logout() {
 		SecurityContextHolder.clearContext();
+		LOGGER.info("Correct logout");
 		return "/pages/unsecure/login?faces-redirect=true";
 	}
 }

@@ -1,5 +1,8 @@
 package com.spring.model;
 
+import java.io.ByteArrayInputStream;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,9 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -53,6 +59,18 @@ public class ProductModel {
 		this.color = color;
 		this.foto = foto;
 	}
+	
+    public StreamedContent getFotoToDisplay() {
+
+            if (Objects.isNull(foto))
+                  return new DefaultStreamedContent();
+            else
+                  return new DefaultStreamedContent(new ByteArrayInputStream(foto), "image/png");
+      }
+
+ 
+
+    public void setFotoToDisplay(StreamedContent fotoToDisplay) { }
 
 }
 

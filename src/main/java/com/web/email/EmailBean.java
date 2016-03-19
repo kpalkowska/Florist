@@ -49,7 +49,7 @@ public @Data class EmailBean implements Serializable {
 		appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
 		user = userService.findUserByLogin(login);
-		setReceiver("user");
+		setReceiver(user.getLogin());
 
 		setMessage("Your order has been registered. Thank you for choosing our Florist's.");
 

@@ -1,27 +1,46 @@
 package com.spring.service.email;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Component
+@Transactional
 public class EmailService {
 
-	private MailSender mailSender = new JavaMailSenderImpl();
+	@Autowired
+	MailSender mailSender;
 	
-	public void sendEmail(String receiver, String sender, String subject, String message) {
+	@Autowired
+	SimpleMailMessage preConfiguredMessage;
+	
+	public void setMailSender(MailSender mailSender) {
+		this.mailSender = mailSender;
+	}
+
+	public void setPreConfiguredMessage(SimpleMailMessage preConfiguredMessage) {
+		this.preConfiguredMessage = preConfiguredMessage;
+	}	
+	
+	public void sendEmail(String to, String body) {
  
-		SimpleMailMessage smm = new SimpleMailMessage();
-		smm.setFrom(sender);
-		smm.setTo(receiver);
-		smm.setSubject(subject);
-		smm.setText(message);
-		
-		try {
-			mailSender.send(smm);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);	
+		mailMessage.setTo(to);
+		mailMessage.setText(body);
+		System.out.println(mailMessage);
+		try{
+			mailSender.send(mailMessage);
+		} catch(MailException me){
+			System.out.println("Cannot send email");			
+			System.out.println(me);
+		} catch (Exception e) {
+			System.out.println("could not send email");
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }

@@ -15,30 +15,26 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import com.spring.model.ProductModel;
+import com.spring.service.ProductService;
 
 import lombok.Data;
 
 @ManagedBean(name = "graphicImageBean")
 public @Data class GraphicImageBean {
 		
-	@ManagedProperty("#{productBean}")
-	ProductBean productBean;
+	@ManagedProperty("#{productService}")
+	ProductService productService;
 	
-	private StreamedContent streamedImageById;
-	private List<ProductModel> products;
+	@ManagedProperty("#{product.id}")
+	private Long productId;
+	
+	private StreamedContent fotoToDisplay;
     
 	private static Logger LOGGER = Logger.getLogger("InfoLogging");
 	
 	@PostConstruct
 	public void init(){
-		try{
-			products = productBean.getService().getAllProducts();
-			for(ProductModel p : products)
-				streamedImageById = p.getFotoToDisplay();
-		}
-		catch(Exception ex){
-			
-		}
+		productService.findProductById(productId).getFotoToDisplay();
 	}
 	
 	public StreamedContent getOneOfRoses() {
@@ -48,7 +44,7 @@ public @Data class GraphicImageBean {
 	        return new DefaultStreamedContent();
 	    }
 	    else {
-	        byte[] foto = productBean.getService().findProductByTypeRose().getFoto();
+	        byte[] foto = productService.findProductByTypeRose().getFoto();
 	        return new DefaultStreamedContent(new ByteArrayInputStream(foto));
 	    }
 	}
@@ -60,7 +56,7 @@ public @Data class GraphicImageBean {
 	        return new DefaultStreamedContent();
 	    }
 	    else {
-	        byte[] foto = productBean.getService().findProductByTypeTulips().getFoto();
+	        byte[] foto = productService.findProductByTypeTulips().getFoto();
 	        return new DefaultStreamedContent(new ByteArrayInputStream(foto));
 	    }
 	}

@@ -24,16 +24,11 @@
 		        </p:submenu>
 				
 				<f:facet name="options">
-				<p:button value="Logged in as: #{facesContext.externalContext.request.remoteUser}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
+				<p:button value="Logged as: #{facesContext.externalContext.request.remoteUser}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
 				<h:outputLink value="/Florist/pages/unsecure/login.xhtml" rendered="#{empty facesContext.externalContext.request.remoteUser}">Login</h:outputLink>
     			<p:commandButton value="Logout" action="#{loginBean.logout()}" icon="ui-icon-extlink" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
 			    </f:facet>
-			    
-			    <f:facet name="options">
-				<p:button value="Logged in as: #{facesContext.externalContext.request.remoteUser}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
-				<h:outputLink value="/Florist/pages/unsecure/newUser.xhtml" rendered="#{empty facesContext.externalContext.request.remoteUser}"> Create Account</h:outputLink>
-    			<p:commandButton value="Logout" action="#{loginBean.logout()}" icon="ui-icon-extlink" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
-			    </f:facet>
+			 
 			</p:menubar>
 		</h:form>
 	</ui:composition>

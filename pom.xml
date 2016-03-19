@@ -184,6 +184,11 @@
 			<name>ObjectDB Repository</name>
 			<url>http://m2.objectdb.com</url>
 		</repository>
+
+	    <repository>
+	        <id>JBoss repository</id>
+	        <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+	    </repository>
 	</repositories>
 
 	<dependencies>

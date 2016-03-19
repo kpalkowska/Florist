@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.spring.service.email.EmailService;
 
-@ContextConfiguration(locations = { "classpath:/mail-context.xml"})
+@ContextConfiguration(locations = { "classpath:/mail-context-test.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class SendEmailTest {
 	
@@ -18,11 +18,8 @@ public class SendEmailTest {
 	@Test
 	public void sendEmailTest(){
 		String receiver = "klaudia.elblag@gmail.com";
-		
-		String sender = "florist.project@gmail.com";
-		String subject = "Florist";
 		String message = "Your order has been registered. Thank you for choosing our Florist's.";
 		
-		emailService.sendEmail(receiver, sender, subject, message);
+		emailService.sendEmail(receiver, message);
 	}
 }

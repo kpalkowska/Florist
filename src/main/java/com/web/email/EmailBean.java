@@ -1,14 +1,18 @@
 package com.web.email;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import com.spring.model.UserModel;
 import com.spring.security.AppUser;
@@ -17,19 +21,20 @@ import com.spring.service.email.EmailService;
 
 import lombok.Data;
 
-@ManagedBean(name = "emailBean")
+@ManagedBean(name = "emailBean", eager = true)
 @SessionScoped
-public @Data class EmailBean {
+@Component
+public @Data class EmailBean implements Serializable {
+	
+	private static final long serialVersionUID = 7291708796066664438L;
 	
 	@Autowired
-    UserService userService;
+    private UserService userService;
 	
 	@Autowired
-	EmailService emailService;
+	private EmailService emailService;
 
-	private String sender;
 	private String receiver;
-	private String subject;
 	private String message;
 	private AppUser appUser;
     private String login;
@@ -44,13 +49,11 @@ public @Data class EmailBean {
 		appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
 		user = userService.findUserByLogin(login);
-		receiver = "klaudia.elblag@gmail.com";
-		
-		setSender("florist.project@gmail.com");
-		setSubject("Florist");
+		setReceiver("user");
+
 		setMessage("Your order has been registered. Thank you for choosing our Florist's.");
 
-		emailService.sendEmail(receiver, sender, subject, message);
+		emailService.sendEmail(receiver, message);
 		
 		LOGGER.info("Email was sent to user");
 		}

@@ -143,9 +143,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public UserModel findUserByLogin(String login) {
 		return (UserModel) sessionFactory.getCurrentSession().getNamedQuery("user.byLogin").setString("login", login).uniqueResult(); 
 	}
-
-	@Override
-	public String getCurrentUserLogin(int id) {
-		return (String) sessionFactory.getCurrentSession().getNamedQuery("user.byID").setInteger("id", id).uniqueResult();
-	}
 }

@@ -85,6 +85,7 @@ public @Data class ProductBean implements Serializable {
     }
     
     public String submitOrder(){
+    	LOGGER.info("Submit order");
     	return "/pages/unsecure/newOrder?faces-redirect=true";
     }
     

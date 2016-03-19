@@ -27,8 +27,7 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "Users")
 @NamedQueries({
 	@NamedQuery(name = "users.all", query = "Select u from UserModel u"),
-	@NamedQuery(name = "user.byLogin", query = "Select u from UserModel u where u.login = :login"),
-	@NamedQuery(name = "user.byID", query = "Select u.login from UserModel u where u.id = :id")
+	@NamedQuery(name = "user.byLogin", query = "Select u from UserModel u where u.login = :login")
 })
 public class UserModel {
 

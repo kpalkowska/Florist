@@ -13,6 +13,6 @@ public interface OrderService {
 	void deleteOrder(OrderModel order);
 	void updateOrder(OrderModel order);
 	OrderModel findOrder(OrderModel order);
-	boolean createOrder(String date, UserModel user, AddressModel address);
-	OrderModel exists(String date, UserModel user, AddressModel address);
+	boolean createOrder(AddressModel address, String date, UserModel user);
+	OrderModel exists(AddressModel address, String date, UserModel user);
 }

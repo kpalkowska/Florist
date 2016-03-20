@@ -3,10 +3,10 @@ package com.web.email;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,11 +55,14 @@ public @Data class EmailBean implements Serializable {
 
 		emailService.sendEmail(receiver, message);
 		
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage("Success", new StringBuilder("Email is sending!").toString()));
+		
 		LOGGER.info("Email was sent to user");
 		}
 		catch(MailException mex){
 			mex.printStackTrace();
-			LOGGER.info("Email was not sent!");
+			LOGGER.error("Email was not sent!");
 		}
 	}
 }

@@ -30,6 +30,7 @@ import com.spring.service.OrderService;
 import com.spring.service.Product2OrderService;
 import com.spring.service.ProductService;
 import com.spring.service.UserService;
+import com.web.email.EmailBean;
 
 import lombok.Data;
 
@@ -39,79 +40,88 @@ import lombok.Data;
 public @Data class ProductBean implements Serializable {
 
 	private static final long serialVersionUID = 6022001178289508303L;
-	
+
 	private static Logger LOGGER = Logger.getLogger("InfoLogging");
-	
-	@Autowired
-    private ProductService service;
-	
-	@Autowired
-    private OrderService orderService;
-	
-	@Autowired
-    private Product2OrderService p2oService;
-	
-	@Autowired
-    private UserService userService;
-	
-    private ProductModel selectedProduct;
- 
-    private List<ProductModel> products;
-    private List<ProductModel> droppedProducts;
-    private List<OrderModel> orders;
 
-    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    Date today = Calendar.getInstance().getTime();
-    String dateString = dateFormat.format(today);
+	@Autowired
+	private ProductService service;
 
-	
+	@Autowired
+	private EmailBean email;
+
+	@Autowired
+	private OrderService orderService;
+
+	@Autowired
+	private Product2OrderService p2oService;
+
+	@Autowired
+	private UserService userService;
+
+	private ProductModel selectedProduct;
+
+	private List<ProductModel> products;
+	private List<ProductModel> droppedProducts;
+	private List<OrderModel> orders;
+
+	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	Date today = Calendar.getInstance().getTime();
+	String dateString = dateFormat.format(today);
+
 	private AppUser appUser;
-    private String login;
-    
-    private UserModel user;
-    private AddressModel address;
-     
-    @PostConstruct
-    public void init() {
-        products = service.getAllProducts();
-        droppedProducts = new ArrayList<ProductModel>();
-    }
-     
-    public void onProductDrop(DragDropEvent ddEvent) {
-    	ProductModel product = ((ProductModel) ddEvent.getData());
-  
-        droppedProducts.add(product);
-        products.remove(product);
-    }
-    
-    public String submitOrder(){
-    	return "/pages/unsecure/newOrder?faces-redirect=true";
-    }
-    
-	public String createOrder(){
+	private String login;
+
+	private UserModel user;
+	private AddressModel address;
+
+	@PostConstruct
+	public void init() {
+		products = service.getAllProducts();
+		droppedProducts = new ArrayList<ProductModel>();
+	}
+
+	public void onProductDrop(DragDropEvent ddEvent) {
+		ProductModel product = ((ProductModel) ddEvent.getData());
+
+		droppedProducts.add(product);
+		products.remove(product);
+	}
+
+	public String submitOrder() {
+		return "/pages/unsecure/newOrder?faces-redirect=true";
+	}
+
+	public String createOrder() {
 		appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
 		user = userService.findUserByLogin(login);
 		address = user.getAddress();
-        orders = orderService.getAllOrders();
-		
-		boolean successOrder = orderService.createOrder(dateString, user, address);
-		OrderModel order = orderService.exists(dateString, user, address);
-		
-		for(int i=0; i < droppedProducts.size(); i++)
+		orders = orderService.getAllOrders();
+
+		boolean successOrder = orderService.createOrder(address, dateString, user);
+		OrderModel order = orderService.exists(address, dateString, user);
+
+		for (int i = 0; i < droppedProducts.size(); i++)
 			p2oService.createProduct2Order(droppedProducts.get(i), order);
-		
+
 		if (successOrder) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("Order ").append("submited!").toString()));
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+			LOGGER.error("Error create Order :/");
 		}
 
 		setProducts(service.getAllProducts());
 		droppedProducts.clear();
-		
+
 		LOGGER.info("Create Order");
 		return "/pages/secure/products?faces-redirect=true";
+	}
+
+	public void submitOrderAndEmail() {
+		createOrder();
+		email.sendEmail();
 	}
 }

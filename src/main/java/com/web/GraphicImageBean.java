@@ -21,7 +21,9 @@ import lombok.Data;
 
 @ManagedBean(name = "graphicImageBean")
 public @Data class GraphicImageBean {
-		
+	
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+	
 	@ManagedProperty("#{productService}")
 	ProductService productService;
 	
@@ -30,11 +32,24 @@ public @Data class GraphicImageBean {
 	
 	private StreamedContent fotoToDisplay;
     
-	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+	@ManagedProperty("#{productBean}")
+	ProductBean productBean;
+	
+	private List<ProductModel> products;
 	
 	@PostConstruct
 	public void init(){
-		productService.findProductById(productId).getFotoToDisplay();
+		
+		try{
+			products = productBean.getService().getAllProducts();
+			for(ProductModel p : products)
+				fotoToDisplay = p.getFotoToDisplay();
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			LOGGER.error("Bad display foto");
+		}
+//		productService.findProductById(productId).getFotoToDisplay();
 	}
 	
 	public StreamedContent getOneOfRoses() {

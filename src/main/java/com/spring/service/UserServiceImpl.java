@@ -66,6 +66,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public List<UserModel> getAllUsers() {
 		return sessionFactory.getCurrentSession().getNamedQuery("users.all").list();
 	}
+	
 	@Override
 	public void updateUser(UserModel user) {
 		sessionFactory.getCurrentSession().merge(user);

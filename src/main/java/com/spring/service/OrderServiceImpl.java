@@ -61,7 +61,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public boolean createOrder(String date, UserModel user, AddressModel address) {
+	public boolean createOrder(AddressModel address,String date, UserModel user) {
 		if (StringUtils.isEmpty(date) || StringUtils.isEmpty(user) || StringUtils.isEmpty(address)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
 		}  else {
@@ -73,7 +73,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
-	public OrderModel exists(String date, UserModel user, AddressModel address){
+	public OrderModel exists(AddressModel address, String date, UserModel user){
 		return (OrderModel) sessionFactory.getCurrentSession().getNamedQuery("order.exists")
 				.setString("date", date)
 				.setParameter("users", user)

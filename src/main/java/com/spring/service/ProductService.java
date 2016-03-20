@@ -2,6 +2,8 @@ package com.spring.service;
 
 import java.util.List;
 
+import org.primefaces.model.StreamedContent;
+
 import com.spring.model.ProductModel;
 
 public interface ProductService {
@@ -20,4 +22,5 @@ public interface ProductService {
 	List<ProductModel> findProductByColor(String color);
 	ProductModel findProductByTypeRose();
 	ProductModel findProductByTypeTulips();
+	StreamedContent findProductFoto(int id);
 }

@@ -112,8 +112,13 @@ public class ProductServiceImpl implements ProductService{
 	}	
 	
 	@Override
-	public StreamedContent findProductFoto(int id){
-		return (StreamedContent) sessionFactory.getCurrentSession().getNamedQuery("products.byProductId").setInteger("id", id).uniqueResult();
+	public StreamedContent findProductFoto(Long id){
+		return (StreamedContent) sessionFactory.getCurrentSession().getNamedQuery("foto.byProductId").setLong("id", id).uniqueResult();
+	}
+
+	@Override
+	public int findProductID(Long id) {
+		return (int) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", id).uniqueResult();
 	}
 }
 

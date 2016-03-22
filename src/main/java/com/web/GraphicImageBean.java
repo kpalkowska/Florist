@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 
@@ -42,8 +41,8 @@ public @Data class GraphicImageBean {
 		
 		try{
 			products = productBean.getService().getAllProducts();
-			for(ProductModel p : products)
-				fotoToDisplay = p.getFotoToDisplay();
+			for(ProductModel model : products)
+				fotoToDisplay = productService.findProductById(productId).getFotoToDisplay();
 		}
 		catch(Exception ex){
 			ex.printStackTrace();

@@ -17,10 +17,12 @@ public interface ProductService {
 	
 	ProductModel findProductById(long productId);
 	
+	int findProductID(Long productId);
+	
 	List<ProductModel> findProductByName(String name);
 	List<ProductModel> findProductByType(String type);
 	List<ProductModel> findProductByColor(String color);
 	ProductModel findProductByTypeRose();
 	ProductModel findProductByTypeTulips();
-	StreamedContent findProductFoto(int id);
+	StreamedContent findProductFoto(Long id);
 }

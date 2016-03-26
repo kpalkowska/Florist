@@ -70,6 +70,15 @@ td {
 	
 }
 
+.ui-state-highlight {
+    background: #cc99ff;
+   
+}
+.ui-state-hover{
+	background: #cc99ff;
+	
+}
+
 	 
 }
 

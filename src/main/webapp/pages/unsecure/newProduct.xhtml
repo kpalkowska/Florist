@@ -71,9 +71,9 @@
                    	 </h:panelGrid>
  
                       <h:outputText value="Foto: " />
-                        
-		                    <p:graphicImage value="#{sessionBean.foto}" width="50"  id="grpImage" height="80"/>
-		               
+                         <p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
+				            <f:param name="productId" value="#{sessioneBean.foto}" />
+				         </p:graphicImage>
  					</h:panelGrid>
                     
                 <p:commandButton value="Submit" actionListener="#{sessionBean.createProduct}" update="growl" process="@this"/>

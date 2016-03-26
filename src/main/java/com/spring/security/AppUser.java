@@ -19,6 +19,6 @@ public class AppUser extends User {
 		this(user, DEFAULT_AUTHORITIES);
 	}
 	public AppUser(UserModel user, Collection<GrantedAuthority> authorities) {
-		super(user.getName(), user.getPassword(), authorities);
+		super(user.getLogin(), user.getPassword(), authorities);
 	}
 }

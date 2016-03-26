@@ -15,8 +15,8 @@
 		<ui:include src="/pages/unsecure/menu.xhtml" />
 		<br/>
 		<br/>
-		<p:carousel numVisible="1" effect="easeInStrong" headerText="Available products" style="margin-bottom:0">
-	        <p:tab>
+		<h:form id="productCasesForm">
+			<p:fieldset id="productCasesField" legend="Products">
 	            <p:dataTable var="product" value="#{selectProductBean.products}" rows="10"
                          paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
@@ -39,7 +39,7 @@
 	            		<h:outputText value="#{product.color}" />
 	            	</p:column>
 	            </p:dataTable>
-	        </p:tab>
-	    </p:carousel>
+	        </p:fieldset>
+	    </h:form>
 	</h:body>
 </html>

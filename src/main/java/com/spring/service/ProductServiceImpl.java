@@ -6,8 +6,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.hibernate.SessionFactory;
+import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +18,7 @@ import com.spring.model.ProductModel;
 
 @Component
 @Service(value="productService")
+@Transactional
 public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
@@ -36,33 +37,28 @@ public class ProductServiceImpl implements ProductService{
     
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<ProductModel> getAllProducts() {
 		 return getSessionFactory().getCurrentSession().getNamedQuery("products.all").list();
 	}
 
 	@Override
-	@Transactional
 	public void addProduct(ProductModel product) {
 		 getSessionFactory().getCurrentSession().persist(product);
 		
 	}
 
 	@Override
-	@Transactional
 	public ProductModel findProduct(ProductModel product) {
 		return sessionFactory.getCurrentSession().get(ProductModel.class, product.getId());
 		
 	}
 
 	@Override
-	@Transactional
 	public void deleteProduct(ProductModel product) {
 		getSessionFactory().getCurrentSession().delete(product);	
 	}
 
 	@Override
-	@Transactional
 	public void updateProduct(ProductModel product) {
 		 getSessionFactory().getCurrentSession().merge(product);
 	}
@@ -81,53 +77,48 @@ public class ProductServiceImpl implements ProductService{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<ProductModel> findProductByName(String name) {
 				return sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<ProductModel> findProductByType(String type) {
 		return sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<ProductModel> findProductByColor(String color) {
 		return sessionFactory.getCurrentSession().getNamedQuery("products.getByColor").setString("color", color).list();
 	}
 
 	@Override
-	@Transactional
 	public ProductModel findProductById(long productId) {
 		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", productId).uniqueResult();
 	}
 
 	@Override
-	@Transactional
-	public String getImageByProductId(long productId) {
-		String p = (String) sessionFactory.getCurrentSession().getNamedQuery("foto.byProductId").setLong("id", productId).uniqueResult();
-		byte[] b= p.getBytes();
-		byte[] b2=Base64.encode(b);
-		return new String(b2);
+	public ProductModel findProductByTypeRose() {
+		String name = "rose"; 
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list().get(1);
 	}
 
 	@Override
-	@Transactional
-	public ProductModel findProdyctByTypeRose() {
-		String type = "Rose"; 
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list().get(1);
-	}
-
-	@Override
-	@Transactional
-	public ProductModel findProducyByTypeTulips() {
-		String type = "Tulip";
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list().get(1);
+	public ProductModel findProductByTypeTulips() {
+		String name = "tulip";
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list().get(1);
 	
 	}	
+	
+	@Override
+	public StreamedContent findProductFoto(Long id){
+		return (StreamedContent) sessionFactory.getCurrentSession().getNamedQuery("foto.byProductId").setLong("id", id).uniqueResult();
+	}
+
+	@Override
+	public int findProductID(Long id) {
+		return (int) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", id).uniqueResult();
+	}
 }
 

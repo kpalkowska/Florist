@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ import com.spring.model.ProductModel;
 import com.spring.model.RoleModel;
 import com.spring.model.UserModel;
 import com.spring.service.AddressService;
-import com.spring.service.LogService;
 import com.spring.service.ProductService;
 import com.spring.service.RoleService;
 import com.spring.service.UserService;
@@ -33,6 +33,8 @@ public @Data class SessionBean implements Serializable {
 
 	private static final long serialVersionUID = 1549481937223946546L;
 
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+	
 	private String name;
 	private String surname;
 	private String login;
@@ -68,27 +70,21 @@ public @Data class SessionBean implements Serializable {
 	@Autowired
 	private ProductService productService;
 	
-	@Autowired
-	private LogService logService;
-	
 	public String showProducts(){
-		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.getAllProducts());
-		logService.logInfo("showProducts :: complete");
 		
+		LOGGER.info("Display all products");
 		return "/pages/secure/products?faces-redirect=true";
 	}
 	
 	public String showUsers() {
-		logService.logInfo("showUsers :: starting...");
 		setUsers(userService.getAllUsers());
-		logService.logInfo("showUsers :: complete");
 		
+        LOGGER.info("Display all users");
 		return "/pages/secure/list?faces-redirect=true";
 	}
 
 	public String createUser() {
-		logService.logInfo("createUser :: starting...");
 		AddressModel a = addressService.exists(zipCode, city, street, number);
 		RoleModel r = roleService.exists(roleName);
 		
@@ -105,7 +101,6 @@ public @Data class SessionBean implements Serializable {
 			role = r;
 		
 		boolean successUser = userService.createUser(name, surname, login, password, address, role);
-		logService.logInfo("createUser :: complete");
 		
 		if (successUser) {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -114,6 +109,7 @@ public @Data class SessionBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 		}
 		
+		LOGGER.info("Create new user correct");
 		return null;
 	}
     
@@ -127,17 +123,16 @@ public @Data class SessionBean implements Serializable {
     }
 	
 	public String createProduct(){
-		logService.logInfo("createProduct :: starting...");
 		boolean successProduct = productService.createProduct(name, description, price, type, color, foto);
 		
 		if (successProduct) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("Product ").append(name).append(" created!").toString()));
+		LOGGER.info("Create new product correct");
 		} else
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
-		
-		logService.logInfo("createProduct :: complete");
-		return null;
+			LOGGER.error("Error creating product :(");
+			return null;
 	}
 	
     public void handleFileUpload(FileUploadEvent event) {
@@ -147,8 +142,7 @@ public @Data class SessionBean implements Serializable {
 			foto = content;	
 		    FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 		    FacesContext.getCurrentInstance().addMessage(null, message);
+		    LOGGER.info("ADD PHOTO!");
     	}
-    	else
-    		logService.logInfo("foto :: baaad....");
     }
 }

@@ -7,41 +7,55 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
+<h:head>
 	<link type="text/css" rel="stylesheet" href="style.css" />
-	<title>Create New Product</title></h:head>
+	<title>Create New Product</title>
+</h:head>
 	<h:body>
 		<ui:include src="/pages/unsecure/menu.xhtml" />
 		<br/><br/>
 	
 	<h:form>   
-    <p:growl id="growl" sticky="true" showDetail="true"/>
+
  
     <p:wizard flowListener="#{sessionBean.onFlowProcess}">
         <p:tab id="product" title="Product">
             <p:panel header="Product details">
-                <p:messages />
-                <h:panelGrid columns="2" columnClasses="label, value">
+                
+                <h:panelGrid columns="3" columnClasses="label, value">
                     <h:outputText value="Name: *" />
-                    <p:inputText value="#{sessionBean.name}" required="true" label="Name"/>
+                    <p:inputText id="name" value="#{sessionBean.name}" required="true" label="Name">
+                    <f:validateRegex pattern="^[a-zA-Z]+$" />
+                    <f:validateLength minimum="2" />
+                    </p:inputText>
+					<p:message id="message" for="name" />
  
                     <h:outputText value="Description: *" />
-                    <p:inputText value="#{sessionBean.description}" required="true" label="Description"/>
+                    <p:inputText id="description" value="#{sessionBean.description}" required="true" label="Description"/>
+                    <p:message id="message2" for="description" />
  
                     <h:outputText value="Price: *" />
-                    <p:inputText value="#{sessionBean.price}" required="true" label="Price"/>
+                    <p:inputText id="price" value="#{sessionBean.price}" required="true" label="Price">
+                    <f:validateRegex pattern="^\d+(\.\d{2})?$" />
+                    </p:inputText>
+					<p:message id="message3" for="price" />
                     
                     <h:outputText value="Type: *" />
-                    <p:inputText value="#{sessionBean.type}" required="true" label="Type"/>
+                    <p:inputText id="type" value="#{sessionBean.type}" required="true" label="Type"/>
+                    <p:message id="message4" for="type" />
                     
                     <h:outputText value="Color: *" />
-                    <p:inputText value="#{sessionBean.color}" required="true" label="Color"/>
+                    <p:inputText id="color" value="#{sessionBean.color}" required="true" label="Color">
+                    <f:validateRegex pattern="^[a-zA-Z]+$" />
+                    <f:validateLength minimum="2" />
+                    </p:inputText>
+					<p:message id="message5" for="color" />
  
  					<h:outputText value="Foto: *" />		
 						<h:form>
 						    <p:fileUpload fileUploadListener="#{sessionBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
-						           update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-						    <p:growl id="messages" showDetail="true" />
+						           sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+						  
 						</h:form>
 					
                     <h:outputText value="Skip to last: " />
@@ -71,9 +85,9 @@
                    	 </h:panelGrid>
  
                       <h:outputText value="Foto: " />
-                         <p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
-				            <f:param name="productId" value="#{sessioneBean.foto}" />
-				         </p:graphicImage>
+                        
+		                    <p:graphicImage value="#{sessionBean.foto}" width="50"  id="grpImage" height="80"/>
+		               
  					</h:panelGrid>
                     
                 <p:commandButton value="Submit" actionListener="#{sessionBean.createProduct}" update="growl" process="@this"/>

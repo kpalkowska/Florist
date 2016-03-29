@@ -38,9 +38,9 @@
                     </h:inputText>
                     <p:message id="message2" for="surname" />
  
-                    <h:outputText value="Login: *" />
+                    <h:outputText value="E-mail: *" />
                     <h:inputText id="login" value="#{sessionBean.login}" required="true" label="Login">
-                    <f:validateLength minimum="2" />
+                    <f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
                     </h:inputText>
                     <p:message id="message3" for="login" />
  

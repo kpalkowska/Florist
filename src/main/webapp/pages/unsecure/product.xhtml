@@ -9,7 +9,7 @@
 
 	<h:head>
 		<link type="text/css" rel="stylesheet" href="style.css" />
-		<title>Home Page</title>
+		<title>Product Page</title>
 	</h:head>
 	
 	<h:body>
@@ -24,18 +24,11 @@
                             value="#{productBean.products}" 
                             rows="1">
                             <p:column>
-                                <p:link value="#{product.name}" outcome="product">
-                                	<f:param name="id" value="#{product.id}" />
-								</p:link>
                                 <p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
+                                <f:param name="productId" value="#{product.id}" />
                                 </p:graphicImage>
-                            </p:column>
-                            <p:column>
-                                <p:link value="#{product.name}" outcome="product">
-                                	<f:param name="id" value="#{product.id}" />
-								</p:link>
-                                <p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
-                                </p:graphicImage>
+                                <h:outputText id="name" value=" #{product.name}" />
+                                <h:outputText value="#{product.description}" />
                             </p:column>
                             
 

@@ -24,18 +24,10 @@
                             value="#{productBean.products}" 
                             rows="1">
                             <p:column>
-                                <p:link value="#{product.name}" outcome="product">
-                                	<f:param name="id" value="#{product.id}" />
-								</p:link>
                                 <p:graphicImage value="#{product.foto}">
                                 </p:graphicImage>
-                            </p:column>
-                            <p:column>
-                                <p:link value="#{product.name}" outcome="product">
-                                	<f:param name="id" value="#{product.id}" />
-								</p:link>
-                                <p:graphicImage value="#{product.foto}">
-                                </p:graphicImage>
+                                <h:outputText id="name" value=" #{product.name}" />
+                                <h:outputText value="#{product.description}" />
                             </p:column>
                             
 

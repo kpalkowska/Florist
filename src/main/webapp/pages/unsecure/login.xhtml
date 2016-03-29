@@ -21,9 +21,15 @@
 					</f:facet>
 					
                     <h:outputText id="outTxtUserNameId" value="Username: " name="outTxtUserNameNm" />
-                    <h:inputText id="username" required="true" value="#{loginBean.username}" requiredMessage="Please enter username" />
+                    <h:inputText id="username" required="true" value="#{loginBean.username}" requiredMessage="Please enter username" >
+                    <f:validateRegex pattern="^[a-zA-Z]+$" />
+                    <f:validateLength minimum="2" />
+                    </h:inputText>
+                    
 	                <h:outputText id="outTxtPasswordId" value="Password: " name="outTxtPasswordNm" />
-	                <h:inputSecret id="password"  required="true" value="#{loginBean.password}" requiredMessage="Please enter password" name="inTxtPasswordNm" />
+	                <h:inputSecret id="password"  required="true" value="#{loginBean.password}" requiredMessage="Please enter password" name="inTxtPasswordNm" >
+                    <f:validateLength minimum="2" />
+                    </h:inputSecret>
 					
 					<f:facet name="footer">
 						<h:panelGroup style="display:block; text-align:right">
@@ -34,7 +40,7 @@
 			</h:form>
 		</div>
 		
-		<p:growl id="messages"/>
+		
 		<p:growl id="growl" sticky="true" showDetail="true"/>
 	
 	</h:body>

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -91,10 +90,10 @@ public @Data class ProductBean implements Serializable {
 
 	public String createOrder() {
 		AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
 		UserModel user = null;
-		if(appUser!=null)
-		user = userService.findUserByLogin(appUser.getUsername());
+		
+		if(appUser.getUsername() != null)
+			user = userService.findUserByLogin(appUser.getUsername());
 		
 		Date today = Calendar.getInstance().getTime();
 		String dateString = dateFormat.format(today);

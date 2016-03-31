@@ -1,5 +1,6 @@
 package com.spring.service.email;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
@@ -17,6 +18,8 @@ public class EmailService {
 	@Autowired
 	SimpleMailMessage preConfiguredMessage;
 	
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+	
 	public void setMailSender(MailSender mailSender) {
 		this.mailSender = mailSender;
 	}
@@ -30,16 +33,12 @@ public class EmailService {
 		SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);	
 		mailMessage.setTo(to);
 		mailMessage.setText(body);
-		System.out.println(mailMessage);
 		try{
 			mailSender.send(mailMessage);
 		} catch(MailException me){
-			System.out.println("Cannot send email");			
-			System.out.println(me);
+			LOGGER.error("Email was not sent!");
 		} catch (Exception e) {
-			System.out.println("could not send email");
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			LOGGER.error("Email was not sent!");
 		}
 	}
 }

@@ -70,7 +70,7 @@ public @Data class ProductBean implements Serializable {
 
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
-	boolean successOrder;
+	boolean successOrder = false;
 
 	@PostConstruct
 	public void init() {
@@ -116,19 +116,19 @@ public @Data class ProductBean implements Serializable {
 			LOGGER.info("created new order");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Something went wrong."));
 			LOGGER.error("Error create Order :/");
 		}
 
 		setProducts(service.getAllProducts());
 		droppedProducts.clear();
 
-		LOGGER.info("Create Order");
 		return "/pages/secure/products?faces-redirect=true";
 	}
 
 	public void submitOrderAndEmail() {
 		createOrder();
-		email.sendEmail();
+		if(successOrder)
+			email.sendEmail();
 	}
 }

@@ -66,8 +66,8 @@ td {
 }
 .ui-button{
 	margin-right: 400px;
-	height: 40px;
-	width: 90px;
+	height: 40px auto;
+	width:  auto;
 	
 }
 

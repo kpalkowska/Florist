@@ -15,7 +15,7 @@
 	<h:body>
 	<h:outputStylesheet library="css" name="style.css"  />
 		<ui:include src="/pages/unsecure/menu.xhtml" />
-		<br/><br/>
+		<br/><br/><br/><br/>
 	
 	<h:form>
     <p:growl id="growl" sticky="true" showDetail="true"/>
@@ -57,7 +57,7 @@
             </p:panel>
         </p:tab>
     </p:wizard>
-    <p:commandButton value= "Go back" action = "/pages/secure/products.xhtml" process="@this"/>
+    <p:commandButton value= "Go back" styleClass="GoBackButton" action = "/pages/secure/products.xhtml" process="@this"/>
 </h:form>
 </h:body>
 </html>

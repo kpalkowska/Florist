@@ -6,7 +6,7 @@
     
    <ui:composition> 	
    		<h:form>
-				<p:menubar>
+				<p:menubar styleClass="Menubar">
 				<p:submenu label="Types">
 		        	<p:menuitem value="Roses" action='#{selectProductBean.showProductsByName("rose")}' />
 		        	<p:menuitem value="Tulips" action='#{selectProductBean.showProductsByName("tulip")}' />
@@ -24,9 +24,9 @@
 		        </p:submenu>
 				
 				<f:facet name="options">
-				<p:button value="Logged as: #{facesContext.externalContext.request.remoteUser}" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
+				
 				<h:outputLink value="/Florist/pages/unsecure/login.xhtml" styleClass="menuButton" rendered="#{empty facesContext.externalContext.request.remoteUser}">Login</h:outputLink>
-    			<p:commandButton value="Logout" action="#{loginBean.logout()}" icon="ui-icon-extlink" rendered="#{not empty facesContext.externalContext.request.remoteUser}"/>
+    			
 			    </f:facet>
 			    
 			    

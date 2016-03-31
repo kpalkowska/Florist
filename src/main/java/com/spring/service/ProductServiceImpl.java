@@ -6,7 +6,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.hibernate.SessionFactory;
-import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -109,16 +108,6 @@ public class ProductServiceImpl implements ProductService{
 		String name = "tulip";
 		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list().get(1);
 	
-	}	
-	
-	@Override
-	public StreamedContent findProductFoto(Long id){
-		return (StreamedContent) sessionFactory.getCurrentSession().getNamedQuery("foto.byProductId").setLong("id", id).uniqueResult();
-	}
-
-	@Override
-	public int findProductID(Long id) {
-		return (int) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", id).uniqueResult();
 	}
 }
 

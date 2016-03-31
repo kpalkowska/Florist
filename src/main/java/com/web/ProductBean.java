@@ -21,8 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import com.spring.model.AddressModel;
+import com.spring.dao.OrderDAO;
 import com.spring.model.OrderModel;
+import com.spring.model.Product2OrderModel;
 import com.spring.model.ProductModel;
 import com.spring.model.UserModel;
 import com.spring.security.AppUser;
@@ -57,6 +58,9 @@ public @Data class ProductBean implements Serializable {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private OrderDAO orderDAO;
 
 	private ProductModel selectedProduct;
 
@@ -65,6 +69,8 @@ public @Data class ProductBean implements Serializable {
 	private List<OrderModel> orders;
 
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	
+	boolean successOrder;
 
 	@PostConstruct
 	public void init() {
@@ -87,16 +93,22 @@ public @Data class ProductBean implements Serializable {
 		AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
 		UserModel user = userService.findUserByLogin(login);
-		AddressModel address = user.getAddress();
 		
 		Date today = Calendar.getInstance().getTime();
 		String dateString = dateFormat.format(today);
+		
+		OrderModel newOrder = new OrderModel();
+		Product2OrderModel p2o = new Product2OrderModel();
+		
+		newOrder.setUsers(user);
+		newOrder.setAddress(user.getAddress());
+		newOrder.setDate(dateString);
+		orderDAO.addOrder(newOrder);
 
-		boolean successOrder = orderService.createOrder(address, dateString, user);
-		OrderModel order = orderService.exists(address, dateString, user);
-
-		for (int i = 0; i < droppedProducts.size(); i++)
-			p2oService.createProduct2Order(droppedProducts.get(i), order);
+		for(ProductModel product : droppedProducts){
+			p2o.setProduct(product);
+			successOrder = p2oService.createProduct2Order(product, newOrder);
+		}
 
 		if (successOrder) {
 			FacesContext.getCurrentInstance().addMessage(null,

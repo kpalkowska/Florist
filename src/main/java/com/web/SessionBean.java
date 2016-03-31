@@ -51,7 +51,6 @@ public @Data class SessionBean implements Serializable {
 	private String type;
 	private String color;
 	private byte[] foto;
-	private AddressModel address;
 	private RoleModel role;
 	private String time;
 	private List<UserModel> users = new ArrayList<>();
@@ -85,6 +84,8 @@ public @Data class SessionBean implements Serializable {
 	}
 
 	public String createUser() {
+		AddressModel address;
+		
 		AddressModel a = addressService.exists(zipCode, city, street, number);
 		RoleModel r = roleService.exists(roleName);
 		

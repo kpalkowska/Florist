@@ -92,7 +92,9 @@ public @Data class ProductBean implements Serializable {
 	public String createOrder() {
 		AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
-		UserModel user = userService.findUserByLogin(login);
+		UserModel user = null;
+		if(appUser!=null)
+		user = userService.findUserByLogin(appUser.getUsername());
 		
 		Date today = Calendar.getInstance().getTime();
 		String dateString = dateFormat.format(today);

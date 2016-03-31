@@ -60,7 +60,7 @@ public @Data class EmailBean implements Serializable {
 		
 		LOGGER.info("Email was sent to user");
 		}
-		catch(MailException mex){
+		catch(Exception mex){
 			mex.printStackTrace();
 			LOGGER.error("Email was not sent!");
 		}

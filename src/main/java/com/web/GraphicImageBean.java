@@ -32,10 +32,11 @@ public @Data class GraphicImageBean {
 	@ManagedProperty("#{productBean}")
 	ProductBean productBean;
 
+	StreamedContent fotoToDisplay;
 	@PostConstruct
 	public void init(){
 		List<ProductModel> products;
-		StreamedContent fotoToDisplay;
+		
 		try{
 			products = productBean.getService().getAllProducts();
 			for(ProductModel model : products)

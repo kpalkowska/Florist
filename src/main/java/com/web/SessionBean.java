@@ -128,11 +128,12 @@ public @Data class SessionBean implements Serializable {
 		if (successProduct) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("Product ").append(name).append(" created!").toString()));
-		LOGGER.info("Create new product correct");
-		} else
+			LOGGER.info("Create new product correct");
+		} else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 			LOGGER.error("Error creating product :(");
-			return null;
+		}
+		return null;
 	}
 	
     public void handleFileUpload(FileUploadEvent event) {

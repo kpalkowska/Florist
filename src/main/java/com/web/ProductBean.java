@@ -107,6 +107,7 @@ public @Data class ProductBean implements Serializable {
 		if (successOrder) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("Order ").append("submited!").toString()));
+			LOGGER.info("created new order");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));

@@ -6,22 +6,12 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<h:head>
-	<link type="text/css" rel="stylesheet" href="style.css" />
+	
 		<title>Welcome</title>
-		
-		<style>
-			#action-box {
-			width: 300px;
-			padding: 20px;
-			margin: 100px auto;
-			background: #fff;
-			-webkit-border-radius: 2px;
-			-moz-border-radius: 2px;
-			border: 1px solid #000;
-			}
-		</style>
+	
 	</h:head>
 	<h:body> 
+	<h:outputStylesheet library="css" name="style.css"  />
 		<ui:include src="/pages/unsecure/menu.xhtml" />
 		<br/><br/>
 		<div id="action-box">
@@ -33,12 +23,12 @@
 					</f:facet>
 					
                     <h:outputText id="outTxtUserNameId" value="Username: " name="outTxtUserNameNm" />
-                    <h:inputText id="username" required="true" value="#{loginBean.username}" requiredMessage="Please enter username" >
+                    <h:inputText id="username" styleClass="text-input" required="true" value="#{loginBean.username}" requiredMessage="Please enter username" >
                     <f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
                     </h:inputText>
                     
 	                <h:outputText id="outTxtPasswordId" value="Password: " name="outTxtPasswordNm" />
-	                <h:inputSecret id="password"  required="true" value="#{loginBean.password}" requiredMessage="Please enter password" name="inTxtPasswordNm" >
+	                <h:inputSecret id="password" styleClass="text-input" required="true" value="#{loginBean.password}" requiredMessage="Please enter password" name="inTxtPasswordNm" >
                     <f:validateLength minimum="2" />
                     </h:inputSecret>
 					

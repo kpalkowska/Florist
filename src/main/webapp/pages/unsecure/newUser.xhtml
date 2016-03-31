@@ -8,10 +8,10 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<h:head>
-	<link type="text/css" rel="stylesheet" href="style.css" />
 		<title>Create New User</title>
 	</h:head>
 	<h:body>
+	<h:outputStylesheet library="css" name="style.css"  />
 		<ui:include src="/pages/unsecure/menu.xhtml" />
 		<br/><br/><br></br><br></br><br></br><br></br>
 	
@@ -39,13 +39,13 @@
                     <p:message id="message2" for="surname" />
                     
                     <h:outputText value="E-mail: *" />
-                    <h:inputText id="login" value="#{sessionBean.login}" required="true" label="Login">
+                    <h:inputText id="login" styleClass="text-input" value="#{sessionBean.login}" required="true" label="Login">
                     <f:validateRegex pattern="^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" />
                     </h:inputText>
                     <p:message id="message3" for="login" />
  
  					<h:outputText value="Password: *" />
-                    <h:inputSecret id="password" value="#{sessionBean.password}" required="true" label="Password">
+                    <h:inputSecret id="password" styleClass="text-input" value="#{sessionBean.password}" required="true" label="Password">
                     <f:validateLength minimum="2" />
                     </h:inputSecret>
                     <p:message id="message4" for="password" />

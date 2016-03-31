@@ -65,14 +65,6 @@ public @Data class ProductBean implements Serializable {
 	private List<OrderModel> orders;
 
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	Date today = Calendar.getInstance().getTime();
-	String dateString = dateFormat.format(today);
-
-	private AppUser appUser;
-	private String login;
-
-	private UserModel user;
-	private AddressModel address;
 
 	@PostConstruct
 	public void init() {
@@ -92,11 +84,13 @@ public @Data class ProductBean implements Serializable {
 	}
 
 	public String createOrder() {
-		appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
-		user = userService.findUserByLogin(login);
-		address = user.getAddress();
-		orders = orderService.getAllOrders();
+		AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
+		UserModel user = userService.findUserByLogin(login);
+		AddressModel address = user.getAddress();
+		
+		Date today = Calendar.getInstance().getTime();
+		String dateString = dateFormat.format(today);
 
 		boolean successOrder = orderService.createOrder(address, dateString, user);
 		OrderModel order = orderService.exists(address, dateString, user);

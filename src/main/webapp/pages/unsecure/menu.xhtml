@@ -41,9 +41,6 @@
 				<p:commandButton value="Logout" action="#{loginBean.logout()}"
 					icon="ui-icon-extlink"
 					rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
-			</f:facet>
-
-			<f:facet name="options">
 				<h:outputLink value="/Florist/pages/unsecure/newUser.xhtml"
 					rendered="#{empty facesContext.externalContext.request.remoteUser}"> Create Account</h:outputLink>
 			</f:facet>

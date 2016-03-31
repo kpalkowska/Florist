@@ -100,10 +100,12 @@ public @Data class ProductBean implements Serializable {
 		OrderModel newOrder = new OrderModel();
 		Product2OrderModel p2o = new Product2OrderModel();
 		
-		newOrder.setUsers(user);
-		newOrder.setAddress(user.getAddress());
-		newOrder.setDate(dateString);
-		orderDAO.addOrder(newOrder);
+		if(droppedProducts.size() != 0){
+			newOrder.setUsers(user);
+			newOrder.setAddress(user.getAddress());
+			newOrder.setDate(dateString);
+			orderDAO.addOrder(newOrder);
+		}
 
 		for(ProductModel product : droppedProducts){
 			p2o.setProduct(product);
@@ -113,11 +115,11 @@ public @Data class ProductBean implements Serializable {
 		if (successOrder) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("Order ").append("submited!").toString()));
-			LOGGER.info("created new order");
+			LOGGER.info("Create new Products2Order");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Something went wrong."));
-			LOGGER.error("Error create Order :/");
+			LOGGER.error("Error creating Products2Order");
 		}
 
 		setProducts(service.getAllProducts());

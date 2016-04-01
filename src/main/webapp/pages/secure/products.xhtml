@@ -30,7 +30,8 @@
 				<p:dataTable id="availableProducts" var="product"
 					value="#{productBean.products}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15">
+					rowsPerPageTemplate="5,10,15"
+					sortBy="#{product.id}">
 					<p:column style="width:20px">
 						<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
 						<p:draggable for="dragIcon" revert="true" helper="clone" />
@@ -80,13 +81,12 @@
 								<f:param name="productId" value="#{product.id}" />
 							</p:graphicImage>
 						</p:column>
-						<p:column style="width:32px">
-							<p:commandButton update=":productForm:display"
-								oncomplete="PF('productDialog').show()" icon="ui-icon-search">
-								<f:setPropertyActionListener value="#{product}"
-									target="#{productBean.selectedProduct}" />
-							</p:commandButton>
-						</p:column>
+		               	<p:column style="width:32px">
+		                    <p:commandButton icon="ui-icon-trash"
+		                        title="Delete"
+		                        actionListener="#{productBean.remove(product)}"
+		                        ajax="false" />
+		                </p:column>
 					</p:dataTable>
 				</p:outputPanel>
 				<p:droppable for="selectedProducts" tolerance="touch"
@@ -96,33 +96,6 @@
 						update="dropArea availableProducts" />
 				</p:droppable>
 			</p:fieldset>
-			<p:dialog header="Product Detail" widgetVar="productDialog"
-				resizable="false" draggable="false" showEffect="fade"
-				hideEffect="fade" modal="true">
-				<p:outputPanel id="display">
-					<h:panelGrid columns="2" cellpadding="4"
-						rendered="#{not empty productBean.selectedProduct}">
-						<f:facet name="header">
-							<p:graphicImage value="#{productBean.selectedProduct.foto}" />
-						</f:facet>
-						<h:outputText value="Id:" />
-						<h:outputText value="#{productBean.selectedProduct.id}"
-							style="font-weight:bold" />
-
-						<h:outputText value="Name:" />
-						<h:outputText value="#{productBean.selectedProduct.name}"
-							style="font-weight:bold" />
-
-						<h:outputText value="Description:" />
-						<h:outputText value="#{productBean.selectedProduct.description}"
-							style="font-weight:bold" />
-
-						<h:outputText value="Price:" />
-						<h:outputText value="#{productBean.selectedProduct.price}"
-							style="font-weight:bold" />
-					</h:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
 		</h:form>
 	</f:view>
 </body>

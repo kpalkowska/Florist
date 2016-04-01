@@ -7,46 +7,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<<<<<<< HEAD
-<h:head>
-	<link type="text/css" rel="stylesheet" href="style.css" />
-	<title>Products</title>
-</h:head>
-<h:body>
-	<ui:include src="/pages/unsecure/menu.xhtml" />
-	<br />
-	<br />
-	<h:form id="productCasesForm">
-		<p:fieldset id="productCasesField" legend="Products">
-			<p:dataTable var="product" value="#{selectProductBean.products}"
-				rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="5,10,15">
-				<p:column headerText="Id">
-					<h:outputText value="#{product.id}" />
-				</p:column>
-				<p:column headerText="Name">
-					<h:outputText value="#{product.name}" />
-				</p:column>
-				<p:column headerText="Description">
-					<h:outputText value="#{product.description}" />
-				</p:column>
-				<p:column headerText="Price">
-					<h:outputText value="#{product.price}" />
-				</p:column>
-				<p:column headerText="Type">
-					<h:outputText value="#{product.type}" />
-				</p:column>
-				<p:column headerText="Color">
-					<h:outputText value="#{product.color}" />
-				</p:column>
-			</p:dataTable>
-		</p:fieldset>
-	</h:form>
-</h:body>
-=======
 	<h:head>
-<h:outputStylesheet library="css" name="style.css"  />
+		<h:outputStylesheet library="css" name="style.css"  />
 		<title>Products</title>
 	</h:head>
 	<h:body> 
@@ -80,5 +42,4 @@
 	        </p:fieldset>
 	    </h:form>
 	</h:body>
->>>>>>> refs/remotes/aneta-7/frontend
 </html>

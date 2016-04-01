@@ -1,54 +1,4 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-<<<<<<< HEAD
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-
-<ui:composition>
-	<h:form>
-		<p:menubar>
-			<p:submenu label="Types">
-				<p:menuitem value="Roses"
-					action='#{selectProductBean.showProductsByName("rose")}' />
-				<p:menuitem value="Tulips"
-					action='#{selectProductBean.showProductsByName("tulip")}' />
-				<p:menuitem value="All" action="#{selectProductBean.showAll()}" />
-			</p:submenu>
-			<p:submenu label="Colors">
-				<p:menuitem value="Pink"
-					action='#{selectProductBean.showProductsByColor("pink")}' />
-				<p:menuitem value="Red"
-					action='#{selectProductBean.showProductsByColor("red")}' />
-				<p:menuitem value="Multicolour"
-					action='#{selectProductBean.showProductsByColor("multicolour")}' />
-			</p:submenu>
-			<p:submenu label="Forms">
-				<p:menuitem value="Single"
-					action='#{selectProductBean.showProductsByType("single")}' />
-				<p:menuitem value="Potted"
-					action='#{selectProductBean.showProductsByType("potted")}' />
-				<p:menuitem value="Bouquets"
-					action='#{selectProductBean.showProductsByType("bouquet")}' />
-			</p:submenu>
-
-			<f:facet name="options">
-				<p:button
-					value="Logged as: #{facesContext.externalContext.request.remoteUser}"
-					rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
-				<h:outputLink value="/Florist/pages/unsecure/login.xhtml"
-					styleClass="menuButton"
-					rendered="#{empty facesContext.externalContext.request.remoteUser}">Login</h:outputLink>
-				<p:commandButton value="Logout" action="#{loginBean.logout()}"
-					icon="ui-icon-extlink"
-					rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
-				<h:outputLink value="/Florist/pages/unsecure/newUser.xhtml"
-					rendered="#{empty facesContext.externalContext.request.remoteUser}"> Create Account</h:outputLink>
-			</f:facet>
-		</p:menubar>
-	</h:form>
-</ui:composition>
-=======
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
@@ -93,5 +43,4 @@
 			</p:menubar>
 		</h:form>
 	</ui:composition>
->>>>>>> refs/remotes/aneta-7/frontend
 </html>

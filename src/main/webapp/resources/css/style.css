@@ -16,7 +16,7 @@ margin-left: auto;
     background: #f3f3f3 linear-gradient(#efefef,#dadada);
 }
 
-.ui-menubar {
+.MenuBar{
     width: 99%;
     position:fixed;
     padding: 0.4em;
@@ -66,13 +66,20 @@ td {
 }
 .ui-button{
 	margin-right: 400px;
+<<<<<<< HEAD
 	height: 40px auto;
 	width:  auto;
+=======
+	margin-left: 20px;
+	height: 50px;
+	width: 120px;
+	margin-top:0px;
+>>>>>>> refs/remotes/aneta-7/frontend
 	
 }
 
 .ui-state-highlight {
-    background: #cc99ff;
+    background: #E0D0F2;
    
 }
 
@@ -89,16 +96,30 @@ td {
      padding: 4px;
 }
 
-.menuButton{
+.GoBackButton
+{
+	margin-top:0px;
 	
-	
-}	
-
-
-
-
-	 
 }
+
+.ui-wizard-navbar{
+	
+}
+.Button1{
+	background:pink;
+	
+	
+}
+
+.ui-widget-header {
+    background: #E0D0F2;
+
+}
+
+.ui-state-default .ui-widget-content .ui-state-default .ui-widget-header .ui-state-default {
+    background:#E0D0F2;
+}
+
 
 
 

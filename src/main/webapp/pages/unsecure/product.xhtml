@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link type="text/css" rel="stylesheet" href="style.css" />
+	<title>Product Page</title>
+
+</h:head>
+
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+	<ui:include src="/pages/unsecure/menu.xhtml" />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+
+	<h:form id="productsBox">
+		<p:dataTable id="productsTable" var="product"
+			value="#{productBean.products}" rows="1">
+			<p:column>
+				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
+					<f:param name="productId" value="#{product.id}" />
+				</p:graphicImage>
+				<h:outputText id="name" value=" #{product.name}" />
+				<h:outputText value="#{product.description}" />
+			</p:column>
+
+
+		</p:dataTable>
+	</h:form>
+
+
+</h:body>
+</html>

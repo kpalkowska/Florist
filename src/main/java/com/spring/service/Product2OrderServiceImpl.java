@@ -17,6 +17,7 @@ import com.spring.model.Product2OrderModel;
 import com.spring.model.ProductModel;
 
 @Component
+@Transactional
 public class Product2OrderServiceImpl implements Product2OrderService{
 	
 	@Autowired
@@ -34,7 +35,6 @@ public class Product2OrderServiceImpl implements Product2OrderService{
 	}
 
 	@Override
-	@Transactional
 	public void deleteProduct2Order(Product2OrderModel product2order) {
 		sessionFactory.getCurrentSession().delete(product2order);	
 	}
@@ -42,25 +42,21 @@ public class Product2OrderServiceImpl implements Product2OrderService{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<Product2OrderModel> getAllProducts2Orders() {
 		return sessionFactory.getCurrentSession().getNamedQuery("products2orders.all").list();
 	}
 
 	@Override
-	@Transactional
 	public void updateProduct2Order(Product2OrderModel product2order) {
 		sessionFactory.getCurrentSession().merge(product2order);
 	}
 
 	@Override
-	@Transactional
 	public void addProduct2Order(Product2OrderModel product2order) {
 		sessionFactory.getCurrentSession().persist(product2order);
 	}
 	
 	@Override
-	@Transactional
 	public Product2OrderModel findProduct2Order(Product2OrderModel product2order) {
 		return (Product2OrderModel) sessionFactory.getCurrentSession().get(Product2OrderModel.class, product2order.getId());
 	}

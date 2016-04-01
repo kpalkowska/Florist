@@ -17,6 +17,7 @@ import com.spring.model.OrderModel;
 import com.spring.model.UserModel;
 
 @Component
+@Transactional
 public class OrderServiceImpl implements OrderService{
 
     @Autowired
@@ -34,38 +35,33 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	@Transactional
 	public void deleteOrder(OrderModel order) {
 		sessionFactory.getCurrentSession().delete(order);	
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<OrderModel> getAllOrders() {
 		return sessionFactory.getCurrentSession().getNamedQuery("orders.all").list();
 	}
 
 	@Override
-	@Transactional
 	public void updateOrder(OrderModel order) {
 		sessionFactory.getCurrentSession().merge(order);
 	}
 
 	@Override
-	@Transactional
 	public void addOrder(OrderModel order) {
 		sessionFactory.getCurrentSession().persist(order);
 	}
 	
 	@Override
-	@Transactional
 	public OrderModel findOrder(OrderModel order) {
 		return (OrderModel) sessionFactory.getCurrentSession().get(OrderModel.class, order.getId());
 	}
 
 	@Override
-	public boolean createOrder(String date, UserModel user, AddressModel address) {
+	public boolean createOrder(AddressModel address,String date, UserModel user) {
 		if (StringUtils.isEmpty(date) || StringUtils.isEmpty(user) || StringUtils.isEmpty(address)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
 		}  else {
@@ -77,8 +73,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
-	@Transactional
-	public OrderModel exists(String date, UserModel user, AddressModel address){
+	public OrderModel exists(AddressModel address, String date, UserModel user){
 		return (OrderModel) sessionFactory.getCurrentSession().getNamedQuery("order.exists")
 				.setString("date", date)
 				.setParameter("users", user)

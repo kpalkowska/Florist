@@ -7,11 +7,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.spring.model.ProductModel;
-import com.spring.service.LogService;
 import com.spring.service.ProductService;
 
 import lombok.Data;
@@ -23,6 +23,8 @@ public @Data class SelectProductBean implements Serializable {
 
 	private static final long serialVersionUID = 1549481937223946546L;
 	
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+	
 	private String name;
 	private String description;
 	private String price;
@@ -33,58 +35,36 @@ public @Data class SelectProductBean implements Serializable {
 	@Autowired
 	private ProductService productService;
 	
-	@Autowired
-	private LogService logService;
-	
 	private List<ProductModel> products = new ArrayList<>();
 	
 	public String showProductsByName(String name){
 		this.name = name;
-		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.findProductByName(name));
-		logService.logInfo("showProducts :: complete");
 
+		LOGGER.info("Display products by name");
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
 	
 	public String showProductsByColor(String color){
 		this.color = color;
-		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.findProductByColor(color));
-		logService.logInfo("showProducts :: complete");
 
+		LOGGER.info("Display producys by color");
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
 	
 	public String showProductsByType(String type){
 		this.type = type;
-		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.findProductByType(type));
-		logService.logInfo("showProducts :: complete");
 
+		LOGGER.info("Display products by type");
 		return "/pages/secure/productCases?faces-redirect=true"; 
 	}
 	
 	public String showAll(){
-		logService.logInfo("showProducts :: starting...");
 		setProducts(productService.getAllProducts());
-		logService.logInfo("showProducts :: complete");
 
+		LOGGER.info("Display all products");
 		return "/pages/secure/productCases?faces-redirect=true"; 
-	}
-	
-	public String showTulips(){
-	
-		productService.findProductByTypeTulips();
-		
-		//widok
-		return null;
-	}
-	
-	public String showRose(){
-		productService.findProductByTypeRose();
-		
-		//widok
-		return null;
 	}
 }

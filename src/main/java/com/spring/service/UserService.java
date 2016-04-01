@@ -18,4 +18,6 @@ public interface UserService {
 	boolean createAddress(String zipCode, String city, String street, String number);
 	boolean createRole(String name);
 	UserModel findUserByLogin(String login);
+	String getCurrentUserLogin(int id);
+
 }

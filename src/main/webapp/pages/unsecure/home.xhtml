@@ -7,14 +7,45 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<link type="text/css" rel="stylesheet" href="style.css" />
-		<title>Home Page</title>
-	</h:head>
-	
-	<h:body>
-		<ui:include src="/pages/unsecure/menu.xhtml" />
-		<br/><br/>
+<h:head>
 
-	</h:body>
+	<title>Home Page</title>
+</h:head>
+
+
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+	<ui:include src="/pages/unsecure/menu.xhtml" />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+
+	<h:form id="productsBox">
+		<p:dataTable id="productsTable" var="product"
+			value="#{productBean.products}" rows="1">
+			<p:column>
+				<p:link value="#{product.name}" outcome="product">
+					<f:param name="id" value="#{product.id}" />
+				</p:link>
+				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
+				</p:graphicImage>
+			</p:column>
+			<p:column>
+				<p:link value="#{product.name}" outcome="product">
+					<f:param name="id" value="#{product.id}" />
+				</p:link>
+				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
+				</p:graphicImage>
+			</p:column>
+
+
+		</p:dataTable>
+	</h:form>
+
+
+</h:body>
 </html>

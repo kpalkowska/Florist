@@ -7,55 +7,77 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<title>Submit Your Order</title>
-	</h:head>
-	<h:body>
-	<h:outputStylesheet library="css" name="style.css"  />
-		<ui:include src="/pages/unsecure/menu.xhtml" />
-		<br/><br/><br/><br/>
-	
+<h:head>
+	<title>Submit Your Order</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+	<ui:include src="/pages/unsecure/menu.xhtml" />
+	<br />
+	<br />
+
 	<h:form>
-    <p:growl id="growl" sticky="true" showDetail="true"/>
- 
-    <p:wizard flowListener="#{sessionBean.onFlowProcess}">        
-        <p:tab id="confirm" title="Confirmation">
-            <p:panel header="Confirmation">
-                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
-                    <h:panelGrid columns="2" columnClasses="label, value">
-						<p:dataTable id="selectedProductsTable" var="product" value="#{productBean.droppedProducts}" rendered="#{not empty productBean.droppedProducts}">
-		                <p:column headerText="Id">
-		                    <h:outputText value="#{product.id}" />
-		                </p:column>
-		 
-		                <p:column headerText="Name">
-		                    <h:outputText value="#{product.name}" />
-		                </p:column>
-		 
-		                <p:column headerText="Description">
-		                    <h:outputText value="#{product.description}" />
-		                </p:column>
-		 
-		                <p:column headerText="Price">
-		                    <h:outputText value="#{product.price}" />
-		                </p:column>
-		            </p:dataTable>
-                </h:panelGrid>
-            </h:panelGrid>
- 			
- 			<p:commandButton value="Submit" action="#{productBean.submitOrderAndEmail}" update="messages" process="@this">
-		        <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert"/>
-		        <p:growl id="messages" showDetail="true" />
-		    </p:commandButton>
-		 
-		    <p:confirmDialog global="true">
-		        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{emailBean.sendEmail}"/>
-		        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-		    </p:confirmDialog>
-            </p:panel>
-        </p:tab>
-    </p:wizard>
-    <p:commandButton value= "Go back" styleClass="GoBackButton" action = "/pages/secure/products.xhtml" process="@this"/>
-</h:form>
+		<p:growl id="growl" sticky="true" showDetail="true" />
+
+		<p:wizard flowListener="#{sessionBean.onFlowProcess}">
+			<p:tab id="confirm" title="Confirmation">
+				<p:panel header="Confirmation">
+					<h:panelGrid id="confirmation" columns="3"
+						columnClasses="grid,grid,grid">
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<p:dataTable id="selectedProductsTable" var="product"
+								value="#{productBean.droppedProducts}"
+								rendered="#{not empty productBean.droppedProducts}">
+								<p:column headerText="Id">
+									<h:outputText value="#{product.id}" />
+								</p:column>
+
+								<p:column headerText="Name">
+									<h:outputText value="#{product.name}" />
+								</p:column>
+
+								<p:column headerText="Description">
+									<h:outputText value="#{product.description}" />
+								</p:column>
+
+								<p:column headerText="Price">
+									<h:outputText value="#{product.price}" />
+								</p:column>
+							</p:dataTable>
+						</h:panelGrid>
+					</h:panelGrid>
+
+					<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;" />
+
+					<p:ajaxStatus onstart="PF('statusDialog').show()"
+						onsuccess="PF('statusDialog').hide()" />
+
+					<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+						closable="false" resizable="false" showHeader="false">
+						<p:graphicImage url="/pages/images/product/ajax-loader.gif" />
+					</p:dialog>
+
+					<h:form>
+						<p:commandButton value="Submit" update="messages" onclic="rc()"
+							action="#{productBean.submitOrderAndEmail}">
+							<p:confirm header="Confirmation" message="Are you sure?"
+								icon="ui-icon-alert" />
+							<p:growl id="messages" showDetail="true" />
+						</p:commandButton>
+					</h:form>
+
+					<p:confirmDialog global="true">
+						<p:commandButton value="Yes" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+							action="#{emailBean.sendEmail}" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+				</p:panel>
+			</p:tab>
+		</p:wizard>
+		<p:commandButton value="Go back" action="/pages/secure/products.xhtml"
+			process="@this" />
+	</h:form>
 </h:body>
 </html>

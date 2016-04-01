@@ -25,13 +25,22 @@
 			rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
 		<br />
 		<br />
+
 		<h:form id="productForm">
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:graphicImage url="/pages/images/product/ajax-loader.gif" />
+		</p:dialog>
+		
+		
 			<p:fieldset id="availableProductsField" legend="Available Products">
 				<p:dataTable id="availableProducts" var="product"
 					value="#{productBean.products}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15"
-					sortBy="#{product.id}">
+					rowsPerPageTemplate="5,10,15" sortBy="#{product.id}">
 					<p:column style="width:20px">
 						<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
 						<p:draggable for="dragIcon" revert="true" helper="clone" />
@@ -81,14 +90,15 @@
 								<f:param name="productId" value="#{product.id}" />
 							</p:graphicImage>
 						</p:column>
-		               	<p:column style="width:32px">
-		                    <p:commandButton icon="ui-icon-trash"
-		                        title="Delete"
-		                        actionListener="#{productBean.remove(product)}"
-		                        ajax="false" />
-		                </p:column>
+						<p:column style="width:32px">
+							<p:commandButton icon="ui-icon-trash" title="Delete"
+								actionListener="#{productBean.remove(product)}" ajax="false" />
+						</p:column>
 					</p:dataTable>
 				</p:outputPanel>
+
+
+
 				<p:droppable for="selectedProducts" tolerance="touch"
 					activeStyleClass="ui-state-highlight"
 					datasource="availableProducts" onDrop="handleDrop">

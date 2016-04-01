@@ -28,16 +28,14 @@ public @Data class GraphicImageBean {
 	
 	@ManagedProperty("#{product.id}")
 	private Long productId;
-	
-	private StreamedContent fotoToDisplay;
-    
+
 	@ManagedProperty("#{productBean}")
 	ProductBean productBean;
-	
-	private List<ProductModel> products;
-	
+
+	StreamedContent fotoToDisplay;
 	@PostConstruct
 	public void init(){
+		List<ProductModel> products;
 		
 		try{
 			products = productBean.getService().getAllProducts();

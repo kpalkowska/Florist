@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -21,8 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import com.spring.model.AddressModel;
+import com.spring.dao.OrderDAO;
 import com.spring.model.OrderModel;
+import com.spring.model.Product2OrderModel;
 import com.spring.model.ProductModel;
 import com.spring.model.UserModel;
 import com.spring.security.AppUser;
@@ -57,7 +57,10 @@ public @Data class ProductBean implements Serializable {
 
 	@Autowired
 	private UserService userService;
-
+	
+	@Autowired
+	private OrderDAO orderDAO;
+	
 	private ProductModel selectedProduct;
 
 	private List<ProductModel> products;
@@ -65,14 +68,8 @@ public @Data class ProductBean implements Serializable {
 	private List<OrderModel> orders;
 
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	Date today = Calendar.getInstance().getTime();
-	String dateString = dateFormat.format(today);
-
-	private AppUser appUser;
-	private String login;
-
-	private UserModel user;
-	private AddressModel address;
+	
+	boolean successOrder = false;
 
 	@PostConstruct
 	public void init() {
@@ -87,42 +84,63 @@ public @Data class ProductBean implements Serializable {
 		products.remove(product);
 	}
 
+	public void remove(ProductModel product) {
+	    try {
+	        droppedProducts.remove(product);
+	        products.add(product);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 	public String submitOrder() {
 		return "/pages/unsecure/newOrder?faces-redirect=true";
 	}
 
 	public String createOrder() {
-		appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
-		user = userService.findUserByLogin(login);
-		address = user.getAddress();
-		orders = orderService.getAllOrders();
+		AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserModel user = null;
+		
+		if(appUser.getUsername() != null)
+			user = userService.findUserByLogin(appUser.getUsername());
+		
+		Date today = Calendar.getInstance().getTime();
+		String dateString = dateFormat.format(today);
+		
+		OrderModel newOrder = new OrderModel();
+		Product2OrderModel p2o = new Product2OrderModel();
+		
+		if(droppedProducts.size() != 0){
+			newOrder.setUsers(user);
+			newOrder.setAddress(user.getAddress());
+			newOrder.setDate(dateString);
+			orderDAO.addOrder(newOrder);
+		}
 
-		boolean successOrder = orderService.createOrder(address, dateString, user);
-		OrderModel order = orderService.exists(address, dateString, user);
-
-		for (int i = 0; i < droppedProducts.size(); i++)
-			p2oService.createProduct2Order(droppedProducts.get(i), order);
+		for(ProductModel product : droppedProducts){
+			p2o.setProduct(product);
+			successOrder = p2oService.createProduct2Order(product, newOrder);
+		}
 
 		if (successOrder) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("Order ").append("submited!").toString()));
-			LOGGER.info("created new order");
+			LOGGER.info("Create new Products2Order");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
-			LOGGER.error("Error create Order :/");
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Something went wrong."));
+			LOGGER.error("Error creating Products2Order");
 		}
 
 		setProducts(service.getAllProducts());
 		droppedProducts.clear();
 
-		LOGGER.info("Create Order");
 		return "/pages/secure/products?faces-redirect=true";
 	}
 
 	public void submitOrderAndEmail() {
 		createOrder();
-		email.sendEmail();
+		if(successOrder)
+			email.sendEmail();
 	}
 }

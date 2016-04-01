@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -60,8 +59,7 @@ public @Data class EmailBean implements Serializable {
 		
 		LOGGER.info("Email was sent to user");
 		}
-		catch(MailException mex){
-			mex.printStackTrace();
+		catch(Exception mex){
 			LOGGER.error("Email was not sent!");
 		}
 	}

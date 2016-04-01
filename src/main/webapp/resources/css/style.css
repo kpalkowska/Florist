@@ -66,10 +66,15 @@ td {
 }
 .ui-button{
 	margin-right: 400px;
+<<<<<<< HEAD
+	height: 40px auto;
+	width:  auto;
+=======
 	margin-left: 20px;
 	height: 50px;
 	width: 120px;
 	margin-top:0px;
+>>>>>>> refs/remotes/aneta-7/frontend
 	
 }
 

@@ -20,7 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import com.spring.dao.AddressDAO;
 import com.spring.dao.OrderDAO;
+import com.spring.model.AddressModel;
 import com.spring.model.OrderModel;
 import com.spring.model.Product2OrderModel;
 import com.spring.model.ProductModel;
@@ -61,6 +63,9 @@ public @Data class ProductBean implements Serializable {
 	@Autowired
 	private OrderDAO orderDAO;
 	
+	@Autowired
+	private AddressDAO addressDAO;
+	
 	private ProductModel selectedProduct;
 
 	private List<ProductModel> products;
@@ -69,7 +74,13 @@ public @Data class ProductBean implements Serializable {
 
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
+	private String street;
+	private String number;
+	private String zipKode;
+	private String city;
+	
 	boolean successOrder = false;
+	boolean checked;
 
 	@PostConstruct
 	public void init() {
@@ -109,10 +120,25 @@ public @Data class ProductBean implements Serializable {
 		
 		OrderModel newOrder = new OrderModel();
 		Product2OrderModel p2o = new Product2OrderModel();
+		AddressModel newAddress = new AddressModel();
 		
 		if(droppedProducts.size() != 0){
 			newOrder.setUsers(user);
-			newOrder.setAddress(user.getAddress());
+			
+			if(street != null && number != null && zipKode != null && city != null){
+				newAddress.setStreet(street);
+				newAddress.setNumber(number);
+				newAddress.setZipCode(zipKode);
+				newAddress.setCity(city);
+				
+				if(!addressDAO.exists(zipKode, city, street, number)){
+					addressDAO.addAddress(newAddress);
+					newOrder.setAddress(newAddress);
+				}
+			}
+			else
+				newOrder.setAddress(user.getAddress());
+			
 			newOrder.setDate(dateString);
 			orderDAO.addOrder(newOrder);
 		}

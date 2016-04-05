@@ -12,8 +12,10 @@ margin-right: auto;
 margin-left: auto;
 }
 
-.ui-menu, .ui-menu .ui-menu-child {
+.ui-menu, .ui-menu .ui-menu-child{
     background: #f3f3f3 linear-gradient(#efefef,#dadada);
+   
+    
 }
 
 .MenuBar{
@@ -25,10 +27,8 @@ margin-left: auto;
 .ui-corner-all {
     border-radius: 6px;
 }
-
-.ui-helper-reset {
-    line-height: 1.8;
-    
+.ui-helper-reset{
+.line-height: 2.4;
 }
 
 #action-box {
@@ -49,11 +49,12 @@ td {
 }
 
 .loginPanelBtn{
-	 width:60px;
-	 height:30px;
+	 width:50px;
+	 height:35px;
 	 color:#4f4f4f;
-	 font-weight: bold;
 	 border-radius: 4px;
+	 float:right;
+	
 	 
 }
 .ui-panel{
@@ -62,25 +63,26 @@ td {
       
 }
 .ui-wizard-step-titles{
-	margin-left: 10px;
+	margin-left: 30%;
 	
 }
 .ui-button{
-	margin-right: 400px;
-<<<<<<< HEAD
-	height: 40px auto;
+	margin-right: 0px;
+	height: 35px auto;
 	width:  auto;
-=======
+
 	margin-left: 20px;
-	height: 50px;
-	width: 120px;
+	height: 40px;
+	width: 115px;
 	margin-top:0px;
->>>>>>> refs/remotes/aneta-7/frontend
+	font-size: 1.03em;
+
 	
 }
 
 .ui-state-highlight {
     background: #E0D0F2;
+   
    
 }
 
@@ -109,23 +111,63 @@ td {
 .Button1{
 	background:pink;
 	
+}
+.ui-wizard-nav-next{
+	margin-right:25%;
 	
 }
 
-.ui-widget-header {
-    background: #E0D0F2;
-
+.ui-wizard-nav-back{
+	margin-left:30%;
+	
 }
 
 .ui-state-default .ui-widget-content .ui-state-default .ui-widget-header .ui-state-default {
     background:#E0D0F2;
+   
 }
 
+.ui-icon {
+    
+    height: 15px;
+    width: 18px;
+}
 
+.ui-menuitem-text{
+    padding: 0.3em 0.6em;
+   
+}
 
+.ui-icon-triangle-1-s {
+   height:15px;
+}
+.ui-datatable .ui-state-default{
+    background: #F2E1F2 none repeat scroll 0 0;
 
+}
+.orderButton{
+	float: right;
+    position: relative;
+    right:1%;
+	height:60px;
+	width:200px;
+	
+}
+.menuItem{
+	margin-right:15px;
+	line-height: 2.4;
+	
+}
 
-
-
-
-
+.goBackButton{
+	margin-left: 40px;
+	
+}
+.ui-panel{
+	
+	margin-left:30%;
+}
+.ui-icon .ui-confirm-dialog-severity .ui-icon-alert{
+	width:18px;
+	
+}

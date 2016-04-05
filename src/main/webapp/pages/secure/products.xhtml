@@ -20,10 +20,6 @@
 		<ui:include src="/pages/unsecure/menu.xhtml" />
 		<br />
 		<br />
-		<p:commandButton value="Submit your order"
-			action="#{productBean.submitOrder()}"
-			rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
-		<br />
 		<br />
 
 		<h:form id="productForm">
@@ -64,6 +60,8 @@
 					</p:column>
 				</p:dataTable>
 			</p:fieldset>
+			<br />
+			<br />
 			<p:fieldset id="selectedProducts" legend="Selected Products"
 				style="margin-top:20px">
 				<p:outputPanel id="dropArea">
@@ -90,7 +88,7 @@
 								<f:param name="productId" value="#{product.id}" />
 							</p:graphicImage>
 						</p:column>
-						<p:column style="width:32px">
+						<p:column style="width:70px">
 							<p:commandButton icon="ui-icon-trash" title="Delete"
 								actionListener="#{productBean.remove(product)}" ajax="false" />
 						</p:column>
@@ -105,6 +103,9 @@
 				</p:droppable>
 			</p:fieldset>
 		</h:form>
+		<p:commandButton value="Submit your order" styleClass="orderButton"
+			action="#{productBean.submitOrder()}"
+			rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
 	</f:view>
 </body>
 </html>

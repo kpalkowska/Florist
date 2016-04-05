@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PostLoad;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -51,27 +53,49 @@ public class ProductModel {
 	@Lob
 	@Column(name="foto", columnDefinition="mediumblob")
 	private byte[] foto;
+	
+	@Transient
+	private StreamedContent fotoToDisplay = new DefaultStreamedContent();
 
+	@PostLoad
+	public void createFotoToDisplay() {
+		if (Objects.nonNull(foto)) {
+			fotoToDisplay = new DefaultStreamedContent(new ByteArrayInputStream(foto), "image/png");
+		}
+	}
+	
+	
+	
 	public ProductModel(String name, String description, String price, String type, String color, byte[] foto){
 		this.name = name;
 		this.description = description;
-		this.price = price;
+		this.price = price; 
 		this.type = type;
 		this.color = color;
 		this.foto = foto;
 	}
+
+	public int getImageSize() {
+		return Objects.isNull(foto) ? -1 : foto.length;
+	}
 	
-    public StreamedContent getFotoToDisplay() {
-
-            if (Objects.isNull(foto))
-                  return new DefaultStreamedContent();
-            else
-                  return new DefaultStreamedContent(new ByteArrayInputStream(foto), "image/png");
-      }
-
- 
-
-    public void setFotoToDisplay(StreamedContent fotoToDisplay) { }
+	public void setImageSize(int imageSize) {
+	}
+	
+	
+//	public StreamedContent getFotoToDisplay() {
+//		if (Objects.isNull(foto)) {
+//			return new DefaultStreamedContent();
+//		} else {
+//			return new DefaultStreamedContent(new ByteArrayInputStream(foto), "image/png");
+//		}
+//	}
+//
+//	public void setFotoToDisplay(StreamedContent fotoToDisplay) {
+//		
+//	}
+	
+	
 
 }
 

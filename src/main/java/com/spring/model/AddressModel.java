@@ -27,6 +27,9 @@ import javax.persistence.Id;
 })
 public class AddressModel {
 	
+	public static final String ADDRESS_DAO = "select count(*) from AddressModel address where address.zipCode = :zipCode and address.city = :city and address.street = :street and address.number = :number";
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;

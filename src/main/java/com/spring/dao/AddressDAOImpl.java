@@ -36,11 +36,10 @@ public class AddressDAOImpl extends HibernateDaoSupport implements AddressDAO {
 
 		@Override
 		public boolean exists(String zipCode, String city, String street, String number) {
-			final String SQL = "select count(*) from AddressModel address where address.zipCode = :zipCode and address.city = :city and address.street = :street and address.number = :number";
 			return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
 				@Override
 				public Boolean doInHibernate(Session session) throws HibernateException {
-					Long count = (Long) session.createQuery(SQL).setParameter("zipCode", zipCode)
+					Long count = (Long) session.createQuery(AddressModel.ADDRESS_DAO).setParameter("zipCode", zipCode)
 							.setParameter("city", city)
 							.setParameter("street", street)
 							.setParameter("number", number)

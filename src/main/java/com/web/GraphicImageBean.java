@@ -1,9 +1,6 @@
 package com.web;
 
 import java.io.ByteArrayInputStream;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
@@ -13,7 +10,6 @@ import org.apache.log4j.Logger;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-import com.spring.model.ProductModel;
 import com.spring.service.ProductService;
 
 import lombok.Data;
@@ -24,30 +20,15 @@ public @Data class GraphicImageBean {
 	private static Logger LOGGER = Logger.getLogger("InfoLogging");
 	
 	@ManagedProperty("#{productService}")
-	ProductService productService;
+	private ProductService productService;
 	
 	@ManagedProperty("#{product.id}")
 	private Long productId;
 
 	@ManagedProperty("#{productBean}")
-	ProductBean productBean;
+	private ProductBean productBean;
 
-	StreamedContent fotoToDisplay;
-	@PostConstruct
-	public void init(){
-		List<ProductModel> products;
-		
-		try{
-			products = productBean.getService().getAllProducts();
-			for(ProductModel model : products)
-				fotoToDisplay = productService.findProductById(productId).getFotoToDisplay();
-		}
-		catch(Exception ex){
-			ex.printStackTrace();
-			LOGGER.error("Bad display foto");
-		}
-//		productService.findProductById(productId).getFotoToDisplay();
-	}
+	private StreamedContent fotoToDisplay;
 	
 	public StreamedContent getOneOfRoses() {
 	    FacesContext context = FacesContext.getCurrentInstance();

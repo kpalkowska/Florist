@@ -1,4 +1,4 @@
-package ServiceTest;
+package com.spring.service.email.tests;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

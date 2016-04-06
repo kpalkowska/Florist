@@ -1,4 +1,4 @@
-package ServiceTest;
+package com.spring.service.tests;
 
 import static org.junit.Assert.assertEquals;
 

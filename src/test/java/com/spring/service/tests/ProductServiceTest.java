@@ -1,4 +1,4 @@
-package ServiceTest;
+package com.spring.service.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -41,7 +41,7 @@ public class ProductServiceTest{
 		
 	@Rollback(true)
 	@Test
-	public void addProductCheck() {
+	public void addAndFindProductCheck() {
 		
 		File file = new File("/pages/images/product/images.jpg");
 		byte[] bFile = new byte[(int) file.length()];
@@ -75,12 +75,15 @@ public class ProductServiceTest{
 		assertNotNull(bFile);
 		assertEquals(bFile, retrievedProduct.getFoto());
 		
+		int m = productService.findProductByName(NAME_1).size();
+		
+		assertEquals(1, m);
 		assertEquals(n+1, productService.getAllProducts().size());
 	}
 	
 	@Rollback(true)
 	@Test
-	public void deleteProductCheck(){
+	public void deleteAndFindProductCheck(){
 	
 		int n = productService.getAllProducts().size();
 		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1, TYPE_1, COLOR_1);
@@ -102,6 +105,10 @@ public class ProductServiceTest{
 		assertEquals(n+1, productService.getAllProducts().size());
 		
 		productService.deleteProduct(product);
+		
+		int m = productService.findProductByName(NAME_1).size();
+		
+		assertEquals(0, m);
 		assertEquals(n, productService.getAllProducts().size());
 	}
 	

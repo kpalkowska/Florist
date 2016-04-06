@@ -17,7 +17,7 @@ import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 import org.primefaces.event.DragDropEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 import org.springframework.stereotype.Component;
 
 import com.spring.dao.AddressDAO;
@@ -79,8 +79,8 @@ public @Data class ProductBean implements Serializable {
 	private String zipKode;
 	private String city;
 	
-	boolean successOrder = false;
-	boolean checked;
+	private boolean successOrder = false;
+	private boolean checked;
 
 	@PostConstruct
 	public void init() {
@@ -109,7 +109,7 @@ public @Data class ProductBean implements Serializable {
 	}
 
 	public String createOrder() {
-		AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AppUser appUser = (AppUser) getContext().getAuthentication().getPrincipal();
 		UserModel user = null;
 		
 		if(appUser.getUsername() != null)

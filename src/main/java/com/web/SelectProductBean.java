@@ -65,6 +65,6 @@ public @Data class SelectProductBean implements Serializable {
 		setProducts(productService.getAllProducts());
 
 		LOGGER.info("Display all products");
-		return "/pages/secure/productCases?faces-redirect=true"; 
+		return "/pages/secure/products?faces-redirect=true"; 
 	}
 }

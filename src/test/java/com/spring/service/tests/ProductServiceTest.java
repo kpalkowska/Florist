@@ -1,9 +1,5 @@
 package com.spring.service.tests;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.io.File;
-import java.io.FileInputStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,17 +38,6 @@ public class ProductServiceTest{
 	@Rollback(true)
 	@Test
 	public void addAndFindProductCheck() {
-		
-		File file = new File("/pages/images/product/images.jpg");
-		byte[] bFile = new byte[(int) file.length()];
-		
-		try{
-			FileInputStream fileInputStream = new FileInputStream(file);
-			fileInputStream.read(bFile);
-			fileInputStream.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
 
 		int n = productService.getAllProducts().size();
 		ProductModel product = new ProductModel(NAME_1, DESCRIPTION_1, PRICE_1, TYPE_1, COLOR_1);
@@ -61,7 +46,6 @@ public class ProductServiceTest{
 		product.setPrice(PRICE_1);
 		product.setType(TYPE_1);
 		product.setColor(COLOR_1);
-		product.setFoto(bFile);
 
 		productService.addProduct(product);
 
@@ -72,8 +56,6 @@ public class ProductServiceTest{
 		assertEquals(PRICE_1, retrievedProduct.getPrice());
 		assertEquals(TYPE_1, retrievedProduct.getType());
 		assertEquals(COLOR_1, retrievedProduct.getColor());
-		assertNotNull(bFile);
-		assertEquals(bFile, retrievedProduct.getFoto());
 		
 		int m = productService.findProductByName(NAME_1).size();
 		

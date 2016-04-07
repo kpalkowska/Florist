@@ -1,5 +1,7 @@
 package com.web;
 
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,7 +19,6 @@ import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 import org.primefaces.event.DragDropEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 import org.springframework.stereotype.Component;
 
 import com.spring.dao.AddressDAO;
@@ -71,6 +72,9 @@ public @Data class ProductBean implements Serializable {
 	private List<ProductModel> products;
 	private List<ProductModel> droppedProducts;
 	private List<OrderModel> orders;
+	
+	private ProductModel firstOffer;
+	private ProductModel secondOffer;
 
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
@@ -86,6 +90,9 @@ public @Data class ProductBean implements Serializable {
 	public void init() {
 		products = service.getAllProducts();
 		droppedProducts = new ArrayList<ProductModel>();
+		// home page initialization
+		firstOffer = service.findProductByTypeRose();
+		secondOffer = service.findProductByTypeTulips();
 	}
 
 	public void onProductDrop(DragDropEvent ddEvent) {

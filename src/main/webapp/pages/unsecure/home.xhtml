@@ -25,18 +25,17 @@
 
 
 	<h:form id="productsBox">
-		<p:dataTable id="productsTable" var="product" value="#{productBean.products}" rows="1">
+		<p:dataTable id="productsTable" var="product"
+			value="#{productBean.products}" 
+			rowIndexVar ="index" rows="30">
+		
 			<p:column>
 				<p:link value="#{product.name}" outcome="product">
 					<f:param name="id" value="#{product.id}" />
 				</p:link>
-				<p:graphicImage value="#{product.fotoToDisplay}" />
-			</p:column>
-			<p:column>
-				<p:link value="#{product.name}" outcome="product">
-					<f:param name="id" value="#{product.id}" />
-				</p:link>
-				<p:graphicImage value="#{product.fotoToDisplay}" />
+				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}" rendered="#{not empty product.foto}">
+					<f:param id="foto_id" name="foto_idx" var="#{index}"/>
+				</p:graphicImage>
 			</p:column>
 
 

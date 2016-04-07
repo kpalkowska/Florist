@@ -23,15 +23,15 @@
 		<br />
 
 		<h:form id="productForm">
-		<p:ajaxStatus onstart="PF('statusDialog').show()"
-			onsuccess="PF('statusDialog').hide()" />
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
 
-		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-			closable="false" resizable="false" showHeader="false">
-			<p:graphicImage url="/pages/images/product/ajax-loader.gif" />
-		</p:dialog>
-		
-		
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage url="/pages/images/product/ajax-loader.gif" />
+			</p:dialog>
+
+
 			<p:fieldset id="availableProductsField" legend="Available Products">
 				<p:dataTable id="availableProducts" var="product"
 					value="#{productBean.products}" rows="10" paginator="true"
@@ -57,7 +57,10 @@
 						<h:outputText value="#{product.imageSize}" />
 					</p:column>
 					<p:column headerText="Image">
-						<p:graphicImage value="#{product.fotoToDisplay}" width="50"  id="grpImage" height="80"/>
+						<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+							rendered="#{not empty product.foto}">
+							<f:param id="foto_id" name="foto_idx" var="#{index}" />
+						</p:graphicImage>
 					</p:column>
 				</p:dataTable>
 			</p:fieldset>

@@ -36,7 +36,7 @@
 				<p:dataTable id="availableProducts" var="product"
 					value="#{productBean.products}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15" sortBy="#{product.id}" rowIndexVar="index">
+					rowsPerPageTemplate="5,10,15" sortBy="#{product.id}">
 					<p:column style="width:20px">
 						<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
 						<p:draggable for="dragIcon" revert="true" helper="clone" />
@@ -53,10 +53,13 @@
 					<p:column headerText="Price">
 						<h:outputText value="#{product.price}" />
 					</p:column>
+					<p:column headerText="Image size">
+						<h:outputText value="#{product.imageSize}" />
+					</p:column>
 					<p:column headerText="Image">
 						<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
 							rendered="#{not empty product.foto}">
-							<f:param name="foto_idx" value="#{index}" />
+							<f:param id="foto_id" name="foto_idx" var="#{index}" />
 						</p:graphicImage>
 					</p:column>
 				</p:dataTable>
@@ -83,6 +86,9 @@
 						</p:column>
 						<p:column headerText="Price">
 							<h:outputText value="#{product.price}" />
+						</p:column>
+						<p:column headerText="Image">
+							<p:graphicImage value="#{product.fotoToDisplay}" />
 						</p:column>
 						<p:column style="width:70px">
 							<p:commandButton icon="ui-icon-trash" title="Delete"

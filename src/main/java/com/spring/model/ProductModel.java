@@ -64,6 +64,8 @@ public class ProductModel {
 		}
 	}
 	
+	
+	
 	public ProductModel(String name, String description, String price, String type, String color, byte[] foto){
 		this.name = name;
 		this.description = description;
@@ -72,6 +74,28 @@ public class ProductModel {
 		this.color = color;
 		this.foto = foto;
 	}
+
+	public int getImageSize() {
+		return Objects.isNull(foto) ? -1 : foto.length;
+	}
+	
+	public void setImageSize(int imageSize) {
+	}
+	
+	
+//	public StreamedContent getFotoToDisplay() {
+//		if (Objects.isNull(foto)) {
+//			return new DefaultStreamedContent();
+//		} else {
+//			return new DefaultStreamedContent(new ByteArrayInputStream(foto), "image/png");
+//		}
+//	}
+//
+//	public void setFotoToDisplay(StreamedContent fotoToDisplay) {
+//		
+//	}
+	
+	
 
 }
 

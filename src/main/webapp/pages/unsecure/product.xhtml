@@ -28,8 +28,9 @@
 		<p:dataTable id="productsTable" var="product" rowIndexVar="index"
 			value="#{productBean.products}" rows="30">
 			<p:column>
-				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}" rendered="#{not empty product.foto}">
-					<f:param id="foto_id" name="foto_idx" value="#{index}"/>
+				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+					rendered="#{not empty product.foto}">
+					<f:param id="foto_id" name="foto_idx" value="#{index}" />
 				</p:graphicImage>
 				<h:outputText id="name" value=" #{product.name}" />
 				<h:outputText value="#{product.description}" />

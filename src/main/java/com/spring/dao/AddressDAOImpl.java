@@ -16,41 +16,39 @@ import java.util.List;
 @Repository
 @Transactional
 public class AddressDAOImpl extends HibernateDaoSupport implements AddressDAO {
-	  	
-		@Autowired
-		public AddressDAOImpl(SessionFactory sessionFactory) {
-			super.setSessionFactory(sessionFactory);
-		}
 
-	    public void addAddress(AddressModel address) {
-	    	getHibernateTemplate().save(address);
-	    }
+	@Autowired
+	public AddressDAOImpl(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
 
-	    public void deleteAddress(AddressModel address) {
-	    	getHibernateTemplate().delete(address);
-	    }
+	public void addAddress(AddressModel address) {
+		getHibernateTemplate().save(address);
+	}
 
-	    public void updateAddress(AddressModel address) {
-	    	getHibernateTemplate().update(address);
-	    }
+	public void deleteAddress(AddressModel address) {
+		getHibernateTemplate().delete(address);
+	}
 
-		@Override
-		public boolean exists(String zipCode, String city, String street, String number) {
-			return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
-				@Override
-				public Boolean doInHibernate(Session session) throws HibernateException {
-					Long count = (Long) session.createQuery(AddressModel.ADDRESS_DAO).setParameter("zipCode", zipCode)
-							.setParameter("city", city)
-							.setParameter("street", street)
-							.setParameter("number", number)
-							.uniqueResult();
-					return count > 0;
-				}
-			});
-		}
+	public void updateAddress(AddressModel address) {
+		getHibernateTemplate().update(address);
+	}
 
-		@Override
-		public List<AddressModel> getAllAddresses() {
-			return getHibernateTemplate().loadAll(AddressModel.class);
-		}
+	@Override
+	public boolean exists(String zipCode, String city, String street, String number) {
+		return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
+			@Override
+			public Boolean doInHibernate(Session session) throws HibernateException {
+				Long count = (Long) session.createQuery(AddressModel.ADDRESS_DAO).setParameter("zipCode", zipCode)
+						.setParameter("city", city).setParameter("street", street).setParameter("number", number)
+						.uniqueResult();
+				return count > 0;
+			}
+		});
+	}
+
+	@Override
+	public List<AddressModel> getAllAddresses() {
+		return getHibernateTemplate().loadAll(AddressModel.class);
+	}
 }

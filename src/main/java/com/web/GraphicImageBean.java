@@ -11,7 +11,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -23,28 +22,26 @@ import lombok.Data;
 @ManagedBean(name = "graphicImageBean")
 @RequestScoped
 public @Data class GraphicImageBean {
-	
-	private static Logger LOGGER = Logger.getLogger("InfoLogging");
-	
+
 	private static String FIRST_OFFER_PARAM = "firstOffer";
 	private static String SECOND_OFFER_PARAM = "firstOffer";
-	
+
 	@ManagedProperty("#{productService}")
 	private ProductService productService;
 
 	@ManagedProperty("#{productBean}")
 	private ProductBean productBean;
-	
-	public StreamedContent getFotoToDisplay() {
-	    FacesContext context = FacesContext.getCurrentInstance();
 
-	    if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-	        return new DefaultStreamedContent();
-	    } else {
+	public StreamedContent getFotoToDisplay() {
+		FacesContext context = FacesContext.getCurrentInstance();
+
+		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+			return new DefaultStreamedContent();
+		} else {
 			Map<String, String> params = context.getExternalContext().getRequestParameterMap();
-			String idString = params.get("foto_idx");  	
-			String target = params.get("target");  	
-	    	
+			String idString = params.get("foto_idx");
+			String target = params.get("target");
+
 			if (StringUtils.isNotEmpty(target)) {
 				byte[] foto = null;
 				if (FIRST_OFFER_PARAM.equalsIgnoreCase(target)) {
@@ -52,24 +49,24 @@ public @Data class GraphicImageBean {
 				} else if (SECOND_OFFER_PARAM.equalsIgnoreCase(target)) {
 					foto = productBean.getSecondOffer().getFoto();
 				} else {
-					foto = new byte[]{};
+					foto = new byte[] {};
 				}
-		        return new DefaultStreamedContent(new ByteArrayInputStream(foto));
+				return new DefaultStreamedContent(new ByteArrayInputStream(foto));
 			} else {
 				int id = -1;
 				if (StringUtils.isNumeric(idString)) {
 					id = Integer.valueOf(idString);
-			        List<ProductModel> products = productBean.getProducts();
+					List<ProductModel> products = productBean.getProducts();
 					byte[] foto = products.get(id).getFoto();
-					
-			        return new DefaultStreamedContent(new ByteArrayInputStream(foto));
+
+					return new DefaultStreamedContent(new ByteArrayInputStream(foto));
 				} else {
 					return new DefaultStreamedContent();
 				}
 			}
-	    }
+		}
 	}
-	
+
 	public StreamedContent getOneOfRoses() {
 		FacesContext context = FacesContext.getCurrentInstance();
 
@@ -92,4 +89,3 @@ public @Data class GraphicImageBean {
 		}
 	}
 }
-

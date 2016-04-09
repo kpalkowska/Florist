@@ -18,13 +18,13 @@ import com.spring.model.UserModel;
 
 @Component
 @Transactional
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
-    @Autowired
+	@Autowired
 	private SessionFactory sessionFactory;
-    
-    @Autowired
-    private OrderDAO orderDAO;
+
+	@Autowired
+	private OrderDAO orderDAO;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -36,9 +36,9 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public void deleteOrder(OrderModel order) {
-		sessionFactory.getCurrentSession().delete(order);	
+		sessionFactory.getCurrentSession().delete(order);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderModel> getAllOrders() {
@@ -54,30 +54,28 @@ public class OrderServiceImpl implements OrderService{
 	public void addOrder(OrderModel order) {
 		sessionFactory.getCurrentSession().persist(order);
 	}
-	
+
 	@Override
 	public OrderModel findOrder(OrderModel order) {
 		return (OrderModel) sessionFactory.getCurrentSession().get(OrderModel.class, order.getId());
 	}
 
 	@Override
-	public boolean createOrder(AddressModel address,String date, UserModel user) {
+	public boolean createOrder(AddressModel address, String date, UserModel user) {
 		if (StringUtils.isEmpty(date) || StringUtils.isEmpty(user) || StringUtils.isEmpty(address)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
-		}  else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
+		} else {
 			OrderModel order = new OrderModel(date, user, address);
 			orderDAO.addOrder(order);
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
-	public OrderModel exists(AddressModel address, String date, UserModel user){
-		return (OrderModel) sessionFactory.getCurrentSession().getNamedQuery("order.exists")
-				.setString("date", date)
-				.setParameter("users", user)
-				.setParameter("address", address)
-				.uniqueResult();					
+	public OrderModel exists(AddressModel address, String date, UserModel user) {
+		return (OrderModel) sessionFactory.getCurrentSession().getNamedQuery("order.exists").setString("date", date)
+				.setParameter("users", user).setParameter("address", address).uniqueResult();
 	}
 }

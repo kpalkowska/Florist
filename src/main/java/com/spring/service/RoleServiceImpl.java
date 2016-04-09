@@ -13,22 +13,22 @@ import com.spring.model.RoleModel;
 @Transactional
 public class RoleServiceImpl implements RoleService {
 
-    @Autowired
-   	private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 
-   	public SessionFactory getSessionFactory() {
-   		return sessionFactory;
-   	}
-
-   	public void setSessionFactory(SessionFactory sessionFactory) {
-   		this.sessionFactory = sessionFactory;
-   	}
-    
-    @Override
-	public void deleteRole(RoleModel role) {
-		sessionFactory.getCurrentSession().delete(role);	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
 	}
-	
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public void deleteRole(RoleModel role) {
+		sessionFactory.getCurrentSession().delete(role);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RoleModel> getAllRoles() {
@@ -39,7 +39,7 @@ public class RoleServiceImpl implements RoleService {
 	public void updateRole(RoleModel role) {
 		sessionFactory.getCurrentSession().merge(role);
 	}
-	
+
 	@Override
 	public void addRole(RoleModel role) {
 		sessionFactory.getCurrentSession().persist(role);
@@ -52,6 +52,7 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public RoleModel exists(String role) {
-		return (RoleModel) sessionFactory.getCurrentSession().getNamedQuery("role.exists").setString("role", role).uniqueResult();
+		return (RoleModel) sessionFactory.getCurrentSession().getNamedQuery("role.exists").setString("role", role)
+				.uniqueResult();
 	}
 }

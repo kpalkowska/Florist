@@ -13,33 +13,35 @@
 </h:head>
 
 
-	<h:body>
-		<h:outputStylesheet library="css" name="style.css" />
-		<ui:include src="/pages/unsecure/menu.xhtml" />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-	
-		<h:form id="productsBox">
-			<p:panel id="firstOffer">
-				<p:link value="#{productBean.firstOffer.name}" outcome="product">
-					<f:param name="id" value="#{productBean.firstOffer.id}" />
-				</p:link>
-				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}" rendered="#{not empty productBean.firstOffer.foto}">
-					<f:param name="target" value="firstOffer"/>
-				</p:graphicImage>
-			</p:panel>
-			<p:panel id="secondOffer">
-				<p:link value="#{productBean.secondOffer.name}" outcome="product">
-					<f:param name="id" value="#{productBean.secondOffer.id}" />
-				</p:link>
-				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}" rendered="#{not empty productBean.secondOffer.foto}">
-					<f:param name="target" value="secondOffer"/>
-				</p:graphicImage>
-			</p:panel>
-		</h:form>
-	</h:body>
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+	<ui:include src="/pages/unsecure/menu.xhtml" />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+	<h:form id="productsBox">
+		<p:panel id="firstOffer">
+			<p:link value="#{productBean.firstOffer.name}" outcome="product">
+				<f:param name="id" value="#{productBean.firstOffer.id}" />
+			</p:link>
+			<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+				rendered="#{not empty productBean.firstOffer.foto}">
+				<f:param name="target" value="firstOffer" />
+			</p:graphicImage>
+		</p:panel>
+		<p:panel id="secondOffer">
+			<p:link value="#{productBean.secondOffer.name}" outcome="product">
+				<f:param name="id" value="#{productBean.secondOffer.id}" />
+			</p:link>
+			<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+				rendered="#{not empty productBean.secondOffer.foto}">
+				<f:param name="target" value="secondOffer" />
+			</p:graphicImage>
+		</p:panel>
+	</h:form>
+</h:body>
 </html>

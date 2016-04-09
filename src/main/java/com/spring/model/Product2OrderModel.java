@@ -20,21 +20,19 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Entity 
+@Entity
 @Table(name = "Products2Orders")
-@NamedQueries({
-	@NamedQuery(name = "products2orders.all", query = "Select po from Product2OrderModel po")
-})
+@NamedQueries({ @NamedQuery(name = "products2orders.all", query = "Select po from Product2OrderModel po") })
 public class Product2OrderModel {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "orders")
 	private @NonNull OrderModel orders;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "product")
 	private @NonNull ProductModel product;

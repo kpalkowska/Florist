@@ -34,7 +34,7 @@ public @Data class SessionBean implements Serializable {
 	private static final long serialVersionUID = 1549481937223946546L;
 
 	private static Logger LOGGER = Logger.getLogger("InfoLogging");
-	
+
 	private String name;
 	private String surname;
 	private String login;
@@ -43,9 +43,9 @@ public @Data class SessionBean implements Serializable {
 	private String city;
 	private String street;
 	private String number;
-	
+
 	private String roleName;
-	
+
 	private String description;
 	private String price;
 	private String type;
@@ -56,95 +56,94 @@ public @Data class SessionBean implements Serializable {
 	private List<UserModel> users = new ArrayList<>();
 	private List<ProductModel> products = new ArrayList<>();
 	private boolean skip;
-	
+
 	@Autowired
 	private AddressService addressService;
-	
+
 	@Autowired
 	private RoleService roleService;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private ProductService productService;
-	
-	public String showProducts(){
+
+	public String showProducts() {
 		setProducts(productService.getAllProducts());
-		
+
 		LOGGER.info("Display all products");
 		return "/pages/secure/products?faces-redirect=true";
 	}
-	
+
 	public String showUsers() {
 		setUsers(userService.getAllUsers());
-		
-        LOGGER.info("Display all users");
+
+		LOGGER.info("Display all users");
 		return "/pages/secure/list?faces-redirect=true";
 	}
 
 	public String createUser() {
 		AddressModel address;
-		
+
 		AddressModel a = addressService.exists(zipCode, city, street, number);
 		RoleModel r = roleService.exists(roleName);
-		
-		if(a == null){
+
+		if (a == null) {
 			address = new AddressModel(zipCode, city, street, number);
-		}
-		else
+		} else
 			address = a;
-		
-		if(r == null){
+
+		if (r == null) {
 			role = new RoleModel(roleName);
-		}
-		else
+		} else
 			role = r;
-		
+
 		boolean successUser = userService.createUser(name, surname, login, password, address, role);
-		
+
 		if (successUser) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Success", new StringBuilder("User ").append(login).append(" created!").toString()));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Success",
+					new StringBuilder("User ").append(login).append(" created!").toString()));
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 		}
-		
+
 		LOGGER.info("Create new user correct");
 		return null;
 	}
-    
-    public String onFlowProcess(FlowEvent event) {
-        if(skip) {
-            skip = false;   
-            return "confirm";
-        }
-        else
-            return event.getNewStep();
-    }
-	
-	public String createProduct(){
+
+	public String onFlowProcess(FlowEvent event) {
+		if (skip) {
+			skip = false;
+			return "confirm";
+		} else
+			return event.getNewStep();
+	}
+
+	public String createProduct() {
 		boolean successProduct = productService.createProduct(name, description, price, type, color, foto);
-		
+
 		if (successProduct) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Success", new StringBuilder("Product ").append(name).append(" created!").toString()));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Success",
+					new StringBuilder("Product ").append(name).append(" created!").toString()));
 			LOGGER.info("Create new product correct");
-		} else{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 			LOGGER.error("Error creating product :(");
 		}
 		return null;
 	}
-	
-    public void handleFileUpload(FileUploadEvent event) {
-    	if(event != null){
-    		
-    		byte[] content = event.getFile().getContents();
-			foto = content;	
-		    FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-		    FacesContext.getCurrentInstance().addMessage(null, message);
-		    LOGGER.info("ADD PHOTO!");
-    	}
-    }
+
+	public void handleFileUpload(FileUploadEvent event) {
+		if (event != null) {
+
+			byte[] content = event.getFile().getContents();
+			foto = content;
+			FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+			LOGGER.info("ADD PHOTO!");
+		}
+	}
 }

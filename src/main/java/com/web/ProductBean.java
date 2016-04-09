@@ -60,29 +60,29 @@ public @Data class ProductBean implements Serializable {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private OrderDAO orderDAO;
-	
+
 	@Autowired
 	private AddressDAO addressDAO;
-	
+
 	private ProductModel selectedProduct;
 
 	private List<ProductModel> products;
 	private List<ProductModel> droppedProducts;
 	private List<OrderModel> orders;
-	
+
 	private ProductModel firstOffer;
 	private ProductModel secondOffer;
 
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	
+
 	private String street;
 	private String number;
 	private String zipKode;
 	private String city;
-	
+
 	private boolean successOrder = false;
 	private boolean checked;
 
@@ -103,12 +103,12 @@ public @Data class ProductBean implements Serializable {
 	}
 
 	public void remove(ProductModel product) {
-	    try {
-	        droppedProducts.remove(product);
-	        products.add(product);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		try {
+			droppedProducts.remove(product);
+			products.add(product);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String submitOrder() {
@@ -118,39 +118,38 @@ public @Data class ProductBean implements Serializable {
 	public String createOrder() {
 		AppUser appUser = (AppUser) getContext().getAuthentication().getPrincipal();
 		UserModel user = null;
-		
-		if(appUser.getUsername() != null)
+
+		if (appUser.getUsername() != null)
 			user = userService.findUserByLogin(appUser.getUsername());
-		
+
 		Date today = Calendar.getInstance().getTime();
 		String dateString = dateFormat.format(today);
-		
+
 		OrderModel newOrder = new OrderModel();
 		Product2OrderModel p2o = new Product2OrderModel();
 		AddressModel newAddress = new AddressModel();
-		
-		if(droppedProducts.size() != 0){
+
+		if (droppedProducts.size() != 0) {
 			newOrder.setUsers(user);
-			
-			if(street != null && number != null && zipKode != null && city != null){
+
+			if (street != null && number != null && zipKode != null && city != null) {
 				newAddress.setStreet(street);
 				newAddress.setNumber(number);
 				newAddress.setZipCode(zipKode);
 				newAddress.setCity(city);
-				
-				if(!addressDAO.exists(zipKode, city, street, number)){
+
+				if (!addressDAO.exists(zipKode, city, street, number)) {
 					addressDAO.addAddress(newAddress);
 					newOrder.setAddress(newAddress);
 				}
-			}
-			else
+			} else
 				newOrder.setAddress(user.getAddress());
-			
+
 			newOrder.setDate(dateString);
 			orderDAO.addOrder(newOrder);
 		}
 
-		for(ProductModel product : droppedProducts){
+		for (ProductModel product : droppedProducts) {
 			p2o.setProduct(product);
 			successOrder = p2oService.createProduct2Order(product, newOrder);
 		}
@@ -173,7 +172,7 @@ public @Data class ProductBean implements Serializable {
 
 	public void submitOrderAndEmail() {
 		createOrder();
-		if(successOrder)
+		if (successOrder)
 			email.sendEmail();
 	}
 }

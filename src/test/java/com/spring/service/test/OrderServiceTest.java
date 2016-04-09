@@ -20,25 +20,25 @@ import com.spring.service.RoleService;
 import com.spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/application-context-test.xml"})
+@ContextConfiguration(locations = { "classpath:/application-context-test.xml" })
 @Transactional("txManager")
 public class OrderServiceTest {
-	
+
 	@Autowired
 	OrderService orderService;
-	
+
 	@Autowired
 	AddressService addressService;
-	
+
 	@Autowired
 	RoleService roleService;
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	private final String date = "03-06-2016";
 	private final String date2 = "15-12-2016";
-	
+
 	private final String name = "Jan";
 	private final String surname = "Kowalski";
 	private final String login = "abc@abc.pl";
@@ -48,24 +48,24 @@ public class OrderServiceTest {
 	private final String surname2 = "Kot";
 	private final String login2 = "xyz@abc.pl";
 	private final String password2 = "abcde";
-	
+
 	private final String zipCode = "82-300";
 	private final String city = "Elblag";
 	private final String street = "Kwiatowa";
 	private final String number = "7";
-	
+
 	private final String zipCode2 = "83-500";
 	private final String city2 = "Costam";
 	private final String street2 = "Taka";
 	private final String number2 = "9";
-	
+
 	private final String role1 = "Rola3";
 	private final String role2 = "Rola4";
-	
+
 	@Rollback(true)
 	@Test
-	public void addOrderCheck(){
-		
+	public void addOrderCheck() {
+
 		AddressModel address = new AddressModel(zipCode, city, street, number);
 		address.setZipCode(zipCode);
 		address.setCity(city);
@@ -73,12 +73,12 @@ public class OrderServiceTest {
 		address.setNumber(number);
 
 		addressService.addAddress(address);
-		
+
 		RoleModel role = new RoleModel(role1);
 		role.setRole(role1);
-		
+
 		roleService.addRole(role);
-		
+
 		UserModel user = new UserModel(name, surname, login, password, address, role);
 		user.setName(name);
 		user.setSurname(surname);
@@ -86,27 +86,27 @@ public class OrderServiceTest {
 		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
-		
+
 		userService.addUser(user);
-		
+
 		int n = orderService.getAllOrders().size();
 		OrderModel order = new OrderModel(date, user);
 		order.setDate(date);
 		order.setUsers(user);
-		
+
 		orderService.addOrder(order);
 		OrderModel retrievedOrder = orderService.findOrder(order);
 		assertEquals(order.getId(), retrievedOrder.getId());
 		assertEquals(date, retrievedOrder.getDate());
 		assertEquals(user, retrievedOrder.getUsers());
 
-		assertEquals(n+1, orderService.getAllOrders().size());
+		assertEquals(n + 1, orderService.getAllOrders().size());
 	}
-	
+
 	@Rollback(true)
 	@Test
-	public void deleteOrderCheck(){
-		
+	public void deleteOrderCheck() {
+
 		AddressModel address = new AddressModel(zipCode, city, street, number);
 		address.setZipCode(zipCode);
 		address.setCity(city);
@@ -114,12 +114,12 @@ public class OrderServiceTest {
 		address.setNumber(number);
 
 		addressService.addAddress(address);
-		
+
 		RoleModel role = new RoleModel(role1);
 		role.setRole(role1);
-		
+
 		roleService.addRole(role);
-		
+
 		UserModel user = new UserModel(name, surname, login, password, address, role);
 		user.setName(name);
 		user.setSurname(surname);
@@ -127,30 +127,30 @@ public class OrderServiceTest {
 		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
-		
+
 		userService.addUser(user);
-		
+
 		int n = orderService.getAllOrders().size();
 		OrderModel order = new OrderModel(date, user);
 		order.setDate(date);
 		order.setUsers(user);
-		
+
 		orderService.addOrder(order);
 		OrderModel retrievedOrder = orderService.findOrder(order);
 		assertEquals(order.getId(), retrievedOrder.getId());
 		assertEquals(date, retrievedOrder.getDate());
 		assertEquals(user, retrievedOrder.getUsers());
 
-		assertEquals(n+1, orderService.getAllOrders().size());
-		
+		assertEquals(n + 1, orderService.getAllOrders().size());
+
 		orderService.deleteOrder(order);
 		assertEquals(n, orderService.getAllOrders().size());
 	}
-	
+
 	@Rollback(true)
 	@Test
-	public void updateOrderCheck(){
-		
+	public void updateOrderCheck() {
+
 		AddressModel address = new AddressModel(zipCode, city, street, number);
 		address.setZipCode(zipCode);
 		address.setCity(city);
@@ -158,12 +158,12 @@ public class OrderServiceTest {
 		address.setNumber(number);
 
 		addressService.addAddress(address);
-		
+
 		RoleModel role = new RoleModel(role1);
 		role.setRole(role1);
-		
+
 		roleService.addRole(role);
-		
+
 		UserModel user = new UserModel(name, surname, login, password, address, role);
 		user.setName(name);
 		user.setSurname(surname);
@@ -171,15 +171,15 @@ public class OrderServiceTest {
 		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
-		
+
 		userService.addUser(user);
-		
+
 		int n = orderService.getAllOrders().size();
 		OrderModel order = new OrderModel(date, user, address);
 		order.setDate(date);
 		order.setUsers(user);
 		order.setAddress(address);
-		
+
 		orderService.addOrder(order);
 		OrderModel retrievedOrder = orderService.findOrder(order);
 		assertEquals(order.getId(), retrievedOrder.getId());
@@ -187,8 +187,8 @@ public class OrderServiceTest {
 		assertEquals(address, retrievedOrder.getAddress());
 		assertEquals(user, retrievedOrder.getUsers());
 
-		assertEquals(n+1, orderService.getAllOrders().size());
-		
+		assertEquals(n + 1, orderService.getAllOrders().size());
+
 		AddressModel address2 = new AddressModel(zipCode, city, street, number);
 		address2.setZipCode(zipCode2);
 		address2.setCity(city2);
@@ -196,12 +196,12 @@ public class OrderServiceTest {
 		address2.setNumber(number2);
 
 		addressService.addAddress(address2);
-		
+
 		RoleModel role3 = new RoleModel(role2);
 		role3.setRole(role2);
-		
+
 		roleService.addRole(role);
-		
+
 		UserModel user2 = new UserModel(name2, surname2, login2, password2, address2, role3);
 		user2.setName(name);
 		user2.setSurname(surname);
@@ -209,14 +209,14 @@ public class OrderServiceTest {
 		user2.setPassword(password2);
 		user2.setAddress(address);
 		user2.setRole(role3);
-		
+
 		userService.addUser(user2);
-		
+
 		retrievedOrder.setDate(date2);
 		retrievedOrder.setUsers(user2);
 		retrievedOrder.setAddress(address2);
 		orderService.updateOrder(retrievedOrder);
-		
+
 		OrderModel retrievedOrder2 = orderService.findOrder(order);
 		assertEquals(retrievedOrder.getId(), retrievedOrder2.getId());
 		assertEquals(date2, retrievedOrder2.getDate());

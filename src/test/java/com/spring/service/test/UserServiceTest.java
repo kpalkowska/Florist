@@ -1,4 +1,5 @@
 package com.spring.service.test;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -17,16 +18,16 @@ import com.spring.service.RoleService;
 import com.spring.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/application-context-test.xml"})
+@ContextConfiguration(locations = { "classpath:/application-context-test.xml" })
 @Transactional("txManager")
-public class UserServiceTest{
+public class UserServiceTest {
 
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	AddressService addressService;
-	
+
 	@Autowired
 	RoleService roleService;
 
@@ -37,25 +38,25 @@ public class UserServiceTest{
 
 	private final String name2 = "Tomasz";
 	private final String surname2 = "Kot";
-	
+
 	private final String zipCode = "82-300";
 	private final String city = "Elblag";
 	private final String street = "Kwiatowa";
 	private final String number = "7";
-	
+
 	private final String role_name = "Rola5";
-	
+
 	private final String zipCode2 = "83-500";
 	private final String city2 = "Costam";
 	private final String street2 = "Taka";
 	private final String number2 = "9";
-	
+
 	private final String role_name2 = "Rola6";
-	
+
 	@Rollback(true)
 	@Test
 	public void addUserCheck() {
-		
+
 		AddressModel address = new AddressModel(zipCode, city, street, number);
 		address.setZipCode(zipCode);
 		address.setCity(city);
@@ -63,14 +64,14 @@ public class UserServiceTest{
 		address.setNumber(number);
 
 		addressService.addAddress(address);
-		
+
 		RoleModel role = new RoleModel(role_name);
 		role.setRole(role_name);
-		
+
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
-		
+
 		UserModel user = new UserModel(name, surname, login, password, address, role);
 		user.setName(name);
 		user.setSurname(surname);
@@ -87,13 +88,13 @@ public class UserServiceTest{
 		assertEquals(address, retrievedUser.getAddress());
 		assertEquals(role, retrievedUser.getRole());
 
-		assertEquals(n+1, userService.getAllUsers().size());
+		assertEquals(n + 1, userService.getAllUsers().size());
 	}
-	
+
 	@Rollback(true)
 	@Test
-	public void deleteUserCheck(){
-	
+	public void deleteUserCheck() {
+
 		AddressModel address = new AddressModel(zipCode, city, street, number);
 		address.setZipCode(zipCode);
 		address.setCity(city);
@@ -101,10 +102,10 @@ public class UserServiceTest{
 		address.setNumber(number);
 
 		addressService.addAddress(address);
-		
+
 		RoleModel role = new RoleModel(role_name);
 		role.setRole(role_name);
-		
+
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
@@ -125,15 +126,15 @@ public class UserServiceTest{
 		assertEquals(address, retrievedUser.getAddress());
 		assertEquals(role, retrievedUser.getRole());
 
-		assertEquals(n+1, userService.getAllUsers().size());
-		
+		assertEquals(n + 1, userService.getAllUsers().size());
+
 		userService.deleteUser(user);
 		assertEquals(n, userService.getAllUsers().size());
 	}
-	
+
 	@Rollback(true)
-	@Test 
-	public void updateUserCheck(){
+	@Test
+	public void updateUserCheck() {
 
 		AddressModel address = new AddressModel(zipCode, city, street, number);
 		address.setZipCode(zipCode);
@@ -142,10 +143,10 @@ public class UserServiceTest{
 		address.setNumber(number);
 
 		addressService.addAddress(address);
-		
+
 		RoleModel role = new RoleModel(role_name);
 		role.setRole(role_name);
-		
+
 		roleService.addRole(role);
 
 		int n = userService.getAllUsers().size();
@@ -157,7 +158,7 @@ public class UserServiceTest{
 		user.setPassword(password);
 		user.setAddress(address);
 		user.setRole(role);
-		
+
 		AddressModel address2 = new AddressModel(zipCode2, city2, street2, number2);
 		address2.setZipCode(zipCode2);
 		address2.setCity(city2);
@@ -165,10 +166,10 @@ public class UserServiceTest{
 		address2.setNumber(number2);
 
 		addressService.addAddress(address2);
-		
+
 		RoleModel role2 = new RoleModel(role_name2);
 		role2.setRole(role_name2);
-		
+
 		roleService.addRole(role2);
 
 		userService.addUser(user);
@@ -179,21 +180,21 @@ public class UserServiceTest{
 		assertEquals(address, retrievedUser.getAddress());
 		assertEquals(role, retrievedUser.getRole());
 
-		assertEquals(n+1, userService.getAllUsers().size());
-		
+		assertEquals(n + 1, userService.getAllUsers().size());
+
 		retrievedUser.setName(name2);
 		retrievedUser.setSurname(surname2);
 		retrievedUser.setAddress(address2);
 		retrievedUser.setRole(role2);
 		userService.updateUser(retrievedUser);
-		
+
 		UserModel retrievedUser2 = userService.findUser(user);
 		assertEquals(retrievedUser.getId(), retrievedUser2.getId());
 		assertEquals(name2, retrievedUser2.getName());
 		assertEquals(surname2, retrievedUser2.getSurname());
 		assertEquals(address2, retrievedUser2.getAddress());
 		assertEquals(role2, retrievedUser2.getRole());
-		
+
 	}
-	
+
 }

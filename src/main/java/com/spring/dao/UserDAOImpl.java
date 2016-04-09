@@ -18,49 +18,49 @@ import com.spring.model.*;
 @Repository
 @Transactional
 public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
-		
-		@Autowired
-		public UserDAOImpl(SessionFactory sessionFactory) {
-			super.setSessionFactory(sessionFactory);
-		}
 
-	    public void addUser(UserModel user) {
-	        getHibernateTemplate().save(user);
-	    }
+	@Autowired
+	public UserDAOImpl(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
 
-	    public void deleteUser(UserModel user) {
-	    	getHibernateTemplate().delete(user);
-	    }
+	public void addUser(UserModel user) {
+		getHibernateTemplate().save(user);
+	}
 
-	    public void updateUser(UserModel user) {
-	    	getHibernateTemplate().update(user);
-	    }
+	public void deleteUser(UserModel user) {
+		getHibernateTemplate().delete(user);
+	}
 
-		public List<UserModel> getAllUsers() {
-			return getHibernateTemplate().loadAll(UserModel.class);
-		}
+	public void updateUser(UserModel user) {
+		getHibernateTemplate().update(user);
+	}
 
-		@Override
-		public boolean exists(String login) {
-			final String SQL = "select count(*) from UserModel user where user.login = :login";
-			return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
-				@Override
-				public Boolean doInHibernate(Session session) throws HibernateException {
-					Long count = (Long) session.createQuery(SQL).setParameter("login", login).uniqueResult();
-					return count > 0;
-				}
-			});
-		}
-		
-		@Override
-		public UserModel findUserByName(String username) {
-			return getHibernateTemplate().execute(new HibernateCallback<UserModel>() {
-					@Override
-					public UserModel doInHibernate(Session session) throws HibernateException {
-						Criteria criteria = session.createCriteria(UserModel.class);
-		                criteria.add(Restrictions.eq("login", username));
-						return (UserModel) criteria.uniqueResult();
-					}
-			});
-		}
+	public List<UserModel> getAllUsers() {
+		return getHibernateTemplate().loadAll(UserModel.class);
+	}
+
+	@Override
+	public boolean exists(String login) {
+		final String SQL = "select count(*) from UserModel user where user.login = :login";
+		return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
+			@Override
+			public Boolean doInHibernate(Session session) throws HibernateException {
+				Long count = (Long) session.createQuery(SQL).setParameter("login", login).uniqueResult();
+				return count > 0;
+			}
+		});
+	}
+
+	@Override
+	public UserModel findUserByName(String username) {
+		return getHibernateTemplate().execute(new HibernateCallback<UserModel>() {
+			@Override
+			public UserModel doInHibernate(Session session) throws HibernateException {
+				Criteria criteria = session.createCriteria(UserModel.class);
+				criteria.add(Restrictions.eq("login", username));
+				return (UserModel) criteria.uniqueResult();
+			}
+		});
+	}
 }

@@ -23,37 +23,36 @@ import lombok.Data;
 @SessionScoped
 @Component
 public @Data class EmailBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 7291708796066664438L;
-	
-    private static Logger LOGGER = Logger.getLogger("InfoLogging");
-	
+
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+
 	@Autowired
-    private UserService userService;
-	
+	private UserService userService;
+
 	@Autowired
 	private EmailService emailService;
-	
+
 	public void sendEmail() {
 
-		try{
-		AppUser appUser = (AppUser) getContext().getAuthentication().getPrincipal();		
-		UserModel user = null;
-		
-		if(appUser.getUsername() != null)
-			user = userService.findUserByLogin(appUser.getUsername());
-		
-		String receiver = user.getLogin();
-		String message = "Your order has been registered. Thank you for choosing our Florist's.";
+		try {
+			AppUser appUser = (AppUser) getContext().getAuthentication().getPrincipal();
+			UserModel user = null;
 
-		emailService.sendEmail(receiver, message);
-		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Success", new StringBuilder("Email is sending!").toString()));
-		
-		LOGGER.info("Email was sent to user");
-		}
-		catch(Exception mex){
+			if (appUser.getUsername() != null)
+				user = userService.findUserByLogin(appUser.getUsername());
+
+			String receiver = user.getLogin();
+			String message = "Your order has been registered. Thank you for choosing our Florist's.";
+
+			emailService.sendEmail(receiver, message);
+
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Success", new StringBuilder("Email is sending!").toString()));
+
+			LOGGER.info("Email was sent to user");
+		} catch (Exception mex) {
 			LOGGER.error("Email was not sent!");
 		}
 	}

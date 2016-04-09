@@ -22,17 +22,17 @@ public class RoleDAOImpl extends HibernateDaoSupport implements RoleDAO {
 		super.setSessionFactory(sessionFactory);
 	}
 
-    public void addRole(RoleModel role) {
-    	getHibernateTemplate().save(role);
-    }
+	public void addRole(RoleModel role) {
+		getHibernateTemplate().save(role);
+	}
 
-    public void deleteRole(RoleModel role) {
-    	getHibernateTemplate().delete(role);
-    }
+	public void deleteRole(RoleModel role) {
+		getHibernateTemplate().delete(role);
+	}
 
-    public void updateRole(RoleModel role) {
-    	getHibernateTemplate().update(role);
-    }
+	public void updateRole(RoleModel role) {
+		getHibernateTemplate().update(role);
+	}
 
 	public List<RoleModel> getAllRoles() {
 		return getHibernateTemplate().loadAll(RoleModel.class);

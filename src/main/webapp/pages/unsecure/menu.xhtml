@@ -32,11 +32,11 @@
 			</p:submenu>
 
 			<f:facet name="options">
-
-				<h:outputLink value="/Florist/pages/unsecure/login.xhtml"
-					styleClass="login"
-					rendered="#{empty facesContext.externalContext.request.remoteUser}">Login</h:outputLink>
-
+				<p:button value="Login" icon="ui-icon-star " href="/pages/unsecure/login.xhtml"
+					style="width: auto; height:50;" rendered="#{empty facesContext.externalContext.request.remoteUser}" />
+				<p:button  value="New User" href="/pages/unsecure/newUser.xhtml" 
+					style="width: auto; height:50;" rendered="#{empty facesContext.externalContext.request.remoteUser}"/>
+				
 			</f:facet>
 
 
@@ -47,9 +47,6 @@
 					value="Logged in as: #{facesContext.externalContext.request.remoteUser}"
 					styleClass="menuItem"
 					rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
-
-				<h:outputLink value="/Florist/pages/unsecure/newUser.xhtml"
-					rendered="#{empty facesContext.externalContext.request.remoteUser}"> Create Account</h:outputLink>
 
 				<p:commandButton styleClass="loginPanelBtn" value="Logout"
 					action="#{loginBean.logout()}" icon="ui-icon-extlink"

@@ -23,29 +23,25 @@
 	<br />
 	<br />
 
-
 	<h:form id="productsBox">
-		<p:dataTable id="productsTable" var="product"
-			value="#{productBean.products}" rows="1">
-			<p:column>
-				<p:link value="#{product.name}" outcome="product">
-					<f:param name="id" value="#{product.id}" />
-				</p:link>
-				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
-				</p:graphicImage>
-			</p:column>
-			<p:column>
-				<p:link value="#{product.name}" outcome="product">
-					<f:param name="id" value="#{product.id}" />
-				</p:link>
-				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
-				</p:graphicImage>
-			</p:column>
-
-
-		</p:dataTable>
+		<p:panel id="firstOffer">
+			<p:link value="#{productBean.firstOffer.name}" outcome="product">
+				<f:param name="id" value="#{productBean.firstOffer.id}" />
+			</p:link>
+			<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+				rendered="#{not empty productBean.firstOffer.foto}">
+				<f:param name="target" value="firstOffer" />
+			</p:graphicImage>
+		</p:panel>
+		<p:panel id="secondOffer">
+			<p:link value="#{productBean.secondOffer.name}" outcome="product">
+				<f:param name="id" value="#{productBean.secondOffer.id}" />
+			</p:link>
+			<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+				rendered="#{not empty productBean.secondOffer.foto}">
+				<f:param name="target" value="secondOffer" />
+			</p:graphicImage>
+		</p:panel>
 	</h:form>
-
-
 </h:body>
 </html>

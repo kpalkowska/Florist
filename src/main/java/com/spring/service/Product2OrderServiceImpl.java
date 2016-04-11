@@ -18,12 +18,12 @@ import com.spring.model.ProductModel;
 
 @Component
 @Transactional
-public class Product2OrderServiceImpl implements Product2OrderService{
-	
+public class Product2OrderServiceImpl implements Product2OrderService {
+
 	@Autowired
 	private Product2OrderDAO product2OrderDAO;
-	
-    @Autowired
+
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -36,9 +36,8 @@ public class Product2OrderServiceImpl implements Product2OrderService{
 
 	@Override
 	public void deleteProduct2Order(Product2OrderModel product2order) {
-		sessionFactory.getCurrentSession().delete(product2order);	
+		sessionFactory.getCurrentSession().delete(product2order);
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -55,17 +54,19 @@ public class Product2OrderServiceImpl implements Product2OrderService{
 	public void addProduct2Order(Product2OrderModel product2order) {
 		sessionFactory.getCurrentSession().persist(product2order);
 	}
-	
+
 	@Override
 	public Product2OrderModel findProduct2Order(Product2OrderModel product2order) {
-		return (Product2OrderModel) sessionFactory.getCurrentSession().get(Product2OrderModel.class, product2order.getId());
+		return (Product2OrderModel) sessionFactory.getCurrentSession().get(Product2OrderModel.class,
+				product2order.getId());
 	}
 
 	@Override
 	public boolean createProduct2Order(ProductModel product, OrderModel order) {
 		if (StringUtils.isEmpty(product) || StringUtils.isEmpty(order)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
-		}  else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
+		} else {
 			Product2OrderModel p2o = new Product2OrderModel(order, product);
 			product2OrderDAO.addProduct2Order(p2o);
 			return true;

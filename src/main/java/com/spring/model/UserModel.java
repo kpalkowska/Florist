@@ -23,32 +23,29 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Entity 
+@Entity
 @Table(name = "Users")
-@NamedQueries({
-	@NamedQuery(name = "users.all", query = "Select u from UserModel u"),
-	@NamedQuery(name = "user.byLogin", query = "Select u from UserModel u where u.login = :login"),
-	@NamedQuery(name = "user.byID", query = "Select u.login from UserModel u where u.id = :id")
-})
+@NamedQueries({ @NamedQuery(name = "users.all", query = "Select u from UserModel u"),
+		@NamedQuery(name = "user.byLogin", query = "Select u from UserModel u where u.login = :login"),
+		@NamedQuery(name = "user.byID", query = "Select u.login from UserModel u where u.id = :id") })
 public class UserModel {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-    private @NonNull String name;
-    private @NonNull String surname;
-    private @NonNull String login;
-    private @NonNull String password;
-    
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "address")
-    private @NonNull AddressModel address;
-    
-    
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "role")
-    private @NonNull RoleModel role;
+
+	private @NonNull String name;
+	private @NonNull String surname;
+	private @NonNull String login;
+	private @NonNull String password;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "address")
+	private @NonNull AddressModel address;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "role")
+	private @NonNull RoleModel role;
 
 	public UserModel(String username) {
 		this.login = username;

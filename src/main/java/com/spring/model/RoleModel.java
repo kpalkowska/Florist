@@ -18,16 +18,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "Roles")
-@NamedQueries({
-	@NamedQuery(name = "roles.all", query = "Select r from RoleModel r"),
-	@NamedQuery(name = "role.exists", query = "Select r from RoleModel r where r.role = :role")
-})
+@NamedQueries({ @NamedQuery(name = "roles.all", query = "Select r from RoleModel r"),
+		@NamedQuery(name = "role.exists", query = "Select r from RoleModel r where r.role = :role") })
 public class RoleModel {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private @NonNull String role;
-	
+
 }

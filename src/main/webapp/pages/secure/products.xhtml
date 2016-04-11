@@ -23,20 +23,21 @@
 		<br />
 
 		<h:form id="productForm">
-		<p:ajaxStatus onstart="PF('statusDialog').show()"
-			onsuccess="PF('statusDialog').hide()" />
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
 
-		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-			closable="false" resizable="false" showHeader="false">
-			<p:graphicImage url="/pages/images/product/ajax-loader.gif" />
-		</p:dialog>
-		
-		
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage url="/resources/images/ajax-loader.gif" />
+			</p:dialog>
+
+
 			<p:fieldset id="availableProductsField" legend="Available Products">
 				<p:dataTable id="availableProducts" var="product"
 					value="#{productBean.products}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15" sortBy="#{product.id}">
+					rowsPerPageTemplate="5,10,15" sortBy="#{product.id}"
+					rowIndexVar="index">
 					<p:column style="width:20px">
 						<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
 						<p:draggable for="dragIcon" revert="true" helper="clone" />
@@ -54,8 +55,9 @@
 						<h:outputText value="#{product.price}" />
 					</p:column>
 					<p:column headerText="Image">
-						<p:graphicImage value="#{product.foto}">
-
+						<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+							rendered="#{not empty product.foto}">
+							<f:param name="foto_idx" value="#{index}" />
 						</p:graphicImage>
 					</p:column>
 				</p:dataTable>
@@ -82,11 +84,6 @@
 						</p:column>
 						<p:column headerText="Price">
 							<h:outputText value="#{product.price}" />
-						</p:column>
-						<p:column headerText="Image">
-							<p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
-								<f:param name="productId" value="#{product.id}" />
-							</p:graphicImage>
 						</p:column>
 						<p:column style="width:70px">
 							<p:commandButton icon="ui-icon-trash" title="Delete"

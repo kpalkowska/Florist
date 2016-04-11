@@ -16,68 +16,71 @@ import com.spring.dao.ProductDAO;
 import com.spring.model.ProductModel;
 
 @Component
-@Service(value="productService")
+@Service(value = "productService")
 @Transactional
-public class ProductServiceImpl implements ProductService{
-	
+public class ProductServiceImpl implements ProductService {
+
 	@Autowired
 	private ProductDAO productDAO;
-	
+
 	@Autowired
-    private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-    
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductModel> getAllProducts() {
-		 return getSessionFactory().getCurrentSession().getNamedQuery("products.all").list();
+		return getSessionFactory().getCurrentSession().getNamedQuery("products.all").list();
 	}
 
 	@Override
 	public void addProduct(ProductModel product) {
-		 getSessionFactory().getCurrentSession().persist(product);
-		
+		getSessionFactory().getCurrentSession().persist(product);
+
 	}
 
 	@Override
 	public ProductModel findProduct(ProductModel product) {
 		return sessionFactory.getCurrentSession().get(ProductModel.class, product.getId());
-		
+
 	}
 
 	@Override
 	public void deleteProduct(ProductModel product) {
-		getSessionFactory().getCurrentSession().delete(product);	
+		getSessionFactory().getCurrentSession().delete(product);
 	}
 
 	@Override
 	public void updateProduct(ProductModel product) {
-		 getSessionFactory().getCurrentSession().merge(product);
+		getSessionFactory().getCurrentSession().merge(product);
 	}
 
 	@Override
-	public boolean createProduct(String name, String description, String price, String type, String color, byte[] foto) {
-		if (StringUtils.isEmpty(name) || StringUtils.isEmpty(description) || StringUtils.isEmpty(price) || StringUtils.isEmpty(type)|| StringUtils.isEmpty(color)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
-		}  else {
+	public boolean createProduct(String name, String description, String price, String type, String color,
+			byte[] foto) {
+		if (StringUtils.isEmpty(name) || StringUtils.isEmpty(description) || StringUtils.isEmpty(price)
+				|| StringUtils.isEmpty(type) || StringUtils.isEmpty(color)) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
+		} else {
 			ProductModel product = new ProductModel(name, description, price, type, color, foto);
 			productDAO.addProduct(product);
 			return true;
-		}		
+		}
 		return false;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductModel> findProductByName(String name) {
-				return sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list();
+		return sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -94,20 +97,22 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public ProductModel findProductById(long productId) {
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", productId).uniqueResult();
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", productId)
+				.uniqueResult();
 	}
 
 	@Override
 	public ProductModel findProductByTypeRose() {
-		String name = "rose"; 
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list().get(1);
+		String name = "rose";
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName")
+				.setString("name", name).list().get(1);
 	}
 
 	@Override
 	public ProductModel findProductByTypeTulips() {
 		String name = "tulip";
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list().get(1);
-	
+		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName")
+				.setString("name", name).list().get(1);
+
 	}
 }
-

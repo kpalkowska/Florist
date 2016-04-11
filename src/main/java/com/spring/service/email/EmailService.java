@@ -14,28 +14,28 @@ public class EmailService {
 
 	@Autowired
 	MailSender mailSender;
-	
+
 	@Autowired
 	SimpleMailMessage preConfiguredMessage;
-	
+
 	private static Logger LOGGER = Logger.getLogger("InfoLogging");
-	
+
 	public void setMailSender(MailSender mailSender) {
 		this.mailSender = mailSender;
 	}
 
 	public void setPreConfiguredMessage(SimpleMailMessage preConfiguredMessage) {
 		this.preConfiguredMessage = preConfiguredMessage;
-	}	
-	
+	}
+
 	public void sendEmail(String to, String body) {
- 
-		SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);	
+
+		SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);
 		mailMessage.setTo(to);
 		mailMessage.setText(body);
-		try{
+		try {
 			mailSender.send(mailMessage);
-		} catch(MailException me){
+		} catch (MailException me) {
 			LOGGER.error("Email was not sent!");
 		} catch (Exception e) {
 			LOGGER.error("Email was not sent!");

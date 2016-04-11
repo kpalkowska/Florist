@@ -18,40 +18,38 @@ import com.spring.model.*;
 @Repository
 @Transactional
 public class OrderDAOImpl extends HibernateDaoSupport implements OrderDAO {
-	
-		@Autowired
-		public OrderDAOImpl(SessionFactory sessionFactory) {
-			super.setSessionFactory(sessionFactory);
-		}
 
-	    public void addOrder(OrderModel order) {
-	    	getHibernateTemplate().save(order);
-	    }
+	@Autowired
+	public OrderDAOImpl(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
 
-	    public void deleteOrder(OrderModel order) {
-	    	getHibernateTemplate().delete(order);
-	    }
+	public void addOrder(OrderModel order) {
+		getHibernateTemplate().save(order);
+	}
 
-	    public void updateOrder(OrderModel order) {
-	    	getHibernateTemplate().update(order);
-	    }
+	public void deleteOrder(OrderModel order) {
+		getHibernateTemplate().delete(order);
+	}
 
-		@Override
-		public OrderModel findOrderByName(String name) {
-			return getHibernateTemplate().execute(new HibernateCallback<OrderModel>() {
-				@Override
-				public OrderModel doInHibernate(Session session) throws HibernateException {
-					Criteria criteria = session.createCriteria(OrderModel.class);
-	                criteria.add(Restrictions.eq("name", name));
-					return (OrderModel) criteria.uniqueResult();
-				}
+	public void updateOrder(OrderModel order) {
+		getHibernateTemplate().update(order);
+	}
+
+	@Override
+	public OrderModel findOrderByName(String name) {
+		return getHibernateTemplate().execute(new HibernateCallback<OrderModel>() {
+			@Override
+			public OrderModel doInHibernate(Session session) throws HibernateException {
+				Criteria criteria = session.createCriteria(OrderModel.class);
+				criteria.add(Restrictions.eq("name", name));
+				return (OrderModel) criteria.uniqueResult();
+			}
 		});
-		}
+	}
 
-		public List<OrderModel> getAllOrders() {
-			return getHibernateTemplate().loadAll(OrderModel.class);
-		}
-
-
+	public List<OrderModel> getAllOrders() {
+		return getHibernateTemplate().loadAll(OrderModel.class);
+	}
 
 }

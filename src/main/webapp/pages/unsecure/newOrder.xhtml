@@ -13,12 +13,12 @@
 <h:body>
 	<h:outputStylesheet library="css" name="style.css" />
 	<ui:include src="/pages/unsecure/menu.xhtml" />
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 
 	<h:form>
 		<p:growl id="growl" sticky="true" showDetail="true" />
@@ -45,59 +45,65 @@
 							<h:outputText value="#{product.price}" />
 						</p:column>
 					</p:dataTable>
-					<br/>
-						
-					<h:panelGrid columns="2">
-						<h:selectBooleanCheckbox id="checkboxId" value="#{productBean.checked}">
-				      		<p:ajax event="change" update="panelId" />
-				    	</h:selectBooleanCheckbox>
-				    	<h:outputLabel value="Use my address"/>
-			    	</h:panelGrid>
+					<br />
 
-					<br/>
+					<h:panelGrid columns="2">
+						<h:selectBooleanCheckbox id="checkboxId"
+							value="#{productBean.checked}">
+							<p:ajax event="change" update="panelId" />
+						</h:selectBooleanCheckbox>
+						<h:outputLabel value="Use my address" />
+					</h:panelGrid>
+
+					<br />
 					<h:panelGrid id="panelId" columns="2">
-				        <h:outputLabel rendered="#{!productBean.checked}" >Enter shipping address:</h:outputLabel>
-				        <br/>
-				        <h:outputText rendered="#{!productBean.checked}" value="Street: "/>
-				        <h:inputText rendered="#{!productBean.checked}" value="#{productBean.street}" />
-				        <h:outputText rendered="#{!productBean.checked}" value="Number: "/>
-				        <h:inputText rendered="#{!productBean.checked}" value="#{productBean.number}" />
-				        <h:outputText rendered="#{!productBean.checked}" value="Zip Kode: "/>
-				        <h:inputText rendered="#{!productBean.checked}" value="#{productBean.zipKode}" />
-				        <h:outputText rendered="#{!productBean.checked}" value="City: "/>
-				        <h:inputText rendered="#{!productBean.checked}" value="#{productBean.city}" />
-			        </h:panelGrid>
+						<h:outputLabel rendered="#{!productBean.checked}">Enter shipping address:</h:outputLabel>
+						<br />
+						<h:outputText rendered="#{!productBean.checked}" value="Street: " />
+						<h:inputText rendered="#{!productBean.checked}"
+							value="#{productBean.street}" />
+						<h:outputText rendered="#{!productBean.checked}" value="Number: " />
+						<h:inputText rendered="#{!productBean.checked}"
+							value="#{productBean.number}" />
+						<h:outputText rendered="#{!productBean.checked}"
+							value="Zip Kode: " />
+						<h:inputText rendered="#{!productBean.checked}"
+							value="#{productBean.zipKode}" />
+						<h:outputText rendered="#{!productBean.checked}" value="City: " />
+						<h:inputText rendered="#{!productBean.checked}"
+							value="#{productBean.city}" />
+					</h:panelGrid>
 				</h:panelGrid>
 			</h:panelGrid>
 
 			<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;" />
-				<p:ajaxStatus onstart="PF('statusDialog').show()"
-					onsuccess="PF('statusDialog').hide()" />
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
 
-				<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-					closable="false" resizable="false" showHeader="false">
-					<p:graphicImage url="/pages/images/product/ajax-loader.gif" />
-				</p:dialog>
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:graphicImage url="/resources/images/ajax-loader.gif" />
+			</p:dialog>
 
-				<h:form>
-					<p:commandButton value="Submit" update="messages" onclic="rc()"
-						action="#{productBean.submitOrderAndEmail}">
-						<p:confirm header="Confirmation" message="Are you sure?"
-							icon="ui-icon-alert" />
-						<p:growl id="messages" showDetail="true" />
-					</p:commandButton>
-				</h:form>
+			<h:form>
+				<p:commandButton value="Submit" update="messages" onclic="rc()"
+					action="#{productBean.submitOrderAndEmail}">
+					<p:confirm header="Confirmation" message="Are you sure?"
+						icon="ui-icon-alert" />
+					<p:growl id="messages" showDetail="true" />
+				</p:commandButton>
+			</h:form>
 
-				<p:confirmDialog global="true">
-					<p:commandButton value="Yes" type="button"
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					<p:commandButton value="No" type="button"
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				</p:confirmDialog>
-			</p:fieldset>
-			<br/>
-			<p:commandButton value="Go back" styleClass="goBackButton" action="/pages/secure/products.xhtml"
-				process="@this" />
-		</h:form>
-	</h:body>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Yes" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</p:fieldset>
+		<br />
+		<p:commandButton value="Go back" styleClass="goBackButton"
+			action="/pages/secure/products.xhtml" process="@this" />
+	</h:form>
+</h:body>
 </html>

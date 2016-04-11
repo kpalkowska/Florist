@@ -27,25 +27,25 @@ import com.spring.model.UserModel;
 import com.spring.security.AppUser;
 
 @Component
-@Service(value="userService")
+@Service(value = "userService")
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
-	
+
 	public static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Autowired
 	private AddressDAO addressDAO;
-	
+
 	@Autowired
 	private RoleDAO roleDAO;
 
-    @Autowired
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -58,20 +58,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public void deleteUser(UserModel user) {
-		sessionFactory.getCurrentSession().delete(user);	
+		sessionFactory.getCurrentSession().delete(user);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<UserModel> getAllUsers() {
 		return sessionFactory.getCurrentSession().getNamedQuery("users.all").list();
 	}
-	
+
 	@Override
 	public void updateUser(UserModel user) {
 		sessionFactory.getCurrentSession().merge(user);
 	}
-	
+
 	@Override
 	public void addUser(UserModel user) {
 		sessionFactory.getCurrentSession().persist(user);
@@ -83,11 +83,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public boolean createUser(String userName, String surname, String login, String password, AddressModel address, RoleModel role) {
-		if (StringUtils.isEmpty(surname) || StringUtils.isEmpty(userName) || StringUtils.isEmpty(login) || StringUtils.isEmpty(password) || StringUtils.isEmpty(address) || StringUtils.isEmpty(role)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
+	public boolean createUser(String userName, String surname, String login, String password, AddressModel address,
+			RoleModel role) {
+		if (StringUtils.isEmpty(surname) || StringUtils.isEmpty(userName) || StringUtils.isEmpty(login)
+				|| StringUtils.isEmpty(password) || StringUtils.isEmpty(address) || StringUtils.isEmpty(role)) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
 		} else if (userDAO.exists(login)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User already exists"));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "User already exists"));
 			LOG.info(new StringBuilder("User ").append(userName).append(" already exists").toString());
 		} else {
 			UserModel user = new UserModel(userName, surname, login, passwordEncoder.encode(password), address, role);
@@ -96,11 +100,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean createAddress(String zipCode, String city, String street, String number) {
-		if (StringUtils.isEmpty(zipCode) || StringUtils.isEmpty(street) || StringUtils.isEmpty(city) || StringUtils.isEmpty(number)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid address"));
+		if (StringUtils.isEmpty(zipCode) || StringUtils.isEmpty(street) || StringUtils.isEmpty(city)
+				|| StringUtils.isEmpty(number)) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid address"));
 			LOG.info(new StringBuilder("Address ").append(" cannot be empty").toString());
 		} else if (addressDAO.exists(zipCode, city, street, number)) {
 			return false;
@@ -111,11 +117,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean createRole(String name) {
 		if (StringUtils.isEmpty(name)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid role"));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid role"));
 			LOG.info(new StringBuilder("Role ").append(" cannot be empty").toString());
 		} else if (!roleDAO.exists(name)) {
 			RoleModel role = new RoleModel(name);
@@ -142,11 +149,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public UserModel findUserByLogin(String login) {
-		return (UserModel) sessionFactory.getCurrentSession().getNamedQuery("user.byLogin").setString("login", login).uniqueResult(); 
+		return (UserModel) sessionFactory.getCurrentSession().getNamedQuery("user.byLogin").setString("login", login)
+				.uniqueResult();
 	}
 
 	@Override
 	public String getCurrentUserLogin(int id) {
-		return (String) sessionFactory.getCurrentSession().getNamedQuery("user.byID").setInteger("id", id).uniqueResult();
+		return (String) sessionFactory.getCurrentSession().getNamedQuery("user.byID").setInteger("id", id)
+				.uniqueResult();
 	}
 }

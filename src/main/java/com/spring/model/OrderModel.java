@@ -22,22 +22,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "Orders")
-@NamedQueries({
-	@NamedQuery(name = "orders.all", query = "Select o from OrderModel o"),
-	@NamedQuery(name = "order.exists", query = "Select o from OrderModel o where o.date = :date and o.users = :users and o.address = :address")
-})
+@NamedQueries({ @NamedQuery(name = "orders.all", query = "Select o from OrderModel o"),
+		@NamedQuery(name = "order.exists", query = "Select o from OrderModel o where o.date = :date and o.users = :users and o.address = :address") })
 public class OrderModel {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private @NonNull String date;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "users")
 	private @NonNull UserModel users;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "address")
 	private @NonNull AddressModel address;
@@ -46,5 +44,5 @@ public class OrderModel {
 		this.date = date;
 		this.users = user;
 	}
-		
+
 }

@@ -15,9 +15,13 @@ body {
 	background: #f3f3f3 linear-gradient(#efefef, #dadada);
 }
 
+.main-header {
+	
+  	text-align: center;
+}
+
 .MenuBar {
 	width: 99%;
-	position: fixed;
 	padding: 0.4em;
 }
 

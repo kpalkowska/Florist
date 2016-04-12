@@ -24,7 +24,7 @@ public class RoleModel {
 
 	public static final String ROLES_ALL = "roles.all";
 	public static final String ROLE_EXISTS = "role.exists";
-	public static final String ROLE_EXISTS_SQL = "select count(*) from RoleModel r where r.role = :role";
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

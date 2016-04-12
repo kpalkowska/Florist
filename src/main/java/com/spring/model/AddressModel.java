@@ -24,7 +24,6 @@ import javax.persistence.Id;
 		@NamedQuery(name = AddressModel.ADDRESS_EXISTS, query = "Select address from AddressModel address where address.zipCode = :zipCode and address.city = :city and address.street = :street and address.number = :number") })
 public class AddressModel {
 
-	public static final String ADDRESS_DAO = "select count(*) from AddressModel address where address.zipCode = :zipCode and address.city = :city and address.street = :street and address.number = :number";
     public static final String ADDRESSES_ALL = "addresses.all";
     public static final String ADDRESSES_BY_CITY = "addresses.byCity";
     public static final String ADDRESS_EXISTS = "address.exists";

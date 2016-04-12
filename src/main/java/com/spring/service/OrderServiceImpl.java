@@ -2,9 +2,8 @@ package com.spring.service;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -17,6 +16,8 @@ import com.spring.model.UserModel;
 @Service(value = "orderService")
 public class OrderServiceImpl implements OrderService {
 
+	public static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+	
 	@Autowired
 	private OrderDAO orderDAO;
 
@@ -53,8 +54,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public boolean createOrder(AddressModel address, String date, UserModel user) {
 		if (StringUtils.isEmpty(date) || StringUtils.isEmpty(user) || StringUtils.isEmpty(address)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
+			LOGGER.error("Error in create order");
 		} else {
 			OrderModel order = new OrderModel(date, user, address);
 			orderDAO.addOrder(order);

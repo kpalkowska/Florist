@@ -2,9 +2,8 @@ package com.spring.service;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -17,6 +16,8 @@ import com.spring.model.ProductModel;
 @Service(value = "product2orderService")
 public class Product2OrderServiceImpl implements Product2OrderService {
 
+	public static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+	
 	@Autowired
 	private Product2OrderDAO product2OrderDAO;
 
@@ -48,8 +49,7 @@ public class Product2OrderServiceImpl implements Product2OrderService {
 	@Override
 	public boolean createProduct2Order(ProductModel product, OrderModel order) {
 		if (StringUtils.isEmpty(product) || StringUtils.isEmpty(order)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
+			LOGGER.error("Error in create Product2Order");
 		} else {
 			Product2OrderModel p2o = new Product2OrderModel(order, product);
 			product2OrderDAO.addProduct2Order(p2o);

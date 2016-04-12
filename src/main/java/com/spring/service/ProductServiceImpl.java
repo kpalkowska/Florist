@@ -2,9 +2,8 @@ package com.spring.service;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -15,6 +14,8 @@ import com.spring.model.ProductModel;
 @Service(value = "productService")
 public class ProductServiceImpl implements ProductService {
 
+	public static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+	
 	@Autowired
 	private ProductDAO productDAO;
 	
@@ -49,8 +50,7 @@ public class ProductServiceImpl implements ProductService {
 			byte[] foto) {
 		if (StringUtils.isEmpty(name) || StringUtils.isEmpty(description) || StringUtils.isEmpty(price)
 				|| StringUtils.isEmpty(type) || StringUtils.isEmpty(color)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
+			LOGGER.error("Error in create Product");
 		} else {
 			ProductModel product = new ProductModel(name, description, price, type, color, foto);
 			productDAO.addProduct(product);

@@ -45,11 +45,10 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
 
 	@Override
 	public boolean exists(String login) {
-		final String SQL = "select count(*) from UserModel user where user.login = :login";
 		return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
 			@Override
 			public Boolean doInHibernate(Session session) throws HibernateException {
-				Long count = (Long) session.createQuery(SQL).setParameter("login", login).uniqueResult();
+				Long count = (Long) session.createQuery(UserModel.USER_EXISTS).setParameter("login", login).uniqueResult();
 				return count > 0;
 			}
 		});

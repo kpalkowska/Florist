@@ -49,11 +49,10 @@ public class RoleDAOImpl extends HibernateDaoSupport implements RoleDAO {
 
 	@Override
 	public boolean exists(String role) {
-		final String SQL = "select count(*) from RoleModel r where r.role = :role";
 		return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
 			@Override
 			public Boolean doInHibernate(Session session) throws HibernateException {
-				Long count = (Long) session.createQuery(SQL).setParameter("role", role).uniqueResult();
+				Long count = (Long) session.createQuery(RoleModel.ROLE_EXISTS_SQL).setParameter("role", role).uniqueResult();
 				return count > 0;
 			}
 		});
@@ -61,11 +60,10 @@ public class RoleDAOImpl extends HibernateDaoSupport implements RoleDAO {
 	
 	@Override
 	public RoleModel existed(String role) {
-		final String SQL = "select count(*) from RoleModel r where r.role = :role";
 		return getHibernateTemplate().execute(new HibernateCallback<RoleModel>() {
 			@Override
 			public RoleModel doInHibernate(Session session) throws HibernateException {
-				RoleModel roleM = (RoleModel) session.createQuery(SQL).setParameter("role", role).uniqueResult();
+				RoleModel roleM = (RoleModel) session.createQuery(RoleModel.ROLE_EXISTS_SQL).setParameter("role", role).uniqueResult();
 				return roleM;
 			}
 		});

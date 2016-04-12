@@ -25,11 +25,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "Users")
-@NamedQueries({ @NamedQuery(name = "users.all", query = "Select u from UserModel u"),
-		@NamedQuery(name = "user.byLogin", query = "Select u from UserModel u where u.login = :login"),
-		@NamedQuery(name = "user.byID", query = "Select u.login from UserModel u where u.id = :id") })
+@NamedQueries({ @NamedQuery(name = UserModel.USERS_ALL, query = "Select u from UserModel u"),
+		@NamedQuery(name = UserModel.USER_BY_LOGIN, query = "Select u from UserModel u where u.login = :login"),
+		@NamedQuery(name = UserModel.USER_BY_ID, query = "Select u.login from UserModel u where u.id = :id") })
 public class UserModel {
 
+	public static final String USERS_ALL = "users.all";
+	public static final String USER_BY_LOGIN = "user.byLogin";
+	public static final String USER_BY_ID = "user.byID";
+	public static final String USER_EXISTS = "select count(*) from UserModel user where user.login = :login";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

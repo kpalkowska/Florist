@@ -93,7 +93,7 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 		return getHibernateTemplate().execute(new HibernateCallback<ProductModel>() {
 			@Override
 			public ProductModel doInHibernate(Session session) throws HibernateException {
-				ProductModel product = (ProductModel) session.createQuery("products.byId")
+				ProductModel product = (ProductModel) session.createQuery(ProductModel.PRODUCTS_BY_ID)
 						.setLong("id", productId).uniqueResult();
 				return product;
 			}
@@ -105,7 +105,7 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 		return getHibernateTemplate().execute(new HibernateCallback<ProductModel>() {
 			@Override
 			public ProductModel doInHibernate(Session session) throws HibernateException {
-				ProductModel product = (ProductModel) session.getNamedQuery("products.getByName")
+				ProductModel product = (ProductModel) session.getNamedQuery(ProductModel.PRODUCTS_BY_NAME)
 						.setParameter("name", "rose").list().get(2);
 				return product;
 			}
@@ -117,7 +117,7 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 		return getHibernateTemplate().execute(new HibernateCallback<ProductModel>() {
 			@Override
 			public ProductModel doInHibernate(Session session) throws HibernateException {
-				ProductModel product = (ProductModel) session.getNamedQuery("products.getByName")
+				ProductModel product = (ProductModel) session.getNamedQuery(ProductModel.PRODUCTS_BY_NAME)
 						.setParameter("name", "tulip").list().get(3);
 				return product;
 			}

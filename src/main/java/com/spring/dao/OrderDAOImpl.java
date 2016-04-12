@@ -41,7 +41,7 @@ public class OrderDAOImpl extends HibernateDaoSupport implements OrderDAO {
 		return getHibernateTemplate().execute(new HibernateCallback<OrderModel>() {
 			@Override
 			public OrderModel doInHibernate(Session session) throws HibernateException {
-				OrderModel order = (OrderModel) session.createQuery("order.exists").setString("date", date)
+				OrderModel order = (OrderModel) session.createQuery(OrderModel.ORDER_EXISTS).setString("date", date)
 						.setParameter("users", user).setParameter("address", address).uniqueResult();
 				return order;
 			}

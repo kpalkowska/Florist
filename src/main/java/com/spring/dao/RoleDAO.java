@@ -16,4 +16,8 @@ public interface RoleDAO {
 
 	boolean exists(String name);
 
+	RoleModel findRole(RoleModel role);
+
+	RoleModel existed(String role);
+
 }

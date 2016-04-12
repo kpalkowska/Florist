@@ -14,10 +14,18 @@ public interface ProductDAO {
 
 	void updateProduct(ProductModel product);
 
+	List<ProductModel> findProductByType(String type);
+
+	List<ProductModel> findProductByColor(String color);
+
+	ProductModel findProduct(ProductModel product);
+	
 	List<ProductModel> findProductByName(String name);
 
-	ProductModel findProductByType(String type);
+	ProductModel findProductById(long productId);
 
-	ProductModel findProductByColor(String color);
+	ProductModel findProductByTypeRose();
+
+	ProductModel findProductByTypeTulip();
 
 }

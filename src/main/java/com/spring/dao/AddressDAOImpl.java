@@ -22,14 +22,17 @@ public class AddressDAOImpl extends HibernateDaoSupport implements AddressDAO {
 		super.setSessionFactory(sessionFactory);
 	}
 
+	@Override
 	public void addAddress(AddressModel address) {
 		getHibernateTemplate().save(address);
 	}
 
+	@Override
 	public void deleteAddress(AddressModel address) {
 		getHibernateTemplate().delete(address);
 	}
 
+	@Override
 	public void updateAddress(AddressModel address) {
 		getHibernateTemplate().update(address);
 	}
@@ -46,9 +49,28 @@ public class AddressDAOImpl extends HibernateDaoSupport implements AddressDAO {
 			}
 		});
 	}
+	
+	@Override
+	public AddressModel existed(String zipCode, String city, String street, String number) {
+		return getHibernateTemplate().execute(new HibernateCallback<AddressModel>() {
+			@Override
+			public AddressModel doInHibernate(Session session) throws HibernateException {
+				AddressModel address = (AddressModel) session.createQuery(AddressModel.ADDRESS_DAO).setParameter("zipCode", zipCode)
+						.setParameter("city", city).setParameter("street", street).setParameter("number", number)
+						.uniqueResult();
+				return address;
+			}
+		});
+	}
 
 	@Override
 	public List<AddressModel> getAllAddresses() {
 		return getHibernateTemplate().loadAll(AddressModel.class);
 	}
+	
+	@Override
+	public AddressModel findAddress(AddressModel address) {
+		return (AddressModel) getHibernateTemplate().get(AddressModel.class, address.getId());
+	}
+
 }

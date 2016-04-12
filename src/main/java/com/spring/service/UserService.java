@@ -29,6 +29,4 @@ public interface UserService {
 
 	UserModel findUserByLogin(String login);
 
-	String getCurrentUserLogin(int id);
-
 }

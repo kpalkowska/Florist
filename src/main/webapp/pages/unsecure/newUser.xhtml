@@ -12,11 +12,9 @@
 </h:head>
 <h:body>
 	<h:outputStylesheet library="css" name="style.css" />
-	<ui:include src="/pages/unsecure/header.xhtml" />    
+	<ui:include src="/pages/unsecure/header.xhtml" />
 	<ui:include src="/pages/unsecure/menu.xhtml" />
 	<ui:include src="/pages/unsecure/loader.xhtml" />
-	<br />
-	<br />
 	<br />
 	<br />
 	<br />
@@ -61,8 +59,6 @@
 							<f:validateLength minimum="2" />
 						</h:inputSecret>
 						<p:message id="message4" for="password" />
-
-						
 					</h:panelGrid>
 				</p:panel>
 			</p:tab>
@@ -100,7 +96,7 @@
 						</p:inputText>
 						<p:message id="message8" for="number" />
 
-						
+
 					</h:panelGrid>
 				</p:panel>
 			</p:tab>
@@ -116,7 +112,7 @@
 							<f:selectItem itemValue="User" itemLabel="User" />
 							<f:selectItem itemValue="Other" itemLabel="Other" />
 						</h:selectOneMenu>
-						
+
 					</h:panelGrid>
 				</p:panel>
 			</p:tab>
@@ -162,8 +158,6 @@
 							<h:outputText value="#{sessionBean.roleName}"
 								styleClass="outputLabel" />
 
-							<h:outputText />
-							<h:outputText />
 						</h:panelGrid>
 					</h:panelGrid>
 
@@ -171,7 +165,7 @@
 						actionListener="#{sessionBean.createUser}" update="growl"
 						process="@this" />
 					<br />
-					
+
 				</p:panel>
 			</p:tab>
 		</p:wizard>

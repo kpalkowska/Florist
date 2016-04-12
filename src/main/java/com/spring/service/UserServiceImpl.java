@@ -6,16 +6,13 @@ import java.util.Objects;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.spring.dao.AddressDAO;
@@ -26,60 +23,46 @@ import com.spring.model.RoleModel;
 import com.spring.model.UserModel;
 import com.spring.security.AppUser;
 
-@Component
 @Service(value = "userService")
-@Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
-
+	
 	public static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
-	@Autowired
-	private UserDAO userDAO;
-
+	
 	@Autowired
 	private AddressDAO addressDAO;
-
+	
 	@Autowired
 	private RoleDAO roleDAO;
 
 	@Autowired
-	private SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	private UserDAO userDAO;
 
 	@Override
 	public void deleteUser(UserModel user) {
-		sessionFactory.getCurrentSession().delete(user);
+		userDAO.deleteUser(user);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<UserModel> getAllUsers() {
-		return sessionFactory.getCurrentSession().getNamedQuery("users.all").list();
+		return userDAO.getAllUsers();
 	}
 
 	@Override
 	public void updateUser(UserModel user) {
-		sessionFactory.getCurrentSession().merge(user);
+		userDAO.updateUser(user);
 	}
 
 	@Override
 	public void addUser(UserModel user) {
-		sessionFactory.getCurrentSession().persist(user);
+		userDAO.addUser(user);
 	}
 
 	@Override
 	public UserModel findUser(UserModel user) {
-		return (UserModel) sessionFactory.getCurrentSession().get(UserModel.class, user.getId());
+		return userDAO.findUser(user);
 	}
 
 	@Override
@@ -100,7 +83,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean createAddress(String zipCode, String city, String street, String number) {
 		if (StringUtils.isEmpty(zipCode) || StringUtils.isEmpty(street) || StringUtils.isEmpty(city)
@@ -117,7 +100,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean createRole(String name) {
 		if (StringUtils.isEmpty(name)) {
@@ -149,13 +132,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public UserModel findUserByLogin(String login) {
-		return (UserModel) sessionFactory.getCurrentSession().getNamedQuery("user.byLogin").setString("login", login)
-				.uniqueResult();
+		return userDAO.findUserByName(login);
 	}
 
-	@Override
-	public String getCurrentUserLogin(int id) {
-		return (String) sessionFactory.getCurrentSession().getNamedQuery("user.byID").setInteger("id", id)
-				.uniqueResult();
-	}
 }

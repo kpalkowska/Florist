@@ -15,4 +15,8 @@ public interface AddressDAO {
 	void updateAddress(AddressModel address);
 
 	boolean exists(String zipCode, String city, String street, String number);
+
+	AddressModel existed(String zipCode, String city, String street, String number);
+
+	AddressModel findAddress(AddressModel address);
 }

@@ -12,30 +12,33 @@ import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.spring.model.*;
 
 @Repository
 @Transactional
 public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
-
+	
 	@Autowired
 	public UserDAOImpl(SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
 	}
 
+	@Override
 	public void addUser(UserModel user) {
 		getHibernateTemplate().save(user);
 	}
 
+	@Override
 	public void deleteUser(UserModel user) {
 		getHibernateTemplate().delete(user);
 	}
 
+	@Override
 	public void updateUser(UserModel user) {
 		getHibernateTemplate().update(user);
 	}
 
+	@Override
 	public List<UserModel> getAllUsers() {
 		return getHibernateTemplate().loadAll(UserModel.class);
 	}
@@ -62,5 +65,10 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
 				return (UserModel) criteria.uniqueResult();
 			}
 		});
+	}
+	
+	@Override
+	public UserModel findUser(UserModel user) {
+		return (UserModel) getHibernateTemplate().get(UserModel.class, user.getId());
 	}
 }

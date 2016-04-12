@@ -11,10 +11,12 @@
 	<link type="text/css" rel="stylesheet" href="style.css" />
 	<title>Create New Product</title>
 </h:head>
+
 <h:body>
 	<h:outputStylesheet library="css" name="style.css" />
 	<ui:include src="/pages/unsecure/header.xhtml" />    
 	<ui:include src="/pages/unsecure/menu.xhtml" />
+	<ui:include src="/pages/unsecure/loader.xhtml" />
 	<br />
 	<br />
 
@@ -69,8 +71,6 @@
 
 						</h:form>
 
-						<h:outputText value="Skip to last: " />
-						<h:selectBooleanCheckbox value="#{sessionBean.skip}" />
 					</h:panelGrid>
 				</p:panel>
 			</p:tab>
@@ -107,8 +107,6 @@
 						process="@this" />
 					<br />
 
-					<p:commandButton value="Login" action="/pages/unsecure/login.xhtml"
-						update="growl" process="@this" />
 				</p:panel>
 			</p:tab>
 		</p:wizard>

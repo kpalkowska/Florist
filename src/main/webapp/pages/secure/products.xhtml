@@ -17,21 +17,14 @@
 <body>
 	<h:outputStylesheet library="css" name="style.css" />
 	<f:view>
-		<ui:include src="/pages/unsecure/header.xhtml" />    
+		<ui:include src="/pages/unsecure/header.xhtml" />
 		<ui:include src="/pages/unsecure/menu.xhtml" />
+		<ui:include src="/pages/unsecure/loader.xhtml" />
 		<br />
 		<br />
 		<br />
 
 		<h:form id="productForm">
-			<p:ajaxStatus onstart="PF('statusDialog').show()"
-				onsuccess="PF('statusDialog').hide()" />
-
-			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-				closable="false" resizable="false" showHeader="false">
-				<p:graphicImage url="/resources/images/ajax-loader.gif" />
-			</p:dialog>
-
 
 			<p:fieldset id="availableProductsField" legend="Available Products">
 				<p:dataTable id="availableProducts" var="product"
@@ -54,6 +47,9 @@
 					</p:column>
 					<p:column headerText="Price">
 						<h:outputText value="#{product.price}" />
+					</p:column>
+					<p:column headerText="Color">
+						<h:outputText value="#{product.color}" />
 					</p:column>
 					<p:column headerText="Image">
 						<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
@@ -85,6 +81,9 @@
 						</p:column>
 						<p:column headerText="Price">
 							<h:outputText value="#{product.price}" />
+						</p:column>
+						<p:column headerText="Color">
+							<h:outputText value="#{product.color}" />
 						</p:column>
 						<p:column style="width:70px">
 							<p:commandButton icon="ui-icon-trash" title="Delete"

@@ -27,7 +27,7 @@
 
 				<h:outputText id="outTxtUserNameId" value="E-mail: "
 					name="outTxtUserNameNm" />
-				<h:inputText id="username" styleClass="text-input" required="true"
+				<h:inputText validatorMessage="Incorrect e-mail address." id="username" styleClass="text-input" required="true"
 					value="#{loginBean.username}"
 					requiredMessage="Please enter username">
 					<f:validateRegex

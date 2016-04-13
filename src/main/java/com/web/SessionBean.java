@@ -146,4 +146,5 @@ public @Data class SessionBean implements Serializable {
 			LOGGER.info("ADD PHOTO!");
 		}
 	}
+
 }

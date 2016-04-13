@@ -175,4 +175,19 @@ public @Data class ProductBean implements Serializable {
 		if (successOrder)
 			email.sendEmail();
 	}
+	
+	public String newProduct(){
+		AppUser appUser = (AppUser) getContext().getAuthentication().getPrincipal();
+		UserModel user = userService.findUserByLogin(appUser.getUsername());
+		int roleID = user.getRole().getId();
+
+		if(roleID == 1){
+			LOGGER.info("Admin!");
+			return "/pages/unsecure/newProduct?faces-redirect=true";
+		}
+		else{
+			LOGGER.info("Not admin!");
+			return "/pages/unsecure/error?faces-redirect=true";
+		}
+	}
 }

@@ -24,7 +24,7 @@ import lombok.Data;
 public @Data class GraphicImageBean {
 
 	private static String FIRST_OFFER_PARAM = "firstOffer";
-	private static String SECOND_OFFER_PARAM = "firstOffer";
+	private static String SECOND_OFFER_PARAM = "secondOffer";
 
 	@ManagedProperty("#{productService}")
 	private ProductService productService;

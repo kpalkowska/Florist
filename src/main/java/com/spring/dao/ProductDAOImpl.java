@@ -24,49 +24,104 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 		super.setSessionFactory(sessionFactory);
 	}
 
+	@Override
 	public void addProduct(ProductModel product) {
 		getHibernateTemplate().save(product);
 	}
 
+	@Override
 	public void deleteProduct(ProductModel product) {
 		getHibernateTemplate().delete(product);
 	}
 
+	@Override
 	public void updateProduct(ProductModel product) {
 		getHibernateTemplate().update(product);
 	}
 
+	@Override
 	public List<ProductModel> getAllProducts() {
 		return getHibernateTemplate().loadAll(ProductModel.class);
 	}
 
 	@Override
-	public ProductModel findProductByType(String type) {
-		return getHibernateTemplate().execute(new HibernateCallback<ProductModel>() {
+	public List<ProductModel> findProductByType(String type) {
+		return getHibernateTemplate().execute(new HibernateCallback<List<ProductModel>>() {
+			@SuppressWarnings("unchecked")
 			@Override
-			public ProductModel doInHibernate(Session session) throws HibernateException {
+			public List<ProductModel> doInHibernate(Session session) throws HibernateException {
 				Criteria criteria = session.createCriteria(ProductModel.class);
 				criteria.add(Restrictions.eq("type", type));
-				return (ProductModel) criteria.uniqueResult();
+				return criteria.list();
 			}
 		});
 	}
 
 	@Override
-	public ProductModel findProductByColor(String color) {
+	public List<ProductModel> findProductByColor(String color) {
+		return getHibernateTemplate().execute(new HibernateCallback<List<ProductModel>>() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public List<ProductModel> doInHibernate(Session session) throws HibernateException {
+				Criteria criteria = session.createCriteria(ProductModel.class);
+				criteria.add(Restrictions.eq("color", color));
+				return criteria.list();
+			}
+		});
+	}
+	
+	@Override
+	public List<ProductModel> findProductByName(String name) {
+		return getHibernateTemplate().execute(new HibernateCallback<List<ProductModel>>() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public List<ProductModel> doInHibernate(Session session) throws HibernateException {
+				Criteria criteria = session.createCriteria(ProductModel.class);
+				criteria.add(Restrictions.eq("name", name));
+				return criteria.list();
+			}
+		});
+	}
+
+	@Override
+	public ProductModel findProduct(ProductModel product) {
+		return getHibernateTemplate().get(ProductModel.class, product.getId());
+	}
+	
+	@Override
+	public ProductModel findProductById (long productId) {
 		return getHibernateTemplate().execute(new HibernateCallback<ProductModel>() {
 			@Override
 			public ProductModel doInHibernate(Session session) throws HibernateException {
-				Criteria criteria = session.createCriteria(ProductModel.class);
-				criteria.add(Restrictions.eq("color", color));
-				return (ProductModel) criteria.uniqueResult();
+				ProductModel product = (ProductModel) session.createQuery(ProductModel.PRODUCTS_BY_ID)
+						.setLong("id", productId).uniqueResult();
+				return product;
 			}
 		});
 	}
-
+	
 	@Override
-	public List<ProductModel> findProductByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductModel findProductByTypeRose() {
+		return getHibernateTemplate().execute(new HibernateCallback<ProductModel>() {
+			@Override
+			public ProductModel doInHibernate(Session session) throws HibernateException {
+				ProductModel product = (ProductModel) session.getNamedQuery(ProductModel.PRODUCTS_BY_NAME)
+						.setParameter("name", "rose").list().get(2);
+				return product;
+			}
+		});
 	}
+	
+	@Override
+	public ProductModel findProductByTypeTulip() {
+		return getHibernateTemplate().execute(new HibernateCallback<ProductModel>() {
+			@Override
+			public ProductModel doInHibernate(Session session) throws HibernateException {
+				ProductModel product = (ProductModel) session.getNamedQuery(ProductModel.PRODUCTS_BY_NAME)
+						.setParameter("name", "tulip").list().get(3);
+				return product;
+			}
+		});
+	}
+	
 }

@@ -13,4 +13,6 @@ public interface Product2OrderDAO {
 	void deleteProduct2Order(Product2OrderModel product2Order);
 
 	void updateProduct2Order(Product2OrderModel product2Order);
+
+	Product2OrderModel findProduct2Order(Product2OrderModel product2order);
 }

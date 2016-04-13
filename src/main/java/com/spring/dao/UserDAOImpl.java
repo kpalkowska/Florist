@@ -12,41 +12,43 @@ import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.spring.model.*;
 
 @Repository
 @Transactional
 public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
-
+	
 	@Autowired
 	public UserDAOImpl(SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
 	}
 
+	@Override
 	public void addUser(UserModel user) {
 		getHibernateTemplate().save(user);
 	}
 
+	@Override
 	public void deleteUser(UserModel user) {
 		getHibernateTemplate().delete(user);
 	}
 
+	@Override
 	public void updateUser(UserModel user) {
 		getHibernateTemplate().update(user);
 	}
 
+	@Override
 	public List<UserModel> getAllUsers() {
 		return getHibernateTemplate().loadAll(UserModel.class);
 	}
 
 	@Override
 	public boolean exists(String login) {
-		final String SQL = "select count(*) from UserModel user where user.login = :login";
 		return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
 			@Override
 			public Boolean doInHibernate(Session session) throws HibernateException {
-				Long count = (Long) session.createQuery(SQL).setParameter("login", login).uniqueResult();
+				Long count = (Long) session.createQuery(UserModel.USER_EXISTS).setParameter("login", login).uniqueResult();
 				return count > 0;
 			}
 		});
@@ -62,5 +64,10 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
 				return (UserModel) criteria.uniqueResult();
 			}
 		});
+	}
+	
+	@Override
+	public UserModel findUser(UserModel user) {
+		return (UserModel) getHibernateTemplate().get(UserModel.class, user.getId());
 	}
 }

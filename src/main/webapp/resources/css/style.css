@@ -16,11 +16,11 @@ body {
 }
 
 .main-header {	
-  	text-align: center;
+  margin-right:50px;
 }
 
 .MenuBar {
-	width: 99%;
+	width: 100%;
 	padding: 0.4em;
 }
 
@@ -43,7 +43,7 @@ body {
 }
 
 table {
-	border-spacing: 4px;
+	border-spacing: 0px;
 	border-collapse: separate;
 }
 

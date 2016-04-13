@@ -10,9 +10,11 @@ public interface OrderDAO {
 
 	void addOrder(OrderModel order);
 
-	OrderModel findOrderByName(String name);
-
 	void deleteOrder(OrderModel order);
 
 	void updateOrder(OrderModel order);
+
+	OrderModel findOrder(OrderModel order);
+
+	OrderModel exists(AddressModel address, String date, UserModel user);
 }

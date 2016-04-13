@@ -28,20 +28,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "Products")
-@NamedQueries({ @NamedQuery(name = "products.all", query = "Select p from ProductModel p"),
-		@NamedQuery(name = "products.getByType", query = "Select p from ProductModel p where p.type = :type"),
-		@NamedQuery(name = "products.getByColor", query = "Select p from ProductModel p where p.color = :color"),
-		@NamedQuery(name = "products.getByName", query = "Select product from ProductModel product where product.name = :name"),
-		@NamedQuery(name = "products.sortByPrice", query = "Select p from ProductModel p where p.price = :price"), // coś
-																													// tam
-																													// jeszcze
-																													// dopisac
-																													// xD
-		@NamedQuery(name = "products.byId", query = "Select p from ProductModel p where p.id = :id"),
-		@NamedQuery(name = "foto.byProductId", query = "Select p.foto from ProductModel p where p.id = :id"),
-		@NamedQuery(name = "products.currentId", query = "Select p.id from ProductModel p") })
+@NamedQueries({ @NamedQuery(name = ProductModel.PRODUCTS_ALL, query = "Select p from ProductModel p"),
+		@NamedQuery(name = ProductModel.PRODUCTS_BY_TYPE, query = "Select p from ProductModel p where p.type = :type"),
+		@NamedQuery(name = ProductModel.PRODUCTS_BY_COLOR, query = "Select p from ProductModel p where p.color = :color"),
+		@NamedQuery(name = ProductModel.PRODUCTS_BY_NAME, query = "Select p from ProductModel p where p.name = :name"),
+		@NamedQuery(name = ProductModel.PRODUCTS_BY_ID, query = "Select p from ProductModel p where p.id = :id") })
 public class ProductModel {
 
+	public static final String PRODUCTS_ALL = "products.all";
+	public static final String PRODUCTS_BY_TYPE = "products.getByType";
+	public static final String PRODUCTS_BY_COLOR = "products.getByColor";
+	public static final String PRODUCTS_BY_NAME = "products.getByName";
+	public static final String PRODUCTS_BY_ID = "products.byId";
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

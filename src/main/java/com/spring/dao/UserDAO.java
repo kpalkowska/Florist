@@ -17,4 +17,6 @@ public interface UserDAO {
 	void updateUser(UserModel user);
 
 	boolean exists(String name);
+
+	UserModel findUser(UserModel user);
 }

@@ -2,64 +2,47 @@ package com.spring.service;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.spring.dao.ProductDAO;
 import com.spring.model.ProductModel;
 
-@Component
 @Service(value = "productService")
-@Transactional
 public class ProductServiceImpl implements ProductService {
 
+	public static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+	
 	@Autowired
 	private ProductDAO productDAO;
-
-	@Autowired
-	private SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<ProductModel> getAllProducts() {
-		return getSessionFactory().getCurrentSession().getNamedQuery("products.all").list();
+		return productDAO.getAllProducts();
 	}
 
 	@Override
 	public void addProduct(ProductModel product) {
-		getSessionFactory().getCurrentSession().persist(product);
+		productDAO.addProduct(product);
 
 	}
 
 	@Override
 	public ProductModel findProduct(ProductModel product) {
-		return sessionFactory.getCurrentSession().get(ProductModel.class, product.getId());
-
+		return productDAO.findProduct(product);
 	}
 
 	@Override
 	public void deleteProduct(ProductModel product) {
-		getSessionFactory().getCurrentSession().delete(product);
+		productDAO.deleteProduct(product);
 	}
 
 	@Override
 	public void updateProduct(ProductModel product) {
-		getSessionFactory().getCurrentSession().merge(product);
+		productDAO.updateProduct(product);
 	}
 
 	@Override
@@ -67,8 +50,7 @@ public class ProductServiceImpl implements ProductService {
 			byte[] foto) {
 		if (StringUtils.isEmpty(name) || StringUtils.isEmpty(description) || StringUtils.isEmpty(price)
 				|| StringUtils.isEmpty(type) || StringUtils.isEmpty(color)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid name"));
+			LOGGER.error("Error in create Product");
 		} else {
 			ProductModel product = new ProductModel(name, description, price, type, color, foto);
 			productDAO.addProduct(product);
@@ -77,42 +59,33 @@ public class ProductServiceImpl implements ProductService {
 		return false;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductModel> findProductByName(String name) {
-		return sessionFactory.getCurrentSession().getNamedQuery("products.getByName").setString("name", name).list();
+		return productDAO.findProductByName(name);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductModel> findProductByType(String type) {
-		return sessionFactory.getCurrentSession().getNamedQuery("products.getByType").setString("type", type).list();
+		return productDAO.findProductByType(type);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProductModel> findProductByColor(String color) {
-		return sessionFactory.getCurrentSession().getNamedQuery("products.getByColor").setString("color", color).list();
+		return productDAO.findProductByColor(color);
 	}
 
 	@Override
 	public ProductModel findProductById(long productId) {
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.byId").setLong("id", productId)
-				.uniqueResult();
+		return productDAO.findProductById(productId);
 	}
 
 	@Override
 	public ProductModel findProductByTypeRose() {
-		String name = "rose";
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName")
-				.setString("name", name).list().get(1);
+		return productDAO.findProductByTypeRose();
 	}
 
 	@Override
 	public ProductModel findProductByTypeTulips() {
-		String name = "tulip";
-		return (ProductModel) sessionFactory.getCurrentSession().getNamedQuery("products.getByName")
-				.setString("name", name).list().get(1);
-
+		return productDAO.findProductByTypeTulip();
 	}
 }

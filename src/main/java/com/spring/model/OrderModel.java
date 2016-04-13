@@ -22,10 +22,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "Orders")
-@NamedQueries({ @NamedQuery(name = "orders.all", query = "Select o from OrderModel o"),
-		@NamedQuery(name = "order.exists", query = "Select o from OrderModel o where o.date = :date and o.users = :users and o.address = :address") })
+@NamedQueries({ @NamedQuery(name = OrderModel.ORDERS_ALL, query = "Select o from OrderModel o"),
+		@NamedQuery(name = OrderModel.ORDER_EXISTS, query = "Select o from OrderModel o where o.date = :date and o.users = :users and o.address = :address") })
 public class OrderModel {
 
+	public static final String ORDERS_ALL = "orders.all";
+	public static final String ORDER_EXISTS = "order.exists";
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

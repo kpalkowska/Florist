@@ -49,7 +49,7 @@ public @Data class EmailBean implements Serializable {
 			emailService.sendEmail(receiver, message);
 
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Success", new StringBuilder("Email is sending!").toString()));
+					new FacesMessage("Success", new StringBuilder("Email was sent!").toString()));
 
 			LOGGER.info("Email was sent to user");
 		} catch (Exception mex) {

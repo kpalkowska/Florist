@@ -112,7 +112,7 @@ public @Data class ProductBean implements Serializable {
 	}
 
 	public String submitOrder() {
-		return "/pages/unsecure/newOrder?faces-redirect=true";
+		return "/pages/secure/newOrder?faces-redirect=true";
 	}
 
 	public String createOrder() {
@@ -183,10 +183,10 @@ public @Data class ProductBean implements Serializable {
 
 		if(roleID == 1){
 			LOGGER.info("Admin!");
-			return "/pages/unsecure/newProduct?faces-redirect=true";
+			return "/pages/secure/newProduct?faces-redirect=true";
 		}
 		else{
-			LOGGER.info("Not admin!");
+			LOGGER.error("Not admin!");
 			return "/pages/unsecure/error?faces-redirect=true";
 		}
 	}

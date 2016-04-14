@@ -82,6 +82,7 @@ public @Data class ProductBean implements Serializable {
 	private String number;
 	private String zipKode;
 	private String city;
+	private Double totalPrice = 0.0;
 
 	private boolean successOrder = false;
 	private boolean checked;
@@ -109,6 +110,14 @@ public @Data class ProductBean implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Double getMyPrice(){
+		totalPrice = 0.0;
+		for(ProductModel product : droppedProducts){
+			totalPrice = totalPrice + Double.valueOf(product.getPrice());
+		}
+		return totalPrice;
 	}
 
 	public String submitOrder() {

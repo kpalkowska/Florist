@@ -50,17 +50,19 @@
 					</p:dataTable>
 					<br />
 
-					<h:panelGrid columns="2">
+					<h:panelGrid columns="4">
 						<h:selectBooleanCheckbox id="checkboxId"
 							value="#{productBean.checked}">
 							<p:ajax event="change" update="panelId" />
 						</h:selectBooleanCheckbox>
 						<h:outputLabel value="Use my address" />
+						<h:outputLabel value="Total:"/>
+						<h:outputText value="#{productBean.myPrice}"/>
 					</h:panelGrid>
 
 					<br />
-					<h:panelGrid id="panelId" columns="2">
-						<h:outputLabel rendered="#{!productBean.checked}">Enter shipping address:</h:outputLabel>
+					<h:panelGrid id="panelId" columns="2" >
+						<h:outputLabel>Enter shipping address:</h:outputLabel>
 						<br />
 						<h:outputText rendered="#{!productBean.checked}" value="Street: " />
 						<h:inputText rendered="#{!productBean.checked}"

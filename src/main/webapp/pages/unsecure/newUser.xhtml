@@ -98,22 +98,6 @@
 				</p:panel>
 			</p:tab>
 
-			<p:tab id="role" title="Role">
-				<p:panel header="Role ">
-
-					<h:panelGrid columns="2" columnClasses="label, value">
-						<h:outputText value="Role: " />
-						<h:selectOneMenu id="roleName" value="#{sessionBean.roleName}">
-							<f:validateRequired for="roleName" />
-							<f:selectItem itemValue="Admin" itemLabel="Admin" />
-							<f:selectItem itemValue="User" itemLabel="User" />
-							<f:selectItem itemValue="Other" itemLabel="Other" />
-						</h:selectOneMenu>
-
-					</h:panelGrid>
-				</p:panel>
-			</p:tab>
-
 			<p:tab id="confirm" title="Confirmation">
 				<p:panel header="Confirmation">
 					<h:panelGrid id="confirmation" columns="3"

@@ -51,7 +51,6 @@ public @Data class SessionBean implements Serializable {
 	private String type;
 	private String color;
 	private byte[] foto;
-	private RoleModel role;
 	private String time;
 	private List<UserModel> users = new ArrayList<>();
 	private List<ProductModel> products = new ArrayList<>();
@@ -87,19 +86,14 @@ public @Data class SessionBean implements Serializable {
 		AddressModel address;
 
 		AddressModel a = addressService.exists(zipCode, city, street, number);
-		RoleModel r = roleService.exists(roleName);
+		RoleModel userRole = roleService.getAllRoles().get(1);
 
 		if (a == null) {
 			address = new AddressModel(zipCode, city, street, number);
 		} else
 			address = a;
 
-		if (r == null) {
-			role = new RoleModel(roleName);
-		} else
-			role = r;
-
-		boolean successUser = userService.createUser(name, surname, login, password, address, role);
+		boolean successUser = userService.createUser(name, surname, login, password, address, userRole);
 
 		if (successUser) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Success",

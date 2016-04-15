@@ -13,7 +13,7 @@
 
 <h:body>
 	<h:outputStylesheet library="css" name="style.css" />
-	<ui:include src="/pages/unsecure/header.xhtml" />    
+	<ui:include src="/pages/unsecure/header.xhtml" />
 	<ui:include src="/pages/unsecure/menu.xhtml" />
 	<ui:include src="/pages/unsecure/loader.xhtml" />
 	<br />
@@ -56,13 +56,13 @@
 							<p:ajax event="change" update="panelId" />
 						</h:selectBooleanCheckbox>
 						<h:outputLabel value="Use my address" />
-						<h:outputLabel value="Total:"/>
-						<h:outputText value="#{productBean.myPrice}"/>
+						<h:outputLabel value="Total:" />
+						<h:outputText value="#{productBean.myPrice}" />
 					</h:panelGrid>
 
 					<br />
-					<h:panelGrid id="panelId" columns="2" >
-						<h:outputLabel>Enter shipping address:</h:outputLabel>
+					<h:panelGrid id="panelId" columns="2">
+						<h:outputLabel rendered="#{!productBean.checked}">Enter shipping address:</h:outputLabel>
 						<br />
 						<h:outputText rendered="#{!productBean.checked}" value="Street: " />
 						<h:inputText rendered="#{!productBean.checked}"
@@ -77,7 +77,20 @@
 						<h:outputText rendered="#{!productBean.checked}" value="City: " />
 						<h:inputText rendered="#{!productBean.checked}"
 							value="#{productBean.city}" />
+
+					
+						<h:panelGrid id="dateId" columns="2" cellpadding="5">
+							<h:outputLabel>Enter order date:</h:outputLabel>
+
+							<p:outputLabel for="datetime" />
+							<p:calendar id="datetime" value="#{productBean.orderDate}"
+								pattern="MM/dd/yyyy HH:mm:ss" />
+
+						</h:panelGrid>
+
+
 					</h:panelGrid>
+
 				</h:panelGrid>
 			</h:panelGrid>
 

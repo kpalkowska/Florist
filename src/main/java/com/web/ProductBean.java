@@ -77,7 +77,8 @@ public @Data class ProductBean implements Serializable {
 	private ProductModel secondOffer;
 
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
+	Date orderDate = Calendar.getInstance().getTime();
+	
 	private String street;
 	private String number;
 	private String zipKode;
@@ -85,7 +86,7 @@ public @Data class ProductBean implements Serializable {
 	private Double totalPrice = 0.0;
 
 	private boolean successOrder = false;
-	private boolean checked;
+	private boolean checked = true;
 
 	@PostConstruct
 	public void init() {
@@ -131,9 +132,9 @@ public @Data class ProductBean implements Serializable {
 		if (appUser.getUsername() != null)
 			user = userService.findUserByLogin(appUser.getUsername());
 
-		Date today = Calendar.getInstance().getTime();
-		String dateString = dateFormat.format(today);
+		String dateString = dateFormat.format(orderDate);
 
+		
 		OrderModel newOrder = new OrderModel();
 		Product2OrderModel p2o = new Product2OrderModel();
 		AddressModel newAddress = new AddressModel();

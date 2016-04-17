@@ -104,7 +104,8 @@
 
 					<p:commandButton value="Submit"
 						actionListener="#{sessionBean.createProduct}" update="growl"
-						process="@this" />
+						process="@this" 
+						action="#{selectProductBean.showAll()}"/>
 					<br />
 
 				</p:panel>

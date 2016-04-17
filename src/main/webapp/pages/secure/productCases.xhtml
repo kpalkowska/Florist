@@ -97,7 +97,7 @@
 					update="dropArea productCases" />
 			</p:droppable>
 		</p:fieldset>
-		</h:form>
+		
 		<p:commandButton value="Submit your order" styleClass="orderButton"
 			action="#{productBean.submitOrder()}"
 			rendered="#{not empty facesContext.externalContext.request.remoteUser}" />

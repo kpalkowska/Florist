@@ -52,7 +52,7 @@
 					rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
 
 				<p:commandButton styleClass="loginPanelBtn" value="New Product"
-					href="/pages/unsecure/newProduct.xhtml"
+					action="#{productBean.newProduct()}"
 					style="width: auto; height:50;"
 					rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
 

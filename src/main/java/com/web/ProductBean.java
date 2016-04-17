@@ -77,14 +77,16 @@ public @Data class ProductBean implements Serializable {
 	private ProductModel secondOffer;
 
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
+	Date orderDate = Calendar.getInstance().getTime();
+	
 	private String street;
 	private String number;
 	private String zipKode;
 	private String city;
+	private Double totalPrice = 0.0;
 
 	private boolean successOrder = false;
-	private boolean checked;
+	private boolean checked = true;
 
 	@PostConstruct
 	public void init() {
@@ -110,9 +112,17 @@ public @Data class ProductBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	
+	public Double getMyPrice(){
+		totalPrice = 0.0;
+		for(ProductModel product : droppedProducts){
+			totalPrice = totalPrice + Double.valueOf(product.getPrice());
+		}
+		return totalPrice;
+	}
 
 	public String submitOrder() {
-		return "/pages/unsecure/newOrder?faces-redirect=true";
+		return "/pages/secure/newOrder?faces-redirect=true";
 	}
 
 	public String createOrder() {
@@ -122,9 +132,9 @@ public @Data class ProductBean implements Serializable {
 		if (appUser.getUsername() != null)
 			user = userService.findUserByLogin(appUser.getUsername());
 
-		Date today = Calendar.getInstance().getTime();
-		String dateString = dateFormat.format(today);
+		String dateString = dateFormat.format(orderDate);
 
+		
 		OrderModel newOrder = new OrderModel();
 		Product2OrderModel p2o = new Product2OrderModel();
 		AddressModel newAddress = new AddressModel();
@@ -174,5 +184,20 @@ public @Data class ProductBean implements Serializable {
 		createOrder();
 		if (successOrder)
 			email.sendEmail();
+	}
+	
+	public String newProduct(){
+		AppUser appUser = (AppUser) getContext().getAuthentication().getPrincipal();
+		UserModel user = userService.findUserByLogin(appUser.getUsername());
+		int roleID = user.getRole().getId();
+
+		if(roleID == 1){
+			LOGGER.info("Admin!");
+			return "/pages/secure/newProduct?faces-redirect=true";
+		}
+		else{
+			LOGGER.error("Not admin!");
+			return "/pages/unsecure/error?faces-redirect=true";
+		}
 	}
 }

@@ -1,12 +1,12 @@
 @CHARSET "UTF-8";
 
 body {
-	background-image: url("../resources/images/background.jpg");
+	background-image: url("../resources/images/background2.jpg");
 	font-family: Arial, Helvetica, sans-serif;
 	padding: 0;
 	font-size: 15px;
 	margin-top: 0%;
-	margin-bottom: 50%;
+	margin-bottom: 0%;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -16,10 +16,16 @@ body {
 }
 
 .main-header {	
-  margin-right:50px;
+  
+    top: 0; 
+    bottom:45px; 
+    left: 0; 
+    right:0;
+    margin: auto;
 }
 
 .MenuBar {
+
 	width: 100%;
 	padding: 0.4em;
 }
@@ -158,6 +164,7 @@ td {
 .ui-panel {
 	margin-left: 30%;
 }
+
 
 .ui-icon .ui-confirm-dialog-severity .ui-icon-alert {
 	width: 18px;

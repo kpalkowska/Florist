@@ -26,7 +26,7 @@ body {
 
 .MenuBar {
 
-	width: 100%;
+	width: 99%;
 	padding: 0.4em;
 }
 
@@ -68,6 +68,7 @@ td {
 .ui-panel {
 	margin-right: 400px;
 	margin-left: 10px;
+	height:250px;
 }
 
 .ui-wizard-step-titles {
@@ -164,8 +165,16 @@ td {
 .ui-panel {
 	margin-left: 30%;
 }
-
+.ui-panel .ui-panel-content{
+	padding: 1.8em 1em;
+}
 
 .ui-icon .ui-confirm-dialog-severity .ui-icon-alert {
 	width: 18px;
+}
+.total{
+	color:#b31aff;
+	font-size:20px;
+	margin-left:30px;
+	
 }

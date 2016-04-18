@@ -92,9 +92,9 @@
 
 				</h:panelGrid>
 			</h:panelGrid>
-			<h:outputLabel value="Total:" styleClass="total"/>
-			<h:outputText value="#{productBean.myPrice}" styleClass="total" />
-			<br></br><br></br><br></br>
+			<h:outputLabel value="Total price:" styleClass="total"/>
+			<h:outputText value="#{productBean.myPrice}" styleClass="price"/>
+			<br></br><br></br>
 			<h:form>
 				<p:commandButton value="Submit" update="messages" onclic="rc()"
 					action="#{productBean.submitOrderAndEmail}">

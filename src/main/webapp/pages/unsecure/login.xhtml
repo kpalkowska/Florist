@@ -43,6 +43,9 @@
 				</h:inputSecret>
 
 				<f:facet name="footer">
+					<h:button id="btnLoginId2" value="Back"
+							outcome="home" styleClass="backBtn"
+							update="growl" process="@this" />
 					<h:panelGroup style="display:block; text-align:right">
 						<h:commandButton id="btnLoginId" value="Login"
 							action="#{loginBean.login()}" styleClass="loginPanelBtn"

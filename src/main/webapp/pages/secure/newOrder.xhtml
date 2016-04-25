@@ -50,13 +50,16 @@
 					</p:dataTable>
 					<br />
 
-					<h:panelGrid columns="4">
+					<h:panelGrid columns="2" >
 						<h:selectBooleanCheckbox id="checkboxId"
 							value="#{productBean.checked}">
 							<p:ajax event="change" update="panelId" />
 						</h:selectBooleanCheckbox>
 						<h:outputLabel value="Use my address" />
-						
+						<h:selectBooleanCheckbox id="payId"
+							value="#{productBean.payment}">
+						</h:selectBooleanCheckbox>
+						<h:outputLabel value="Payment by transfer" />
 					</h:panelGrid>
 
 					<br />
@@ -76,7 +79,6 @@
 						<h:outputText rendered="#{!productBean.checked}" value="City: " />
 						<h:inputText rendered="#{!productBean.checked}"
 							value="#{productBean.city}" />
-
 					
 						<h:panelGrid id="dateId" columns="2" cellpadding="5">
 							<h:outputLabel>Enter order date:</h:outputLabel>
@@ -84,10 +86,7 @@
 							<p:outputLabel for="datetime" />
 							<p:calendar id="datetime" value="#{productBean.orderDate}"
 								pattern="MM/dd/yyyy HH:mm:ss" />
-
 						</h:panelGrid>
-
-
 					</h:panelGrid>
 
 				</h:panelGrid>

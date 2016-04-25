@@ -88,6 +88,8 @@ public @Data class ProductBean implements Serializable {
 	private boolean successOrder = false;
 	private boolean checked = true;
 
+	private boolean payment = true;
+
 	@PostConstruct
 	public void init() {
 		products = service.getAllProducts();
@@ -125,7 +127,7 @@ public @Data class ProductBean implements Serializable {
 		return "/pages/secure/newOrder?faces-redirect=true";
 	}
 
-	public String createOrder() {
+	public void createOrder() {
 		AppUser appUser = (AppUser) getContext().getAuthentication().getPrincipal();
 		UserModel user = null;
 
@@ -176,14 +178,18 @@ public @Data class ProductBean implements Serializable {
 
 		setProducts(service.getAllProducts());
 		droppedProducts.clear();
-
-		return "/pages/secure/products?faces-redirect=true";
 	}
 
-	public void submitOrderAndEmail() {
+	public String submitOrderAndEmail() {
 		createOrder();
 		if (successOrder)
 			email.sendEmail();
+		
+		if(payment){
+			return "/pages/secure/pay?faces-redirect=true";
+		}
+		
+		return null;
 	}
 	
 	public String newProduct(){
@@ -200,4 +206,5 @@ public @Data class ProductBean implements Serializable {
 			return "/pages/unsecure/error?faces-redirect=true";
 		}
 	}
+	
 }

@@ -106,7 +106,7 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 			@Override
 			public ProductModel doInHibernate(Session session) throws HibernateException {
 				ProductModel product = (ProductModel) session.getNamedQuery(ProductModel.PRODUCTS_BY_NAME)
-						.setParameter("name", "rose").list().get(2);
+						.setParameter("name", "rose").list().get(0);
 				return product;
 			}
 		});
@@ -118,7 +118,7 @@ public class ProductDAOImpl extends HibernateDaoSupport implements ProductDAO {
 			@Override
 			public ProductModel doInHibernate(Session session) throws HibernateException {
 				ProductModel product = (ProductModel) session.getNamedQuery(ProductModel.PRODUCTS_BY_NAME)
-						.setParameter("name", "tulip").list().get(3);
+						.setParameter("name", "tulip").list().get(0);
 				return product;
 			}
 		});

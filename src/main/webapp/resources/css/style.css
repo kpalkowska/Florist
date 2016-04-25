@@ -51,14 +51,16 @@ body {
 table {
 	border-spacing: 0px;
 	border-collapse: separate;
+	
 }
 
 td {
 	padding: 5px;
+	margin-right:200px;
 }
 
 .loginPanelBtn {
-	width: 50px;
+	width: 60px;
 	height: 35px;
 	color: #4f4f4f;
 	border-radius: 4px;
@@ -77,11 +79,10 @@ td {
 
 .ui-button {
 	margin-right: 0px;
-	height: 35px auto;
 	width: auto;
 	margin-left: 20px;
-	height: 40px;
-	width: 115px;
+	height: 47px;
+	width: 129px;
 	margin-top: 0px;
 	font-size: 1.03em;
 }
@@ -103,6 +104,9 @@ td {
 	padding: 4px;
 }
 
+.ui-button-icon-only {
+    width: 3em;
+}
 .GoBackButton {
 	margin-top: 0px;
 }
@@ -155,7 +159,7 @@ td {
 
 .menuItem {
 	margin-right: 15px;
-	line-height: 2.4;
+	line-height: 2.8;
 }
 
 .goBackButton {
@@ -175,6 +179,17 @@ td {
 .total{
 	color:#b31aff;
 	font-size:20px;
-	margin-left:30px;
+	margin-left:2%;
+	font-weight: bold;
+}
+.price{
+	color:#b31aff;
+	font-size:20px;
+	font-weight: bold;
+	
+}
+
+.trash{
+	
 	
 }

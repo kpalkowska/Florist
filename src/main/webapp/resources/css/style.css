@@ -79,7 +79,8 @@ td {
 .ui-panel {
 	margin-right: 400px;
 	margin-left: 10px;
-	height:250px;
+	height:auto;
+	width:800px;
 }
 
 .ui-wizard-step-titles {
@@ -129,7 +130,7 @@ td {
 }
 
 .ui-wizard-nav-next {
-	margin-right: 25%;
+	margin-right: 19%;
 }
 
 .ui-wizard-nav-back {

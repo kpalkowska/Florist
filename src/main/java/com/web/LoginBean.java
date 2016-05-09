@@ -29,7 +29,7 @@ public @Data class LoginBean implements Serializable {
 	private String password;
 
 	private static Logger LOGGER = Logger.getLogger("InfoLogging");
-	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -43,7 +43,8 @@ public @Data class LoginBean implements Serializable {
 			LOGGER.info("Correct login");
 			return "/pages/secure/products?faces-redirect=true";
 		} catch (AuthenticationException e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Unable to authenticate"));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Unable to authenticate"));
 			LOGGER.error("Bad login");
 		}
 		return null;

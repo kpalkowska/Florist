@@ -16,42 +16,63 @@ import java.util.List;
 @Repository
 @Transactional
 public class AddressDAOImpl extends HibernateDaoSupport implements AddressDAO {
-	  	
-		@Autowired
-		public AddressDAOImpl(SessionFactory sessionFactory) {
-			super.setSessionFactory(sessionFactory);
-		}
 
-	    public void addAddress(AddressModel address) {
-	    	getHibernateTemplate().save(address);
-	    }
+	@Autowired
+	public AddressDAOImpl(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
 
-	    public void deleteAddress(AddressModel address) {
-	    	getHibernateTemplate().delete(address);
-	    }
+	@Override
+	public void addAddress(AddressModel address) {
+		getHibernateTemplate().save(address);
+	}
 
-	    public void updateAddress(AddressModel address) {
-	    	getHibernateTemplate().update(address);
-	    }
+	@Override
+	public void deleteAddress(AddressModel address) {
+		getHibernateTemplate().delete(address);
+	}
 
-		@Override
-		public boolean exists(String zipCode, String city, String street, String number) {
-			final String SQL = "select count(*) from AddressModel address where address.zipCode = :zipCode and address.city = :city and address.street = :street and address.number = :number";
-			return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
-				@Override
-				public Boolean doInHibernate(Session session) throws HibernateException {
-					Long count = (Long) session.createQuery(SQL).setParameter("zipCode", zipCode)
-							.setParameter("city", city)
-							.setParameter("street", street)
-							.setParameter("number", number)
-							.uniqueResult();
-					return count > 0;
-				}
-			});
-		}
+	@Override
+	public void updateAddress(AddressModel address) {
+		getHibernateTemplate().update(address);
+	}
 
-		@Override
-		public List<AddressModel> getAllAddresses() {
-			return getHibernateTemplate().loadAll(AddressModel.class);
-		}
+	@Override
+	public boolean exists(String zipCode, String city, String street, String number) {
+		final String SQL = "Select count(*) from AddressModel address where address.zipCode = :zipCode and address.city = :city and address.street = :street and address.number = :number";
+		return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
+			@Override
+			public Boolean doInHibernate(Session session) throws HibernateException {
+				Long count = (Long) session.createQuery(SQL).setParameter("zipCode", zipCode)
+						.setParameter("city", city).setParameter("street", street).setParameter("number", number)
+						.uniqueResult();
+				return count > 0;
+			}
+		});
+	}
+	
+	@Override
+	public AddressModel existed(String zipCode, String city, String street, String number) {
+		final String SQL ="Select address from AddressModel address where address.zipCode = :zipCode and address.city = :city and address.street = :street and address.number = :number";
+		return getHibernateTemplate().execute(new HibernateCallback<AddressModel>() {
+			@Override
+			public AddressModel doInHibernate(Session session) throws HibernateException {
+				AddressModel address = (AddressModel) session.createQuery(SQL).setParameter("zipCode", zipCode)
+						.setParameter("city", city).setParameter("street", street).setParameter("number", number)
+						.uniqueResult();
+				return address;
+			}
+		});
+	}
+
+	@Override
+	public List<AddressModel> getAllAddresses() {
+		return getHibernateTemplate().loadAll(AddressModel.class);
+	}
+	
+	@Override
+	public AddressModel findAddress(AddressModel address) {
+		return (AddressModel) getHibernateTemplate().get(AddressModel.class, address.getId());
+	}
+
 }

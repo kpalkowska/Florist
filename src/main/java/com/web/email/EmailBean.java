@@ -1,7 +1,6 @@
 package com.web.email;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,7 +9,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 import org.springframework.stereotype.Component;
 
 import com.spring.model.UserModel;
@@ -24,42 +23,36 @@ import lombok.Data;
 @SessionScoped
 @Component
 public @Data class EmailBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 7291708796066664438L;
-	
+
+	private static Logger LOGGER = Logger.getLogger("InfoLogging");
+
 	@Autowired
-    private UserService userService;
-	
+	private UserService userService;
+
 	@Autowired
 	private EmailService emailService;
 
-	private String receiver;
-	private String message;
-	private AppUser appUser;
-    private String login;
-    
-    private UserModel user;
-    
-    private static Logger LOGGER = Logger.getLogger("InfoLogging");
-	
 	public void sendEmail() {
 
-		try{
-		appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		login = (Objects.nonNull(appUser)) ? appUser.getUsername() : null;
-		user = userService.findUserByLogin(login);
-		setReceiver(user.getLogin());
+		try {
+			AppUser appUser = (AppUser) getContext().getAuthentication().getPrincipal();
+			UserModel user = null;
 
-		setMessage("Your order has been registered. Thank you for choosing our Florist's.");
+			if (appUser.getUsername() != null)
+				user = userService.findUserByLogin(appUser.getUsername());
 
-		emailService.sendEmail(receiver, message);
-		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Success", new StringBuilder("Email is sending!").toString()));
-		
-		LOGGER.info("Email was sent to user");
-		}
-		catch(Exception mex){
+			String receiver = user.getLogin();
+			String message = "Your order has been registered. Thank you for choosing our Florist's.";
+
+			emailService.sendEmail(receiver, message);
+
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Success", new StringBuilder("Email was sent!").toString()));
+
+			LOGGER.info("Email was sent to user");
+		} catch (Exception mex) {
 			LOGGER.error("Email was not sent!");
 		}
 	}

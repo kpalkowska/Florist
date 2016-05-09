@@ -10,12 +10,16 @@
 <h:head>
 
 	<title>Home Page</title>
+
 </h:head>
 
 
 <h:body>
 	<h:outputStylesheet library="css" name="style.css" />
+	
+    <ui:include src="/pages/unsecure/header.xhtml" />      
 	<ui:include src="/pages/unsecure/menu.xhtml" />
+	<ui:include src="/pages/unsecure/loader.xhtml" />
 	<br />
 	<br />
 	<br />
@@ -23,29 +27,25 @@
 	<br />
 	<br />
 
-
-	<h:form id="productsBox">
-		<p:dataTable id="productsTable" var="product"
-			value="#{productBean.products}" rows="1">
-			<p:column>
-				<p:link value="#{product.name}" outcome="product">
-					<f:param name="id" value="#{product.id}" />
-				</p:link>
-				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
-				</p:graphicImage>
-			</p:column>
-			<p:column>
-				<p:link value="#{product.name}" outcome="product">
-					<f:param name="id" value="#{product.id}" />
-				</p:link>
-				<p:graphicImage value="#{graphicImageBean.fotoToDisplay}">
-				</p:graphicImage>
-			</p:column>
-
-
-		</p:dataTable>
-	</h:form>
-
-
+	<h:panelGrid columns="2">
+		<p:panel id="firstOffer" style="width: 200px; height:auto;">
+			<p:link value="#{productBean.firstOffer.name}" outcome="product">
+				<f:param name="id" value="#{productBean.firstOffer.id}" />
+			</p:link>
+			<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+				rendered="#{not empty productBean.firstOffer.foto}" width="170" height="160">
+				<f:param name="target" value="firstOffer" />
+			</p:graphicImage>
+		</p:panel>
+		<p:panel id="secondOffer" style="width: 200px; height:auto;">
+			<p:link value="#{productBean.secondOffer.name}" outcome="product">
+				<f:param name="id" value="#{productBean.secondOffer.id}" />
+			</p:link>
+			<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+				rendered="#{not empty productBean.secondOffer.foto}" width="170" height="160">
+				<f:param name="target" value="secondOffer" />
+			</p:graphicImage>
+		</p:panel>
+</h:panelGrid>
 </h:body>
 </html>

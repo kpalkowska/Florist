@@ -2,56 +2,45 @@ package com.spring.service;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
+import com.spring.dao.RoleDAO;
 import com.spring.model.RoleModel;
 
-@Component
-@Transactional
+@Service(value = "roleService")
 public class RoleServiceImpl implements RoleService {
-
-    @Autowired
-   	private SessionFactory sessionFactory;
-
-   	public SessionFactory getSessionFactory() {
-   		return sessionFactory;
-   	}
-
-   	public void setSessionFactory(SessionFactory sessionFactory) {
-   		this.sessionFactory = sessionFactory;
-   	}
-    
-    @Override
-	public void deleteRole(RoleModel role) {
-		sessionFactory.getCurrentSession().delete(role);	
-	}
 	
-	@SuppressWarnings("unchecked")
+	@Autowired
+	private RoleDAO roleDAO;
+
+	@Override
+	public void deleteRole(RoleModel role) {
+		roleDAO.deleteRole(role);
+	}
+
 	@Override
 	public List<RoleModel> getAllRoles() {
-		return sessionFactory.getCurrentSession().getNamedQuery("roles.all").list();
+		return roleDAO.getAllRoles();
 	}
 
 	@Override
 	public void updateRole(RoleModel role) {
-		sessionFactory.getCurrentSession().merge(role);
+		roleDAO.updateRole(role);
 	}
-	
+
 	@Override
 	public void addRole(RoleModel role) {
-		sessionFactory.getCurrentSession().persist(role);
+		roleDAO.addRole(role);
 	}
 
 	@Override
 	public RoleModel findRole(RoleModel role) {
-		return (RoleModel) sessionFactory.getCurrentSession().get(RoleModel.class, role.getId());
+		return roleDAO.findRole(role);
 	}
 
 	@Override
 	public RoleModel exists(String role) {
-		return (RoleModel) sessionFactory.getCurrentSession().getNamedQuery("role.exists").setString("role", role).uniqueResult();
+		return roleDAO.existed(role);
 	}
 }

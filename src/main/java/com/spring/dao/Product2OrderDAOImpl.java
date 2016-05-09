@@ -14,25 +14,35 @@ import com.spring.model.*;
 @Transactional
 public class Product2OrderDAOImpl extends HibernateDaoSupport implements Product2OrderDAO {
 
-		@Autowired
-		public Product2OrderDAOImpl(SessionFactory sessionFactory) {
-			super.setSessionFactory(sessionFactory);
-		}
+	@Autowired
+	public Product2OrderDAOImpl(SessionFactory sessionFactory) {
+		super.setSessionFactory(sessionFactory);
+	}
 
-	    public void addProduct2Order(Product2OrderModel product2Order) {
-	    	getHibernateTemplate().save(product2Order);
-	    }
+	@Override
+	public void addProduct2Order(Product2OrderModel product2Order) {
+		getHibernateTemplate().save(product2Order);
+	}
 
-	    public void deleteProduct2Order(Product2OrderModel product2Order) {
-	    	getHibernateTemplate().delete(product2Order);
-	    }
+	@Override
+	public void deleteProduct2Order(Product2OrderModel product2Order) {
+		getHibernateTemplate().delete(product2Order);
+	}
 
-	    public void updateProduct2Order(Product2OrderModel product2Order) {
-	    	getHibernateTemplate().update(product2Order);
-	    }
+	@Override
+	public void updateProduct2Order(Product2OrderModel product2Order) {
+		getHibernateTemplate().update(product2Order);
+	}
 
-		public List<Product2OrderModel> getAllProduct2Orders() {
-			return getHibernateTemplate().loadAll(Product2OrderModel.class);
-		}
+	@Override
+	public List<Product2OrderModel> getAllProduct2Orders() {
+		return getHibernateTemplate().loadAll(Product2OrderModel.class);
+	}
+	
+	@Override
+	public Product2OrderModel findProduct2Order(Product2OrderModel product2order) {
+		return (Product2OrderModel) getHibernateTemplate().get(Product2OrderModel.class,
+				product2order.getId());
+	}
 
 }

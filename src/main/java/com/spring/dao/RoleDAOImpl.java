@@ -22,30 +22,51 @@ public class RoleDAOImpl extends HibernateDaoSupport implements RoleDAO {
 		super.setSessionFactory(sessionFactory);
 	}
 
-    public void addRole(RoleModel role) {
-    	getHibernateTemplate().save(role);
-    }
+	@Override
+	public void addRole(RoleModel role) {
+		getHibernateTemplate().save(role);
+	}
 
-    public void deleteRole(RoleModel role) {
-    	getHibernateTemplate().delete(role);
-    }
+	@Override
+	public void deleteRole(RoleModel role) {
+		getHibernateTemplate().delete(role);
+	}
 
-    public void updateRole(RoleModel role) {
-    	getHibernateTemplate().update(role);
-    }
+	@Override
+	public void updateRole(RoleModel role) {
+		getHibernateTemplate().update(role);
+	}
 
+	@Override
 	public List<RoleModel> getAllRoles() {
 		return getHibernateTemplate().loadAll(RoleModel.class);
+	}
+	
+	@Override
+	public RoleModel findRole(RoleModel role) {
+		return (RoleModel) getHibernateTemplate().get(RoleModel.class, role.getId());
 	}
 
 	@Override
 	public boolean exists(String role) {
-		final String SQL = "select count(*) from RoleModel r where r.role = :role";
 		return getHibernateTemplate().execute(new HibernateCallback<Boolean>() {
+			final String SQL ="select count(*) from RoleModel r where r.role = :role";
 			@Override
 			public Boolean doInHibernate(Session session) throws HibernateException {
 				Long count = (Long) session.createQuery(SQL).setParameter("role", role).uniqueResult();
 				return count > 0;
+			}
+		});
+	}
+	
+	@Override
+	public RoleModel existed(String role) {
+		return getHibernateTemplate().execute(new HibernateCallback<RoleModel>() {
+			final String SQL = "select r from RoleModel r where r.role = :role";
+			@Override
+			public RoleModel doInHibernate(Session session) throws HibernateException {
+				RoleModel roleM = (RoleModel) session.createQuery(SQL).setParameter("role", role).uniqueResult();
+				return roleM;
 			}
 		});
 	}

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link type="text/css" rel="stylesheet" href="style.css" />
+	<title>Create New Product</title>
+</h:head>
+
+<h:body>
+	<h:outputStylesheet library="css" name="style.css" />
+	<ui:include src="/pages/unsecure/header.xhtml" />    
+	<ui:include src="/pages/unsecure/menu.xhtml" />
+	<ui:include src="/pages/unsecure/loader.xhtml" />
+	<br />
+	<br />
+
+	<h:form>
+
+		<p:growl id="growl" sticky="true" showDetail="true" />
+
+		<p:wizard flowListener="#{sessionBean.onFlowProcess}">
+			<p:tab id="product" title="Product">
+				<p:panel header="Product details">
+
+					<h:panelGrid columns="3" columnClasses="label, value">
+						<h:outputText value="Name: *" />
+						<p:inputText id="name" value="#{sessionBean.name}" required="true"
+							label="Name">
+							<f:validateRegex pattern="^[a-zA-Z]+$" />
+							<f:validateLength minimum="2" />
+						</p:inputText>
+						<p:message id="message" for="name" />
+
+						<h:outputText value="Description: *" />
+						<p:inputText id="description" value="#{sessionBean.description}"
+							required="true" label="Description" />
+						<p:message id="message2" for="description" />
+
+						<h:outputText value="Price: *" />
+						<p:inputText id="price" value="#{sessionBean.price}"
+							required="true" label="Price">
+							<f:validateRegex pattern="^\d+(\.\d{2})?$" />
+						</p:inputText>
+						<p:message id="message3" for="price" />
+
+						<h:outputText value="Type: *" />
+						<p:inputText id="type" value="#{sessionBean.type}" required="true"
+							label="Type" />
+						<p:message id="message4" for="type" />
+
+						<h:outputText value="Color: *" />
+						<p:inputText id="color" value="#{sessionBean.color}"
+							required="true" label="Color">
+							<f:validateRegex pattern="^[a-zA-Z]+$" />
+							<f:validateLength minimum="2" />
+						</p:inputText>
+						<p:message id="message5" for="color" />
+
+						<h:outputText value="Foto: *" />
+						<h:form>
+							<p:fileUpload
+								fileUploadListener="#{sessionBean.handleFileUpload}"
+								mode="advanced" dragDropSupport="false" sizeLimit="100000"
+								fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+						</h:form>
+
+					</h:panelGrid>
+				</p:panel>
+			</p:tab>
+
+			<p:tab id="confirm" title="Confirmation">
+				<p:panel header="Confirmation">
+					<h:panelGrid id="confirmation" columns="3"
+						columnClasses="grid,grid,grid">
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Name: " />
+							<h:outputText value="#{sessionBean.name}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Description: " />
+							<h:outputText value="#{sessionBean.description}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Price: " />
+							<h:outputText value="#{sessionBean.price}"
+								styleClass="outputLabel" />
+
+							<h:outputText value="Type: " />
+							<p:inputText value="#{sessionBean.type}" styleClass="outputLabel" />
+
+							<h:outputText value="Color: " />
+							<p:inputText value="#{sessionBean.color}"
+								styleClass="outputLabel" />
+						</h:panelGrid>
+
+					</h:panelGrid>
+
+					<p:commandButton value="Submit"
+						actionListener="#{sessionBean.createProduct}" update="growl"
+						process="@this" 
+						action="#{selectProductBean.showAll()}"/>
+					<br />
+
+				</p:panel>
+			</p:tab>
+		</p:wizard>
+	</h:form>
+</h:body>
+</html>

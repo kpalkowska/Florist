@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PostLoad;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -24,35 +26,47 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Entity 
+@Entity
 @Table(name = "Products")
-@NamedQueries({
-	@NamedQuery(name = "products.all", query = "Select p from ProductModel p"),
-	@NamedQuery(name = "products.getByType", query = "Select p from ProductModel p where p.type = :type" ),
-	@NamedQuery(name = "products.getByColor", query = "Select p from ProductModel p where p.color = :color"),
-	@NamedQuery(name = "products.getByName", query = "Select product from ProductModel product where product.name = :name"),
-	@NamedQuery(name = "products.sortByPrice", query ="Select p from ProductModel p where p.price = :price"),   //coś tam jeszcze dopisac xD
-	@NamedQuery(name = "products.byId", query = "Select p from ProductModel p where p.id = :id"),
-	@NamedQuery(name = "foto.byProductId", query = "Select p.foto from ProductModel p where p.id = :id"),
-	@NamedQuery(name = "products.currentId", query = "Select p.id from ProductModel p")
-})
+@NamedQueries({ @NamedQuery(name = ProductModel.PRODUCTS_ALL, query = "Select p from ProductModel p"),
+		@NamedQuery(name = ProductModel.PRODUCTS_BY_TYPE, query = "Select p from ProductModel p where p.type = :type"),
+		@NamedQuery(name = ProductModel.PRODUCTS_BY_COLOR, query = "Select p from ProductModel p where p.color = :color"),
+		@NamedQuery(name = ProductModel.PRODUCTS_BY_NAME, query = "Select p from ProductModel p where p.name = :name"),
+		@NamedQuery(name = ProductModel.PRODUCTS_BY_ID, query = "Select p from ProductModel p where p.id = :id") })
 public class ProductModel {
+
+	public static final String PRODUCTS_ALL = "products.all";
+	public static final String PRODUCTS_BY_TYPE = "products.getByType";
+	public static final String PRODUCTS_BY_COLOR = "products.getByColor";
+	public static final String PRODUCTS_BY_NAME = "products.getByName";
+	public static final String PRODUCTS_BY_ID = "products.byId";
+	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	private @NonNull String name;
 	private @NonNull String description;
 	private @NonNull String price;
 	private @NonNull String type;
 	private @NonNull String color;
-	
+
 	@Lob
-	@Column(name="foto", columnDefinition="mediumblob")
+	@Column(name = "foto", columnDefinition = "mediumblob")
 	private byte[] foto;
 
-	public ProductModel(String name, String description, String price, String type, String color, byte[] foto){
+	@Transient
+	private StreamedContent fotoToDisplay = new DefaultStreamedContent();
+
+	@PostLoad
+	public void createFotoToDisplay() {
+		if (Objects.nonNull(foto)) {
+			fotoToDisplay = new DefaultStreamedContent(new ByteArrayInputStream(foto), "image/png");
+		}
+	}
+
+	public ProductModel(String name, String description, String price, String type, String color, byte[] foto) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -60,21 +74,5 @@ public class ProductModel {
 		this.color = color;
 		this.foto = foto;
 	}
-	
-    public StreamedContent getFotoToDisplay() {
-
-            if (Objects.isNull(foto))
-                  return new DefaultStreamedContent();
-            else
-                  return new DefaultStreamedContent(new ByteArrayInputStream(foto), "image/png");
-      }
-
- 
-
-    public void setFotoToDisplay(StreamedContent fotoToDisplay) { }
 
 }
-
-
-
-

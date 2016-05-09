@@ -23,32 +23,33 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Entity 
+@Entity
 @Table(name = "Users")
-@NamedQueries({
-	@NamedQuery(name = "users.all", query = "Select u from UserModel u"),
-	@NamedQuery(name = "user.byLogin", query = "Select u from UserModel u where u.login = :login"),
-	@NamedQuery(name = "user.byID", query = "Select u.login from UserModel u where u.id = :id")
-})
+@NamedQueries({ @NamedQuery(name = UserModel.USERS_ALL, query = "Select u from UserModel u"),
+		@NamedQuery(name = UserModel.USER_BY_LOGIN, query = "Select u from UserModel u where u.login = :login"),
+		@NamedQuery(name = UserModel.USER_BY_ID, query = "Select u.login from UserModel u where u.id = :id") })
 public class UserModel {
 
+	public static final String USERS_ALL = "users.all";
+	public static final String USER_BY_LOGIN = "user.byLogin";
+	public static final String USER_BY_ID = "user.byID";
+	public static final String USER_EXISTS = "select count(*) from UserModel user where user.login = :login";
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-    private @NonNull String name;
-    private @NonNull String surname;
-    private @NonNull String login;
-    private @NonNull String password;
-    
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "address")
-    private @NonNull AddressModel address;
-    
-    
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "role")
-    private @NonNull RoleModel role;
+
+	private @NonNull String name;
+	private @NonNull String surname;
+	private @NonNull String login;
+	private @NonNull String password;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "address")
+	private @NonNull AddressModel address;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "role")
+	private @NonNull RoleModel role;
 
 	public UserModel(String username) {
 		this.login = username;

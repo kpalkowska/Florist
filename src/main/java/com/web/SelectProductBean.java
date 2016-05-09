@@ -22,9 +22,9 @@ import lombok.Data;
 public @Data class SelectProductBean implements Serializable {
 
 	private static final long serialVersionUID = 1549481937223946546L;
-	
+
 	private static Logger LOGGER = Logger.getLogger("InfoLogging");
-	
+
 	private String name;
 	private String description;
 	private String price;
@@ -34,37 +34,37 @@ public @Data class SelectProductBean implements Serializable {
 
 	@Autowired
 	private ProductService productService;
-	
+
 	private List<ProductModel> products = new ArrayList<>();
-	
-	public String showProductsByName(String name){
+
+	public String showProductsByName(String name) {
 		this.name = name;
 		setProducts(productService.findProductByName(name));
 
 		LOGGER.info("Display products by name");
-		return "/pages/secure/productCases?faces-redirect=true"; 
+		return "/pages/secure/productCases?faces-redirect=true";
 	}
-	
-	public String showProductsByColor(String color){
+
+	public String showProductsByColor(String color) {
 		this.color = color;
 		setProducts(productService.findProductByColor(color));
 
 		LOGGER.info("Display producys by color");
-		return "/pages/secure/productCases?faces-redirect=true"; 
+		return "/pages/secure/productCases?faces-redirect=true";
 	}
-	
-	public String showProductsByType(String type){
+
+	public String showProductsByType(String type) {
 		this.type = type;
 		setProducts(productService.findProductByType(type));
 
 		LOGGER.info("Display products by type");
-		return "/pages/secure/productCases?faces-redirect=true"; 
+		return "/pages/secure/productCases?faces-redirect=true";
 	}
-	
-	public String showAll(){
+
+	public String showAll() {
 		setProducts(productService.getAllProducts());
 
 		LOGGER.info("Display all products");
-		return "/pages/secure/productCases?faces-redirect=true"; 
+		return "/pages/secure/products?faces-redirect=true";
 	}
 }

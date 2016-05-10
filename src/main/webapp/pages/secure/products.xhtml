@@ -28,16 +28,13 @@
 
 			<p:fieldset id="availableProductsField" legend="Available Products">
 				<p:dataTable id="availableProducts" var="product"
-					value="#{productBean.products}" rows="10" paginator="true"
+					value="#{productBean.products}" rows="5" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15" sortBy="#{product.id}"
 					rowIndexVar="index">
 					<p:column style="width:20px">
 						<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
 						<p:draggable for="dragIcon" revert="true" helper="clone" />
-					</p:column>
-					<p:column headerText="Id">
-						<h:outputText value="#{product.id}" />
 					</p:column>
 					<p:column headerText="Name">
 						<h:outputText value="#{product.name}" />
@@ -70,9 +67,6 @@
 					<p:dataTable id="selectedProductsTable" var="product"
 						value="#{productBean.droppedProducts}"
 						rendered="#{not empty productBean.droppedProducts}">
-						<p:column headerText="Id">
-							<h:outputText value="#{product.id}" />
-						</p:column>
 						<p:column headerText="Name">
 							<h:outputText value="#{product.name}" />
 						</p:column>

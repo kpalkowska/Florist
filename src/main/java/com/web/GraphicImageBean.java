@@ -31,6 +31,9 @@ public @Data class GraphicImageBean {
 
 	@ManagedProperty("#{productBean}")
 	private ProductBean productBean;
+	
+	@ManagedProperty("#{selectProductBean}")
+	private SelectProductBean selectProductBean;
 
 	public StreamedContent getFotoToDisplay() {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -64,6 +67,27 @@ public @Data class GraphicImageBean {
 					return new DefaultStreamedContent();
 				}
 			}
+		}
+	}
+	
+	public StreamedContent getSelectedFoto() {
+		FacesContext context = FacesContext.getCurrentInstance();
+
+		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+			return new DefaultStreamedContent();
+		} else {
+			Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+			String idString = params.get("foto_idx");
+			int id = -1;
+				if (StringUtils.isNumeric(idString)) {
+					id = Integer.valueOf(idString);
+					List<ProductModel> products = selectProductBean.getProducts();
+					byte[] foto = products.get(id).getFoto();
+
+					return new DefaultStreamedContent(new ByteArrayInputStream(foto));
+				} else {
+					return new DefaultStreamedContent();
+				}
 		}
 	}
 

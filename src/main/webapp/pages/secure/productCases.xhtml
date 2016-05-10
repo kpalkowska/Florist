@@ -34,9 +34,6 @@
 					<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
 					<p:draggable for="dragIcon" revert="true" helper="clone" />
 				</p:column>
-				<p:column headerText="Id">
-					<h:outputText value="#{product.id}" />
-				</p:column>
 				<p:column headerText="Name">
 					<h:outputText value="#{product.name}" />
 				</p:column>
@@ -50,8 +47,8 @@
 					<h:outputText value="#{product.color}" />
 				</p:column>
 				<p:column headerText="Image">
-					<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
-						rendered="#{not empty product.foto}">
+					<p:graphicImage value="#{graphicImageBean.selectedFoto}"
+						rendered="#{not empty product.foto}" width="80" height="90">
 						<f:param name="foto_idx" value="#{index}" />
 					</p:graphicImage>
 				</p:column>
@@ -68,9 +65,6 @@
 				<p:dataTable id="selectedProductsTable" var="product"
 					value="#{productBean.droppedProducts}"
 					rendered="#{not empty productBean.droppedProducts}">
-					<p:column headerText="Id">
-						<h:outputText value="#{product.id}" />
-					</p:column>
 					<p:column headerText="Name">
 						<h:outputText value="#{product.name}" />
 					</p:column>

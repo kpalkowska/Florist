@@ -127,6 +127,7 @@ public @Data class SessionBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
 			LOGGER.error("Error creating product :(");
 		}
+		products = productService.getAllProducts();
 		return null;
 	}
 

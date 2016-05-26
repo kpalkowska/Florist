@@ -161,11 +161,13 @@ public @Data class ProductBean implements Serializable {
 			orderDAO.addOrder(newOrder);
 		}
 
-		for (ProductModel product : droppedProducts) {
-			p2o.setProduct(product);
-			successOrder = p2oService.createProduct2Order(product, newOrder);
+		if(droppedProducts.size() != 0){
+			for (ProductModel product : droppedProducts) {
+				p2o.setProduct(product);
+				successOrder = p2oService.createProduct2Order(product, newOrder);
+			}
 		}
-
+		
 		if (successOrder) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Success", new StringBuilder("Order ").append("submited!").toString()));
@@ -182,11 +184,13 @@ public @Data class ProductBean implements Serializable {
 
 	public String submitOrderAndEmail() {
 		createOrder();
-		if (successOrder)
+		if (successOrder && payment){
 			email.sendEmail();
-		
-		if(payment){
 			return "/pages/secure/pay?faces-redirect=true";
+		}
+		else if(successOrder == true && payment == false){
+			email.sendEmail();
+			return "/pages/unsecure/products?faces-redirect=true";
 		}
 		
 		return null;

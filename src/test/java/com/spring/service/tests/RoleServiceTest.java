@@ -26,7 +26,7 @@ public class RoleServiceTest {
 
 	@Rollback(true)
 	@Test
-	public void addProductCheck() {
+	public void addRoleCheck() {
 
 		int n = roleService.getAllRoles().size();
 		RoleModel role = new RoleModel(ROLE_1);
@@ -43,7 +43,7 @@ public class RoleServiceTest {
 
 	@Rollback(true)
 	@Test
-	public void deleteProductCheck() {
+	public void deleteRoleCheck() {
 
 		int n = roleService.getAllRoles().size();
 		RoleModel role = new RoleModel(ROLE_1);
@@ -63,7 +63,7 @@ public class RoleServiceTest {
 
 	@Rollback(true)
 	@Test
-	public void updateProductCheck() {
+	public void updateRoleCheck() {
 		int n = roleService.getAllRoles().size();
 		RoleModel role = new RoleModel(ROLE_1);
 		role.setRole(ROLE_1);

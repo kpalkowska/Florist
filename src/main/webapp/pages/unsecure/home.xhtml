@@ -28,21 +28,15 @@
 	<br />
 
 	<h:panelGrid columns="2">
-		<p:panel id="firstOffer" style="width: 200px; height:auto;">
-			<p:link value="#{productBean.firstOffer.name}" outcome="product">
-				<f:param name="id" value="#{productBean.firstOffer.id}" />
-			</p:link>
+		<p:panel id="firstOffer" style="width: 290px; height:auto;">
 			<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
-				rendered="#{not empty productBean.firstOffer.foto}" width="170" height="160">
+				rendered="#{not empty productBean.firstOffer.foto}" width="255" height="240">
 				<f:param name="target" value="firstOffer" />
 			</p:graphicImage>
 		</p:panel>
-		<p:panel id="secondOffer" style="width: 200px; height:auto;">
-			<p:link value="#{productBean.secondOffer.name}" outcome="product">
-				<f:param name="id" value="#{productBean.secondOffer.id}" />
-			</p:link>
+		<p:panel id="secondOffer" style="width: 290px; height:auto;">
 			<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
-				rendered="#{not empty productBean.secondOffer.foto}" width="170" height="160">
+				rendered="#{not empty productBean.secondOffer.foto}" width="255" height="240">
 				<f:param name="target" value="secondOffer" />
 			</p:graphicImage>
 		</p:panel>

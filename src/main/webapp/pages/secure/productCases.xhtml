@@ -23,6 +23,8 @@
 		<br />
 		<br />
 		<br />
+		
+		<h:form id="productForm">
 
 		<p:fieldset id="productCasesField" legend="Search Products">
 			<p:dataTable id="productCases" var="product"
@@ -91,7 +93,7 @@
 					update="dropArea productCases" />
 			</p:droppable>
 		</p:fieldset>
-		
+	</h:form>
 		<p:commandButton value="Submit your order" styleClass="orderButton"
 			action="#{productBean.submitOrder()}"
 			rendered="#{not empty facesContext.externalContext.request.remoteUser}" />

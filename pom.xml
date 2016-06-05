@@ -169,12 +169,12 @@
 	</repositories>
 
 	<dependencies>
-		<!-- SQL -->
+		<!-- SQL 
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>sqljdbc4</artifactId>
 			<version>4.0</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- Hibernate -->
 		<dependency>

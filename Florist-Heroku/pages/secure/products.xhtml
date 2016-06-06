@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<script type="text/javascript">
+    function handleDrop(event, ui) {
+        var droppedProduct = ui.draggable; 
+        droppedProduct.fadeOut('fast');
+    }
+</script>
+<h:head>
+
+	<title>Welcome</title>
+</h:head>
+<body>
+	<h:outputStylesheet library="css" name="style.css" />
+	<f:view>
+		<ui:include src="/pages/unsecure/header.xhtml" />
+		<ui:include src="/pages/unsecure/menu.xhtml" />
+		<ui:include src="/pages/unsecure/loader.xhtml" />
+		<br />
+		<br />
+		<br />
+
+		<h:form id="productForm">
+
+			<p:fieldset id="availableProductsField" legend="Available Products">
+				<p:dataTable id="availableProducts" var="product"
+					value="#{productBean.products}" rows="5" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" sortBy="#{product.id}"
+					rowIndexVar="index">
+					<p:column style="width:20px">
+						<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+						<p:draggable for="dragIcon" revert="true" helper="clone" />
+					</p:column>
+					<p:column headerText="Name">
+						<h:outputText value="#{product.name}" />
+					</p:column>
+					<p:column headerText="Description">
+						<h:outputText value="#{product.description}" />
+					</p:column>
+					<p:column headerText="Price">
+						<h:outputText value="#{product.price}" />
+					</p:column>
+					<p:column headerText="Color">
+						<h:outputText value="#{product.color}" />
+					</p:column>
+					<p:column headerText="Image">
+						<p:graphicImage value="#{graphicImageBean.fotoToDisplay}"
+							rendered="#{not empty product.foto}" width="80" height="90">
+							<f:param name="foto_idx" value="#{index}" />
+						</p:graphicImage>
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+			<br />
+			<br />
+			<p:fieldset id="selectedProducts" legend="Selected Products"
+				style="margin-top:20px">
+				<p:outputPanel id="dropArea">
+					<h:outputText value="Drop here your products"
+						rendered="#{empty productBean.droppedProducts}"
+						style="font-size:24px;" />
+					<p:dataTable id="selectedProductsTable" var="product"
+						value="#{productBean.droppedProducts}"
+						rendered="#{not empty productBean.droppedProducts}">
+						<p:column headerText="Name">
+							<h:outputText value="#{product.name}" />
+						</p:column>
+						<p:column headerText="Description">
+							<h:outputText value="#{product.description}" />
+						</p:column>
+						<p:column headerText="Price">
+							<h:outputText value="#{product.price}" />
+						</p:column>
+						<p:column headerText="Color">
+							<h:outputText value="#{product.color}" />
+						</p:column>
+						<p:column style="width:70px">
+							<p:commandButton icon="ui-icon-trash" title="Delete" styleClass="trash"
+								actionListener="#{productBean.remove(product)}" ajax="false" />
+						</p:column>
+					</p:dataTable>
+				</p:outputPanel>
+
+				<p:droppable for="selectedProducts" tolerance="touch"
+					activeStyleClass="ui-state-highlight"
+					datasource="availableProducts" onDrop="handleDrop">
+					<p:ajax listener="#{productBean.onProductDrop}"
+						update="dropArea availableProducts" />
+				</p:droppable>
+			</p:fieldset>
+		</h:form>
+		<p:commandButton value="Submit your order" styleClass="orderButton"
+			action="#{productBean.submitOrder()}"
+			rendered="#{not empty facesContext.externalContext.request.remoteUser}" />
+	</f:view>
+</body>
+</html>

@@ -169,7 +169,7 @@
 	</repositories>
 
 	<dependencies>
-		<!-- SQL 
+		<!-- SQL
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>sqljdbc4</artifactId>
